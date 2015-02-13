@@ -72,8 +72,19 @@ Now open **Project** – **Properties** and make sure you have selected **Debug*
 Because this is the **Debug** configuration, we would like to have a visible console window. To get that, go to **Linker** – **System** and set **/SUBSYSTEM:CONSOLE** for **SubSystem**:
 
 ![2014_12_25-11.png](/images/2014_12_25-11.png)
+
+Now build and run the project. You should get a console window and the GUI window:
+
 ![2014_12_25-12.png](/images/2014_12_25-12.png)
+
+Now go back to **Project** – **Properties** and select **Release** as the configuration. Go to **Linker** – **Input** and edit the **Additional Dependencies** just like before, but this time, add **fltk.lib**, **wsock32.lib**, **comctl32.lib**, **fltkjpeg.lib** and **fltkimages.lib** – notice the missing "d" at the end of the names:
+
 ![2014_12_25-13.png](/images/2014_12_25-13.png)
+
+Make sure that under **Linker** – **System**, the option **/SUBSYSTEM:WINDOWS** is selected so we don't get a console window. Now build and run to see if only the GUI window shows up.
+
+That's how you set up any project using FLTK!
+
 ![2014_12_25-14.png](/images/2014_12_25-14.png)
 ![2014_12_25-15.png](/images/2014_12_25-15.png)
 ![2014_12_25-16.png](/images/2014_12_25-16.png)
