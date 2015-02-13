@@ -62,7 +62,7 @@ Now, the file behaves as expected when being read:
 
 Encodings in C++ (and elsewhere!) can be daunting. Good readings I have found include these:
 
-* [The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)])(http://www.joelonsoftware.com/articles/Unicode.html) by Joel Spolsky
+* [The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)](http://www.joelonsoftware.com/articles/Unicode.html) by Joel Spolsky
 * [Character Encodings For Modern Programmers](http://blog.gatunka.com/2014/04/25/character-encodings-for-modern-programmers/) by GT
 * And, one day, should I have lots of spare time: [Standard C++ IOStreams and Locales](http://amzn.com/0201183951) by Angelika Langer and Klaus Kreft
 
