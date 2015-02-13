@@ -111,7 +111,7 @@ Now add all the files to the project using **Project** – **Add Existing Item**
 
 This is actually overkill as we're not going to use **GUI.h** and **GUI.cpp** for a while, but you won't have to add anything else when you eventually use them.
 
-For some reason, in **Point.h**, the constructors are commented out. Uncomment everything in the struct.
+For some reason, in `Point.h`, the constructors are commented out. Uncomment everything in the struct.
 
 Now edit **chapter12_drill.cpp** and enter this code:
 
@@ -131,19 +131,19 @@ int main()
 
 If you try to build your solution now, you get a slew of errors. Here is how to get rid of them:
 
-In **std\_lib\_facilities.h**, comment out the complete **vector** part:
+In **std\_lib\_facilities.h**, comment out the complete `vector` part:
 
 ![2014_12_25-16.png](/images/2014_12_25-16.png)
 
-This should get rid of errors related to **vector** and initializer lists; you lose range checking, though.
+This should get rid of errors related to `vector` and initializer lists; you lose range checking, though.
 
-Next, because [list initialization inside member initializer list or non-static data member initializer is not implemented](http://msdn.microsoft.com/en-us/library/dn793970.aspx) in VS 2013, comment out the constructor of **Lines** in **graph.h** (line 238). For the same reason, replace the constructor of **Text**:
+Next, because [list initialization inside member initializer list or non-static data member initializer is not implemented](http://msdn.microsoft.com/en-us/library/dn793970.aspx) in VS 2013, comment out the constructor of `Lines` in **graph.h** (line 238). For the same reason, replace the constructor of `Text`:
 
 ![2014_12_25-17.png](/images/2014_12_25-17.png)
 
-Next, in **GUI.cpp**, add **Graph_lib::** in front of **Window&** in the definition of **Button::attach** (line 8), **In_box::attach** (line 30) and **Out_box::attach** (line 49). In **Graph.cpp**, in the definition of **can_open**, replace **return ff;** with **return bool(ff);** (line 319).
+Next, in **GUI.cpp**, add `Graph_lib::` in front of `Window&` in the definition of `Button::attach` (line 8), `In_box::attach` (line 30) and `Out_box::attach` (line 49). In **Graph.cpp**, in the definition of `can_open`, replace `return ff;` with `return bool(ff);` (line 319).
 
-Finally, in **GUI.cpp**, remove the constructor **Menu::Menu** as it is already defined in **GUI.h**.
+Finally, in **GUI.cpp**, remove the constructor `Menu::Menu` as it is already defined in **GUI.h**.
 
 Now you should be able to build and run the project!
 
