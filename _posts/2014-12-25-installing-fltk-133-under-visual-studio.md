@@ -65,9 +65,12 @@ int main()
 }
 ```
 
-Now open
+Now open **Project** – **Properties** and make sure you have selected **Debug** in **Configuration** in the top left corner. Under **Linker** – **Input**, edit **Additional Dependencies** and add **fltk.lib**, **wsock32.lib**, **comctl32.lib**, **fltkjpegd.lib** and **fltkimages.lib**, each on their own line:
 
 ![2014_12_25-10.png](/images/2014_12_25-10.png)
+
+Because this is the **Debug** configuration, we would like to have a visible console window. To get that, go to **Linker** – **System** and set **/SUBSYSTEM:CONSOLE** for **SubSystem**:
+
 ![2014_12_25-11.png](/images/2014_12_25-11.png)
 ![2014_12_25-12.png](/images/2014_12_25-12.png)
 ![2014_12_25-13.png](/images/2014_12_25-13.png)
