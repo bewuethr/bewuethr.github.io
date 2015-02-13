@@ -35,9 +35,38 @@ Now copy (don't move) the following from you **fltk-1.3.3** folder:
 * All **.lib** files from **fltk-1.3.3\lib** (except **README.lib**) to **VC\lib**. There should be 14 files: seven pairs of two files each, where one has an added "d" (for "debug") at the end of the file name.
 * **fluid.exe** and **fluidd.exe** from **fltk-1.3.3\fluid** to **VC\bin**
 
+## Setting up a FLTK project
+
+To set up a FLTK project, select **File** – **New** – **Project** and choose **Win32 Project**:
+
 ![2014_12_25-07.png](/images/2014_12_25-07.png)
+
+In the wizard under **Application Settings**, check **Empty project**:
+
 ![2014_12_25-08.png](/images/2014_12_25-08.png)
+
+Create a source file with **Project** – **Add New Item**:
+
 ![2014_12_25-09.png](/images/2014_12_25-09.png)
+
+Enter this code:
+
+```cpp
+#include<FL/Fl.H>
+#include<FL/Fl_Box.H>
+#include<FL/Fl_Window.H>
+
+int main()
+{
+	Fl_Window window(200,200,"Window title");
+    FL_Box box(0,0,200,200,"Hey, I mean, Hello, World!");
+    window.show();
+    return Fl::run();
+}
+```
+
+Now open
+
 ![2014_12_25-10.png](/images/2014_12_25-10.png)
 ![2014_12_25-11.png](/images/2014_12_25-11.png)
 ![2014_12_25-12.png](/images/2014_12_25-12.png)
