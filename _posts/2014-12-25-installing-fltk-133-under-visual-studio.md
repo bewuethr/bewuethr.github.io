@@ -131,7 +131,7 @@ int main()
 
 If you try to build your solution now, you get a slew of errors. Here is how to get rid of them:
 
-In **std_lib_facilities.h**, comment out the complete **vector** part:
+In **std\_lib\_facilities.h**, comment out the complete **vector** part:
 
 ![2014_12_25-16.png](/images/2014_12_25-16.png)
 
