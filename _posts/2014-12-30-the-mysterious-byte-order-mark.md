@@ -65,3 +65,5 @@ Encodings in C++ (and elsewhere!) can be daunting. Good readings I have found in
 * [The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)])(http://www.joelonsoftware.com/articles/Unicode.html) by Joel Spolsky
 * [Character Encodings For Modern Programmers](http://blog.gatunka.com/2014/04/25/character-encodings-for-modern-programmers/) by GT
 * And, one day, should I have lots of spare time: [Standard C++ IOStreams and Locales](http://amzn.com/0201183951) by Angelika Langer and Klaus Kreft
+
+_Edit (February 2, 2015):_ Since I've written this, I've read [Dive Into Python 3](http://www.diveintopython3.net/) by Mark Pilgrim, and the [chapter about strings](http://www.diveintopython3.net/strings.html) has made encodings so much clearer to me, so it is most recommended reading.
