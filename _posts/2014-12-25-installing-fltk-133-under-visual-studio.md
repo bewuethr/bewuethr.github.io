@@ -4,10 +4,46 @@ title: Installing FLTK 1.3.3 under Visual Studio Community 2013
 published: true
 ---
 
+
 ## Downloading and building FLTK
 
 Download FLTK from [here](http://www.fltk.org/software.php): get **fltk-1.3.3-source.tar.gz** and decompress it, using for example [7-Zip](http://www.7-zip.org). You should end up with a directory **fltk-1.3.3**; I have put mine in a subfolder of my **Documents** folder:
 
 ![2014_12_25-01.png](/images/2014_12_25-01.png)
 
-![2014_12_25-02.png](/_posts/2014_12_25-02.png)
+Now open the project file **fltk.sln** in **fltk-1.3.3/ide/VisualC2010**. If asked, say you're okay with updating the project files.
+
+Make sure you have selected **Debug** as your solution configuration.
+
+![2014_12_25-04.png](/images/2014_12_25-04.png)
+
+In the context menu of the **demo** project, select **Set as StartUp Project**.
+
+![2014_12_25-05.png](/images/2014_12_25-05.png)
+
+Now build the solution (**Build** – **Build Solution** or Ctrl+Shift+B). If successful, you should be able to run the **demo** project (**Debug** – **Start Debugging** or F5).
+
+Change the solution configuration to **Release** and build again. Check if you can run the **demo** project (F5).
+
+Now we have to copy the generated library files to the right directory so Visual Studio finds them. In my installation, the libraries and headers are in **C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC** (just **VC** from now on). If you have the right directory, there should be a bunch of subdirectories:
+
+![2014_12_25-06.png](/images/2014_12_25-06.png)
+
+Now copy (don't move) the following from you **fltk-1.3.3** folder:
+
+* The complete **FL** directory to **VC\include**
+* All **.lib** files from **fltk-1.3.3\lib** (except **README.lib**) to **VC\lib**. There should be 14 files: seven pairs of two files each, where one has an added "d" (for "debug") at the end of the file name.
+* **fluid.exe** and **fluidd.exe** from **fltk-1.3.3\fluid** to **VC\bin**
+
+![2014_12_25-07.png](/images/2014_12_25-07.png)
+![2014_12_25-08.png](/images/2014_12_25-08.png)
+![2014_12_25-09.png](/images/2014_12_25-09.png)
+![2014_12_25-10.png](/images/2014_12_25-10.png)
+![2014_12_25-11.png](/images/2014_12_25-11.png)
+![2014_12_25-12.png](/images/2014_12_25-12.png)
+![2014_12_25-13.png](/images/2014_12_25-13.png)
+![2014_12_25-14.png](/images/2014_12_25-14.png)
+![2014_12_25-15.png](/images/2014_12_25-15.png)
+![2014_12_25-16.png](/images/2014_12_25-16.png)
+![2014_12_25-17.png](/images/2014_12_25-17.png)
+![2014_12_25-18.png](/images/2014_12_25-18.png)
