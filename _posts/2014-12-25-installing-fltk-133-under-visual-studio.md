@@ -85,10 +85,66 @@ Make sure that under **Linker** – **System**, the option **/SUBSYSTEM:WINDOWS*
 
 That's how you set up any project using FLTK!
 
+## Getting FLTK with headers from Stroustrup's book to run
+
+A lot of people struggling with FLTK are using it in the first place because they're working through Bjarne Stroustrup's book "[Programming – Principles and Practice Using C++](http://www.stroustrup.com/Programming/)", which uses FLTK in its Chapters 12 to 16 for GUI examples. Stroustrup provides a small interface library to be used in all the exercises. Here is how to set up a project using this interface library:
+
+Create a new Win32 project. I've called mine **stroustrup_ppp**:
+
 ![2014_12_25-14.png](/images/2014_12_25-12.png)
+
+Make sure it's empty by selecting **Empty project** in **Application Settings** in the Application Wizard.
+
+Now set all the project properties just like above so Visual Studio properly links to the FLTK library files.
+
+For the example, we're going to do the drill of Chapter 12. Select **Project** – **Add New Item** to add a new file:
+
 ![2014_12_25-14.png](/images/2014_12_25-13.png)
+
+If you haven't already, download the [standard library access header](http://www.stroustrup.com/Programming/PPP2code/std_lib_facilities.h) and the [GUI support code](http://www.stroustrup.com/Programming/PPP2code/) from the [website](http://www.stroustrup.com/Programming/) and put them in the same directory as **chapter12_drill.cpp**. Ignore all the matrix files and **Gui.h** – download **GUI.h**. Don't download **simple_window.cpp** as everything is already defined in **simple_window.h**. The directory should look like this afterwards:
+
 ![2014_12_25-14.png](/images/2014_12_25-14.png)
+
+Now add all the files to the project using **Project** – **Add Existing Item**:
+
 ![2014_12_25-15.png](/images/2014_12_25-15.png)
+
+This is actually overkill as we're not going to use **GUI.h** and **GUI.cpp** for a while, but you won't have to add anything else when you eventually use them.
+
+For some reason, in **Point.h**, the constructors are commented out. Uncomment everything in the struct.
+
+Now edit **chapter12_drill.cpp** and enter this code:
+
+```cpp
+#include "Graph.h"
+#include "Simple_window.h"
+
+int main()
+{
+	using namespace Graph_lib;
+    
+    Point tl(150,150);
+    Simple_window win(tl,600,400,"My window");
+    win.wait_for_button();
+}
+```
+
+If you try to build your solution now, you get a slew of errors. Here is how to get rid of them:
+
+In **std_lib_facilities.h**, comment out the complete **vector** part:
+
 ![2014_12_25-16.png](/images/2014_12_25-16.png)
+
+This should get rid of errors related to **vector** and initializer lists; you lose range checking, though.
+
+Next, because [list initialization inside member initializer list or non-static data member initializer is not implemented](http://msdn.microsoft.com/en-us/library/dn793970.aspx) in VS 2013, comment out the constructor of **Lines** in **graph.h** (line 238). For the same reason, replace the constructor of **Text**:
+
 ![2014_12_25-17.png](/images/2014_12_25-17.png)
+
+Next, in **GUI.cpp**, add **Graph_lib::** in front of **Window&** in the definition of **Button::attach** (line 8), **In_box::attach** (line 30) and **Out_box::attach** (line 49). In **Graph.cpp**, in the definition of **can_open**, replace **return ff;** with **return bool(ff);** (line 319).
+
+Finally, in **GUI.cpp**, remove the constructor **Menu::Menu** as it is already defined in **GUI.h**.
+
+Now you should be able to build and run the project!
+
 ![2014_12_25-18.png](/images/2014_12_25-18.png)
