@@ -4,7 +4,7 @@ title: The mysterious byte order mark
 published: true
 ---
 
-I bumped into a strange problem with reading a text file recently. The file described the layout of a [Nonogram](http://en.wikipedia.org/wiki/Nonogram) for a program my father was working on:
+I bumped into a strange problem with reading a text file recently. The file described the layout of a [Nonogram](http://en.wikipedia.org/wiki/Nonogram) for a program my father was working on &ndash; details of what means what aren't really important here:
 
 ```
 N 5 5
