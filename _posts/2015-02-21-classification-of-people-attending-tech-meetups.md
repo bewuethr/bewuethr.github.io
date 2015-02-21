@@ -9,6 +9,7 @@ Disclaimer: these are friendly hyperboles after attending a few technology-minde
 ### The recruiter
 
 Your safe haven if you have a hard time chatting up people.
+
 <!---more--->
 No activity on your part required, just exist in their general vicinity to be talked to. After having reduced you to exactly what language you work in, they let you know they "might have something for you", give you a business card and are interested in the next person.
 
