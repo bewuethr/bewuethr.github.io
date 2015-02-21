@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""
+title: "Classification of people attending tech meetups"
 published: false
 ---
 
