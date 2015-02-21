@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Classification of people attending tech meetups"
+title: Classification of people attending tech meetups
 published: false
 ---
 
@@ -17,6 +17,10 @@ Almost as engaging as the recruiter. Can be avoided by very actively ignoring hi
 ### The developer at an established firm
 
 Just checking out the scene. Lets you know that if you ever have "any coding needs", their company is perfect for that. Less helpful for "any job needs".
+
+### The designer
+
+Often female. Here to to find their next freelance gig and/or subjects for their UX study.
 
 ### The weird guy
 
