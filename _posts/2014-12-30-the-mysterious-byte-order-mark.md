@@ -6,13 +6,13 @@ published: true
 
 I bumped into a strange problem with reading a text file recently. The file described the layout of a [Nonogram](http://en.wikipedia.org/wiki/Nonogram) for a program my father was working on:
 
-<!---more--->
-
 ```
 N 5 5
 Z 5 0 1 0 2 1 0 1 0 1 0
 K 3 0 1 1 0 1 0 1 1 0 1 2 0
 ```
+
+<!---more--->
 
 And to read the first line, he used something like this:
 
