@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ""
-published: false
+published: true
 ---
 
 Disclaimer: these are friendly hyperboles after attending a few technology-minded meetups in the role of somebody looking to make connections and eventually land a job.
