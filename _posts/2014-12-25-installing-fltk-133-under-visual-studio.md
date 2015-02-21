@@ -11,6 +11,8 @@ Download FLTK from [here](http://www.fltk.org/software.php): get **fltk-1.3.3-so
 
 ![2014_12_25-01.png](/images/2014_12_25-01.png)
 
+<!---more--->
+
 Now open the project file **fltk.sln** in **fltk-1.3.3/ide/VisualC2010**. If asked, say you're okay with updating the project files.
 
 Make sure you have selected **Debug** as your solution configuration.
