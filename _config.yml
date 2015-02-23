@@ -25,10 +25,10 @@ footer-links:
   instagram: 
   linkedin: 
   pinterest: 
-  rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
+  rss: dummy
   twitter: bewuethr
   stackoverflow: users/3266847/benjamin
-  youtube: # channel/<your_long_string> or user/<user-name>
+  youtube: user/bewuethr
 
 # Your disqus shortname, entering this will enable commenting on posts
 disqus: stringgettitle
