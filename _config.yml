@@ -28,7 +28,7 @@ footer-links:
   rss: dummy
   twitter: bewuethr
   stackoverflow: users/3266847/benjamin
-  youtube: user/bewuethr
+  youtube:
 
 # Your disqus shortname, entering this will enable commenting on posts
 disqus: stringgettitle
