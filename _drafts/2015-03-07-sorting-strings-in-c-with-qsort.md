@@ -23,7 +23,7 @@ void qsort(void* ptr, size_t count, size_t size,
 
 Like `strcmp`, if you will.
 
-My strings all have the same length, `WORD_LEN`. Obviously, I try to call qsort like this:
+My strings all have the same maximum length, `WORD_LEN`. Obviously, I try to call qsort like this:
 
 ```C
 qsort(words,ctr,WORD_LEN,strcmp);
@@ -78,7 +78,7 @@ int cmpstr(const void* a, const void* b)
 
 and lo and behold, it works properly!
 
-An more elegant solution can be found on the [linux man page for qsort](http://linux.die.net/man/3/qsort) where the casts are in the call:
+A more elegant solution can be found on the [linux man page for qsort](http://linux.die.net/man/3/qsort) where the casts are in the call:
 
 ```C
 return strcmp(*(char* const*) p1, *(char* const*) p2);
