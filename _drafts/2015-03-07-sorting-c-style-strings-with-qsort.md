@@ -15,4 +15,19 @@ void qsort(void* ptr, size_t count, size_t size,
            int (*comp)(const void*, const void*));
 ```
 
-`ptr` points to your array, `count` is the number of elements in the array, `size` the size of an element and `comp` a comparison function that returns a negative value if the first argument is smaller than the second, a positive value if it is bigger than the second and zero if they are equal. Like `strcmp`, if you will.
+`ptr` points to your array, `count` is the number of elements in the array, `size` the size of an element and `comp` a comparison function that returns
+
+* a _negative_ value if the first argument is smaller than the second,
+* a _positive_ value if it is bigger than the second, and
+* _zero_ if they are equal.
+
+Like `strcmp`, if you will.
+
+My strings all have the same length, `WORD_LEN`. Obviously, I try to call qsort like this:
+
+```C
+qsort(words,ctr,WORD_LEN,strcmp);
+```
+
+where `ctr` is the number of strings in `words`, and I want to use `strcmp` as my comparison function. This compiles just fine, but after the call to `qsort`, things are less fine: "stack corrupted". Hmmm. I start googling.
+
