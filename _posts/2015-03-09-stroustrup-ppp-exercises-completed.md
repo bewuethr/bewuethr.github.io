@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 layout: post
 title: "Exercises from Stroustrup's \"Programming\" completed"
 ---
