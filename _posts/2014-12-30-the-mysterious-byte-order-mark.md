@@ -12,8 +12,6 @@ Z 5 0 1 0 2 1 0 1 0 1 0
 K 3 0 1 1 0 1 0 1 1 0 1 2 0
 ```
 
-<!---more--->
-
 And to read the first line, he used something like this:
 
 ```cpp
