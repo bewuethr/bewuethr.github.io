@@ -6,8 +6,6 @@ published: true
 
 While working on one of the last exercises in Stroustrup's [Programming &ndash; Principles and Practice Using C++](http://www.stroustrup.com/Programming/PPP1.html), I came across this little problem: assume you want to sort an array of C-style strings using `qsort()` from the C standard library (`<cstdlib>` in C++ or `<stdlib.h>` in C).
 
-<!---more--->
-
 An array of C-style strings looks something like `char* words[ARR_LEN]`, where `ARR_LEN` is the number of strings in your array. `qsort` is declared as follows:
 
 ```C
