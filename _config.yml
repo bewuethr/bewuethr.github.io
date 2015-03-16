@@ -46,8 +46,6 @@ url: http://bewuethr.github.io
 # then add in the baseurl here, like this: "/repository-name"
 baseurl: ""
 
-excerpt_separator: <!---more--->  # Use this to separate post excerpt from full content of post
-
 # prose
 prose:
   media: 'images'
