@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: "Exercises from Stroustrup's "
+title: "Exercises from Stroustrup's \\\"Programming\\\" completed"
 ---
 
 They were a long time in the making, but today, I completed the last of the exercises from Stroustrup's "[Programming &ndash; Principles and Practice Using C++](http://www.stroustrup.com/Programming/PPP1.html)" (the first edition, to be precise).
