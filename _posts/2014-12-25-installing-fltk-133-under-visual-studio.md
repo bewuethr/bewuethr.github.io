@@ -4,6 +4,7 @@ title: Installing FLTK 1.3.3 under Visual Studio Community 2013
 published: true
 ---
 
+
 ## Downloading and building FLTK
 
 Download FLTK from [here](http://www.fltk.org/software.php): get **fltk-1.3.3-source.tar.gz** and decompress it, using for example [7-Zip](http://www.7-zip.org). You should end up with a directory **fltk-1.3.3**; I have put mine in a subfolder of my **Documents** folder:
@@ -58,7 +59,7 @@ Enter this code:
 int main()
 {
 	Fl_Window window(200,200,"Window title");
-    FL_Box box(0,0,200,200,"Hey, I mean, Hello, World!");
+    Fl_Box box(0,0,200,200,"Hey, I mean, Hello, World!");
     window.show();
     return Fl::run();
 }
