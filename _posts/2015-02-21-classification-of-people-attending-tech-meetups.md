@@ -4,6 +4,7 @@ title: Classification of people attending tech meetups
 published: true
 ---
 
+
 Disclaimer: these are friendly hyperboles after attending a few technology-minded meetups in the role of somebody looking to make connections and eventually land a job.
 
 ### The recruiter
@@ -22,7 +23,7 @@ Just checking out the scene. Lets you know that if you ever have "any coding nee
 
 ### The designer
 
-Often female. Here to to find their next freelance gig and/or subjects for their UX study.
+Often female. Here to find their next freelance gig and/or subjects for their UX study.
 
 ### The weird guy
 
