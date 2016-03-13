@@ -38,7 +38,7 @@ google_analytics: UA-507261-6
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: http://bewuethr.github.io
+url: https://bewuethr.github.io
 
 # If you're hosting your site at a Project repository on GitHub pages 
 # (http://yourusername.github.io/repository-name)
@@ -54,7 +54,7 @@ prose:
 # !! You don't need to change any of the configuration flags below !!
 #
 
-markdown: redcarpet
+# markdown: redcarpet
 highlighter: pygments
 permalink: /:title/
 
