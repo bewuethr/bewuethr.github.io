@@ -20,3 +20,4 @@ published: false
 * The GNU Awk User's Guide
 * GNU Diffutils Reference Manual
 * GNU Findutils Reference Manual
+* Learning the vi and Vim Editors
