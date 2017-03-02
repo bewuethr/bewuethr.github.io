@@ -1,7 +1,7 @@
 ---
 published: false
 ---
-## An annotated command line reading list
+## An annotated command line (and not-so-command line) reading list
 
 * Introduction to the Command Line
 * The Linux Command Line
@@ -21,3 +21,8 @@ published: false
 * GNU Diffutils Reference Manual
 * GNU Findutils Reference Manual
 * Learning the vi and Vim Editors
+* The Elements of Programming Style
+* Bash Pocket Reference
+* Learning the Bash Shell
+* Classic Shell Scripting
+* Ten Steps to Linux Survival
