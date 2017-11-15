@@ -4,6 +4,7 @@ title: Installing FLTK 1.3.3 under Visual Studio Community 2013
 published: true
 ---
 
+*Before starting to read this: Phil has written [an updated version](https://bumpyroadtocode.com/2017/08/29/how-to-install-and-use-fltk-1-3-4-in-visual-studio-2017-complete-guide-2-0-no-cross-contamination/) of this guide, using FLTK 1.3.4 and Visual Studio 2017. You should probably head over there.*
 
 ## Downloading and building FLTK
 
