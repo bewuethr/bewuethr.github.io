@@ -1,15 +1,11 @@
----
-layout: post
-title: Sorting strings in C with qsort
-published: true
----
+# Sorting strings in C with qsort
 
 While working on one of the last exercises in Stroustrup's [Programming &ndash;
-Principles and Practice Using
-C++](http://www.stroustrup.com/Programming/PPP1.html), I came across this
-little problem: assume you want to sort an array of C-style strings using
-`qsort()` from the C standard library (`<cstdlib>` in C++ or `<stdlib.h>` in
-C).
+Principles and Practice Using C++][ppp], I came across this little problem:
+assume you want to sort an array of C-style strings using `qsort()` from the C
+standard library (`<cstdlib>` in C++ or `<stdlib.h>` in C).
+
+[ppp]: http://www.stroustrup.com/Programming/PPP1.html
 
 An array of C-style strings looks something like `char* words[ARR_LEN]`, where
 `ARR_LEN` is the number of strings in your array. `qsort` is declared as
@@ -23,9 +19,9 @@ void qsort(void* ptr, size_t count, size_t size,
 `ptr` points to your array, `count` is the number of elements in the array,
 `size` the size of an element and `comp` a comparison function that returns
 
-* a _negative_ value if the first argument is smaller than the second,
-* a _positive_ value if it is bigger than the second, and
-* _zero_ if they are equal.
+- a *negative* value if the first argument is smaller than the second,
+- a *positive* value if it is bigger than the second, and
+- *zero* if they are equal.
 
 Like `strcmp`, if you will.
 
@@ -56,25 +52,28 @@ the results are still not quite what I want. If start with
 char* words[ARR_LEN] = { "bb", "cc", "aa" };
 ```
 
-and sort that, I get "cc aa bb" as the result.
+and sort that, I get `cc aa bb` as the result.
 
 I'm pretty sure I'm not the first person ever to try and sort C-strings with
-`qsort`, so I google. I come across [this Stack Overflow
-question](http://stackoverflow.com/questions/3757899/sorting-strings-using-qsort)
+`qsort`, so I google. I come across [this Stack Overflow question][soquestion]
 where somebody had a very similar problem. The problem is that the `comp`
 argument of `qsort` expects `const void*` arguments whereas `strcmp` expects
 `const char*`. The solution is to wrap the call to `strcmp` into a function
 that performs the proper casts, like so:
 
+[soquestion]: https://stackoverflow.com/q/3757899/3266847
+
 ```c
-int cmpstr(const void* a, const void* b) { 
+int cmpstr(const void* a, const void* b) {
     const char* aa = (const char*)a;
     const char* bb = (const char*)b;
     return strcmp(aa, bb);
 }
 ```
 
-This takes `const void*`, as required by `qsort`'s `comp`, and casts them to `const char*`, as required by `strcmp`. Neat. I call `qsort` with my new function:
+This takes `const void*`, as required by `qsort`'s `comp`, and casts them to
+`const char*`, as required by `strcmp`. Neat. I call `qsort` with my new
+function:
 
 ```c
 qsort(words,ctr,sizeof(char*),cmpstr);
@@ -103,9 +102,10 @@ int cmpstr(const void* a, const void* b)
 
 and lo and behold, it works properly!
 
-A more elegant solution can be found on the [linux man page for
-qsort](http://man7.org/linux/man-pages/man3/qsort.3.html) where the casts are
-in the call:
+A more elegant solution can be found on the [linux man page for qsort][manpage]
+where the casts are in the call:
+
+[manpage]: http://man7.org/linux/man-pages/man3/qsort.3.html
 
 ```c
 return strcmp(*(char* const*) p1, *(char* const*) p2);
