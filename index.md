@@ -1,4 +1,4 @@
-# Benjamin Wuethrich's blog
+# Benjamin's blog
 
 - [Installing FLTK 1.3.3 under Visual Studio Community 2013](2014-12-25-installing-fltk-133-under-visual-studio.md)
 - [The mysterious byte order mark](2014-12-30-the-mysterious-byte-order-mark.md)
