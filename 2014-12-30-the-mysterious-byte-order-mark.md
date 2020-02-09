@@ -47,7 +47,7 @@ while (ifs.get(ch))
 
 and we get
 
-![Program output](/images/2014_12_30-02.png)
+![Program output](images/2014_12_30-02.png)
 
 Negative, eh? Strange. [Other people have seen similar things][soquestion], so
 apparently these aren't normal ASCII characters. To find out more, I've looked
@@ -55,7 +55,7 @@ at the text file with a hex editor:
 
 [soquestion]: https://stackoverflow.com/q/4690415/3266847
 
-![Hex editor](/images/2014_12_30-03.png)
+![Hex editor](images/2014_12_30-03.png)
 
 The file starts with `0xef 0xbb 0xbf`. That's googleable! and leads to [byte
 order marks][bom] (BOM). The BOM indicates endianness and encoding of the text
@@ -64,11 +64,11 @@ of the BOM, we can just save the file with ANSI encoding:
 
 [bom]: http://en.wikipedia.org/wiki/Byte_order_mark
 
-![Encoding menu](/images/2014_12_30-04.png)
+![Encoding menu](images/2014_12_30-04.png)
 
 Now, the file behaves as expected when being read:
 
-![Program output](/images/2014_12_30-05.png)
+![Program output](images/2014_12_30-05.png)
 
 Encodings in C++ (and elsewhere!) can be daunting. Good readings I have found
 include these:
