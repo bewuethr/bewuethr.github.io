@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>2014-12-30-the-mysterious-byte-order-mark</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="the-mysterious-byte-order-mark">The mysterious byte order mark</h1>
+<p>I bumped into a strange problem with reading a text file recently. The file described the layout of a <a href="http://en.wikipedia.org/wiki/Nonogram">Nonogram</a> for a program my father was working on:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode txt"><code class="sourceCode default"><a class="sourceLine" id="cb1-1" title="1">N 5 5</a>
+<a class="sourceLine" id="cb1-2" title="2">Z 5 0 1 0 2 1 0 1 0 1 0</a>
+<a class="sourceLine" id="cb1-3" title="3">K 3 0 1 1 0 1 0 1 1 0 1 2 0</a></code></pre></div>
+<p>And to read the first line, he used something like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="dt">char</span> ch;</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="dt">int</span> i1;</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="dt">int</span> i2;</a>
+<a class="sourceLine" id="cb2-4" title="4">ifstream ifs(<span class="st">&quot;Goobix 5.nono&quot;</span>);</a>
+<a class="sourceLine" id="cb2-5" title="5">ifs &gt;&gt; ch &gt;&gt; i1 &gt;&gt; i2;</a></code></pre></div>
+<p>However, this didn’t work, the <code>int</code>s didn’t get read successfully. I then tried</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="dt">char</span> ch;</a>
+<a class="sourceLine" id="cb3-2" title="2">ifstream ifs(<span class="st">&quot;Goobix 5.nono&quot;</span>);</a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="cf">while</span> (ifs.get(ch))</a>
+<a class="sourceLine" id="cb3-4" title="4">    cout &lt;&lt; ch;</a></code></pre></div>
+<p>to not ignore whitespace, resulting in this:</p>
+<figure>
+<img src="images/2014-12-30-01.png" alt="Garbled output" /><figcaption>Garbled output</figcaption>
+</figure>
+<p>Behold, three unwanted characters! What are they? Let’s cast them to <code>int</code> to find out more:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1"><span class="dt">char</span> ch;</a>
+<a class="sourceLine" id="cb4-2" title="2">ifstream ifs(<span class="st">&quot;Goobix 5.nono&quot;</span>);</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="cf">while</span> (ifs.get(ch))</a>
+<a class="sourceLine" id="cb4-4" title="4">    cout &lt;&lt; ch &lt;&lt; <span class="st">&quot; (int: &quot;</span> &lt;&lt; <span class="dt">int</span>(ch) &lt;&lt; <span class="st">&quot;)</span><span class="sc">\n</span><span class="st">&quot;</span>;</a></code></pre></div>
+<p>and we get</p>
+<figure>
+<img src="images/2014-12-30-02.png" alt="Program output" /><figcaption>Program output</figcaption>
+</figure>
+<p>Negative, eh? Strange. <a href="https://stackoverflow.com/q/4690415/3266847">Other people have seen similar things</a>, so apparently these aren’t normal ASCII characters. To find out more, I’ve looked at the text file with a hex editor:</p>
+<figure>
+<img src="images/2014-12-30-03.png" alt="Hex editor" /><figcaption>Hex editor</figcaption>
+</figure>
+<p>The file starts with <code>0xef 0xbb 0xbf</code>. That’s googleable! and leads to <a href="http://en.wikipedia.org/wiki/Byte_order_mark">byte order marks</a> (BOM). The BOM indicates endianness and encoding of the text file; in the case of <code>0xef 0xbb 0xbf</code>, it is a UTF-8 encoded file. To get rid of the BOM, we can just save the file with ANSI encoding:</p>
+<figure>
+<img src="images/2014-12-30-04.png" alt="Encoding menu" /><figcaption>Encoding menu</figcaption>
+</figure>
+<p>Now, the file behaves as expected when being read:</p>
+<figure>
+<img src="images/2014-12-30-05.png" alt="Program output" /><figcaption>Program output</figcaption>
+</figure>
+<p>Encodings in C++ (and elsewhere!) can be daunting. Good readings I have found include these:</p>
+<ul>
+<li><p><a href="http://www.joelonsoftware.com/articles/Unicode.html">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a> by Joel Spolsky</p></li>
+<li><p><a href="http://blog.gatunka.com/2014/04/25/character-encodings-for-modern-programmers/">Character Encodings For Modern Programmers</a> by GT</p></li>
+<li><p>And, one day, should I have lots of spare time: <a href="http://amzn.com/0201183951">Standard C++ IOStreams and Locales</a> by Angelika Langer and Klaus Kreft</p></li>
+</ul>
+<p><em>Edit (February 2, 2015):</em> Since I’ve written this, I’ve read <a href="https://www.diveinto.org/python3/table-of-contents.html">Dive Into Python 3</a> by Mark Pilgrim, and the <a href="https://www.diveinto.org/python3/strings.html">chapter about strings</a> has made encodings so much clearer to me, so it is most recommended reading.</p>
+</body>
+</html>
