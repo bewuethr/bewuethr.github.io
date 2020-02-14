@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Pbb init and index links</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<a href="./"></a>
+<h1 id="pbb-init-and-index-links">Pbb init and index links</h1>
+<p><code>pbb</code> now adds a link to the index page to every page on the blog. The link doubles as the blog title, and the index page now has the heading “All posts”.</p>
+<p>It has learned a new command as well: <code>pbb init</code> initialized a blog in an empty Git repository. It</p>
+<ul>
+<li>creates the <code>source</code> branch,</li>
+<li>adds the <code>artifacts</code> directory to the <code>.gitignore</code> file,</li>
+<li>prompts for the blog title (which is no longer hardcoded),</li>
+<li>creates the <code>includes</code> and <code>images</code> directories,</li>
+<li>creates a header file with the blog title for the link mentioned above, and</li>
+<li>creates a dummy post.</li>
+</ul>
+<p>I’m thinking of renaming the <code>images</code> directory to something like <code>assets</code> or <code>static</code> and have Pandoc look for it with the <code>--resource-path</code> option; that’d save some typing when writing posts.</p>
+</body>
+</html>
