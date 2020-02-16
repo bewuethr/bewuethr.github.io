@@ -66,5 +66,5 @@ All in all, the result looks like this (on the date this post was written):
 ![First iteration using CSS](images/2020-02-16-pbb-new.png)
 
 I'll look into a nicer font and different styling for links, but other than
-that, I feel like that's a pretty good ROI. Well, the font in code block feels
+that, I feel like that's a pretty good ROI. Well, the font in code blocks feels
 a bit large now. Still. Good ROI.
