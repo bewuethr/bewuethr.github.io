@@ -12,6 +12,7 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    q { quotes: "“" "”" "‘" "’"; }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -75,6 +76,7 @@
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
+  <link rel="stylesheet" href="/pbb.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -96,7 +98,7 @@
 <p>Like <code>strcmp</code>, if you will.</p>
 <p>My strings all have the same maximum length, <code>WORD_LEN</code>. Obviously, I try to call qsort like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a>qsort(words,ctr,WORD_LEN,strcmp);</span></code></pre></div>
-<p>where <code>ctr</code> is the number of strings in <code>words</code>, and I want to use <code>strcmp</code> as my comparison function. This compiles just fine, but after the call to <code>qsort</code>, things are less fine: “stack corrupted”. Hmmm.</p>
+<p>where <code>ctr</code> is the number of strings in <code>words</code>, and I want to use <code>strcmp</code> as my comparison function. This compiles just fine, but after the call to <code>qsort</code>, things are less fine: <q>stack corrupted</q>. Hmmm.</p>
 <p>I realize that the size of an element in my array is not the size of each individual string, but rather the size of a <code>char*</code>, because that’s what the array is: an array of <code>char*</code>, and not an array of actual strings. I change my call to</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a>qsort(words,ctr,<span class="kw">sizeof</span>(<span class="dt">char</span>*),strcmp);</span></code></pre></div>
 <p>Still compiles without problems. Good. And doesn’t crash. Even better! However, the results are still not quite what I want. If start with</p>
@@ -122,6 +124,6 @@
 <p>and lo and behold, it works properly!</p>
 <p>A more elegant solution can be found on the <a href="http://man7.org/linux/man-pages/man3/qsort.3.html">linux man page for qsort</a> where the casts are in the call:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1"></a><span class="cf">return</span> strcmp(*(<span class="dt">char</span>* <span class="dt">const</span>*) p1, *(<span class="dt">char</span>* <span class="dt">const</span>*) p2);</span></code></pre></div>
-<p>“Cast <code>p1</code> to a pointer to a constant pointer to a character and dereference that”. How come this wasn’t the first thing that sprung to my mind?</p>
+<p><q>Cast <code>p1</code> to a pointer to a constant pointer to a character and dereference that</q>. How come this wasn’t the first thing that sprung to my mind?</p>
 </body>
 </html>

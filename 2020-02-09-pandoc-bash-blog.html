@@ -12,6 +12,7 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    q { quotes: "“" "”" "‘" "’"; }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -75,6 +76,7 @@
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
+  <link rel="stylesheet" href="/pbb.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -84,7 +86,7 @@
 <p>2020-02-09</p>
 <h1 id="pandoc-bash-blog">Pandoc Bash Blog</h1>
 <p>This blog has seen very little love for a while; not because I had no ideas what I could write about, but because I didn’t do it.</p>
-<p>This must have been due to “not invented here” syndrome as I was using a <a href="https://github.com/barryclark/jekyll-now">Jekyll Now</a> based blog; today, I’ve started writing my own little blog generator. So far, it’s a shell wrapper around <a href="https://pandoc.org">Pandoc</a> and does little more than this:</p>
+<p>This must have been due to <q>not invented here</q> syndrome as I was using a <a href="https://github.com/barryclark/jekyll-now">Jekyll Now</a> based blog; today, I’ve started writing my own little blog generator. So far, it’s a shell wrapper around <a href="https://pandoc.org">Pandoc</a> and does little more than this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">for</span> <span class="ex">f</span> in *.md<span class="kw">;</span> <span class="kw">do</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="ex">pandoc</span> \</span>
 <span id="cb1-3"><a href="#cb1-3"></a>        --from=markdown \</span>
