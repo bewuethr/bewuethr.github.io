@@ -43,8 +43,8 @@ If I wanted to be mean, I'd say the book is a 300 page prelude to a list of
 references containing the meaty stuff. But that wouldn't be quite fair. I feel
 the book has entertainment value even without being super insightful or
 instructive, and there really aren't that many novels written about software
-engineering that dont' go overboard with the clichés. Not that TUP doesn't have
-a few, uh, "stereotpyical" personalities – but all in all, it seems to have
+engineering that don't go overboard with the clichés. Not that TUP doesn't have
+a few, uh, "stereotypical" personalities – but all in all, it seems to have
 been written by somebody who knows what they're talking about, and I don't
 consider my time reading it has been wasted.
 
