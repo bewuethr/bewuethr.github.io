@@ -44,8 +44,8 @@ references containing the meaty stuff. But that wouldn't be quite fair. I feel
 the book has entertainment value even without being super insightful or
 instructive, and there really aren't that many novels written about software
 engineering that dont' go overboard with the clichés. Not that TUP doesn't have
-a few, uh, "stereotpyical" personalities – but all in all, it feels like it's
-written by somebody who knows what they're talking about, and I don't feel like
-my time reading it was wasted.
+a few, uh, "stereotpyical" personalities – but all in all, it seems to have
+been written by somebody who knows what they're talking about, and I don't
+consider my time reading it has been wasted.
 
 Even if Clojure isn't going to cure cancer.
