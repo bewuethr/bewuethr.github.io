@@ -119,8 +119,9 @@
 <span id="cb4-4"><a href="#cb4-4"></a>    -prune \</span>
 <span id="cb4-5"><a href="#cb4-5"></a>    -o \</span>
 <span id="cb4-6"><a href="#cb4-6"></a>    -type f \</span>
-<span id="cb4-7"><a href="#cb4-7"></a>    -exec sh -c <span class="st">&#39;file --brief &quot;$1&quot; | grep -qw &quot;shell script&quot;&#39;</span> _ {} <span class="dt">\;</span> <span class="kw">\</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>    <span class="ex">-exec</span> shellcheck --color=always {} <span class="ex">+</span></span></code></pre></div>
+<span id="cb4-7"><a href="#cb4-7"></a>    -exec sh -c \</span>
+<span id="cb4-8"><a href="#cb4-8"></a>        <span class="st">&#39;file --brief &quot;$1&quot; | grep -qw &quot;shell script&quot;&#39;</span> _ {} <span class="dt">\;</span> <span class="kw">\</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="ex">-exec</span> shellcheck --color=always {} <span class="ex">+</span></span></code></pre></div>
 <p>First, we ignore the <code>.git</code> directory; then, for each file, we compare the output of <code>file</code> to <code>shell script</code>, and the files that match get sent to <code>shellcheck</code>. <code>--color=always</code> is a nice touch for the output in the GitHub Actions tab.</p>
 <p>I’m very used to Bash and GNU Coreutils, so when using Alpine with its BusyBox provided ash shell and commands, I always have to double check I’m not using some Bashism or GNUism.</p>
 <p>Using the action requires just this:</p>
