@@ -81,7 +81,8 @@ find . \
     -prune \
     -o \
     -type f \
-    -exec sh -c 'file --brief "$1" | grep -qw "shell script"' _ {} \; \
+    -exec sh -c \
+        'file --brief "$1" | grep -qw "shell script"' _ {} \; \
     -exec shellcheck --color=always {} +
 ```
 
