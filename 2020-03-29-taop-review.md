@@ -77,7 +77,7 @@ which is at odds with the steep price.
 
 ### The data set
 
-The full edition comes with a data set and a script to load it all, but
+The Full Edition comes with a data set and a script to load it all, but
 I definitely didn't manage to run that successfully. Loading individual files
 was hit and miss, and I spent more than enough time just loading the example
 data to follow along.
@@ -93,7 +93,7 @@ query.
 
 ### The Docker container
 
-Part of the allure of the Enterprise edition is that it comes with a Docker
+Part of the allure of the Enterprise Edition is that it comes with a Docker
 container; spin it up, and start playing around with the data immediately!
 Great, isn't it?
 
@@ -102,7 +102,7 @@ Except, this:
 ![IOU 1 Docker container](images/2020-03-29-docker.png)
 
 The book has been out for a few months now; I don't think the sales pitch for
-the Enterprise edition should even mention the Docker container if quite
+the Enterprise Edition should even mention the Docker container if quite
 clearly it's not there yet.
 
 ### The EPUB version is broken
