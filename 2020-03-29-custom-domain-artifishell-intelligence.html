@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>A custom domain for ArtifiShell Intelligence</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+</head>
+<body>
+<p><a href="./">ArtifiShell Intelligence</a></p>
+<p>2020-03-29</p>
+<h1 id="a-custom-domain-for-artifishell-intelligence">A custom domain for ArtifiShell Intelligence</h1>
+<p>A new name <em>and</em> a custom domain? Yes!</p>
+<p><q>ArtifiShell Intelligence</q> narrowly won out over <q>Shell we dance?</q> (in wide use for, well, <em>dancing</em> events such as <a href="http://www.shellwedanceevent.nl/Shell_We_Dance_Event/Home.html">The Netherland’s largest dancing competition</a>), <q>Terminal Shellness</q> (bit bleak), <q>Super Fish Shell</q> (almost perfect, except that there is the <a href="https://fishshell.com/">fish shell</a>) and <q>BenefiShell Musings</q>. I thought something with <q>Prompt</q> would totally work, too, but couldn’t come up with a single idea for it.</p>
+<p>As an added bonus, googling for <q>artifishell</q> led me to <a href="https://www.instagram.com/mofart_photomontages/">this great Instagram account</a>.</p>
+<p>At some point, I’ll even create a pretty header for this new title.</p>
+<h2 id="github-pages-with-a-custom-domain">GitHub Pages with a custom domain</h2>
+<p>I’ve owned <em>benjaminwuethrich.dev</em> for more than a year, and now I’m finally using it. I wanted both the apex domain and <em>www.benjaminwuethrich.dev</em> to work and require HTTPS, but as it turns out, that’s not totally straightforward. I read through all the corresponding <a href="https://help.github.com/en/github/working-with-github-pages/configuring-a-custom-domain-for-your-github-pages-site">instructions</a> and assumed that this should work:</p>
+<ul>
+<li>Set custom domain in settings to <em>www.benjaminwuethrich.dev</em> (generates a <code>CNAME</code> file)</li>
+<li>Create CNAME record in Google Domains that points <em>www.benjaminwuethrich.dev</em> to <em>bewuethr.github.io</em>, my old default domain</li>
+<li>Create A record in Google Domains that points to the GitHub Pages IP addresses listed in the <a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain">help pages</a></li>
+</ul>
+<p>However, this resulted in <em>www.benjaminwuethrich.dev</em> working, while <em>benjaminwuethrich.dev</em> complained about a missing security certificate. There is a <a href="https://github.community/t5/GitHub-Pages/Does-GitHub-Pages-Support-HTTPS-for-www-and-subdomains/td-p/7116">long thread</a> in the GitHub Community Forum with people having similar problems, and the inofficial GitHub bug tracker has an <a href="https://github.com/isaacs/github/issues/1675">entry</a> for it as well. It affects even sites like <em>commonmark.org</em>!</p>
+<p>After going back and forth with what’s in the <code>CNAME</code> file and in the repo settings (<code>www</code> or not), having <code>www</code> in both places ended up working. As pointed out in the thread linked above, this might break in three months when only the cert for <em>www.benjaminwuethrich.dev</em> gets renewed, but not <em>benjaminwuethrich.dev</em>. I’ll see; everything works for now, and I won’t touch it!</p>
+</body>
+</html>
