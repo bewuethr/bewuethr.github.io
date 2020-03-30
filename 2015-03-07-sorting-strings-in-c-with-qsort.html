@@ -128,5 +128,7 @@
 <p>A more elegant solution can be found on the <a href="http://man7.org/linux/man-pages/man3/qsort.3.html">linux man page for qsort</a> where the casts are in the call:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1"></a><span class="cf">return</span> strcmp(*(<span class="dt">char</span>* <span class="dt">const</span>*) p1, *(<span class="dt">char</span>* <span class="dt">const</span>*) p2);</span></code></pre></div>
 <p><q>Cast <code>p1</code> to a pointer to a constant pointer to a character and dereference that</q>. How come this wasn’t the first thing that sprung to my mind?</p>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

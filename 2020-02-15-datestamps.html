@@ -96,5 +96,7 @@
 <span id="cb1-6"><a href="#cb1-6"></a><span class="kw">}</span> <span class="kw">|</span> <span class="ex">pandoc</span> <span class="st">&quot;</span><span class="va">${args[@]}</span><span class="st">&quot;</span></span></code></pre></div>
 <p>where <code>${file:0:10}</code> is a parameter expansion that extracts the first ten characters from the filename and <code>args</code> is an array containing all the pandoc options I need.</p>
 <p><code>pbb</code> now clocks in at 157 lines and is still quite readable (at least for me, shortly after writing it); I’m thinking about adding <a href="https://github.com/bats-core/bats-core">Bats</a> tests soon to make it easier to see if something breaks when I add new features.</p>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
