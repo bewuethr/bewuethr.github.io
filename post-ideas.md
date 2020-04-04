@@ -1,5 +1,10 @@
 # Post ideas
 
+## Up next
+
+- What I've learned from TAOP
+- All the things Pandoc Markdown can do
+
 ## Fleshed out
 
 ### The origins of IMDb
