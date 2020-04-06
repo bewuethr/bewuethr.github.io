@@ -1,3 +1,7 @@
+---
+toc: true
+...
+
 # My summary of "The Art of PostgreSQL"
 
 I've recently finished reading *The Art of PostgreSQL* (see my [review]).
