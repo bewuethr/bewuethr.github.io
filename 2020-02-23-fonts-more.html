@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-02-23" />
   <title>Fonts and more</title>
   <style>
     code{white-space: pre-wrap;}
@@ -85,20 +86,22 @@
 </head>
 <body>
 <p><a href="./">ArtifiShell Intelligence</a></p>
-<p>2020-02-23</p>
-<h1 id="fonts-and-more">Fonts and more</h1>
+<header id="title-block-header">
+<h1 class="title">Fonts and more</h1>
+<p class="date">2020-02-23</p>
+</header>
 <p>Pandoc Bash Blog has experienced a few upgrades since the <a href="https://bewuethr.github.io/2020-02-16-css-for-pbb.html">addition of CSS</a>. Some are conveniences when using <code>pbb</code> on the command line, some change the appearance of the published result.</p>
-<h2 id="tab-completion">Tab completion</h2>
+<h1 id="tab-completion">Tab completion</h1>
 <p><code>pbb</code> knows only a bunch of subcommands (five, to be precise); now, when typing <code>pbb</code>, tab completion suggests them. That is, if the completion file is in the right place, which a (forthcoming) installation script has to take care of.</p>
-<h2 id="language-setting">Language setting</h2>
+<h1 id="language-setting">Language setting</h1>
 <p>Pandoc’s default HTML has an empty <code>lang</code> property in the opening <code>&lt;html&gt;</code> tag, which is <a href="https://youtu.be/NP94u7y_KkQ">bad for screen readers</a>. Previously, <code>pbb</code> would default to inserting <code>en-CA</code>; now, it tries to infer the language from environment variables. This is surprisingly non-straightforward; I settled on the same priority order as <a href="https://www.gnu.org/software/gettext/manual/html_node/Locale-Environment-Variables.html#Locale-Environment-Variables">gettext</a>, which collapses to this beautiful declaration:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">lang=${LANGUAGE:-${LC_ALL:-${LC_MESSAGES:-$LANG}}}</span></span></code></pre></div>
 <p>Some special characters have to be replaced to make for a valid language tag; if none of these variables have a value, <code>pbb</code> defaults to <code>en-US</code>. I guess eventually, there should be an option to make the language a configuration value.</p>
-<h2 id="local-server">Local server</h2>
+<h1 id="local-server">Local server</h1>
 <p>To look at the built site before deploying it, I used to use the Python one-liner that spins up an HTTP server on localhost; for convenience, this is now done by <code>pbb serve</code>, which just calls</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">python3</span> -m http.server --directory artifacts</span></code></pre></div>
 <p>under the hood.</p>
-<h2 id="favicon">Favicon</h2>
+<h1 id="favicon">Favicon</h1>
 <p><code>pbb build</code> now checks if there is an image with a name that matches <code>favicon.*</code> in the <code>assets</code> directory. If so, it gets converted to a 32x32 PNG file and included as the favicon on each page.</p>
 <p>The actual conversion is quite flexible: as long as ImageMagick can handle the input format, the favicon gets created. The input file can even be an animated GIF; in that case, the first frame is used. The command is this one:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">convert</span> <span class="st">&quot;</span><span class="va">${infile[0]}</span><span class="st">[0]&quot;</span> -resize 32x32^ -gravity center \</span>
@@ -111,7 +114,7 @@
 <li>Preserve transparent background for PNG inputs with <code>-background none</code></li>
 <li>Crop outside of the 32x32 square with <code>-extent 32x32</code></li>
 </ul>
-<h2 id="web-fonts">Web fonts</h2>
+<h1 id="web-fonts">Web fonts</h1>
 <p>I wanted to have pretty fonts instead of the system defaults. A convenient way for doing so is to include fonts via <a href="https://developers.google.com/fonts">Google web fonts</a>. I want <code>pbb</code> to be minimal and privacy respecting, and the pages should load fast, so I wondered if I should host the fonts myself or fetch them from Google.</p>
 <p>Regarding the privacy aspect, Google <a href="https://developers.google.com/fonts/faq#what_does_using_the_google_fonts_api_mean_for_the_privacy_of_my_users">says</a> they only log aggregate data, and in a recent <a href="https://news.ycombinator.com/item?id=22368247">discussion on Hacker News</a>, a member of the original team that launched Google Fonts <a href="https://news.ycombinator.com/item?id=22370250">says</a> that there are lower hanging fruits than fonts if you really wanted to track users. For whatever that’s worth, I guess.</p>
 <p>Regarding performance, I found a <a href="https://www.tunetheweb.com/blog/should-you-self-host-google-fonts">great article</a> covering about everything I could have wondered. It’s not actually that clear cut; for example: using Google instead of self-hosting gets you updates to the fonts and lets you benefit from technological improvements such as variable fonts once they become more commonplace, without having to change anything at all. On the other hand, Google can change your font and <a href="https://github.com/google/fonts/issues/1137">break your page</a> in the process.</p>

@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-03-16" />
   <title>GitHub Actions for pbb</title>
   <style>
     code{white-space: pre-wrap;}
@@ -86,11 +87,13 @@
 </head>
 <body>
 <p><a href="./">ArtifiShell Intelligence</a></p>
-<p>2020-03-16</p>
-<h1 id="github-actions-for-pbb">GitHub Actions for pbb</h1>
+<header id="title-block-header">
+<h1 class="title">GitHub Actions for pbb</h1>
+<p class="date">2020-03-16</p>
+</header>
 <p>I used working on <a href="https://github.com/bewuethr/pandoc-bash-blog">Pandoc Bash Blog</a> as an excuse to look into <a href="https://github.com/features/actions">GitHub Actions</a>. Eventually, I want pbb to be an action that converts your Markdown files to HTML and deploys them to GitHub Pages instead of you having to deploy manually.</p>
 <p>I ended up creating three pretty simple actions.</p>
-<h2 id="a-markdown-linter">A Markdown linter</h2>
+<h1 id="a-markdown-linter">A Markdown linter</h1>
 <p>There were already actions similar to this one on the Marketplace, but a) I wanted to learn to write actions myself and b) none of them allows to use your own style file.</p>
 <p>My Markdown linter of choice is <a href="https://github.com/markdownlint/markdownlint">Markdownlint</a> (mdl) in its Ruby incarnation. I’ve used it for a long time with <a href="https://github.com/dense-analysis/ale">ALE</a> and have <a href="https://github.com/bewuethr/dotfiles/blob/master/.config/mdl/style.rb">my own style file</a> to enforce exactly the rules I want. (Two, actually; one is specifically for VimWiki.)</p>
 <p>There are two types of actions: JavaScript and Docker based ones. I’m using shell scripts in Docker containers for all my actions so far. The Docker container and the script are both very simple; the Docker container is just based on an Alpine image with Ruby, and I install the <code>mdl</code> gem.</p>
@@ -110,7 +113,7 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">run</span><span class="kw">:</span><span class="at"> curl &quot;$STYLE_FILE&quot; &gt; .github/workflows/style.rb</span></span></code></pre></div>
 <p>where <code>$STYLE_FILE</code> is the URL of my style file on GitHub.</p>
 <p>The action is alive and well on the <a href="https://github.com/marketplace/actions/run-mdl">Marketplace</a>.</p>
-<h2 id="a-shell-linter">A shell linter</h2>
+<h1 id="a-shell-linter">A shell linter</h1>
 <p>The next action is even easier to use; it runs <a href="https://github.com/koalaman/shellcheck">ShellCheck</a> on all shell scripts in the repository.</p>
 <p>The Docker container uses the latest ShellCheck Alpine image and installs the <a href="https://www.darwinsys.com/file/"><code>file</code></a> command. ShellCheck doesn’t find shell script files for you, so we have to do that ourselves; the script being run in the action boils down to a single invocation of <code>find</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">find</span> . \</span>
@@ -127,7 +130,7 @@
 <p>Using the action requires just this:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/shellcheck-action@v1&#39;</span></span></code></pre></div>
 <p>Like the Markdownlint action, the ShellCheck action is published on the <a href="https://github.com/marketplace/actions/run-shellcheck">Marketplace</a>.</p>
-<h2 id="a-release-tag-prefix-matcher">A release tag prefix matcher</h2>
+<h1 id="a-release-tag-prefix-matcher">A release tag prefix matcher</h1>
 <p>Actions provided by GitHub itself such as the <a href="https://github.com/marketplace/actions/checkout">Checkout</a> action allow you to specify the version you want with just a prefix:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span></code></pre></div>
 <p>gets you the latest release with prefix <code>v2</code>. This is a convenient way to provide users of the action with non-breaking updates and patches without them having the do anything, so I wanted to do the same for my actions.</p>
@@ -145,7 +148,7 @@
 </ul>
 <p>I eventually <a href="https://github.community/t5/GitHub-Actions/quot-refusing-to-allow-a-bot-to-create-or-update-workflow-quot/m-p/49223">asked in the Community Forum</a>, and the (not very satisfying) answer was that it was <q>because <code>GITHUB_TOKEN</code> is used to update the tag</q>. Deleting tags is okay, but pushing new ones isn’t? Strange. And the error message is just completely wrong, as I wasn’t touching the workflow file.</p>
 <p>In any case, the choice was now between using a personal access token or using the API. PAT seemed to be annoying (and would trigger the action to run again, causing an infinite loop), so API it was.</p>
-<h3 id="api-struggles">API struggles</h3>
+<h2 id="api-struggles">API struggles</h2>
 <p>This added a few dependencies to the container: <code>curl</code> and <code>jq</code> had to be added. I continued to struggle for a few days; the worst bug to track down must have been the one where I kept getting <q>422 Unprocessable Entity</q> responses from the API, but the exact same commands worked just fine when running locally.</p>
 <p>In the end, I found the culprit; to create the timestamp to send in the request body, I used</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">date</span> -Iseconds</span></code></pre></div>
@@ -163,7 +166,7 @@
 <p>Again, colon optional! Looks like GitHub is too strict here.</p>
 <p>Anyway, after I finally realized all this, I also noticed that the timestamp is optional, and I just stopped sending it. Success!</p>
 <p>The three actions are now happily running on each other, and pbb is using them as well.</p>
-<h2 id="learnings">Learnings</h2>
+<h1 id="learnings">Learnings</h1>
 <p>I have a pretty good understanding of GitHub Actions now, not least because of the quite readable <a href="https://help.github.com/en/actions">documentation</a>. I’m looking forward to playing around with something more substantial, like turning pbb into an action.</p>
 <p>Because my simplistic approach (<q>just a shell script</q>) didn’t pan out, I also got to touch the GitHub API, which doesn’t hurt either.</p>
 <p>We tried using actions at work to run a simple pull request title linter and even talked about moving our whole CI/CD pipeline from Jenkins to actions, but bumped into a pretty big roadblock: a pull request from the fork of a private repository <a href="https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-events-for-forked-repositories">does not trigger a workflow</a>. Which is exactly our setup at work.</p>

@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-02-15" />
   <title>Datestamps</title>
   <style>
     code{white-space: pre-wrap;}
@@ -85,8 +86,10 @@
 </head>
 <body>
 <p><a href="./">ArtifiShell Intelligence</a></p>
-<p>2020-02-15</p>
-<h1 id="datestamps">Datestamps</h1>
+<header id="title-block-header">
+<h1 class="title">Datestamps</h1>
+<p class="date">2020-02-15</p>
+</header>
 <p><code>pbb</code> now adds dates to all the post titles on the index page and to the titles of individual posts. The date is simply extracted from the filename; in the <code>md2html</code> function, I check if the filename looks like it starts with a date, and if so, I add the date to the markdown:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">{</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">if [[</span> <span class="va">$file</span> <span class="ot">==</span> ????-??-??-*<span class="kw"> ]]</span>; <span class="kw">then</span></span>
