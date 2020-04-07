@@ -13,7 +13,7 @@ After a bit of fiddling, I arrived at this:
 
 [^1]: That's probably true of many things, it's just more or less convenient.
 
-```sh
+```bash
 convert -size 200x200 xc:'rgb(40,40,40)' \
     -stroke red -fill 'rgb(40,40,40)' -strokewidth 6 \
     -draw 'rectangle 10,10 190,190' \

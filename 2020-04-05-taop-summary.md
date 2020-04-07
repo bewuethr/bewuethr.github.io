@@ -67,7 +67,7 @@ names, and so on. The style guide promoted by the author is roughly
 - Use meaningful names, for example to indicate the meaning of a table in
   a self-join:
 
-    ```sql
+    ```sqlpostgresql
     from      artist
          join track on track.name = artist.name
          join album on album.albumid = track.albumid
@@ -104,7 +104,7 @@ Other advice:
 - `generate_series` to, uh, generate a series
 - *anti-join:* exclude rows that fail test, for example
 
-    ```sql
+    ```sqlpostgresql
     where not exists (select 1 from subquery)
     ```
 
@@ -113,7 +113,7 @@ Other advice:
 - `order by` with nulls last: `order by column nulls last`
 - `order by` with complex condition:
 
-    ```sql
+    ```sqlpostgresql
     order by case when status = 'Power Unit' then 1 else 2 end
     ```
 
@@ -122,7 +122,7 @@ Other advice:
 - `offset` is bad, don't use it; it reads everything anyway, but then discards
   most of it; use index lookups instead:
 
-    ```sql
+    ```sqlpostgresql
           where raceid = 972
             and row(lap, position) > (1, 3)
        order by lap, position
@@ -133,13 +133,13 @@ Other advice:
 
 - Compare a row to the previous row: `lag()` function, example:
 
-    ```sql
+    ```sqlpostgresql
     lag(nbraces, 1) over(order by decade)
     ```
 
 - Syntax for aggregate filter: `filter(where ...)`
 
-    ```sql
+    ```sqlpostgresql
     count(*) filter(where position is null) as outs,
     ```
 
@@ -147,7 +147,7 @@ Other advice:
 - Filter groups: `having` clause; can't reference `select` output aliases!
 - Grouping sets: group by multiple groups, as in
 
-    ```sql
+    ```sqlpostgresql
     group by grouping sets((drivers.surname),
                            (constructors.name))
     ```
@@ -159,7 +159,7 @@ Other advice:
 - Repeating strings: `repeat(string text, number int)`, e.g., build a histogram
   with
 
-    ```sql
+    ```sqlpostgresql
     repeat(text '■', 10)
     ```
 
@@ -180,7 +180,7 @@ I definitely still don't understand window functions.
 
 - `over (order by x)` is short for
 
-    ```sql
+    ```sqlpostgresql
     over (order by x rows between unbounded preceding and current row)
     ```
 
@@ -192,7 +192,7 @@ I definitely still don't understand window functions.
 - The book got the fastest lap speed wrong; it's a velocity, not a time, so
   should be ordered like this:
 
-    ```sql
+    ```sqlpostgresql
     over(order by fastestlapspeed::numeric desc)
     ```
 
@@ -201,7 +201,7 @@ I definitely still don't understand window functions.
 
 - Re-using a window definition:
 
-    ```sql
+    ```sqlpostgresql
     select surname,
            lag(code, 1) over w as "prev",
            lead(code, 1) over w as "next"
@@ -217,7 +217,7 @@ I definitely still don't understand window functions.
 
 - A table is really a *relation*, and you can query the "composite data type":
 
-    ```sql
+    ```sqlpostgresql
     select relation from relation
     ```
 
@@ -244,7 +244,7 @@ which you need a database system.
 
 Get a sample from a table: `tablesample`; for example:
 
-```sql
+```sqlpostgresql
 select * from table tablesample bernoulli(10);
 ```
 
@@ -487,7 +487,7 @@ Anti-patterns:
   multiple rows; for many rows, consider `copy` instead
 - Pull a regex match out of a string:
 
-    ```sql 
+    ```sqlpostgresql
     substring(users.bio from 'in love with #?(.*).')
     ```
 
@@ -497,7 +497,7 @@ Anti-patterns:
   with the database
 - Use primary key plus real value if primary is synthetic:
 
-    ```sql
+    ```sqlpostgresql
     where userid = 17 and uname = 'Puck'
     ```
 
@@ -521,13 +521,13 @@ There is an [XML version of Shakespeare's works]!
 - Delete almost everything: faster to create new table and select into it from
   old table with
 
-    ```sql
+    ```sqlpostgresql
     create table new_name (like name including all)
     ```
 
   insert, then `drop table name` and
 
-    ```sql
+    ```sqlpostgresql
     alter table new_name rename to name
     ```
 

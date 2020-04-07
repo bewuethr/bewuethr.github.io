@@ -6,7 +6,7 @@ working on:
 
 [nonogram]: http://en.wikipedia.org/wiki/Nonogram
 
-```txt
+```
 N 5 5
 Z 5 0 1 0 2 1 0 1 0 1 0
 K 3 0 1 1 0 1 0 1 1 0 1 2 0

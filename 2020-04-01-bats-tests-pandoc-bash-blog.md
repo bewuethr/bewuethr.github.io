@@ -41,13 +41,13 @@ By default, Bats is silent and only prints output if a test fails, together
 with what exactly failed. For example, I'd check if a file contains a certain
 string with
 
-```sh
+```bash
 grep -Fqx 'goatcountercode=mycode' .pbbconfig
 ```
 
 If that fails, the output looks like
 
-```txt
+```
 not ok 2 Set initial GoatCounter code
 # (in test file gccode.bats, line 23)
 #   `grep -Fqx 'goatcountercode=mycode' .pbbconfig' failed
@@ -56,14 +56,14 @@ not ok 2 Set initial GoatCounter code
 but that wouldn't tell me what was in the file instead. If I just print the
 file contents first, that output will show up if the test fails:
 
-```sh
+```bash
 cat .pbbconfig
 grep -Fqx 'goatcountercode=mycode' .pbbconfig
 ```
 
 gets me this test output:
 
-```txt
+```
 not ok 2 Set initial GoatCounter code
 # (in test file gccode.bats, line 24)
 #   `grep -Fqx 'goatcountercode=mycode' .pbbconfig' failed
@@ -79,7 +79,7 @@ A-ha! That makes it easier to track things down.
 Want to check what files *are* there in case your existence check fails? Just
 print them first:
 
-```sh
+```bash
 ls artifacts
 [[ -f artifacts/index.html ]]
 ```
@@ -96,7 +96,7 @@ path to the directory containing the test, for example.
 These functions can be declared in a separate file and made available to a test
 file using the [`load`] directive; all of my test files just start with
 
-```sh
+```bash
 load test_helper
 ```
 
@@ -113,7 +113,7 @@ find how easy it is to mock that: initialize a bare repository in another
 directory and tell Git that that's the remote! I use this in my `setup`
 function:
 
-```sh
+```bash
 # Set up "remote" repo
 local remote='/tmp/pbb-remote.git'
 git init --quiet --bare "$remote"
@@ -138,7 +138,7 @@ workflow as well.
 There is an [existing action] to help set up Bats in a workflow, but it seemed
 pretty easy to do it directly. I ended up with this job:
 
-```yml
+```yaml
 test:
   runs-on: 'ubuntu-latest'
   steps:

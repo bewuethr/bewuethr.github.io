@@ -125,7 +125,7 @@ just not warm up to that.
 
 Here's how the author would write a simple query:
 
-```sql
+```sqlpostgresql
   select name, milliseconds
     from           album
          left join track using(albumid)
@@ -139,7 +139,7 @@ is not obvious to me. And aligning the table names in the `from`/`join` part
 makes it look like there was an accident involving the space bar. I would write
 this like
 
-```sql
+```sqlpostgresql
 SELECT name, milliseconds
 FROM album
     LEFT JOIN track USING (albumid)

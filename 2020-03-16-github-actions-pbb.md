@@ -30,7 +30,7 @@ The script then checks if a style file is provided as a parameter. If yes, it
 runs mdl using that parameter, and if no, without it. Mdl checks all Markdown
 files recursively when called with a directory as its argument:
 
-```sh
+```bash
 stylefile=$1
 
 if [ -n "$stylefile" ]; then
@@ -42,7 +42,7 @@ fi
 
 That's all! Using the action is pretty simple:
 
-```yml
+```yaml
 uses: 'bewuethr/mdl-action@v1'
 with:
   style-file: '.github/workflows/style.rb'
@@ -51,7 +51,7 @@ with:
 And without a style file, it's just a one-liner. I like getting my own style
 file in a separate step in the same job:
 
-```yml
+```yaml
 run: curl "$STYLE_FILE" > .github/workflows/style.rb
 ```
 
@@ -74,7 +74,7 @@ The Docker container uses the latest ShellCheck Alpine image and installs the
 have to do that ourselves; the script being run in the action boils down to a
 single invocation of `find`.
 
-```sh
+```bash
 find . \
     -type d \
     -name '.git' \
@@ -97,7 +97,7 @@ some Bashism or GNUism.
 
 Using the action requires just this:
 
-```yml
+```yaml
 uses: 'bewuethr/shellcheck-action@v1'
 ```
 
@@ -113,7 +113,7 @@ Like the Markdownlint action, the ShellCheck action is published on the
 Actions provided by GitHub itself such as the [Checkout][10] action allow you
 to specify the version you want with just a prefix:
 
-```yml
+```yaml
 - uses: actions/checkout@v2
 ```
 
@@ -138,7 +138,7 @@ tags in the end with a simple `git push`.
 
 This was met with an extremely annoying error:
 
-```txt
+```
 refusing to allow a bot to create or update workflow
 ```
 
@@ -173,13 +173,13 @@ locally.
 In the end, I found the culprit; to create the timestamp to send in the request
 body, I used
 
-```sh
+```bash
 date -Iseconds
 ```
 
 to get an ISO 8601 timestamp with second precision. Something like this:
 
-```txt
+```
 2020-03-15T23:36:03-04:00
 ```
 
@@ -190,7 +190,7 @@ with a helpful Wikipedia link and a formatting template:
 After lots of squinting, I figured it out: in BusyBox, the output of `date
 -Iseconds` looks like
 
-```txt
+```
 2020-03-16T03:40:51+0000
 ```
 
@@ -203,7 +203,7 @@ offset has no colon in it! [ISO 8601][14] says
 And in the relevant [RFC 3339][15], "Date and Time on the Internet:
 Timestamps", the formal definition of the offset is
 
-```txt
+```
 time-numoffset = ("+" / "-") time-hour [[":"] time-minute]
 ```
 
