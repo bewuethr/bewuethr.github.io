@@ -101,35 +101,35 @@
 <p>This one I knew already. It’s nice to have a tool that becomes interactive when the user doesn’t supply all the required parameters, but it’s messy to test. I could have made pbb prompt the user for a title if they use <code>pbb title</code> without another parameter, but I didn’t; now it’s easy to test. I’ve always wanted to learn <a href="https://core.tcl-lang.org/expect/index">Expect</a>, which would allow me to test these things interactively, but until I do, I make them non-interactive.</p>
 <h2 id="output-for-debugging">Output for debugging</h2>
 <p>By default, Bats is silent and only prints output if a test fails, together with what exactly failed. For example, I’d check if a file contains a certain string with</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">grep</span> -Fqx <span class="st">&#39;goatcountercode=mycode&#39;</span> .pbbconfig</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">grep</span> -Fqx <span class="st">&#39;goatcountercode=mycode&#39;</span> .pbbconfig</span></code></pre></div>
 <p>If that fails, the output looks like</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1"></a>not ok 2 Set initial GoatCounter code</span>
-<span id="cb2-2"><a href="#cb2-2"></a># (in test file gccode.bats, line 23)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>#   `grep -Fqx &#39;goatcountercode=mycode&#39; .pbbconfig&#39; failed</span></code></pre></div>
+<pre><code>not ok 2 Set initial GoatCounter code
+# (in test file gccode.bats, line 23)
+#   `grep -Fqx &#39;goatcountercode=mycode&#39; .pbbconfig&#39; failed</code></pre>
 <p>but that wouldn’t tell me what was in the file instead. If I just print the file contents first, that output will show up if the test fails:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">cat</span> .pbbconfig</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">cat</span> .pbbconfig</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="fu">grep</span> -Fqx <span class="st">&#39;goatcountercode=mycode&#39;</span> .pbbconfig</span></code></pre></div>
 <p>gets me this test output:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1"></a>not ok 2 Set initial GoatCounter code</span>
-<span id="cb4-2"><a href="#cb4-2"></a># (in test file gccode.bats, line 24)</span>
-<span id="cb4-3"><a href="#cb4-3"></a>#   `grep -Fqx &#39;goatcountercode=mycode&#39; .pbbconfig&#39; failed</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a>&lt;snip&gt;</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a># blogtitle=Testblog</span>
-<span id="cb4-8"><a href="#cb4-8"></a># goatcountercode=notmycode</span></code></pre></div>
+<pre><code>not ok 2 Set initial GoatCounter code
+# (in test file gccode.bats, line 24)
+#   `grep -Fqx &#39;goatcountercode=mycode&#39; .pbbconfig&#39; failed
+
+&lt;snip&gt;
+
+# blogtitle=Testblog
+# goatcountercode=notmycode</code></pre>
 <p>A-ha! That makes it easier to track things down.</p>
 <p>Want to check what files <em>are</em> there in case your existence check fails? Just print them first:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ls</span> artifacts</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ls</span> artifacts</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="kw">[[</span> <span class="ot">-f</span> artifacts/index.html<span class="kw"> ]]</span></span></code></pre></div>
 <h2 id="setup-and-teardown-functions">Setup and teardown functions</h2>
 <p>Bats recognizes two special functions, <a href="https://github.com/bats-core/bats-core#setup-and-teardown-pre--and-post-test-hooks"><code>setup</code> and <code>teardown</code></a>, which are run before and after each test. For my tests, I used them to set up a fresh temp directory and initialize all the things I need in there: a Git repo, helper files for pbb, and so on. Bats provides a few <a href="https://github.com/bats-core/bats-core#special-variables">variables</a> that come in handy to copy files from wherever the test files resides: <code>$BATS_TEST_DIRNAME</code> is the path to the directory containing the test, for example.</p>
 <p>These functions can be declared in a separate file and made available to a test file using the <a href="https://github.com/bats-core/bats-core#load-share-common-code"><code>load</code></a> directive; all of my test files just start with</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">load</span> test_helper</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">load</span> test_helper</span></code></pre></div>
 <p>and setup and teardown are taken care of.</p>
 <h2 id="testing-git-with-pushes-to-a-remote">Testing Git with pushes to a remote</h2>
 <p>Some of the pbb subcommands push to a remote Git repository. I was surprised to find how easy it is to mock that: initialize a bare repository in another directory and tell Git that that’s the remote! I use this in my <code>setup</code> function:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Set up &quot;remote&quot; repo</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Set up &quot;remote&quot; repo</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="bu">local</span> <span class="va">remote=</span><span class="st">&#39;/tmp/pbb-remote.git&#39;</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="fu">git</span> init --quiet --bare <span class="st">&quot;</span><span class="va">$remote</span><span class="st">&quot;</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a></span>
@@ -144,7 +144,7 @@
 <h2 id="bats-and-github-actions">Bats and GitHub Actions</h2>
 <p>After diving into <a href="https://www.benjaminwuethrich.dev/2020-03-16-github-actions-pbb.html">Actions</a> a while ago and writing a few of my own, I obviously wanted to run my shiny new Bats tests automatically in a GitHub workflow as well.</p>
 <p>There is an <a href="https://github.com/marketplace/actions/setup-bats-testing-framework">existing action</a> to help set up Bats in a workflow, but it seemed pretty easy to do it directly. I ended up with this job:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">test</span><span class="kw">:</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">test</span><span class="kw">:</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="at">  </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;ubuntu-latest&#39;</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="at">  </span><span class="fu">steps</span><span class="kw">:</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a></span>

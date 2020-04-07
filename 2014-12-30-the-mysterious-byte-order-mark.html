@@ -91,9 +91,9 @@
 <p class="date">2014-12-30</p>
 </header>
 <p>I bumped into a strange problem with reading a text file recently. The file described the layout of a <a href="http://en.wikipedia.org/wiki/Nonogram">Nonogram</a> for a program my father was working on:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1"></a>N 5 5</span>
-<span id="cb1-2"><a href="#cb1-2"></a>Z 5 0 1 0 2 1 0 1 0 1 0</span>
-<span id="cb1-3"><a href="#cb1-3"></a>K 3 0 1 1 0 1 0 1 1 0 1 2 0</span></code></pre></div>
+<pre><code>N 5 5
+Z 5 0 1 0 2 1 0 1 0 1 0
+K 3 0 1 1 0 1 0 1 1 0 1 2 0</code></pre>
 <p>And to read the first line, he used something like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="dt">char</span> ch;</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="dt">int</span> i1;</span>

@@ -98,7 +98,7 @@
 <p>My Markdown linter of choice is <a href="https://github.com/markdownlint/markdownlint">Markdownlint</a> (mdl) in its Ruby incarnation. I’ve used it for a long time with <a href="https://github.com/dense-analysis/ale">ALE</a> and have <a href="https://github.com/bewuethr/dotfiles/blob/master/.config/mdl/style.rb">my own style file</a> to enforce exactly the rules I want. (Two, actually; one is specifically for VimWiki.)</p>
 <p>There are two types of actions: JavaScript and Docker based ones. I’m using shell scripts in Docker containers for all my actions so far. The Docker container and the script are both very simple; the Docker container is just based on an Alpine image with Ruby, and I install the <code>mdl</code> gem.</p>
 <p>The script then checks if a style file is provided as a parameter. If yes, it runs mdl using that parameter, and if no, without it. Mdl checks all Markdown files recursively when called with a directory as its argument:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">stylefile=$1</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">stylefile=$1</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="kw">if</span><span class="bu"> [</span> <span class="ot">-n</span> <span class="st">&quot;</span><span class="va">$stylefile</span><span class="st">&quot;</span><span class="bu"> ]</span>; <span class="kw">then</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a>    <span class="ex">mdl</span> --style <span class="st">&quot;</span><span class="va">$GITHUB_WORKSPACE</span><span class="st">/</span><span class="va">$stylefile</span><span class="st">&quot;</span> .</span>
@@ -106,17 +106,17 @@
 <span id="cb1-6"><a href="#cb1-6"></a>    <span class="ex">mdl</span> .</span>
 <span id="cb1-7"><a href="#cb1-7"></a><span class="kw">fi</span></span></code></pre></div>
 <p>That’s all! Using the action is pretty simple:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/mdl-action@v1&#39;</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/mdl-action@v1&#39;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">with</span><span class="kw">:</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="at">  </span><span class="fu">style-file</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;.github/workflows/style.rb&#39;</span></span></code></pre></div>
 <p>And without a style file, it’s just a one-liner. I like getting my own style file in a separate step in the same job:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">run</span><span class="kw">:</span><span class="at"> curl &quot;$STYLE_FILE&quot; &gt; .github/workflows/style.rb</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">run</span><span class="kw">:</span><span class="at"> curl &quot;$STYLE_FILE&quot; &gt; .github/workflows/style.rb</span></span></code></pre></div>
 <p>where <code>$STYLE_FILE</code> is the URL of my style file on GitHub.</p>
 <p>The action is alive and well on the <a href="https://github.com/marketplace/actions/run-mdl">Marketplace</a>.</p>
 <h1 id="a-shell-linter">A shell linter</h1>
 <p>The next action is even easier to use; it runs <a href="https://github.com/koalaman/shellcheck">ShellCheck</a> on all shell scripts in the repository.</p>
 <p>The Docker container uses the latest ShellCheck Alpine image and installs the <a href="https://www.darwinsys.com/file/"><code>file</code></a> command. ShellCheck doesn’t find shell script files for you, so we have to do that ourselves; the script being run in the action boils down to a single invocation of <code>find</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">find</span> . \</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">find</span> . \</span>
 <span id="cb4-2"><a href="#cb4-2"></a>    -type d \</span>
 <span id="cb4-3"><a href="#cb4-3"></a>    -name <span class="st">&#39;.git&#39;</span> \</span>
 <span id="cb4-4"><a href="#cb4-4"></a>    -prune \</span>
@@ -128,18 +128,18 @@
 <p>First, we ignore the <code>.git</code> directory; then, for each file, we compare the output of <code>file</code> to <code>shell script</code>, and the files that match get sent to <code>shellcheck</code>. <code>--color=always</code> is a nice touch for the output in the GitHub Actions tab.</p>
 <p>I’m very used to Bash and GNU Coreutils, so when using Alpine with its BusyBox provided ash shell and commands, I always have to double check I’m not using some Bashism or GNUism.</p>
 <p>Using the action requires just this:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/shellcheck-action@v1&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/shellcheck-action@v1&#39;</span></span></code></pre></div>
 <p>Like the Markdownlint action, the ShellCheck action is published on the <a href="https://github.com/marketplace/actions/run-shellcheck">Marketplace</a>.</p>
 <h1 id="a-release-tag-prefix-matcher">A release tag prefix matcher</h1>
 <p>Actions provided by GitHub itself such as the <a href="https://github.com/marketplace/actions/checkout">Checkout</a> action allow you to specify the version you want with just a prefix:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span></code></pre></div>
 <p>gets you the latest release with prefix <code>v2</code>. This is a convenient way to provide users of the action with non-breaking updates and patches without them having the do anything, so I wanted to do the same for my actions.</p>
 <p>As far as I can tell, these tags are manually updated, but wouldn’t that be a great use case for… an action? Exactly.</p>
 <p>Enter the <a href="https://github.com/marketplace/actions/release-tag-tracker">Release tag tracker</a> action!</p>
 <p>It goes through all tags in a repository and finds the most recent one per minor and major release. Then, it checks if a prefix tag for them exists and if so, deletes it; finally, it creates a new prefix tag pointing at the proper object and pushes everything to the remote.</p>
 <p>I got the fundamentals right pretty soon, and deleting tags worked fine. Pushing new tags, however, eluded me for many hours. I wasn’t trying to use the GitHub API, I just wanted the action to run a shell script that pushes the new tags in the end with a simple <code>git push</code>.</p>
 <p>This was met with an extremely annoying error:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1"></a>refusing to allow a bot to create or update workflow</span></code></pre></div>
+<pre><code>refusing to allow a bot to create or update workflow</code></pre>
 <p>even though I didn’t do that! I tried everything I could think of or find online:</p>
 <ul>
 <li>Use SSH instead of HTTPS for the remote URL</li>
@@ -151,18 +151,18 @@
 <h2 id="api-struggles">API struggles</h2>
 <p>This added a few dependencies to the container: <code>curl</code> and <code>jq</code> had to be added. I continued to struggle for a few days; the worst bug to track down must have been the one where I kept getting <q>422 Unprocessable Entity</q> responses from the API, but the exact same commands worked just fine when running locally.</p>
 <p>In the end, I found the culprit; to create the timestamp to send in the request body, I used</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">date</span> -Iseconds</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">date</span> -Iseconds</span></code></pre></div>
 <p>to get an ISO 8601 timestamp with second precision. Something like this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1"></a>2020-03-15T23:36:03-04:00</span></code></pre></div>
+<pre><code>2020-03-15T23:36:03-04:00</code></pre>
 <p>Just as required in the <a href="https://developer.github.com/v3/git/tags/#create-a-tag-object">API docs</a>: <q>a timestamp in ISO 8601 format</q>. Even with a helpful Wikipedia link and a formatting template: <code>YYYY-MM-DDTHH:MM:SSZ</code>. Aha.</p>
 <p>After lots of squinting, I figured it out: in BusyBox, the output of <code>date -Iseconds</code> looks like</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1"></a>2020-03-16T03:40:51+0000</span></code></pre></div>
+<pre><code>2020-03-16T03:40:51+0000</code></pre>
 <p>First of all, UTC, but that’s fine; the crucial difference is that the timezone offset has no colon in it! <a href="https://en.wikipedia.org/wiki/ISO_8601#Time_offsets_from_UTC">ISO 8601</a> says</p>
 <blockquote>
 <p>The UTC offset is appended to the time in the same way that <code>Z</code> was above, in the form <code>±[hh]:[mm]</code>, <code>±[hh][mm]</code>, or <code>±[hh]</code>.</p>
 </blockquote>
 <p>And in the relevant <a href="https://tools.ietf.org/html/rfc3339#page-12">RFC 3339</a>, <q>Date and Time on the Internet: Timestamps</q>, the formal definition of the offset is</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1"></a>time-numoffset = (&quot;+&quot; / &quot;-&quot;) time-hour [[&quot;:&quot;] time-minute]</span></code></pre></div>
+<pre><code>time-numoffset = (&quot;+&quot; / &quot;-&quot;) time-hour [[&quot;:&quot;] time-minute]</code></pre>
 <p>Again, colon optional! Looks like GitHub is too strict here.</p>
 <p>Anyway, after I finally realized all this, I also noticed that the timestamp is optional, and I just stopped sending it. Success!</p>
 <p>The three actions are now happily running on each other, and pbb is using them as well.</p>

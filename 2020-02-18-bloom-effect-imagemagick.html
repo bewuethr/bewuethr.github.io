@@ -96,7 +96,7 @@
 <img src="images/2020-02-18-go-bloom.png" alt="" /><figcaption>Bloom effect in Go</figcaption>
 </figure>
 <p>I thought <q>hey, I bet you can do that in ImageMagick, too!<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></q> So I tried. After a bit of fiddling, I arrived at this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">convert</span> -size 200x200 xc:<span class="st">&#39;rgb(40,40,40)&#39;</span> \</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">convert</span> -size 200x200 xc:<span class="st">&#39;rgb(40,40,40)&#39;</span> \</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    -stroke red -fill <span class="st">&#39;rgb(40,40,40)&#39;</span> -strokewidth 6 \</span>
 <span id="cb1-3"><a href="#cb1-3"></a>    -draw <span class="st">&#39;rectangle 10,10 190,190&#39;</span> \</span>
 <span id="cb1-4"><a href="#cb1-4"></a>    -draw <span class="st">&#39;circle 100,100 100,50&#39;</span> \</span>
