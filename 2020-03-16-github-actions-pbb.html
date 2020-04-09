@@ -13,7 +13,6 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    q { quotes: "“" "”" "‘" "’"; }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -146,29 +145,29 @@
 <li>Use the GitHub token explicitly in the remote URL</li>
 <li>Play around with appending <code>.git</code> to the remote URL</li>
 </ul>
-<p>I eventually <a href="https://github.community/t5/GitHub-Actions/quot-refusing-to-allow-a-bot-to-create-or-update-workflow-quot/m-p/49223">asked in the Community Forum</a>, and the (not very satisfying) answer was that it was <q>because <code>GITHUB_TOKEN</code> is used to update the tag</q>. Deleting tags is okay, but pushing new ones isn’t? Strange. And the error message is just completely wrong, as I wasn’t touching the workflow file.</p>
+<p>I eventually <a href="https://github.community/t5/GitHub-Actions/quot-refusing-to-allow-a-bot-to-create-or-update-workflow-quot/m-p/49223">asked in the Community Forum</a>, and the (not very satisfying) answer was that it was “because <code>GITHUB_TOKEN</code> is used to update the tag”. Deleting tags is okay, but pushing new ones isn’t? Strange. And the error message is just completely wrong, as I wasn’t touching the workflow file.</p>
 <p>In any case, the choice was now between using a personal access token or using the API. PAT seemed to be annoying (and would trigger the action to run again, causing an infinite loop), so API it was.</p>
 <h2 id="api-struggles">API struggles</h2>
-<p>This added a few dependencies to the container: <code>curl</code> and <code>jq</code> had to be added. I continued to struggle for a few days; the worst bug to track down must have been the one where I kept getting <q>422 Unprocessable Entity</q> responses from the API, but the exact same commands worked just fine when running locally.</p>
+<p>This added a few dependencies to the container: <code>curl</code> and <code>jq</code> had to be added. I continued to struggle for a few days; the worst bug to track down must have been the one where I kept getting “422 Unprocessable Entity” responses from the API, but the exact same commands worked just fine when running locally.</p>
 <p>In the end, I found the culprit; to create the timestamp to send in the request body, I used</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">date</span> -Iseconds</span></code></pre></div>
 <p>to get an ISO 8601 timestamp with second precision. Something like this:</p>
 <pre><code>2020-03-15T23:36:03-04:00</code></pre>
-<p>Just as required in the <a href="https://developer.github.com/v3/git/tags/#create-a-tag-object">API docs</a>: <q>a timestamp in ISO 8601 format</q>. Even with a helpful Wikipedia link and a formatting template: <code>YYYY-MM-DDTHH:MM:SSZ</code>. Aha.</p>
+<p>Just as required in the <a href="https://developer.github.com/v3/git/tags/#create-a-tag-object">API docs</a>: “a timestamp in ISO 8601 format”. Even with a helpful Wikipedia link and a formatting template: <code>YYYY-MM-DDTHH:MM:SSZ</code>. Aha.</p>
 <p>After lots of squinting, I figured it out: in BusyBox, the output of <code>date -Iseconds</code> looks like</p>
 <pre><code>2020-03-16T03:40:51+0000</code></pre>
 <p>First of all, UTC, but that’s fine; the crucial difference is that the timezone offset has no colon in it! <a href="https://en.wikipedia.org/wiki/ISO_8601#Time_offsets_from_UTC">ISO 8601</a> says</p>
 <blockquote>
 <p>The UTC offset is appended to the time in the same way that <code>Z</code> was above, in the form <code>±[hh]:[mm]</code>, <code>±[hh][mm]</code>, or <code>±[hh]</code>.</p>
 </blockquote>
-<p>And in the relevant <a href="https://tools.ietf.org/html/rfc3339#page-12">RFC 3339</a>, <q>Date and Time on the Internet: Timestamps</q>, the formal definition of the offset is</p>
+<p>And in the relevant <a href="https://tools.ietf.org/html/rfc3339#page-12">RFC 3339</a>, “Date and Time on the Internet: Timestamps”, the formal definition of the offset is</p>
 <pre><code>time-numoffset = (&quot;+&quot; / &quot;-&quot;) time-hour [[&quot;:&quot;] time-minute]</code></pre>
 <p>Again, colon optional! Looks like GitHub is too strict here.</p>
 <p>Anyway, after I finally realized all this, I also noticed that the timestamp is optional, and I just stopped sending it. Success!</p>
 <p>The three actions are now happily running on each other, and pbb is using them as well.</p>
 <h1 id="learnings">Learnings</h1>
 <p>I have a pretty good understanding of GitHub Actions now, not least because of the quite readable <a href="https://help.github.com/en/actions">documentation</a>. I’m looking forward to playing around with something more substantial, like turning pbb into an action.</p>
-<p>Because my simplistic approach (<q>just a shell script</q>) didn’t pan out, I also got to touch the GitHub API, which doesn’t hurt either.</p>
+<p>Because my simplistic approach (“just a shell script”) didn’t pan out, I also got to touch the GitHub API, which doesn’t hurt either.</p>
 <p>We tried using actions at work to run a simple pull request title linter and even talked about moving our whole CI/CD pipeline from Jenkins to actions, but bumped into a pretty big roadblock: a pull request from the fork of a private repository <a href="https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-events-for-forked-repositories">does not trigger a workflow</a>. Which is exactly our setup at work.</p>
 <p>We’re <a href="https://github.community/t5/GitHub-Actions/Will-GitHub-Actions-support-pull-request-events-from-a-fork-to-a/td-p/44488">not the only ones</a> surprised by this and the <a href="https://github.community/t5/GitHub-Actions/Will-GitHub-Actions-support-pull-request-events-from-a-fork-to-a/m-p/47975/highlight/true#M7029">official GitHub response</a> is</p>
 <blockquote>

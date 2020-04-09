@@ -13,7 +13,6 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    q { quotes: "“" "”" "‘" "’"; }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -91,11 +90,11 @@
 <h1 class="title">Bloom effect in ImageMagick</h1>
 <p class="date">2020-02-18</p>
 </header>
-<p>I bumped into an <a href="https://remy.io/blog/bloom-effect-in-go">article</a> today about <q>Bloom effect in Go</q>. It describes how to get that effect by drawing, blurring, and drawing again, using a few Go libraries, resulting in something like this:</p>
+<p>I bumped into an <a href="https://remy.io/blog/bloom-effect-in-go">article</a> today about “Bloom effect in Go”. It describes how to get that effect by drawing, blurring, and drawing again, using a few Go libraries, resulting in something like this:</p>
 <figure>
 <img src="images/2020-02-18-go-bloom.png" alt="" /><figcaption>Bloom effect in Go</figcaption>
 </figure>
-<p>I thought <q>hey, I bet you can do that in ImageMagick, too!<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></q> So I tried. After a bit of fiddling, I arrived at this:</p>
+<p>I thought “hey, I bet you can do that in ImageMagick, too!<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>” So I tried. After a bit of fiddling, I arrived at this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">convert</span> -size 200x200 xc:<span class="st">&#39;rgb(40,40,40)&#39;</span> \</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    -stroke red -fill <span class="st">&#39;rgb(40,40,40)&#39;</span> -strokewidth 6 \</span>
 <span id="cb1-3"><a href="#cb1-3"></a>    -draw <span class="st">&#39;rectangle 10,10 190,190&#39;</span> \</span>

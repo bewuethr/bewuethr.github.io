@@ -13,7 +13,6 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    q { quotes: "“" "”" "‘" "’"; }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -115,7 +114,7 @@
 <p>Now copy (don’t move) the following from you <code>fltk-1.3.3</code> folder:</p>
 <ul>
 <li><p>The complete <code>FL</code> directory to <code>VC\include</code></p></li>
-<li><p>All <code>.lib</code> files from <code>fltk-1.3.3\lib</code> (except <code>README.lib</code>) to <code>VC\lib</code>. There should be 14 files: seven pairs of two files each, one of which has an added <q>d</q> (for <q>debug</q>) at the end of the file name.</p></li>
+<li><p>All <code>.lib</code> files from <code>fltk-1.3.3\lib</code> (except <code>README.lib</code>) to <code>VC\lib</code>. There should be 14 files: seven pairs of two files each, one of which has an added “d” (for “debug”) at the end of the file name.</p></li>
 <li><p><code>fluid.exe</code> and <code>fluidd.exe</code> from <code>fltk-1.3.3\fluid</code> to <code>VC\bin</code></p></li>
 </ul>
 <h1 id="setting-up-a-fltk-project">Setting up a FLTK project</h1>
@@ -162,7 +161,7 @@
 <p>Make sure that under <em>Linker</em> – <em>System</em>, the option <code>/SUBSYSTEM:WINDOWS</code> is selected so we don’t get a console window. Now build and run to see if only the GUI window shows up.</p>
 <p>That’s how you set up any project using FLTK!</p>
 <h1 id="getting-fltk-with-headers-from-stroustrups-book-to-run">Getting FLTK with headers from Stroustrup’s book to run</h1>
-<p>A lot of people struggling with FLTK are using it in the first place because they’re working through Bjarne Stroustrup’s book <q><a href="http://www.stroustrup.com/Programming/">Programming – Principles and Practice Using C++</a></q>, which uses FLTK in its Chapters 12 to 16 for GUI examples. Stroustrup provides a small interface library to be used in all the exercises. Here is how to set up a project using this interface library!</p>
+<p>A lot of people struggling with FLTK are using it in the first place because they’re working through Bjarne Stroustrup’s book “<a href="http://www.stroustrup.com/Programming/">Programming – Principles and Practice Using C++</a>”, which uses FLTK in its Chapters 12 to 16 for GUI examples. Stroustrup provides a small interface library to be used in all the exercises. Here is how to set up a project using this interface library!</p>
 <p>Create a new Win32 project. I’ve called mine <code>stroustrup_ppp</code>:</p>
 <figure>
 <img src="images/2014-12-25-12.png" alt="" /><figcaption>New project dialogue</figcaption>

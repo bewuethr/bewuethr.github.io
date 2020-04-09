@@ -13,7 +13,6 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    q { quotes: "“" "”" "‘" "’"; }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -88,7 +87,7 @@
 <body>
 <p><a href="./">ArtifiShell Intelligence</a></p>
 <header id="title-block-header">
-<h1 class="title">My summary of <q>The Art of PostgreSQL</q></h1>
+<h1 class="title">My summary of “The Art of PostgreSQL”</h1>
 <p class="date">2020-04-05</p>
 </header>
 <nav id="TOC" role="doc-toc">
@@ -182,7 +181,7 @@
 </ul>
 </nav>
 <p>I’ve recently finished reading <em>The Art of PostgreSQL</em> (see my <a href="2020-03-29-taop-review.html">review</a>). I took a lot of notes, mostly to help me read in a more focused manner; I thought it’d be nice to polish and publish them.</p>
-<p>I first wanted to call this <q>What I’ve learned from TAOP</q>, but it also includes things I already knew, so there.</p>
+<p>I first wanted to call this “What I’ve learned from TAOP”, but it also includes things I already knew, so there.</p>
 <h1 id="parts-i-and-ii-preface-and-introduction">Parts I and II: Preface and Introduction</h1>
 <p>I didn’t take any notes for these – they’re a very general introduction to the book, a first application example, and why you should use Postgres. Got it.</p>
 <h1 id="part-iii-writing-sql-queries">Part III: Writing SQL Queries</h1>
@@ -190,7 +189,7 @@
 <ul>
 <li>Isolation levels (read uncommitted, read committed etc.); there’s more about this later</li>
 <li>Stored procedure: <code>create or replace function</code></li>
-<li>Lateral joins: iterate over each row of a result and evaluate sub-query with that row as a parameter, see <a href="https://heap.io/blog/engineering/postgresqls-powerful-new-join-type-lateral">this article</a> and the <q>top-n artist by genre</q> query</li>
+<li>Lateral joins: iterate over each row of a result and evaluate sub-query with that row as a parameter, see <a href="https://heap.io/blog/engineering/postgresqls-powerful-new-join-type-lateral">this article</a> and the “top-n artist by genre” query</li>
 <li>Prefer SQL for stored procedures over PLpgSQL</li>
 </ul>
 <h2 id="chapter-5-a-small-application">Chapter 5: A Small Application</h2>
@@ -281,8 +280,8 @@
 <h2 id="chapter-16-understanding-nulls">Chapter 16: Understanding Nulls</h2>
 <ul>
 <li>Any boolean comparison involving <code>null</code> has value <code>null</code>, even <code>null = null</code></li>
-<li><code>null</code> is <q>we don’t know</q></li>
-<li><q>Pretend SQL doesn’t implement three-valued logic</q>: <code>is [not] distinct from</code></li>
+<li><code>null</code> is “we don’t know”</li>
+<li>“Pretend SQL doesn’t implement three-valued logic”: <code>is [not] distinct from</code></li>
 </ul>
 <h2 id="chapter-17-understanding-window-functions">Chapter 17: Understanding Window Functions</h2>
 <p>I definitely still don’t understand window functions.</p>
@@ -308,7 +307,7 @@
 </ul>
 <h2 id="chapter-18-understanding-relations-and-joins">Chapter 18: Understanding Relations and Joins</h2>
 <ul>
-<li><p>A table is really a <em>relation</em>, and you can query the <q>composite data type</q>:</p>
+<li><p>A table is really a <em>relation</em>, and you can query the “composite data type”:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">select</span> relation <span class="kw">from</span> relation</span></code></pre></div></li>
 <li><p><code>create table</code> really creates a new data type</p></li>
 </ul>
@@ -380,7 +379,7 @@
 <li>Unique to Postgres</li>
 <li>Provides concurrent safe check against overlapping ranges</li>
 <li>Constraint written using <code>exclude using gist</code>; requires <code>btree_gist</code> extension</li>
-<li>Query with <code>validity @&gt; date '2017-05-18'</code>, where <code>@&gt;</code> is the <q>contains</q> operator and <code>validity</code> is a <code>daterange</code> column</li>
+<li>Query with <code>validity @&gt; date '2017-05-18'</code>, where <code>@&gt;</code> is the “contains” operator and <code>validity</code> is a <code>daterange</code> column</li>
 </ul>
 <h2 id="chapter-23-denormalized-data-types">Chapter 23: Denormalized Data Types</h2>
 <h3 id="arrays">Arrays</h3>
@@ -405,7 +404,7 @@
 <ul>
 <li>Mostly added to make it easier to migrate from MySQL; proper design would use a reference table with foreign key</li>
 <li>Enums make a globally consistent state hard to maintain</li>
-<li>Matter of taste (and the author clearly implies <q>bad taste</q>)</li>
+<li>Matter of taste (and the author clearly implies “bad taste”)</li>
 </ul>
 <h1 id="part-vi-data-modeling">Part VI: Data Modeling</h1>
 <h2 id="chapter-26-object-relational-mapping">Chapter 26: Object Relational Mapping</h2>
@@ -482,7 +481,7 @@
 <h1 id="part-vii-data-manipulation-and-concurrency-control">Part VII: Data Manipulation and Concurrency Control</h1>
 <h2 id="chapter-34-another-small-application">Chapter 34: Another Small Application</h2>
 <ul>
-<li>Remember that 2NF means <q>non-key attributes depend on the key</q>; example of violation: Tweet table has column with profile information</li>
+<li>Remember that 2NF means “non-key attributes depend on the key”; example of violation: Tweet table has column with profile information</li>
 <li>Transitive dependencies violate 3NF, example: country and place depend on location</li>
 </ul>
 <h2 id="chapter-35-insert-update-delete">Chapter 35: Insert, Update, Delete</h2>
@@ -530,7 +529,7 @@
 <li>Phantom read – level <em>repeatable read</em></li>
 <li>Serialization anomaly – level <em>serializable</em></li>
 </ul></li>
-<li>Implementation of serializable: <q><a href="https://wiki.postgresql.org/wiki/SSI">Serializable Snapshot Isolation</a></q> (SSI)</li>
+<li>Implementation of serializable: “<a href="https://wiki.postgresql.org/wiki/SSI">Serializable Snapshot Isolation</a>” (SSI)</li>
 <li>Set isolation with <code>start transaction isolation level &lt;level&gt;;</code></li>
 </ul>
 <h3 id="modeling-for-concurrency">Modeling for Concurrency</h3>
@@ -572,7 +571,7 @@
 <li>You can notify an external client from a trigger</li>
 <li>The DB server can deduplicate events on identical payloads</li>
 <li><code>listen</code> and <code>notify</code> are great for maintaining a cache</li>
-<li>Insert JSON <q>magically</q> into relational tuple: <code>json_populate_record()</code></li>
+<li>Insert JSON “magically” into relational tuple: <code>json_populate_record()</code></li>
 <li>Postgres listen/notify doesn’t provide queueing, so it must be okay to miss events</li>
 <li>Go DB driver supports asynchronous notifications (not all do, like Java doesn’t)</li>
 </ul>
@@ -682,12 +681,12 @@
 <h2 id="chapter-49-geolocation-with-postgresql">Chapter 49: Geolocation with PostgreSQL</h2>
 <ul>
 <li>ip4r extension: provides <code>ip4r</code> data type for IP address ranges</li>
-<li>Example: <q>range contains</q> is <code>where iprange &gt;&gt;= '91.121.37.122'</code></li>
+<li>Example: “range contains” is <code>where iprange &gt;&gt;= '91.121.37.122'</code></li>
 </ul>
 <h2 id="chapter-50-counting-distinct-users-with-hyperloglog">Chapter 50: Counting Distinct Users with HyperLogLog</h2>
 <ul>
 <li>Extension postgresql-hll</li>
-<li>A <q>very special hash value</q></li>
+<li>A “very special hash value”</li>
 <li>Main operations:
 <ul>
 <li>Build hash from input value</li>

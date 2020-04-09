@@ -13,7 +13,6 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    q { quotes: "“" "”" "‘" "’"; }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -91,8 +90,8 @@
 <h1 class="title">Bats tests for Pandoc Bash Blog</h1>
 <p class="date">2020-04-01</p>
 </header>
-<p>Some people say that when you think you should add tests to your Bash script, it’s really a sign that you should switch to a <q>proper</q> language instead.</p>
-<p>Well, since <q>Bash</q> is baked into the name of this thing, that’s clearly not an option, so hello, tests!</p>
+<p>Some people say that when you think you should add tests to your Bash script, it’s really a sign that you should switch to a “proper” language instead.</p>
+<p>Well, since “Bash” is baked into the name of this thing, that’s clearly not an option, so hello, tests!</p>
 <p>I’m aware of a few Bash testing frameworks, but the only one I’ve ever used is <a href="https://github.com/bats-core/bats-core">Bats</a>; specifically, the actively maintained Bats-core fork of it. The original project has been dormant for over four years now, but Bats-core is alive and kicking.</p>
 <p>I’ve written tests covering pretty much everything and run them in a GitHub Actions <a href="https://github.com/bewuethr/pandoc-bash-blog/blob/0f0014605bf48ca20641b5095b88a6b43338a200/.github/workflows/shlinttest.yml#L22-L45">job</a>, which was a bit annoying to set up, but I’ve learned a few things along the way.</p>
 <h1 id="things-ive-learned">Things I’ve learned</h1>
@@ -170,7 +169,7 @@
 <span id="cb8-24"><a href="#cb8-24"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> bats --tap  test</span></span></code></pre></div>
 <p>This first checks out my code, and then the Bats code into a separate directory. The third and most complex step installs Bats and then <em>adds it to the <code>$PATH</code></em>. This eluded me for a long time with cryptic error messages until I finally got it.</p>
 <p>I also learned that if a Bats test fails with exit code 127, it’s because a dependency is missing. To allow Bats to run pbb itself, I had to add the <code>$GITHUB_WORKSPACE</code> directory, which contains the <code>pbb</code> script, to the <code>$PATH</code>, and even though pbb doesn’t shy away from using whatever tool I like, all I need is pre-installed on the <a href="https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md">GitHub-hosted runners</a>.</p>
-<p>And finally, I had to use TAP-compliant output instead of the pretty colourized output I’m used to from interactive Bats usage; the runner doesn’t like the terminal escapes Bats uses and I didn’t feel like investigating. TAP-compliant output also says more clearly <q>CI</q>, so that’s fine.</p>
+<p>And finally, I had to use TAP-compliant output instead of the pretty colourized output I’m used to from interactive Bats usage; the runner doesn’t like the terminal escapes Bats uses and I didn’t feel like investigating. TAP-compliant output also says more clearly “CI”, so that’s fine.</p>
 <h2 id="summary">Summary</h2>
 <p>These are the things I would have told my one month younger self:</p>
 <ul>

@@ -13,7 +13,6 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    q { quotes: "“" "”" "‘" "’"; }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -91,12 +90,12 @@
 <h1 class="title">Book review: The Art of PostgreSQL</h1>
 <p class="date">2020-03-29</p>
 </header>
-<p>A few months ago, we set up a <q>SQL book club</q> at work and tackled <a href="https://theartofpostgresql.com/"><em>The Art of PostgreSQL</em></a> by Dimitri Fontaine as our first book. Here’s what I thought about it.</p>
+<p>A few months ago, we set up a “SQL book club” at work and tackled <a href="https://theartofpostgresql.com/"><em>The Art of PostgreSQL</em></a> by Dimitri Fontaine as our first book. Here’s what I thought about it.</p>
 <figure>
 <img src="images/2020-03-29-taop.jpg" alt="" /><figcaption>Cover of <em>The Art of PostgreSQL</em></figcaption>
 </figure>
 <h1 id="the-good">The good</h1>
-<p>Even though working through a technical book isn’t all that much fun, I’ve been able to stick to a <q>one part per two weeks</q> schedule (mostly because of the peer pressure in the form of an upcoming book club meeting). The book clocks in at about 430 pages, spread over eight parts with 51 chapters total. Reading one part and following along with the examples took be about three hours or so per part; we started in December and finished last week.</p>
+<p>Even though working through a technical book isn’t all that much fun, I’ve been able to stick to a “one part per two weeks” schedule (mostly because of the peer pressure in the form of an upcoming book club meeting). The book clocks in at about 430 pages, spread over eight parts with 51 chapters total. Reading one part and following along with the examples took be about three hours or so per part; we started in December and finished last week.</p>
 <p>I’ve definitely learned a lot. Enough for a separate post, actually; I’ve taken notes for all chapters and want to polish and publish them, if only as a resource for my future self.</p>
 <p>The book’s tag line is</p>
 <blockquote>
@@ -104,21 +103,21 @@
 </blockquote>
 <p>and I’m definitely more aware of things we could do using Postgres instead of application code.</p>
 <p>The book is pretty complete in the sense that it starts from queries that just read data, goes on to data modelling and ends up with data manipulation and Postgres extensions. It is <em>not</em> a book about learning to write queries, but working through all the examples certainly helps by way of exposure to presumably well-written queries.</p>
-<p>Throughout the book, I had lots of small <q>a-ha!</q> moments when an example used a handy string function or some other functionality I hadn’t been aware of but could immediately start using; the chapter about setting up <code>psql</code> inspired me to work through the complete <a href="https://www.postgresql.org/docs/current/app-psql.html">documentation</a> for it and definitely improved my efficiency.</p>
+<p>Throughout the book, I had lots of small “a-ha!” moments when an example used a handy string function or some other functionality I hadn’t been aware of but could immediately start using; the chapter about setting up <code>psql</code> inspired me to work through the complete <a href="https://www.postgresql.org/docs/current/app-psql.html">documentation</a> for it and definitely improved my efficiency.</p>
 <h1 id="the-bad">The bad</h1>
 <h2 id="price">Price</h2>
 <p>The book is expensive! There are four editions:</p>
 <ul>
-<li><q>Standard</q> for $49 with the electronic version (PDF, EPUB and MOBI) and all the queries as <code>.sql</code> files</li>
-<li><q>Full</q> for $99, with additionally a DB dump to load</li>
-<li><q>Dead Tree</q> for $129, with additionally the printed book</li>
-<li><q>Enterprise</q> for $229, which is like the Full Edition, but for 15 people and including a Docker container (but see <a href="#the-docker-container">below</a>)</li>
+<li>“Standard” for $49 with the electronic version (PDF, EPUB and MOBI) and all the queries as <code>.sql</code> files</li>
+<li>“Full” for $99, with additionally a DB dump to load</li>
+<li>“Dead Tree” for $129, with additionally the printed book</li>
+<li>“Enterprise” for $229, which is like the Full Edition, but for 15 people and including a Docker container (but see <a href="#the-docker-container">below</a>)</li>
 </ul>
 <p>I pre-ordered the Full Edition for $69, if I remember correctly, which is still pretty steep, and work purchased the Enterprise Edition for the book club.</p>
 <h2 id="the-distribution-platform-is-weird">The distribution platform is weird</h2>
-<p>The book and data download takes place on Thinkific, a platform that seems to be meant for online courses, but all the features just get in the way of quickly downloading the files: I have to <q>start</q> or <q>replay</q> a <q>course</q> to get them. And I swear it aggressively messed up my password multiple times.</p>
+<p>The book and data download takes place on Thinkific, a platform that seems to be meant for online courses, but all the features just get in the way of quickly downloading the files: I have to “start” or “replay” a “course” to get them. And I swear it aggressively messed up my password multiple times.</p>
 <h2 id="sloppiness">Sloppiness</h2>
-<p>I might be overly sensitive to typos, but if I pay a lot of money for a book, I kind of expect some level of quality control, and not the outlook to Part 3 to mention <q><em>Writting</em> SQL queries</q>. There’s a noticeable typo every few pages, and in some places the sentences could have done with a little love from a copy editor, leaving a not-so-great impression of <q>self published</q> overall, which is at odds with the steep price.</p>
+<p>I might be overly sensitive to typos, but if I pay a lot of money for a book, I kind of expect some level of quality control, and not the outlook to Part 3 to mention “<em>Writting</em> SQL queries”. There’s a noticeable typo every few pages, and in some places the sentences could have done with a little love from a copy editor, leaving a not-so-great impression of “self published” overall, which is at odds with the steep price.</p>
 <h2 id="the-data-set">The data set</h2>
 <p>The Full Edition comes with a data set and a script to load it all, but I definitely didn’t manage to run that successfully. Loading individual files was hit and miss, and I spent more than enough time just loading the example data to follow along.</p>
 <p>Some of the queries contain little bugs like referring to the wrong schema, but those were fixed easily most of the time.</p>
@@ -137,7 +136,7 @@
 <blockquote>
 <p>we now have color screens and syntax highlighting and we don’t write all-caps code anymore… not even in SQL.</p>
 </blockquote>
-<p>But the indentation advice to <q>right align top-level SQL clauses</q>… I could just not warm up to that.</p>
+<p>But the indentation advice to “right align top-level SQL clauses”… I could just not warm up to that.</p>
 <p>Here’s how the author would write a simple query:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb1-1"><a href="#cb1-1"></a>  <span class="kw">select</span> <span class="kw">name</span>, milliseconds</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">from</span>           album</span>
