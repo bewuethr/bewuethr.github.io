@@ -1,4 +1,4 @@
-# Benjamin's blog
+# ArtifiShell Intelligence
 
 It's a blog, and it's mine! See it in action at
 <https://www.benjaminwuethrich.dev>
