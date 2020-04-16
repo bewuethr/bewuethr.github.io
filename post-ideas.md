@@ -2,19 +2,6 @@
 
 ## Up next
 
-- Latest features:
-  - some CSS tweaking:
-    - font sizes now all relative and stuff
-    - background for code blocks
-    - colour for inline code
-  - Makefile to install
-  - yamllint
-  - man page, resources:
-    - <http://man7.org/linux/man-pages/man7/man-pages.7.html>
-    - <http://man7.org/linux/man-pages/man7/man.7.html>
-    - <http://man7.org/linux/man-pages/man7/groff.7.html>
-    - <https://www.gnu.org/software/groff/manual/groff.html>
-
 - All the things Pandoc Markdown can do
 
 ## Fleshed out
