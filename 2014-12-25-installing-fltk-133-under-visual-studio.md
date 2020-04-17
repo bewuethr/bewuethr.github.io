@@ -28,9 +28,9 @@ In the context menu of the *demo* project, select *Set as StartUp Project*.
 
 ![Project context menu](images/2014-12-25-03.png)
 
-Now build the solution (*Build* – *Build Solution* or <kbd>Ctrl</kbd> +
+Now build the solution (*Build* -- *Build Solution* or <kbd>Ctrl</kbd> +
 <kbd>Shift</kbd> + <kbd>B</kbd>). If successful, you should be able to run the
-*demo* project (*Debug* – *Start Debugging* or <kbd>F5</kbd>).
+*demo* project (*Debug* -- *Start Debugging* or <kbd>F5</kbd>).
 
 Change the solution configuration to *Release* and build again. Check if you
 can run the *demo* project (<kbd>F5</kbd>).
@@ -55,7 +55,7 @@ Now copy (don't move) the following from you `fltk-1.3.3` folder:
 
 ## Setting up a FLTK project
 
-To set up a FLTK project, select *File* – *New* – *Project* and choose *Win32
+To set up a FLTK project, select *File* -- *New* -- *Project* and choose *Win32
 Project*:
 
 ![New project menu](images/2014-12-25-05.png)
@@ -64,7 +64,7 @@ In the wizard under *Application Settings*, check *Empty project*:
 
 ![Application settings menu](images/2014-12-25-06.png)
 
-Create a source file with *Project* – *Add New Item*:
+Create a source file with *Project* -- *Add New Item*:
 
 ![Add new item menu](images/2014-12-25-07.png)
 
@@ -84,15 +84,15 @@ int main()
 }
 ```
 
-Now open *Project* – *Properties* and make sure you have selected *Debug* in
-*Configuration* in the top left corner. Under *Linker* – *Input*, edit
+Now open *Project* -- *Properties* and make sure you have selected *Debug* in
+*Configuration* in the top left corner. Under *Linker* -- *Input*, edit
 *Additional Dependencies* and add `fltkd.lib`, `wsock32.lib`, `comctl32.lib`,
 `fltkjpegd.lib` and `fltkimagesd.lib`, each on their own line:
 
 ![Dependencies dialogue](images/2014-12-25-08.png)
 
 Because this is the *Debug* configuration, we would like to have a visible
-console window. To get that, go to *Linker* – *System* and set
+console window. To get that, go to *Linker* -- *System* and set
 `/SUBSYSTEM:CONSOLE` for *SubSystem*:
 
 ![Property Pages dialogue](images/2014-12-25-09.png)
@@ -102,15 +102,15 @@ window:
 
 ![Console and GUI windows](images/2014-12-25-10.png)
 
-Now go back to *Project* – *Properties* and select *Release* as the
-configuration. Go to *Linker* – *Input* and edit the *Additional Dependencies*
+Now go back to *Project* -- *Properties* and select *Release* as the
+configuration. Go to *Linker* -- *Input* and edit the *Additional Dependencies*
 just like before, but this time, add `fltk.lib`, `wsock32.lib`, `comctl32.lib`,
-`fltkjpeg.lib` and `fltkimages.lib` – notice the missing `d` at the end of the
+`fltkjpeg.lib` and `fltkimages.lib`---notice the missing `d` at the end of the
 names:
 
 ![Dependencies dialogue for release](images/2014-12-25-11.png)
 
-Make sure that under *Linker* – *System*, the option `/SUBSYSTEM:WINDOWS` is
+Make sure that under *Linker* -- *System*, the option `/SUBSYSTEM:WINDOWS` is
 selected so we don't get a console window. Now build and run to see if only the
 GUI window shows up.
 
@@ -119,7 +119,7 @@ That's how you set up any project using FLTK!
 ## Getting FLTK with headers from Stroustrup's book to run
 
 A lot of people struggling with FLTK are using it in the first place because
-they're working through Bjarne Stroustrup's book "[Programming – Principles and
+they're working through Bjarne Stroustrup's book "[Programming---Principles and
 Practice Using C++][ppp]", which uses FLTK in its Chapters 12 to 16 for GUI
 examples. Stroustrup provides a small interface library to be used in all the
 exercises. Here is how to set up a project using this interface library!
@@ -136,7 +136,7 @@ the Application Wizard.
 Now set all the project properties just like above so Visual Studio properly
 links to the FLTK library files.
 
-For the example, we're going to do the drill of Chapter 12. Select *Project* –
+For the example, we're going to do the drill of Chapter 12. Select *Project* --
 *Add New Item* to add a new file:
 
 ![Add New Item dialogue](images/2014-12-25-13.png)
@@ -144,7 +144,7 @@ For the example, we're going to do the drill of Chapter 12. Select *Project* –
 If you haven't already, download the [standard library access header][header]
 and the [GUI support code][guisupport] from the [website][ppp] and put them in
 the same directory as `chapter12_drill.cpp`. Ignore all the matrix files and
-`Gui.h` – download `GUI.h`. Don't download `simple_window.cpp` as everything is
+`Gui.h`---download `GUI.h`. Don't download `simple_window.cpp` as everything is
 already defined in `simple_window.h`. The directory should look like this
 afterwards:
 
@@ -153,7 +153,7 @@ afterwards:
 
 ![stroustrup_ppp directory](images/2014-12-25-14.png)
 
-Now add all the files to the project using *Project* – *Add Existing Item*:
+Now add all the files to the project using *Project* -- *Add Existing Item*:
 
 ![Add Item dialogue](images/2014-12-25-15.png)
 

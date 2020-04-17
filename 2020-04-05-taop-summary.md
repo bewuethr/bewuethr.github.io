@@ -15,7 +15,7 @@ things I already knew, so there.
 
 ## Parts I and II: Preface and Introduction
 
-I didn't take any notes for these – they're a very general introduction to the
+I didn't take any notes for these---they're a very general introduction to the
 book, a first application example, and why you should use Postgres. Got it.
 
 ## Part III: Writing SQL Queries
@@ -43,7 +43,7 @@ book, a first application example, and why you should use Postgres. Got it.
 
   [anosql]: https://github.com/honza/anosql
 
-### Chapter 6: The SQL REPL – An Interactive Setup
+### Chapter 6: The SQL REPL---An Interactive Setup
 
 This chapter was great, I've totally overhauled my psql configuration file
 after reading it and the whole [man page]. My favourites:
@@ -432,7 +432,7 @@ Anti-patterns:
 - Sticking all your data into a non-descript `value` text field (*entity
   attribute values*)
 - Multiple values per column, like comma separated data
-- UUIDs: strong theoretical guarantee against collision – but sequences
+- UUIDs: strong theoretical guarantee against collision---but sequences
   *guarantee* it
 
 ### Chapter 31: Denormalization
@@ -517,7 +517,7 @@ There is an [XML version of Shakespeare's works]!
 - Joins for delete statements: `using`
 - A *row* is what a query sees, a *tuple* what is on disk; a single row can
   exist as multiple tuples on disk
-- Delete all rows: `truncate` – faster (deletes on disk), still MVCC compliant
+- Delete all rows: `truncate`---faster (deletes on disk), still MVCC compliant
 - Delete almost everything: faster to create new table and select into it from
   old table with
 
@@ -543,11 +543,11 @@ There is an [XML version of Shakespeare's works]!
   onward)
 - Four isolation levels, with serializable being the most strict
 - Phenomena which are prohibited at various levels:
-  - Dirty read – isolation level *read uncommitted* (not implemented by
+  - Dirty read---isolation level *read uncommitted* (not implemented by
     Postgres)
-  - Nonrepeatable read – level *read committed* (Postgres default)
-  - Phantom read – level *repeatable read*
-  - Serialization anomaly – level *serializable*
+  - Nonrepeatable read---level *read committed* (Postgres default)
+  - Phantom read---level *repeatable read*
+  - Serialization anomaly---level *serializable*
 - Implementation of serializable: "[Serializable Snapshot Isolation]" (SSI)
 - Set isolation with `start transaction isolation level <level>;`
 

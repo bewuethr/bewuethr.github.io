@@ -2,7 +2,7 @@
 
 [*The Unicorn Project*][1] (TUP from here on) was our most recent "project" in
 the book club at work. It was my suggestion, I had preordered it when I first
-saw it, and I had very high hopes for it – [*The Phoenix Project*][2] (TPP) had
+saw it, and I had very high hopes for it---[*The Phoenix Project*][2] (TPP) had
 been our first book club book, and it was a big success, both in terms of being
 interesting and drawing a good sized crowd to the book club meetings.
 
@@ -33,8 +33,8 @@ the time.
 Functional programming is presented as the cure-all for software engineering
 that probably is going to make Fred Brooks rewrite his [famous essay][4] any
 moment now. When the story's heroine Maxine sits down and rewrites that pesky
-2000 line "order fulfillment module" over her lunch break in Clojure – after
-having fixed it in a single morning first, no less – the eyeroll is certainly
+2000 line "order fulfillment module" over her lunch break in Clojure---after
+having fixed it in a single morning first, no less---the eyeroll is certainly
 strong in me.
 
 [4]: http://faculty.salisbury.edu/~xswang/Research/Papers/SERelated/no-silver-bullet.pdf
@@ -44,7 +44,7 @@ references containing the meaty stuff. But that wouldn't be quite fair. I feel
 the book has entertainment value even without being super insightful or
 instructive, and there really aren't that many novels written about software
 engineering that don't go overboard with the clichés. Not that TUP doesn't have
-a few, uh, "stereotypical" personalities – but all in all, it seems to have
+a few, uh, "stereotypical" personalities---but all in all, it seems to have
 been written by somebody who knows what they're talking about, and I don't
 consider my time reading it has been wasted.
 
