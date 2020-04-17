@@ -151,7 +151,7 @@ afterwards:
 [header]: http://www.stroustrup.com/Programming/PPP2code/std_lib_facilities.h
 [guisupport]: http://www.stroustrup.com/Programming/PPP2code/
 
-![stroustrup_ppp directory](images/2014-12-25-14.png)
+![`stroustrup_ppp` directory](images/2014-12-25-14.png)
 
 Now add all the files to the project using *Project* -- *Add Existing Item*:
 
@@ -184,7 +184,7 @@ get rid of them:
 
 In `std_lib_facilities.h`, comment out the complete `vector` part:
 
-![std_lib_facilities.h](images/2014-12-25-16.png)
+![`std_lib_facilities.h`](images/2014-12-25-16.png)
 
 This should get rid of errors related to `vector` and initializer lists; you
 lose range checking, though.
@@ -196,7 +196,7 @@ the constructor of `Text`:
 
 [msdn]: http://msdn.microsoft.com/en-us/library/dn793970.aspx
 
-![graph.h](images/2014-12-25-17.png)
+![`graph.h`](images/2014-12-25-17.png)
 
 Next, in `GUI.cpp`, add `Graph_lib::` in front of `Window&` in the definition
 of `Button::attach` (line 8), `In_box::attach` (line 30) and `Out_box::attach`
