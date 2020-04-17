@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-04-17" />
+  <title>Makefile, man page, TOC and CSS tweaks for Pandoc Bash Blog</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+</head>
+<body>
+<p><a href="./">ArtifiShell Intelligence</a></p>
+<header id="title-block-header">
+<h1 class="title">Makefile, man page, TOC and CSS tweaks for Pandoc Bash Blog</h1>
+<p class="date">2020-04-17</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#css-tweaks">CSS tweaks</a></li>
+<li><a href="#yaml-lint-action">YAML lint action</a></li>
+<li><a href="#makefile-for-installation">Makefile for installation</a></li>
+<li><a href="#optional-table-of-contents">Optional table of contents</a></li>
+<li><a href="#a-man-page-for-pbb">A man page for pbb</a></li>
+</ul>
+</nav>
+<p>I’ve added a few features to Pandoc Bash Blog since <a href="2020-04-04-goatcounter.html">adding GoatCounter</a>: some cosmetic, some useful, some very behind the scenes.</p>
+<h1 id="css-tweaks">CSS tweaks</h1>
+<p>To separate code blocks more clearly from the rest of the text, they now have a darker background colour:</p>
+<figure>
+<img src="images/2020-04-17-codeblock.png" alt="" /><figcaption>Code block with grey background</figcaption>
+</figure>
+<p>And to tell inline code better apart, it got some colour as well:</p>
+<figure>
+<img src="images/2020-04-17-inlinecode.png" alt="" /><figcaption>Coloured inline code</figcaption>
+</figure>
+<p>I first used the same grey background as for code blocks just like for example GitHub does for Markdown pages, but bumped into a snag; Pandoc believes that whitespace should be conserved for inline code and sets <code>white-space: pre-wrap</code> for <code>code</code>. This preserves whitespace, but still breaks lines; it does leave a blank at the end of the line, though, and with a visible background colour, that blank can be seen.</p>
+<figure>
+<img src="images/2020-04-17-extrablank.png" alt="" /><figcaption>Visible extra blank at line end</figcaption>
+</figure>
+<p>So, a different font colour it was, and after looking at the defaults for a few CSS frameworks, I settled on <code>#C7254E</code>. Which keeps the blank, it’s just invisible now.</p>
+<p>And finally, because I noticed that my amateur mess of font sizes resulted in tiny code in headings, I switched everything to relative font sizes using <code>rem</code>s and <code>em</code>s, and in an exhaustive test of one browser on two screens, nothing looks fundamentally broken, so I declare that a success.</p>
+<figure>
+<img src="images/2020-04-17-titlefont-before.png" alt="" /><figcaption>Before fix</figcaption>
+</figure>
+<figure>
+<img src="images/2020-04-17-titlefont-after.png" alt="" /><figcaption>After fix</figcaption>
+</figure>
+<h1 id="yaml-lint-action">YAML lint action</h1>
+<p>All those actions I wrote <a href="2020-03-16-github-actions-pbb.html">when a learned about GitHub Actions</a> have generated quite a pile of YAML files: each action has one for metadata, and each workflow is in one. Since all the actions run on each other, that results in about a dozen or so YAML files floating around.</p>
+<p>What’s more obvious than having yet another action to lint these as well? <a href="https://github.com/marketplace/actions/run-yamllint">Run yamllint</a> to the rescue!</p>
+<p>The action wraps <a href="https://github.com/adrienverge/yamllint">yamllint</a> and works pretty much the same as the <a href="https://github.com/marketplace/actions/run-markdownlint-mdl">Run markdownlint</a> action: the linter checks the whole repo, and an optional config file can be supplied. As for the Markdown linter, I fetch my own from my <a href="https://github.com/bewuethr/dotfiles/blob/master/.config/yamllint/config">dotfiles</a>.</p>
+<p>Now I just have to update all my files because I recently enabled a new quoting rule…</p>
+<figure>
+<img src="images/2020-04-17-yamllint.png" alt="" /><figcaption>My linting emoji are subject of another post</figcaption>
+</figure>
+<p>Anyway, I mention this here because Pandoc Bash Blog uses this action to lint its YAML files.</p>
+<h1 id="makefile-for-installation">Makefile for installation</h1>
+<p>As a side effect of having grown from very minimal to slightly more involved, pbb used to make a bunch of assumptions about where specific files would live. At first, I just symlinked things like the style sheet from the pbb directory into this blog; later, I updated <code>pbb init</code> to symlink from the <code>/usr/local</code> hierarchy and the Bats test setup would actually copy things there.</p>
+<p>Now, finally, there is a proper way to install pbb from scratch: a Makefile! I’m far from a Make expert, but let’s say I have seen worse than <a href="https://github.com/bewuethr/pandoc-bash-blog/blob/e3618db2daf0267efd38f39e832ceccd00f183f5/Makefile">this</a>. The file is “self-documenting” by way of parsing specifically formatted comments with Awk, offers a “dev mode” option to symlink instead of copy things, has an uninstall recipe, and respects the <a href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG Base Directory Specificiation</a>. Or at least my personal flavour of it, combined with a sprinkle of the <a href="https://www.freedesktop.org/software/systemd/man/file-hierarchy.html">systemd file system hierarchy</a>. Everything goes into <code>~/.local/share</code> (or wherever <code>$XDG_DATA_HOME</code> points to), and the binary lives in <code>~/.local/bin</code>, leaving both <code>$HOME</code> clutter free and allowing for non-sudo installation.</p>
+<p>Since I’m not compiling anything, the Makefile is basically a weird shell script wrapper, but “use <code>make install</code>” just has such a nice ring to it.</p>
+<p>I <em>did</em> realize that building the blog is actually a pretty good use case for a Makefile—rebuild those pages where the Markdown version is more recent—but that ship has sailed. Bash it is.</p>
+<h1 id="optional-table-of-contents">Optional table of contents</h1>
+<p>The <a href="2020-04-05-taop-summary.html">TAOP summary</a> is pretty long, so I thought it’d be useful to have a table of contents. Pandoc can create one, but I wanted it to be easy to control. There are a few knobs to turn, but I eventually figured out the correct ones.</p>
+<p>Initially, I thought I can use either of the <code>toc</code> or <code>table-of-contents</code> metadata fields and set them to <code>true</code> in the YAML header of the post I want a TOC for. That didn’t work.</p>
+<p>I was confused about the meaning of the variables. A glance at the default HTML template made things a little more clear:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1"></a>$if(toc)$</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">&lt;nav</span><span class="ot"> id=</span><span class="st">&quot;$idprefix$TOC&quot;</span><span class="ot"> role=</span><span class="st">&quot;doc-toc&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>$if(toc-title)$</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">&lt;h2</span><span class="ot"> id=</span><span class="st">&quot;$idprefix$toc-title&quot;</span><span class="kw">&gt;</span>$toc-title$<span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>$endif$</span>
+<span id="cb1-6"><a href="#cb1-6"></a>$table-of-contents$</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">&lt;/nav&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>$endif$</span></code></pre></div>
+<p>They’re all different! <code>toc</code> serves to indicate if the TOC should be printed at all; <code>table-of-contents</code> actually <em>contains</em> the TOC. Aha. Setting <code>toc: true</code> in my post did give me an empty <code>&lt;nav&gt;</code> tag, but the table itself was missing.</p>
+<p>As it turns out, the <code>toc</code> metadata variable and the <code>--toc</code> command line option are different as well. <code>--toc</code> is required to generate the table, and the <code>toc</code> variable controls if it is displayed or not. But now I got the TOC everywhere, and I wanted the default to be “no TOC”!</p>
+<p>The last puzzle piece was to use a <a href="https://pandoc.org/MANUAL.html#option--metadata-file">metadata file</a> where I can set <code>toc: false</code> so the default is to not have a TOC; if I <em>do</em> want one, I can override the value in just the post where I want it. This also let me customize the heading used for the TOC by setting the <code>toc-title</code> variable.</p>
+<p>Or at least that’s how I think everything works, but who knows. This post uses a TOC, just to show what it looks like.</p>
+<h1 id="a-man-page-for-pbb">A man page for pbb</h1>
+<p>Last, but not least, pbb now has a proper man page. It’s officially the official source of truth, other than the code itself, that is.</p>
+<p>Not everybody considers writing documents using the <code>man</code> macros for <code>roff</code> exactly “thrilling” or “fun” or “not a waste of time”, but I kind of like it. It’s a bit like Markdown’s great-great-great-grandma! I keep hearing about <code>mdoc</code> being all the rage (mostly when I read anything written by its author) and “semantic” instead of just “presentation formatting”, but whenever I think of it, I’m already halfway through whatever I’m writing and promise myself to check it out next time.</p>
+<p>I try and follow the Linux man page conventions as outlined by <a href="http://man7.org/linux/man-pages/man7/man-pages.7.html"><code>man-pages(7)</code></a> regarding structure and style; the man page for the <code>man</code> macros <a href="http://man7.org/linux/man-pages/man7/man.7.html"><code>man(7)</code></a> and its longer cousin <a href="http://man7.org/linux/man-pages/man7/groff_man.7.html"><code>groff_man(7)</code></a> come in handy to remind me of how to start a paragraph with a hanging tag (<code>.TP</code>!) and how to get pretty quotes (<code>\*(lq</code> and <code>\*(rq</code>!); the GNU <code>roff</code> short reference <a href="http://man7.org/linux/man-pages/man7/groff.7.html"><code>groff(7)</code></a> is useful for all those non-<code>man</code> requests (new line? <code>.br</code>); and finally, if all else fails, there’s always the full-blown <a href="https://www.gnu.org/software/groff/manual/groff.html">GNU <code>troff</code> manual</a>.</p>
+<p>There surely are a lot of <code>man</code> man pages.</p>
+<p>In the end, all that counts is that going from this</p>
+<figure>
+<img src="images/2020-04-17-roff.png" alt="" /><figcaption>The Zen of roff source</figcaption>
+</figure>
+<p>to this</p>
+<figure>
+<img src="images/2020-04-17-manpage.png" alt="" /><figcaption>The rendered man page</figcaption>
+</figure>
+<p>is super satisfying. To me.</p>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

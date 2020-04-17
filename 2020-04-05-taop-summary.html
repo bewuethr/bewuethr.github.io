@@ -98,7 +98,7 @@
 <ul>
 <li><a href="#chapter-4-business-logic">Chapter 4: Business Logic</a></li>
 <li><a href="#chapter-5-a-small-application">Chapter 5: A Small Application</a></li>
-<li><a href="#chapter-6-the-sql-repl-an-interactive-setup">Chapter 6: The SQL REPL – An Interactive Setup</a></li>
+<li><a href="#chapter-6-the-sql-replan-interactive-setup">Chapter 6: The SQL REPL—An Interactive Setup</a></li>
 <li><a href="#chapter-7-sql-is-code">Chapter 7: SQL is Code</a></li>
 </ul></li>
 <li><a href="#part-iv-sql-toolbox">Part IV: SQL Toolbox</a>
@@ -183,7 +183,7 @@
 <p>I’ve recently finished reading <em>The Art of PostgreSQL</em> (see my <a href="2020-03-29-taop-review.html">review</a>). I took a lot of notes, mostly to help me read in a more focused manner; I thought it’d be nice to polish and publish them.</p>
 <p>I first wanted to call this “What I’ve learned from TAOP”, but it also includes things I already knew, so there.</p>
 <h1 id="parts-i-and-ii-preface-and-introduction">Parts I and II: Preface and Introduction</h1>
-<p>I didn’t take any notes for these – they’re a very general introduction to the book, a first application example, and why you should use Postgres. Got it.</p>
+<p>I didn’t take any notes for these—they’re a very general introduction to the book, a first application example, and why you should use Postgres. Got it.</p>
 <h1 id="part-iii-writing-sql-queries">Part III: Writing SQL Queries</h1>
 <h2 id="chapter-4-business-logic">Chapter 4: Business Logic</h2>
 <ul>
@@ -203,7 +203,7 @@
 <li>Python library that lets you store SQL queries in separate files: <a href="https://github.com/honza/anosql">anosql</a></li>
 <li><code>limit :n</code> seems to eat the blank, have to use <code>limit  :n</code> for some reason</li>
 </ul>
-<h2 id="chapter-6-the-sql-repl-an-interactive-setup">Chapter 6: The SQL REPL – An Interactive Setup</h2>
+<h2 id="chapter-6-the-sql-replan-interactive-setup">Chapter 6: The SQL REPL—An Interactive Setup</h2>
 <p>This chapter was great, I’ve totally overhauled my psql configuration file after reading it and the whole <a href="https://www.postgresql.org/docs/12/app-psql.html">man page</a>. My favourites:</p>
 <ul>
 <li>Unicode border style: <code>\pset linestyle unicode</code></li>
@@ -451,7 +451,7 @@
 <ul>
 <li>Sticking all your data into a non-descript <code>value</code> text field (<em>entity attribute values</em>)</li>
 <li>Multiple values per column, like comma separated data</li>
-<li>UUIDs: strong theoretical guarantee against collision – but sequences <em>guarantee</em> it</li>
+<li>UUIDs: strong theoretical guarantee against collision—but sequences <em>guarantee</em> it</li>
 </ul>
 <h2 id="chapter-31-denormalization">Chapter 31: Denormalization</h2>
 <ul>
@@ -510,7 +510,7 @@
 <li><p><code>returning</code> in a delete statement can be used to summarize what has been deleted</p></li>
 <li><p>Joins for delete statements: <code>using</code></p></li>
 <li><p>A <em>row</em> is what a query sees, a <em>tuple</em> what is on disk; a single row can exist as multiple tuples on disk</p></li>
-<li><p>Delete all rows: <code>truncate</code> – faster (deletes on disk), still MVCC compliant</p></li>
+<li><p>Delete all rows: <code>truncate</code>—faster (deletes on disk), still MVCC compliant</p></li>
 <li><p>Delete almost everything: faster to create new table and select into it from old table with</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">create</span> <span class="kw">table</span> new_name (<span class="kw">like</span> <span class="kw">name</span> <span class="kw">including</span> <span class="kw">all</span>)</span></code></pre></div>
 <p>insert, then <code>drop table name</code> and</p>
@@ -524,10 +524,10 @@
 <li>Four isolation levels, with serializable being the most strict</li>
 <li>Phenomena which are prohibited at various levels:
 <ul>
-<li>Dirty read – isolation level <em>read uncommitted</em> (not implemented by Postgres)</li>
-<li>Nonrepeatable read – level <em>read committed</em> (Postgres default)</li>
-<li>Phantom read – level <em>repeatable read</em></li>
-<li>Serialization anomaly – level <em>serializable</em></li>
+<li>Dirty read—isolation level <em>read uncommitted</em> (not implemented by Postgres)</li>
+<li>Nonrepeatable read—level <em>read committed</em> (Postgres default)</li>
+<li>Phantom read—level <em>repeatable read</em></li>
+<li>Serialization anomaly—level <em>serializable</em></li>
 </ul></li>
 <li>Implementation of serializable: “<a href="https://wiki.postgresql.org/wiki/SSI">Serializable Snapshot Isolation</a>” (SSI)</li>
 <li>Set isolation with <code>start transaction isolation level &lt;level&gt;;</code></li>

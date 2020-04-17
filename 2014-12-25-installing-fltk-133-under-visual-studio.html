@@ -154,14 +154,14 @@
 <figure>
 <img src="images/2014-12-25-10.png" alt="" /><figcaption>Console and GUI windows</figcaption>
 </figure>
-<p>Now go back to <em>Project</em> – <em>Properties</em> and select <em>Release</em> as the configuration. Go to <em>Linker</em> – <em>Input</em> and edit the <em>Additional Dependencies</em> just like before, but this time, add <code>fltk.lib</code>, <code>wsock32.lib</code>, <code>comctl32.lib</code>, <code>fltkjpeg.lib</code> and <code>fltkimages.lib</code> – notice the missing <code>d</code> at the end of the names:</p>
+<p>Now go back to <em>Project</em> – <em>Properties</em> and select <em>Release</em> as the configuration. Go to <em>Linker</em> – <em>Input</em> and edit the <em>Additional Dependencies</em> just like before, but this time, add <code>fltk.lib</code>, <code>wsock32.lib</code>, <code>comctl32.lib</code>, <code>fltkjpeg.lib</code> and <code>fltkimages.lib</code>—notice the missing <code>d</code> at the end of the names:</p>
 <figure>
 <img src="images/2014-12-25-11.png" alt="" /><figcaption>Dependencies dialogue for release</figcaption>
 </figure>
 <p>Make sure that under <em>Linker</em> – <em>System</em>, the option <code>/SUBSYSTEM:WINDOWS</code> is selected so we don’t get a console window. Now build and run to see if only the GUI window shows up.</p>
 <p>That’s how you set up any project using FLTK!</p>
 <h1 id="getting-fltk-with-headers-from-stroustrups-book-to-run">Getting FLTK with headers from Stroustrup’s book to run</h1>
-<p>A lot of people struggling with FLTK are using it in the first place because they’re working through Bjarne Stroustrup’s book “<a href="http://www.stroustrup.com/Programming/">Programming – Principles and Practice Using C++</a>”, which uses FLTK in its Chapters 12 to 16 for GUI examples. Stroustrup provides a small interface library to be used in all the exercises. Here is how to set up a project using this interface library!</p>
+<p>A lot of people struggling with FLTK are using it in the first place because they’re working through Bjarne Stroustrup’s book “<a href="http://www.stroustrup.com/Programming/">Programming—Principles and Practice Using C++</a>”, which uses FLTK in its Chapters 12 to 16 for GUI examples. Stroustrup provides a small interface library to be used in all the exercises. Here is how to set up a project using this interface library!</p>
 <p>Create a new Win32 project. I’ve called mine <code>stroustrup_ppp</code>:</p>
 <figure>
 <img src="images/2014-12-25-12.png" alt="" /><figcaption>New project dialogue</figcaption>
@@ -172,9 +172,9 @@
 <figure>
 <img src="images/2014-12-25-13.png" alt="" /><figcaption>Add New Item dialogue</figcaption>
 </figure>
-<p>If you haven’t already, download the <a href="http://www.stroustrup.com/Programming/PPP2code/std_lib_facilities.h">standard library access header</a> and the <a href="http://www.stroustrup.com/Programming/PPP2code/">GUI support code</a> from the <a href="http://www.stroustrup.com/Programming/">website</a> and put them in the same directory as <code>chapter12_drill.cpp</code>. Ignore all the matrix files and <code>Gui.h</code> – download <code>GUI.h</code>. Don’t download <code>simple_window.cpp</code> as everything is already defined in <code>simple_window.h</code>. The directory should look like this afterwards:</p>
+<p>If you haven’t already, download the <a href="http://www.stroustrup.com/Programming/PPP2code/std_lib_facilities.h">standard library access header</a> and the <a href="http://www.stroustrup.com/Programming/PPP2code/">GUI support code</a> from the <a href="http://www.stroustrup.com/Programming/">website</a> and put them in the same directory as <code>chapter12_drill.cpp</code>. Ignore all the matrix files and <code>Gui.h</code>—download <code>GUI.h</code>. Don’t download <code>simple_window.cpp</code> as everything is already defined in <code>simple_window.h</code>. The directory should look like this afterwards:</p>
 <figure>
-<img src="images/2014-12-25-14.png" alt="" /><figcaption>stroustrup_ppp directory</figcaption>
+<img src="images/2014-12-25-14.png" alt="" /><figcaption><code>stroustrup_ppp</code> directory</figcaption>
 </figure>
 <p>Now add all the files to the project using <em>Project</em> – <em>Add Existing Item</em>:</p>
 <figure>
@@ -197,12 +197,12 @@
 <p>If you try to build your solution now, you get a slew of errors. Here is how to get rid of them:</p>
 <p>In <code>std_lib_facilities.h</code>, comment out the complete <code>vector</code> part:</p>
 <figure>
-<img src="images/2014-12-25-16.png" alt="" /><figcaption>std_lib_facilities.h</figcaption>
+<img src="images/2014-12-25-16.png" alt="" /><figcaption><code>std_lib_facilities.h</code></figcaption>
 </figure>
 <p>This should get rid of errors related to <code>vector</code> and initializer lists; you lose range checking, though.</p>
 <p>Next, because <a href="http://msdn.microsoft.com/en-us/library/dn793970.aspx">list initialization inside member initializer list or non-static data member initializer is not implemented</a> in VS 2013, comment out the constructor of <code>Lines</code> in <code>graph.h</code> (line 238). For the same reason, replace the constructor of <code>Text</code>:</p>
 <figure>
-<img src="images/2014-12-25-17.png" alt="" /><figcaption>graph.h</figcaption>
+<img src="images/2014-12-25-17.png" alt="" /><figcaption><code>graph.h</code></figcaption>
 </figure>
 <p>Next, in <code>GUI.cpp</code>, add <code>Graph_lib::</code> in front of <code>Window&amp;</code> in the definition of <code>Button::attach</code> (line 8), <code>In_box::attach</code> (line 30) and <code>Out_box::attach</code> (line 49). In <code>Graph.cpp</code>, in the definition of <code>can_open</code>, replace <code>return ff;</code> with <code>return bool(ff);</code> (line 319).</p>
 <p>Finally, in <code>GUI.cpp</code>, remove the constructor <code>Menu::Menu</code> as it is already defined in <code>GUI.h</code>.</p>
