@@ -1,3 +1,7 @@
+---
+toc: true
+...
+
 # Makefile, man page, TOC and CSS tweaks for Pandoc Bash Blog
 
 I've added a few features to Pandoc Bash Blog since [adding GoatCounter]: some
@@ -95,6 +99,50 @@ that ship has sailed. Bash it is.
   [this]: https://github.com/bewuethr/pandoc-bash-blog/blob/e3618db2daf0267efd38f39e832ceccd00f183f5/Makefile
   [XDG Base Directory Specificiation]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
   [systemd file system hierarchy]: https://www.freedesktop.org/software/systemd/man/file-hierarchy.html
+
+## Optional table of contents
+
+The [TAOP summary] is pretty long, so I thought it'd be useful to have a table
+of contents. Pandoc can create one, but I wanted it to be easy to control.
+There are a few knobs to turn, but I eventually figured out the correct ones.
+
+Initially, I thought I can use either of the `toc` or `table-of-contents`
+metadata fields and set them to `true` in the YAML header of the post I want a
+TOC for. That didn't work.
+
+I was confused about the meaning of the variables. A glance at the default HTML
+template made things a little more clear:
+
+```html
+$if(toc)$
+<nav id="$idprefix$TOC" role="doc-toc">
+$if(toc-title)$
+<h2 id="$idprefix$toc-title">$toc-title$</h2>
+$endif$
+$table-of-contents$
+</nav>
+$endif$
+```
+
+They're all different! `toc` serves to indicate if the TOC should be printed at
+all; `table-of-contents` actually *contains* the TOC. Aha. Setting `toc: true`
+in my post did give me an empty `<nav>` tag, but the table itself was missing.
+
+As it turns out, the `toc` metadata variable and the `--toc` command line
+option are different as well. `--toc` is required to generate the table, and
+the `toc` variable controls if it is displayed or not. But now I got the TOC
+everywhere, and I wanted the default to be "no TOC"!
+
+The last puzzle piece was to use a [metadata file] where I can set `toc: false`
+so the default is to not have a TOC; if I *do* want one, I can override the
+value in just the post where I want it. This also let me customize the heading
+used for the TOC by setting the `toc-title` variable.
+
+Or at least that's how I think everything works, but who knows. This post uses
+a TOC, just to show what it looks like.
+
+  [TAOP summary]: 2020-04-05-taop-summary.html
+  [metadata file]: https://pandoc.org/MANUAL.html#option--metadata-file
 
 ## A man page for pbb
 
