@@ -2,8 +2,6 @@
 
 ## Up next
 
-- All the things Pandoc Markdown can do
-
 ## Fleshed out
 
 ### The origins of IMDb
