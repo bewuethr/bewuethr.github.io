@@ -332,7 +332,7 @@ code including ~
 
 `+backtick_code_blocks`
 
-Juse like fenced code blocks, but with `` ` `` instead of `~`.
+Just like fenced code blocks, but with `` ` `` instead of `~`.
 
 ---
 
@@ -691,7 +691,7 @@ B.  uppercase letter with period requires two spaces!
 ---
 
 Notice that HTML output still uses periods for all list markers. Other output
-formats such as LaTeX preseve the marker styling.
+formats such as LaTeX preserve the marker styling.
 
 Each new list marker type starts a new list:
 
@@ -1377,7 +1377,7 @@ With a little template fiddling, this can become a tagging system.
 `+all_symbols_escapable`
 
 Any symbol can be escaped to prevent it from having a formatting effect. An
-escaped space (supposedly) becomes a literal unicode nonbreaking space. Like
+escaped space (supposedly) becomes a literal Unicode nonbreaking space. Like
 with `+escaped_line_breaks`, an escaped newline is a hard linebreak.
 
 ---
@@ -1631,3 +1631,199 @@ This allows to write inline LaTeX, but it is ignored for HTML output.
 ### [Generic raw attribute]
 
   [Generic raw attribute]: https://pandoc.org/MANUAL.html#generic-raw-attribute
+
+`+raw_attribute`
+
+This allows inserting raw blocks of any target format and is of limited use
+when targeting HTML as we can *already* insert HTML in Markdown.
+
+---
+
+~~~markdown
+```{=html}
+<p>This is HTML in a <i>raw</i> block.</p>
+```
+
+This is `<b>HTML</b>`{=html} in an inline raw block.
+~~~
+
+```{=html}
+<p>This is HTML in a <i>raw</i> block.</p>
+```
+
+This is `<b>HTML</b>`{=html} in an inline raw block.
+
+---
+
+## [LaTeX macros]
+
+  [LaTeX macros]: https://pandoc.org/MANUAL.html#latex-macros
+
+`+latex_macros`
+
+This lets you define LaTeX macros, and they are applied to LaTeX math and raw
+LaTeX.
+
+---
+
+```markdown
+\newcommand{\tuple}[1]{\langle #1 \rangle}
+
+$\tuple{a, b, c}$
+```
+
+\newcommand{\tuple}[1]{\langle #1 \rangle}
+
+$\tuple{a, b, c}$
+
+---
+
+## [Links]
+
+  [Links]: https://pandoc.org/MANUAL.html#links-1
+
+### [Automatic links]
+
+  [Automatic links]: https://pandoc.org/MANUAL.html#automatic-links
+
+URLs and email addresses enclosed in `<>` become links. (Tangent: there is an
+option to obfuscate the produced email address, [`--email-obfuscation`], which
+might come in handy.)
+
+  [`--email-obfuscation`]: https://pandoc.org/MANUAL.html#option--email-obfuscation
+
+---
+
+```markdown
+<https://www.benjamin.wuethrich.dev>
+
+<benjamin@benjaminwuethrich.dev>
+```
+
+<https://www.benjamin.wuethrich.dev>
+
+<benjamin@benjaminwuethrich.dev>
+
+---
+
+### [Inline links]
+
+  [Inline links]: https://pandoc.org/MANUAL.html#inline-links
+
+The first of the two "classic" styles.
+
+---
+
+```markdown
+Link: [example](https://example.com)
+
+Link with title: [example](https://example.com "Example website")
+
+Email addresses need the `mailto` explicitly: [email
+joe](mailto:joe@example.com)
+```
+
+Link: [example](https://example.com)
+
+Link with title: [example](https://example.com "Example website")
+
+Email addresses need the `mailto` explicitly: [email
+joe](mailto:joe@example.com)
+
+---
+
+### [Reference links]
+
+  [Reference links]: https://pandoc.org/MANUAL.html#reference-links
+
+Link definitions have an optional title (which can be on a separate line). The
+URL can be enclosed in `<>`; labels are case insensitive. Explicit reference
+links have a separate label; in implicit links, the second pair of brackets is
+empty.
+
+Link definitions can appear in nested elements.
+
+---
+
+```markdown
+Many links: [link 1][label 1], [link 2][label 2], [link 3][label 3],
+[link 4][label 4], [link 5][label 5], [link 6][label 6],
+[link 7][LABEL 7], [implicit link][].
+
+[label 1]: /index.html  "Optional title"
+[label 2]: /index.html
+[label 3]: https://github.com/ (Title in parentheses)
+[label 4]: #paragraphs  'Title in single quote'
+[label 5]: <https://example.com> "URL with angle brackets"
+[label 6]: https://example.com
+  "Title on another line"
+[label 7]: /index.html
+[implicit linke]: /index.html
+
+> A block [quote][].
+>
+> [quote]: /index.html
+```
+
+Many links: [link 1][label 1], [link 2][label 2], [link 3][label 3],
+[link 4][label 4], [link 5][label 5], [link 6][label 6],
+[link 7][LABEL 7], [implicit link][].
+
+[label 1]: /index.html  "Optional title"
+[label 2]: /index.html
+[label 3]: https://github.com/ (Title in parentheses)
+[label 4]: #paragraphs  'Title in single quote'
+[label 5]: <https://example.com> "URL with angle brackets"
+[label 6]: https://example.com
+  "Title on another line"
+[label 7]: /index.html
+[implicit link]: /index.html
+
+> A block [quote][].
+>
+> [quote]: /index.html
+
+---
+
+`+shortcut_reference_links`
+
+This allows to drop the empty second pair of brackets in implicit reference
+links.
+
+---
+
+```markdown
+A link to [my TAOP summary].
+
+[my TAOP summary]: https://www.benjaminwuethrich.dev/2020-04-05-taop-summary.html
+```
+
+A link to [my TAOP summary].
+
+[my TAOP summary]: https://www.benjaminwuethrich.dev/2020-04-05-taop-summary.html
+
+---
+
+### [Internal links]
+
+  [Internal links]: https://pandoc.org/MANUAL.html#internal-links
+
+---
+
+```markdown
+Use [heading identifiers](#heading-identifiers). See the [Headings
+section].
+
+[Headings section]: #headings
+```
+
+Use [heading identifiers](#heading-identifiers). See the [Headings
+section].
+
+[Headings section]: #headings
+
+---
+
+## [Images]
+
+  [Images]: https://pandoc.org/MANUAL.html#images
