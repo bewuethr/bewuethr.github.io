@@ -1,5 +1,27 @@
 ---
 toc: true
+references:
+- id: Ritchie1974
+  type: article-journal
+  author:
+  - family: Ritchie
+    given: Dennis M.
+  - family: Thompson
+    given: Ken
+  issued:
+  - year: 1974
+    month: 7
+  title: The unix time-sharing system
+  container-title: Commun. ACM
+  publisher: Association for Computing Machinery
+  publisher-place: New York, NY, USA
+  page: 365-375
+  volume: '17'
+  issue: '7'
+  keyword: file system, PDP-11, operating system, command language, time-sharing
+  URL: https://doi.org/10.1145/361011.361061
+  DOI: 10.1145/361011.361061
+  ISSN: 0001-0782
 ...
 
 # Everything Pandoc Markdown can do
@@ -1827,3 +1849,210 @@ section].
 ## [Images]
 
   [Images]: https://pandoc.org/MANUAL.html#images
+
+A link preceded by `!` is treated as an image. The link text is used as the
+image's alt text, and the link title becomes the image title.
+
+`+implicit_figures`
+
+An image with alt text alone in a paragraph is rendered as a figure with
+caption; in HTML, this is done using a `<figure>` element containing a
+`<figcaption>` element.
+
+To avoid that, add a nonbreaking space after the image.
+
+---
+
+```markdown
+![Image with caption and title](images/2020-04-19-bashman.png "Hover text!")
+
+![Image with caption, but no title](images/2020-04-19-bashman.png)
+
+![Alt text, but no caption](images/2020-04-19-bashman.png)\
+```
+
+![Image with caption and title](images/2020-04-19-bashman.png "Hover text!")
+
+![Image with caption, but no title](images/2020-04-19-bashman.png)
+
+![Alt text, but no caption](images/2020-04-19-bashman.png)\
+
+---
+
+`+link_attributes`
+
+This allows to set attributes on links and images, which can be used for
+styling. `width` and `height` can be used to control image size; values are
+converted to pixels using 96dpi metadata. The `--dpi` option and dpi image
+metadata don't seem to have an effect for HTML output.
+
+---
+
+```markdown
+![With `width=10%`][image1]
+
+[image1]: images/2020-04-19-bashman.png {width=10%}
+
+![With `height=30px`][image2]
+
+[image2]: images/2020-04-19-bashman.png {height=30px}
+
+![With `height=30px width=100px`][image3]
+
+[image3]: images/2020-04-19-bashman.png {height=30px width=100px}
+
+![With `width=1in`; becomes 96px][image4]
+
+[image4]: images/2020-04-19-bashman.png {width=1in}
+```
+
+![With `width=10%`][image1]
+
+[image1]: images/2020-04-19-bashman.png {width=10%}
+
+![With `height=30px`][image2]
+
+[image2]: images/2020-04-19-bashman.png {height=30px}
+
+![With `height=30px width=100px`][image3]
+
+[image3]: images/2020-04-19-bashman.png {height=30px width=100px}
+
+![With `width=1in`; becomes 96px][image4]
+
+[image4]: images/2020-04-19-bashman.png {width=1in}
+
+---
+
+## [Divs and Spans]
+
+  [Divs and Spans]: https://pandoc.org/MANUAL.html#divs-and-spans
+
+`+fenced_divs`
+
+This allows to create native `Div` blocks; in HTML output, they come `<div>`
+blocks. Attribute syntax is the same as for [fenced code blocks][fcb]. Fenced
+divs can be nested.
+
+  [fcb]: #fenced-code-blocks
+
+---
+
+```markdown
+<style>
+.warning, .error {
+    padding: 10px;
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+</style>
+
+::::: warning
+This is a warning.
+
+::: error
+Nested error!
+:::
+:::::
+```
+
+<style>
+.warning, .error {
+    padding: 10px;
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+</style>
+
+::::: warning
+This is a warning.
+
+::: error
+Nested error!
+:::
+:::::
+
+---
+
+`+bracketed_spans`
+
+A bracketed sequence directly followed by attributes becomes a `Span`.
+
+---
+
+```markdown
+Here is an [inline warning!]{.warning}
+```
+
+Here is an [inline warning!]{.warning}
+
+---
+
+## [Footnotes]
+
+  [Footnotes]: https://pandoc.org/MANUAL.html#footnotes
+
+`+footnotes`
+
+This allows footnotes. If the footnote contains multiple paragraphs, they must
+be indented.
+
+---
+
+```markdown
+Here is some text,[^1] and then some.[^label]
+
+[^1]: And a footnote!
+
+[^label]: This one has multiple paragaphs.
+
+    Continuation is indented.
+
+        { code }
+```
+
+Here is some text,[^1] and then some.[^label]
+
+[^1]: And a footnote!
+
+[^label]: This one has multiple paragaphs.
+
+    Continuation is indented.
+
+        { code }
+
+---
+
+`+inline_notes`
+
+Footnotes can be inlined, but then you can't use multiple paragraphs.
+
+---
+
+```markdown
+This is the text.^[And this is the inline footnote.]
+```
+
+This is the text.^[And this is the inline footnote.]
+
+---
+
+## [Citations]
+
+  [Citations]: https://pandoc.org/MANUAL.html#citations
+
+`+citations`
+
+Foo bar [@Ritchie1974].
