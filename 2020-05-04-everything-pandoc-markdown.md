@@ -58,11 +58,11 @@ references:
 
 Pandoc Markdown is [well documented], but the thing I'm missing in the manual
 is seeing the HTML result---so here are all the things Pandoc Markdown can do
-and what they look like rendered in HTML!
+(when producing HTML) and what they look like when rendered!
 
-I'll cover the Pandoc extensions and a select few non-Pandoc ones.
+I'll cover all the Pandoc extensions.
 
-All titles link to the corresponding manual section; example with Markdown
+All titles link to the corresponding manual section; examples with Markdown
 input and rendered HTML output are between horizontal rules.
 
   [well documented]: https://pandoc.org/MANUAL.html#pandocs-markdown
@@ -407,7 +407,7 @@ func main() {
 `+fenced_code_attributes`
 
 Attach atttributes to fenced or backtick code blocks. The `numberLines` class
-numbers lines and makes the lines numbers anchors. (`number-lines` works as
+numbers lines and makes the line numbers anchors. (`number-lines` works as
 well.)
 
 ---
@@ -612,9 +612,9 @@ marker:
 
 ---
 
-Lists can be nested; nested lists don't have be surrounded by blank lines. The
-markers have to line up with the first non-space character after the marker of
-the parent list.
+Lists can be nested; nested lists don't have to be surrounded by blank lines.
+The markers have to line up with the first non-space character after the marker
+of the parent list.
 
 ---
 
@@ -791,7 +791,7 @@ Each new list marker type starts a new list:
 
 `+task_lists`
 
-Borrowed from GitHub-flavoured Markdown:
+Borrowed from GitHub Flavoured Markdown:
 
 ---
 
@@ -1098,7 +1098,7 @@ the dashed line under the header line.
    123     123     123         123
      1     1        1            1
 
-Table:  Demonstration of simple table syntax.
+Table: Demonstration of simple table syntax.
 ```
 
  Right     Left   Center    Default
@@ -1107,7 +1107,7 @@ Table:  Demonstration of simple table syntax.
    123     123     123         123
      1     1        1            1
 
-Table:  Demonstration of simple table syntax.
+Table: Demonstration of simple table syntax.
 
 ---
 
@@ -1152,7 +1152,7 @@ relative input widths.
                                      spans multiple lines.
 
  Second     row                 5.0  Another multiline row
-                                     afer a blank line.
+                                     after a blank line.
 ----------------------------------------------------------
 
 Table: This is the multiline
@@ -1167,7 +1167,7 @@ table caption.
                                      spans multiple lines.
 
  Second     row                 5.0  Another multiline row
-                                     afer a blank line.
+                                     after a blank line.
 ----------------------------------------------------------
 
 Table: This is the multiline
@@ -1207,7 +1207,7 @@ The header can be omitted.
 
 `+grid_tables`
 
-The header is separated by row of `=` and can be omitted. Cells may contain
+The header is separated by a row of `=` and can be omitted. Cells may contain
 arbitrary block elements.
 
 ---
@@ -1272,10 +1272,14 @@ Headerless tables have the alignment control on the top line.
 +------:+:-----+:--------:+
 | Right | Left | Centered |
 +-------+------+----------+
+| x     | x    | x        |
++-------+------+----------+
 ```
 
 +------:+:-----+:--------:+
 | Right | Left | Centered |
++-------+------+----------+
+| x     | x    | x        |
 +-------+------+----------+
 
 ---
@@ -1371,13 +1375,15 @@ Instead of `|` to separate fields in the delimiter row, `+` also works.
 
 Specify title, author and date in a title block at the beginning of the file:
 
+---
+
 ```markdown
 % The title of the post
 % Donald Knuth; Brian W. Kernighan
 % 1970-01-01
 ```
 
-![Results of setting a title block](images/2020-04-19-titleblock.png)
+![](images/2020-05-04-titleblock.png "Result of setting a title block")
 
 This also sets meta tags for the authors and the date:
 
@@ -1560,7 +1566,7 @@ Prefer `$(cmd)` over `` `cmd` ``.
 
 `+inline_code_attributes`
 
-Inline codes takes the same attributes as fenced code blocks.
+Inline code takes the same attributes as fenced code blocks.
 
 ---
 
@@ -1577,23 +1583,24 @@ Use `for f in ./*`{.bash} instead of `for f in $(ls)`{.bash}.
   [Small caps]: https://pandoc.org/MANUAL.html#small-caps
 
 There is a `smallcaps` class; this example uses the `bracketed_spans` extension
-(see [Divs and Spans]), an HTML `class` attribute and inline CSS.
+(see [Divs and Spans](#divs-and-spansdands)), an HTML `class` attribute and
+inline CSS.
 
 ---
 
 ```markdown
-[This is in Small Caps]{.smallcaps}
+[With an extension]{.smallcaps}
 
-<span class="smallcaps">This is in Small Caps</span>
+<span class="smallcaps">With an HTML class attribute</span>
 
-<span style="font-variant:small-caps">This is in Small Caps</span>
+<span style="font-variant:small-caps">With inline CSS</span>
 ```
 
-[This is in Small Caps]{.smallcaps}
+[With an extension]{.smallcaps}
 
-<span class="smallcaps">This is in Small Caps</span>
+<span class="smallcaps">With an HTML class attribute</span>
 
-<span style="font-variant:small-caps">This is in Small Caps</span>
+<span style="font-variant:small-caps">With inline CSS</span>
 
 ---
 
@@ -1616,7 +1623,7 @@ This is Euler's formula: $$e^{i \cdot pi} = -1$$
 
 Escape literal dollar signs to prevent math rendering: \$bling\$
 
-$10,000 and $20,000 doesn't have to be escaped.
+$10,000 and $20,000 don't have to be escaped.
 ```
 
 Einstein came up with $E = m\text{c}^2$.
@@ -1625,7 +1632,7 @@ This is Euler's formula: $$e^{i \cdot \pi} = -1$$
 
 Escape literal dollar signs to prevent math rendering: \$bling\$
 
-$10,000 and $20,000 doesn't have to be escaped.
+$10,000 and $20,000 don't have to be escaped.
 
 <!-- fix vim pandoc syntax highlighter: $ -->
 
@@ -1668,7 +1675,7 @@ $  echo $BASH_VERSION
 
 `+native_divs`, `+native_spans`
 
-These took me a long time to understand, but after reading through [this long
+These took me a while to understand, but after reading through [this long
 issue], I believe all they do is convert `<div>` and `<span>` elements (enabled
 via `markdown_in_html_blocks`) into `Div` and `Span` blocks in the Pandoc AST,
 but when writing to HTML, the result is the same. They are meant mostly for
@@ -1805,7 +1812,7 @@ Many links: [link 1][label 1], [link 2][label 2], [link 3][label 3],
 [label 1]: /index.html  "Optional title"
 [label 2]: /index.html
 [label 3]: https://github.com/ (Title in parentheses)
-[label 4]: #paragraphs  'Title in single quote'
+[label 4]: #paragraphs  'Title in single quotes'
 [label 5]: <https://example.com> "URL with angle brackets"
 [label 6]: https://example.com
   "Title on another line"
@@ -1824,7 +1831,7 @@ Many links: [link 1][label 1], [link 2][label 2], [link 3][label 3],
 [label 1]: /index.html  "Optional title"
 [label 2]: /index.html
 [label 3]: https://github.com/ (Title in parentheses)
-[label 4]: #paragraphs  'Title in single quote'
+[label 4]: #paragraphs  'Title in single quotes'
 [label 5]: <https://example.com> "URL with angle brackets"
 [label 6]: https://example.com
   "Title on another line"
@@ -1847,12 +1854,12 @@ links.
 ```markdown
 A link to [my TAOP summary].
 
-[my TAOP summary]: https://www.benjaminwuethrich.dev/2020-04-05-taop-summary.html
+[my TAOP summary]: /2020-04-05-taop-summary.html
 ```
 
 A link to [my TAOP summary].
 
-[my TAOP summary]: https://www.benjaminwuethrich.dev/2020-04-05-taop-summary.html
+[my TAOP summary]: /2020-04-05-taop-summary.html
 
 ---
 
@@ -1894,18 +1901,18 @@ To avoid that, add a nonbreaking space after the image.
 ---
 
 ```markdown
-![Image with caption and title](images/2020-04-19-bashman.png "Hover text!")
+![Image with caption and title](images/2020-05-04-bashman.png "Hover text!")
 
-![Image with caption, but no title](images/2020-04-19-bashman.png)
+![Image with caption, but no title](images/2020-05-04-bashman.png)
 
-![Alt text, but no caption](images/2020-04-19-bashman.png)\
+![Alt text, but no caption](images/2020-05-04-bashman.png)\
 ```
 
-![Image with caption and title](images/2020-04-19-bashman.png "Hover text!")
+![Image with caption and title](images/2020-05-04-bashman.png "Hover text!")
 
-![Image with caption, but no title](images/2020-04-19-bashman.png)
+![Image with caption, but no title](images/2020-05-04-bashman.png)
 
-![Alt text, but no caption](images/2020-04-19-bashman.png)\
+![Alt text, but no caption](images/2020-05-04-bashman.png)\
 
 ---
 
@@ -1913,50 +1920,50 @@ To avoid that, add a nonbreaking space after the image.
 
 This allows to set attributes on links and images, which can be used for
 styling. `width` and `height` can be used to control image size; values are
-converted to pixels using 96dpi metadata. The `--dpi` option and dpi image
-metadata don't seem to have an effect for HTML output.
+converted to pixels using 96dpi. The `--dpi` option and dpi image metadata
+don't seem to have an effect for HTML output.
 
 ---
 
 ```markdown
 ![With `width=10%`][image1]
 
-[image1]: images/2020-04-19-bashman.png {width=10%}
+[image1]: images/2020-05-04-bashman.png {width=10%}
 
 ![With `height=30px`][image2]
 
-[image2]: images/2020-04-19-bashman.png {height=30px}
+[image2]: images/2020-05-04-bashman.png {height=30px}
 
 ![With `height=30px width=100px`][image3]
 
-[image3]: images/2020-04-19-bashman.png {height=30px width=100px}
+[image3]: images/2020-05-04-bashman.png {height=30px width=100px}
 
 ![With `width=1in`; becomes 96px][image4]
 
-[image4]: images/2020-04-19-bashman.png {width=1in}
+[image4]: images/2020-05-04-bashman.png {width=1in}
 ```
 
 ![With `width=10%`][image1]
 
-[image1]: images/2020-04-19-bashman.png {width=10%}
+[image1]: images/2020-05-04-bashman.png {width=10%}
 
 ![With `height=30px`][image2]
 
-[image2]: images/2020-04-19-bashman.png {height=30px}
+[image2]: images/2020-05-04-bashman.png {height=30px}
 
 ![With `height=30px width=100px`][image3]
 
-[image3]: images/2020-04-19-bashman.png {height=30px width=100px}
+[image3]: images/2020-05-04-bashman.png {height=30px width=100px}
 
 ![With `width=1in`; becomes 96px][image4]
 
-[image4]: images/2020-04-19-bashman.png {width=1in}
+[image4]: images/2020-05-04-bashman.png {width=1in}
 
 ---
 
-## [Divs and Spans]
+## [Divs and Spans][dands]
 
-  [Divs and Spans]: https://pandoc.org/MANUAL.html#divs-and-spans
+  [dands]: https://pandoc.org/MANUAL.html#divs-and-spans
 
 `+fenced_divs`
 
@@ -2085,14 +2092,14 @@ This is the text.^[And this is the inline footnote.]
 
 `+citations`
 
-Together with the the `pandoc-citeproc` filter, this allows generating
-citations and a bibliography. For this document, I've used
+Together with the `pandoc-citeproc` filter, this allows generating citations
+and a bibliography. For this document, I've used
 
 ```bash
 pandoc-citeproc --bib2yaml
 ```
 
-to generate a CSL YAML bibliography with two entries and stuck it into the
+to generate a CSL YAML bibliography with three entries and stuck it into the
 `references` field in the YAML front matter. I haven't changed the Citation
 Style Language, so it defaults to Chicago Manual of Style author-date format.
 
@@ -2174,8 +2181,8 @@ If there isn't one (like in this document), the bibliography goes at the end. I
 have set a section title for it in the metadata file using
 `reference-section-title`.
 
-An item that wasn't actually cited can be added to the bibliography by adding a
-`nocite` metadata field:
+An item that wasn't actually cited can be added to the bibliography by
+including a `nocite` metadata field:
 
 ---
 
