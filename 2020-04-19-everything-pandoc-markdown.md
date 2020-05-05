@@ -1,27 +1,57 @@
 ---
 toc: true
+link-citations: true
 references:
-- id: Ritchie1974
-  type: article-journal
-  author:
-  - family: Ritchie
-    given: Dennis M.
-  - family: Thompson
-    given: Ken
-  issued:
-  - year: 1974
-    month: 7
-  title: The unix time-sharing system
-  container-title: Commun. ACM
-  publisher: Association for Computing Machinery
-  publisher-place: New York, NY, USA
-  page: 365-375
-  volume: '17'
-  issue: '7'
-  keyword: file system, PDP-11, operating system, command language, time-sharing
-  URL: https://doi.org/10.1145/361011.361061
-  DOI: 10.1145/361011.361061
-  ISSN: 0001-0782
+  - id: Ritchie1974
+    type: article-journal
+    author:
+      - family: Ritchie
+        given: Dennis M.
+      - family: Thompson
+        given: Ken
+    issued:
+      - year: 1974
+        month: 7
+    title: The unix time-sharing system
+    container-title: Commun. ACM
+    publisher: Association for Computing Machinery
+    publisher-place: New York, NY, USA
+    page: 365-375
+    volume: '17'
+    issue: '7'
+    keyword: file system, PDP-11, operating system, command language, time-sharing
+    URL: https://doi.org/10.1145/361011.361061
+    DOI: 10.1145/361011.361061
+    ISSN: 0001-0782
+  - id: Wheeler1952
+    type: paper-conference
+    author:
+      - family: Wheeler
+        given: D. J.
+    issued:
+      - year: 1952
+    title: The use of sub-routines in programmes
+    container-title: Proceedings of the 1952 ACM national meeting (pittsburgh)
+    collection-title: ACM ’52
+    publisher: Association for Computing Machinery
+    publisher-place: New York, NY, USA
+    page: 235-236
+    URL: https://doi.org/10.1145/609784.609816
+    DOI: 10.1145/609784.609816
+    ISBN: '9781450373623'
+  - id: Licklider1968
+    type: article-journal
+    author:
+      - family: Licklider
+        given: J. C. R.
+      - family: Taylor
+        given: Robert W.
+    issued:
+      - year: 1968
+    title: The computer as a communication device
+    container-title: Science and Technology
+    page: 21-31
+    volume: '76'
 ...
 
 # Everything Pandoc Markdown can do
@@ -2055,4 +2085,112 @@ This is the text.^[And this is the inline footnote.]
 
 `+citations`
 
-Foo bar [@Ritchie1974].
+Together with the the `pandoc-citeproc` filter, this allows generating
+citations and a bibliography. For this document, I've used
+
+```bash
+pandoc-citeproc --bib2yaml
+```
+
+to generate a CSL YAML bibliography with two entries and stuck it into the
+`references` field in the YAML front matter. I haven't changed the Citation
+Style Language, so it defaults to Chicago Manual of Style author-date format.
+
+I have set `link-citations: true`, which turn referenes into links to the
+bibliography.
+
+Citations go into square brackets:
+
+---
+
+```markdown
+Blah blah [see @Ritchie1974, pp. 367-370; also @Wheeler1952, p. 235].
+
+Blah blah [@Ritchie1974, pp. 367-368, 370-372 and *passim*].
+
+Blah blah [@Ritchie1974; @Wheeler1952].
+```
+
+Blah blah [see @Ritchie1974, pp. 367-370; also @Wheeler1952, p. 235].
+
+Blah blah [@Ritchie1974, pp. 367-368, 370-372 and *passim*].
+
+Blah blah [@Ritchie1974; @Wheeler1952].
+
+---
+
+The *locator terms* such as `pp.`, `chapter` etc. are all recognized by
+`pandoc-citeproc` and handled according to the selected style.
+
+The locator can be explicitly separated from the suffix in complex cases:
+
+---
+
+```markdown
+[@Ritchie1974{ii, A, D-Z}, with a suffix]
+
+[@Wheeler1952, {pp. iv, vi-xi, (xv)-(xvii)} with suffix here]
+```
+
+[@Ritchie1974{ii, A, D-Z}, with a suffix]
+
+[@Wheeler1952, {pp. iv, vi-xi, (xv)-(xvii)} with suffix here]
+
+---
+
+The author can be suppressed in the citation with `-@`, and there are in-text
+citations:
+
+---
+
+```markdown
+Ritchie says blah [-@Ritchie1974].
+
+@Wheeler1952 says blah.
+
+@Wheeler1952 [p. 235] says blah.
+```
+
+Ritchie says blah [-@Ritchie1974].
+
+@Wheeler1952 says blah.
+
+@Wheeler1952 [p. 235] says blah.
+
+---
+
+To list the works cited, a div with ID `refs` can be used:
+
+---
+
+```markdown
+::: {#refs}
+:::
+```
+
+---
+
+If there isn't one (like in this document), the bibliography goes at the end. I
+have set a section title for it in the metadata file using
+`reference-section-title`.
+
+An item that wasn't actually cited can be added to the bibliography by adding a
+`nocite` metadata field:
+
+---
+
+```yaml
+---
+nocite: |
+  @Licklider1968
+...
+```
+
+---
+nocite: |
+  @Licklider1968
+...
+
+---
+
+A wildcard `@*` can be used to get all citations in the bibliography.
