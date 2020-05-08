@@ -77,6 +77,7 @@
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="/pbb.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -1291,7 +1292,7 @@ escaped space</p>
 <hr />
 <h1 id="math"><a href="https://pandoc.org/MANUAL.html#math">Math</a></h1>
 <p><code>+tex_math_dollars</code></p>
-<p>Text between pairs of <code>$</code> or <code>$$</code> is rendered as TeX Math. For HTML without further options (like in this file), Unicode characters are used; use MathJax for better results.</p>
+<p>Text between pairs of <code>$</code> or <code>$$</code> is rendered as TeX Math. For HTML without further options, Unicode characters are used; use MathJax for better results (as done for this post).</p>
 <hr />
 <div class="sourceCode" id="cb78"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb78-1"><a href="#cb78-1"></a>Einstein came up with $E = m\text{c}^2$.</span>
 <span id="cb78-2"><a href="#cb78-2"></a></span>
@@ -1300,8 +1301,8 @@ escaped space</p>
 <span id="cb78-5"><a href="#cb78-5"></a>Escape literal dollar signs to prevent math rendering: \$bling\$</span>
 <span id="cb78-6"><a href="#cb78-6"></a></span>
 <span id="cb78-7"><a href="#cb78-7"></a>$10,000 and $20,000 don&#39;t have to be escaped.</span></code></pre></div>
-<p>Einstein came up with <span class="math inline"><em>E</em> = <em>m</em>c<sup>2</sup></span>.</p>
-<p>This is Euler’s formula: <br /><span class="math display"><em>e</em><sup><em>i</em> ⋅ <em>π</em></sup> =  − 1</span><br /></p>
+<p>Einstein came up with <span class="math inline">\(E = m\text{c}^2\)</span>.</p>
+<p>This is Euler’s formula: <span class="math display">\[e^{i \cdot \pi} = -1\]</span></p>
 <p>Escape literal dollar signs to prevent math rendering: $bling$</p>
 <p>$10,000 and $20,000 don’t have to be escaped.</p>
 <!-- fix vim pandoc syntax highlighter: $ -->
@@ -1348,7 +1349,7 @@ escaped space</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb82-1"><a href="#cb82-1"></a>\newcommand{\tuple}[1]{\langle #1 \rangle}</span>
 <span id="cb82-2"><a href="#cb82-2"></a></span>
 <span id="cb82-3"><a href="#cb82-3"></a>$\tuple{a, b, c}$</span></code></pre></div>
-<p><span class="math inline">⟨<em>a</em>, <em>b</em>, <em>c</em>⟩</span></p>
+<p><span class="math inline">\(\langle a, b, c \rangle\)</span></p>
 <hr />
 <h1 id="links"><a href="https://pandoc.org/MANUAL.html#links-1">Links</a></h1>
 <h2 id="automatic-links"><a href="https://pandoc.org/MANUAL.html#automatic-links">Automatic links</a></h2>
