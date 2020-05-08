@@ -1611,8 +1611,8 @@ inline CSS.
 `+tex_math_dollars`
 
 Text between pairs of `$` or `$$` is rendered as TeX Math. For HTML without
-further options (like in this file), Unicode characters are used; use MathJax
-for better results.
+further options, Unicode characters are used; use MathJax for better results
+(as done for this post).
 
 ---
 
