@@ -21,6 +21,7 @@ Resources:
 
 ## Just topics
 
+- Blog post about fixing `CDPATH` (prefix empty string!)
 - From for loop with `cat`/`grep` to just `grep`, and on to
 
     ```sh
