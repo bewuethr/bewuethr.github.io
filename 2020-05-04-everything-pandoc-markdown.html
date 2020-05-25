@@ -86,7 +86,7 @@
   <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
 </head>
 <body>
-<p><a href="./">ArtifiShell Intelligence</a></p>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
 <header id="title-block-header">
 <h1 class="title">Everything Pandoc Markdown can do</h1>
 <p class="date">2020-05-04</p>
@@ -175,7 +175,7 @@ with backslash followed by a newline.</p>
 <h2 id="setext-style-headings"><a href="https://pandoc.org/MANUAL.html#setext-style-headings">Setext-style headings</a></h2>
 <hr />
 <div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a>A level-one heading</span>
-<span id="cb3-2"><a href="#cb3-2"></a>===================</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">===================</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
 <span id="cb3-4"><a href="#cb3-4"></a>A level-two heading</span>
 <span id="cb3-5"><a href="#cb3-5"></a>-------------------</span></code></pre></div>
@@ -196,7 +196,7 @@ A level-two heading
 <h1>
 A level-two heading
 </h1>
-<h2 class="unlisted" id="a-level-three-heading" class="unlisted">A level-three heading</h2>
+<h2 class="unlisted" id="a-level-three-heading">A level-three heading</h2>
 <h1 class="title">
 A level-one heading with a <a href="/url">link</a> and <em>emphasis</em>
 </h1>
@@ -219,7 +219,7 @@ A level-one heading with a <a href="/url">link</a> and <em>emphasis</em>
 <p>Assign attributes to headers; I use this in this document to prevent headings from showing up in the table of contents.</p>
 <hr />
 <div class="sourceCode" id="cb7"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">## Heading that won&#39;t show up in TOC {.unlisted}</span></span></code></pre></div>
-<h1 class="unlisted" id="heading-that-wont-show-up-in-toc" class="unlisted">Heading that won’t show up in TOC</h1>
+<h1 class="unlisted" id="heading-that-wont-show-up-in-toc">Heading that won’t show up in TOC</h1>
 <hr />
 <p><code>+implicit_header_references</code></p>
 <p>Reference links for headings are implicitly defined.</p>
@@ -227,21 +227,21 @@ A level-one heading with a <a href="/url">link</a> and <em>emphasis</em>
 <div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">### My section title</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a></span>
 <span id="cb8-3"><a href="#cb8-3"></a>These all link to the heading of this section:</span>
-<span id="cb8-4"><a href="#cb8-4"></a>[My section title],</span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="ot">[My section title][]</span>,</span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="ot">[this section][my section title]</span>,</span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="ot">[this section](#my-section-title)</span></span></code></pre></div>
-<h2 class="unlisted" id="my-section-title" class="unlisted">My section title</h2>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">[</span><span class="ot">My section title</span><span class="co">]</span>,</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co">[</span><span class="ot">My section title</span><span class="co">][]</span>,</span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">[</span><span class="ot">this section</span><span class="co">][my section title]</span>,</span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">[</span><span class="ot">this section</span><span class="co">](#my-section-title)</span></span></code></pre></div>
+<h2 class="unlisted" id="my-section-title">My section title</h2>
 <p>These all link to the heading of this section: <a href="#my-section-title">My section title</a>, <a href="#my-section-title">My section title</a>, <a href="#my-section-title">this section</a>, <a href="#my-section-title">this section</a></p>
 <hr />
 <h1 id="block-quotations"><a href="https://pandoc.org/MANUAL.html#block-quotations">Block quotations</a></h1>
 <p>Block quotes have each line preceded by <code>&gt;</code> and an optional space.</p>
 <hr />
-<div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a>&gt;<span class="dt"> This is a block quote. This</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="dt">&gt; paragraph has two lines.</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="dt">&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="dt">&gt; 1. This is a list inside a block quote.</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="dt">&gt; 2. Second item.</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="at">&gt; This is a block quote. This</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="at">&gt; paragraph has two lines.</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="at">&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="at">&gt; 1. This is a list inside a block quote.</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="at">&gt; 2. Second item.</span></span></code></pre></div>
 <blockquote>
 <p>This is a block quote. This paragraph has two lines.</p>
 <ol type="1">
@@ -252,11 +252,11 @@ A level-one heading with a <a href="/url">link</a> and <em>emphasis</em>
 <hr />
 <p>A “lazy” form with just one <code>&gt;</code> per block works as well, but paragraphs seem to be considered separate blockquotes.</p>
 <hr />
-<div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a>&gt;<span class="dt"> This is a block quote. This</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="dt">paragraph has two lines.</span></span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="at">&gt; This is a block quote. This</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="at">paragraph has two lines.</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a>&gt;<span class="dt"> 1. This is a list inside a block quote.</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="dt">2. Second item.</span></span></code></pre></div>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="at">&gt; 1. This is a list inside a block quote.</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="ss">2. </span>Second item.</span></code></pre></div>
 <blockquote>
 <p>This is a block quote. This paragraph has two lines.</p>
 </blockquote>
@@ -269,9 +269,9 @@ A level-one heading with a <a href="/url">link</a> and <em>emphasis</em>
 <hr />
 <p>Block quotes can be nested.</p>
 <hr />
-<div class="sourceCode" id="cb11"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a>&gt;<span class="dt"> This is a block quote.</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="dt">&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="dt">&gt; &gt; A block quote within a block quote.</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="at">&gt; This is a block quote.</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="at">&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="at">&gt; &gt; A block quote within a block quote.</span></span></code></pre></div>
 <blockquote>
 <p>This is a block quote.</p>
 <blockquote>
@@ -280,7 +280,7 @@ A level-one heading with a <a href="/url">link</a> and <em>emphasis</em>
 </blockquote>
 <hr />
 <p>The optional blank after <code>&gt;</code> is part of the marker, so indented code blocks need five spaces after the marker.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a>&gt;<span class="dt">     import &quot;fmt&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a><span class="at">&gt;     import &quot;fmt&quot;</span></span></code></pre></div>
 <blockquote>
 <pre><code>import &quot;fmt&quot;</code></pre>
 </blockquote>
@@ -288,8 +288,8 @@ A level-one heading with a <a href="/url">link</a> and <em>emphasis</em>
 <p><code>+blank_before_blockquote</code></p>
 <p>A blank line is required before a block quote.</p>
 <hr />
-<div class="sourceCode" id="cb14"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1"></a>&gt;<span class="dt"> This is a block quote.</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="dt">&gt; &gt; This is not considered nested.</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1"></a><span class="at">&gt; This is a block quote.</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="at">&gt; &gt; This is not considered nested.</span></span></code></pre></div>
 <blockquote>
 <p>This is a block quote. &gt; This is not considered nested.</p>
 </blockquote>
@@ -298,9 +298,9 @@ A level-one heading with a <a href="/url">link</a> and <em>emphasis</em>
 <h2 id="indented-code-blocks"><a href="https://pandoc.org/MANUAL.html#indented-code-blocks">Indented code blocks</a></h2>
 <p>Indent by four spaces or one tab for a verbatim block.</p>
 <hr />
-<div class="sourceCode" id="cb15"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="bn">    func main() {</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="bn">        fmt.Println(&quot;Hello, world&quot;)</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="bn">    }</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="in">    func main() {</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="in">        fmt.Println(&quot;Hello, world&quot;)</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="in">    }</span></span></code></pre></div>
 <pre><code>func main() {
     fmt.Println(&quot;Hello, world&quot;)
 }</code></pre>
@@ -309,22 +309,22 @@ A level-one heading with a <a href="/url">link</a> and <em>emphasis</em>
 <p><code>+fenced_code_blocks</code></p>
 <p>Wrap code block between lines of at least three <code>~</code>, where the end row must be at least as long as the starting row. (Notice how this confuses the syntax highlighter for Markdown!)</p>
 <hr />
-<div class="sourceCode" id="cb17"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a>~~~~~~</span>
-<span id="cb17-2"><a href="#cb17-2"></a>func main() {</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="bn">    fmt.Println(&quot;Hello, world&quot;)</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>}</span>
-<span id="cb17-5"><a href="#cb17-5"></a>~~~~~~</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a><span class="in">~~~~~~</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="in">func main() {</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="in">    fmt.Println(&quot;Hello, world&quot;)</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="in">}</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="in">~~~~~~</span></span></code></pre></div>
 <pre><code>func main() {
     fmt.Println(&quot;Hello, world&quot;)
 }</code></pre>
 <hr />
 <p>If the code block contains <code>~</code>, use more <code>~</code> outside.</p>
 <hr />
-<div class="sourceCode" id="cb19"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1"></a>~~~~~</span>
-<span id="cb19-2"><a href="#cb19-2"></a>~~~</span>
-<span id="cb19-3"><a href="#cb19-3"></a>code including ~</span>
-<span id="cb19-4"><a href="#cb19-4"></a>~~~</span>
-<span id="cb19-5"><a href="#cb19-5"></a>~~~~~</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1"></a><span class="in">~~~~~</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="in">~~~</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="in">code including ~</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="in">~~~</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="in">~~~~~</span></span></code></pre></div>
 <pre><code>~~~
 code including ~
 ~~~</code></pre>
@@ -332,11 +332,11 @@ code including ~
 <p><code>+backtick_code_blocks</code></p>
 <p>Just like fenced code blocks, but with <code>`</code> instead of <code>~</code>.</p>
 <hr />
-<div class="sourceCode" id="cb21"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1"></a><span class="bn">```</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="bn">func main() {</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="bn">    fmt.Println(&quot;Hello, world&quot;)</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="bn">}</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a><span class="bn">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1"></a><span class="in">```</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="in">func main() {</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="in">    fmt.Println(&quot;Hello, world&quot;)</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="in">}</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="in">```</span></span></code></pre></div>
 <pre><code>func main() {
     fmt.Println(&quot;Hello, world&quot;)
 }</code></pre>
@@ -344,12 +344,12 @@ code including ~
 <p><code>+fenced_code_attributes</code></p>
 <p>Attach atttributes to fenced or backtick code blocks. The <code>numberLines</code> class numbers lines and makes the line numbers anchors. (<code>number-lines</code> works as well.)</p>
 <hr />
-<div class="sourceCode" id="cb23"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1"></a>~~~~ {#mycode .go .numberLines startFrom=&quot;99&quot;}</span>
-<span id="cb23-2"><a href="#cb23-2"></a>type Organs []*Organ</span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1"></a><span class="in">~~~~ {#mycode .go .numberLines startFrom=&quot;99&quot;}</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="in">type Organs []*Organ</span></span>
 <span id="cb23-3"><a href="#cb23-3"></a></span>
-<span id="cb23-4"><a href="#cb23-4"></a>func (s Organs) Len() int      { return len(s) }</span>
-<span id="cb23-5"><a href="#cb23-5"></a>func (s Organs) Swap(i, j int) { s[i], s[j] = s[j], s[i] }</span>
-<span id="cb23-6"><a href="#cb23-6"></a>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></code></pre></div>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="in">func (s Organs) Len() int      { return len(s) }</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="in">func (s Organs) Swap(i, j int) { s[i], s[j] = s[j], s[i] }</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="in">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span></code></pre></div>
 <div class="sourceCode" id="mycode" data-startFrom="99"><pre class="sourceCode numberSource go numberLines"><code class="sourceCode go" style="counter-reset: source-line 98;"><span id="mycode-99"><a href="#mycode-99"></a><span class="kw">type</span> Organs []*Organ</span>
 <span id="mycode-100"><a href="#mycode-100"></a></span>
 <span id="mycode-101"><a href="#mycode-101"></a><span class="kw">func</span> (s Organs) Len() <span class="dt">int</span>      { <span class="kw">return</span> <span class="bu">len</span>(s) }</span>
@@ -358,9 +358,9 @@ code including ~
 <p><code>lineAnchors</code> (or <code>line-anchors</code>) is supposed to make the lines themselves clickable anchors, but all I get is an empty <code>&lt;a&gt;</code> tag, which isn’t very clickable. <a href="https://github.com/jgm/pandoc/issues/4386">This issue</a> seems to be related, but I didn’t get it to work.</p>
 <p>Language selection can be abbreviated:</p>
 <hr />
-<div class="sourceCode" id="cb24"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1"></a><span class="bn">```go</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="bn">var start time.Time</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="bn">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1"></a><span class="in">```go</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="kw">var</span> start time.Time</span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="in">```</span></span></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">var</span> start time.Time</span></code></pre></div>
 <hr />
 <h1 id="line-blocks"><a href="https://pandoc.org/MANUAL.html#line-blocks">Line blocks</a></h1>
@@ -388,9 +388,9 @@ Just like this.</div>
 <h2 id="bullet-lists"><a href="https://pandoc.org/MANUAL.html#bullet-lists">Bullet lists</a></h2>
 <p>Different markers can be used. Compact list:</p>
 <hr />
-<div class="sourceCode" id="cb27"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1"></a><span class="st">- one</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="st">+ two</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="st">* three</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1"></a><span class="ss">- </span>one</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="ss">+ </span>two</span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="ss">* </span>three</span></code></pre></div>
 <ul>
 <li>one</li>
 <li>two</li>
@@ -399,11 +399,11 @@ Just like this.</div>
 <hr />
 <p>“Loose” list with paragraph for each item:</p>
 <hr />
-<div class="sourceCode" id="cb28"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1"></a><span class="st">- one</span></span>
+<div class="sourceCode" id="cb28"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1"></a><span class="ss">- </span>one</span>
 <span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="st">- two</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="ss">- </span>two</span>
 <span id="cb28-4"><a href="#cb28-4"></a></span>
-<span id="cb28-5"><a href="#cb28-5"></a><span class="st">- three</span></span></code></pre></div>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="ss">- </span>three</span></code></pre></div>
 <ul>
 <li><p>one</p></li>
 <li><p>two</p></li>
@@ -412,9 +412,9 @@ Just like this.</div>
 <hr />
 <p>Item with multiple lines:</p>
 <hr />
-<div class="sourceCode" id="cb29"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1"></a><span class="st">- here is my</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="st">  first item.</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="st">- and my second.</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1"></a><span class="ss">- </span>here is my</span>
+<span id="cb29-2"><a href="#cb29-2"></a>  first item.</span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="ss">- </span>and my second.</span></code></pre></div>
 <ul>
 <li>here is my first item.</li>
 <li>and my second.</li>
@@ -422,9 +422,9 @@ Just like this.</div>
 <hr />
 <p>“Lazy” format is also allowed:</p>
 <hr />
-<div class="sourceCode" id="cb30"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1"></a><span class="st">- here is my</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="st">first item.</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="st">- and my second.</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1"></a><span class="ss">- </span>here is my</span>
+<span id="cb30-2"><a href="#cb30-2"></a>first item.</span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="ss">- </span>and my second.</span></code></pre></div>
 <ul>
 <li>here is my first item.</li>
 <li>and my second.</li>
@@ -433,15 +433,15 @@ Just like this.</div>
 <h2 id="block-content-in-list-items"><a href="https://pandoc.org/MANUAL.html#block-content-in-list-items">Block content in list items</a></h2>
 <p>List items can have multiple paragraphs and code blocks:</p>
 <hr />
-<div class="sourceCode" id="cb31"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1"></a><span class="st">- First paragraph.</span></span>
+<div class="sourceCode" id="cb31"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1"></a><span class="ss">- </span>First paragraph.</span>
 <span id="cb31-2"><a href="#cb31-2"></a></span>
 <span id="cb31-3"><a href="#cb31-3"></a>  Continued.</span>
 <span id="cb31-4"><a href="#cb31-4"></a></span>
-<span id="cb31-5"><a href="#cb31-5"></a><span class="st">- Second paragraph. With a code block, which must be indented four</span></span>
-<span id="cb31-6"><a href="#cb31-6"></a><span class="st">  spaces more than the first non-space character after the list</span></span>
-<span id="cb31-7"><a href="#cb31-7"></a><span class="st">  marker:</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="ss">- </span>Second paragraph. With a code block, which must be indented four</span>
+<span id="cb31-6"><a href="#cb31-6"></a>  spaces more than the first non-space character after the list</span>
+<span id="cb31-7"><a href="#cb31-7"></a>  marker:</span>
 <span id="cb31-8"><a href="#cb31-8"></a></span>
-<span id="cb31-9"><a href="#cb31-9"></a><span class="bn">      { code }</span></span></code></pre></div>
+<span id="cb31-9"><a href="#cb31-9"></a><span class="in">      { code }</span></span></code></pre></div>
 <ul>
 <li><p>First paragraph.</p>
 <p>Continued.</p></li>
@@ -451,7 +451,7 @@ Just like this.</div>
 <hr />
 <p>Continuation after a code block has to be indented two more than the list marker:</p>
 <hr />
-<div class="sourceCode" id="cb33"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1"></a><span class="st">-     code</span></span>
+<div class="sourceCode" id="cb33"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1"></a><span class="ss">-     </span>code</span>
 <span id="cb33-2"><a href="#cb33-2"></a></span>
 <span id="cb33-3"><a href="#cb33-3"></a>  continuation paragraph</span></code></pre></div>
 <ul>
@@ -461,15 +461,15 @@ continuation paragraph</li>
 <hr />
 <p>Lists can be nested; nested lists don’t have to be surrounded by blank lines. The markers have to line up with the first non-space character after the marker of the parent list.</p>
 <hr />
-<div class="sourceCode" id="cb35"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1"></a><span class="st">- C-style languages</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="st">  - C</span></span>
-<span id="cb35-3"><a href="#cb35-3"></a><span class="st">  - C++</span></span>
-<span id="cb35-4"><a href="#cb35-4"></a><span class="st">  - Go</span></span>
-<span id="cb35-5"><a href="#cb35-5"></a><span class="st">- Soups</span></span>
-<span id="cb35-6"><a href="#cb35-6"></a><span class="st">  - Vegetable soups</span></span>
-<span id="cb35-7"><a href="#cb35-7"></a><span class="st">    - Tomato soup</span></span>
-<span id="cb35-8"><a href="#cb35-8"></a><span class="st">    - Broccoli soup</span></span>
-<span id="cb35-9"><a href="#cb35-9"></a><span class="st">  - Chicken soup</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1"></a><span class="ss">- </span>C-style languages</span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="ss">  - </span>C</span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="ss">  - </span>C++</span>
+<span id="cb35-4"><a href="#cb35-4"></a><span class="ss">  - </span>Go</span>
+<span id="cb35-5"><a href="#cb35-5"></a><span class="ss">- </span>Soups</span>
+<span id="cb35-6"><a href="#cb35-6"></a><span class="ss">  - </span>Vegetable soups</span>
+<span id="cb35-7"><a href="#cb35-7"></a><span class="ss">    - </span>Tomato soup</span>
+<span id="cb35-8"><a href="#cb35-8"></a><span class="ss">    - </span>Broccoli soup</span>
+<span id="cb35-9"><a href="#cb35-9"></a><span class="ss">  - </span>Chicken soup</span></code></pre></div>
 <ul>
 <li>C-style languages
 <ul>
@@ -490,11 +490,11 @@ continuation paragraph</li>
 <hr />
 <p>Continuation blocks in “lazy” lists must be indented:</p>
 <hr />
-<div class="sourceCode" id="cb36"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1"></a><span class="st">- A lazy list item</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="st">without indentation on the second line.</span></span>
+<div class="sourceCode" id="cb36"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1"></a><span class="ss">- </span>A lazy list item</span>
+<span id="cb36-2"><a href="#cb36-2"></a>without indentation on the second line.</span>
 <span id="cb36-3"><a href="#cb36-3"></a></span>
-<span id="cb36-4"><a href="#cb36-4"></a><span class="st">- Another lazy list</span></span>
-<span id="cb36-5"><a href="#cb36-5"></a><span class="st">item without indentation.</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a><span class="ss">- </span>Another lazy list</span>
+<span id="cb36-5"><a href="#cb36-5"></a>item without indentation.</span>
 <span id="cb36-6"><a href="#cb36-6"></a></span>
 <span id="cb36-7"><a href="#cb36-7"></a>  A continuation paragraph has to</span>
 <span id="cb36-8"><a href="#cb36-8"></a>be indented.</span></code></pre></div>
@@ -507,9 +507,9 @@ continuation paragraph</li>
 <h2 id="ordered-lists"><a href="https://pandoc.org/MANUAL.html#ordered-lists">Ordered lists</a></h2>
 <p>Standard ordered lists use decimal numbers followed by period and space; the actual numbers are ignored (but see <code>+startnum</code> below):</p>
 <hr />
-<div class="sourceCode" id="cb37"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1"></a><span class="st">1. one</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a><span class="st">5. two</span></span>
-<span id="cb37-3"><a href="#cb37-3"></a><span class="st">7. three</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1"></a><span class="ss">1. </span>one</span>
+<span id="cb37-2"><a href="#cb37-2"></a><span class="ss">5. </span>two</span>
+<span id="cb37-3"><a href="#cb37-3"></a><span class="ss">7. </span>three</span></code></pre></div>
 <ol type="1">
 <li>one</li>
 <li>two</li>
@@ -521,8 +521,8 @@ continuation paragraph</li>
 <p><code>+startnum</code></p>
 <p>This extension preserves the starting number of an ordered list.</p>
 <hr />
-<div class="sourceCode" id="cb38"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1"></a><span class="st">1. arabic 1 with period</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a><span class="st">2. arabic 2 with period</span></span>
+<div class="sourceCode" id="cb38"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1"></a><span class="ss">1. </span>arabic 1 with period</span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="ss">2. </span>arabic 2 with period</span>
 <span id="cb38-3"><a href="#cb38-3"></a></span>
 <span id="cb38-4"><a href="#cb38-4"></a>a. lowercase with period</span>
 <span id="cb38-5"><a href="#cb38-5"></a>a. lowercase with period</span>
@@ -536,9 +536,9 @@ continuation paragraph</li>
 <span id="cb38-13"><a href="#cb38-13"></a>A.  uppercase letter with period requires two spaces!</span>
 <span id="cb38-14"><a href="#cb38-14"></a>B.  uppercase letter with period requires two spaces!</span>
 <span id="cb38-15"><a href="#cb38-15"></a></span>
-<span id="cb38-16"><a href="#cb38-16"></a>(C) is formatted as a list; <span class="bn">`+startnum`</span> preserves &quot;C&quot; here</span>
+<span id="cb38-16"><a href="#cb38-16"></a>(C) is formatted as a list; <span class="in">`+startnum`</span> preserves &quot;C&quot; here</span>
 <span id="cb38-17"><a href="#cb38-17"></a></span>
-<span id="cb38-18"><a href="#cb38-18"></a>(C\) has to be escaped to prevent list formatting</span></code></pre></div>
+<span id="cb38-18"><a href="#cb38-18"></a>(C<span class="sc">\)</span> has to be escaped to prevent list formatting</span></code></pre></div>
 <ol type="1">
 <li>arabic 1 with period</li>
 <li>arabic 2 with period</li>
@@ -569,8 +569,8 @@ continuation paragraph</li>
 <hr />
 <div class="sourceCode" id="cb39"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1"></a>(2) Two</span>
 <span id="cb39-2"><a href="#cb39-2"></a>(5) Three</span>
-<span id="cb39-3"><a href="#cb39-3"></a><span class="st">1. Four</span></span>
-<span id="cb39-4"><a href="#cb39-4"></a><span class="st">- Five</span></span></code></pre></div>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="ss">1. </span>Four</span>
+<span id="cb39-4"><a href="#cb39-4"></a><span class="ss">- </span>Five</span></code></pre></div>
 <ol start="2" type="1">
 <li>Two</li>
 <li>Three</li>
@@ -608,8 +608,8 @@ continuation paragraph</li>
 <p><code>+task_lists</code></p>
 <p>Borrowed from GitHub Flavoured Markdown:</p>
 <hr />
-<div class="sourceCode" id="cb41"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1"></a><span class="st">- [ ] to do</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a><span class="st">- [x] done</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1"></a><span class="ss">- </span><span class="va">[ ]</span> to do</span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="ss">- </span><span class="va">[x]</span> done</span></code></pre></div>
 <ul class="task-list">
 <li><input type="checkbox" disabled="" />
 to do</li>
@@ -629,9 +629,9 @@ done</li>
 <span id="cb42-6"><a href="#cb42-6"></a></span>
 <span id="cb42-7"><a href="#cb42-7"></a>:   Definition 2.1</span>
 <span id="cb42-8"><a href="#cb42-8"></a></span>
-<span id="cb42-9"><a href="#cb42-9"></a><span class="bn">        { code block, part of definition 2.1 }</span></span>
+<span id="cb42-9"><a href="#cb42-9"></a><span class="in">        { code block, part of definition 2.1 }</span></span>
 <span id="cb42-10"><a href="#cb42-10"></a></span>
-<span id="cb42-11"><a href="#cb42-11"></a><span class="bn">    Another paragraph in definition 2.1</span></span>
+<span id="cb42-11"><a href="#cb42-11"></a><span class="in">    Another paragraph in definition 2.1</span></span>
 <span id="cb42-12"><a href="#cb42-12"></a></span>
 <span id="cb42-13"><a href="#cb42-13"></a>:   Definition 2.2; a term can have multiple definitions</span></code></pre></div>
 <dl>
@@ -654,7 +654,7 @@ done</li>
 <span id="cb44-3"><a href="#cb44-3"></a>:   Definition</span>
 <span id="cb44-4"><a href="#cb44-4"></a>with lazy continuation.</span>
 <span id="cb44-5"><a href="#cb44-5"></a></span>
-<span id="cb44-6"><a href="#cb44-6"></a><span class="bn">    Continuation block elements still require indentation.</span></span></code></pre></div>
+<span id="cb44-6"><a href="#cb44-6"></a><span class="in">    Continuation block elements still require indentation.</span></span></code></pre></div>
 <dl>
 <dt>Term 1</dt>
 <dd><p>Definition with lazy continuation.</p>
@@ -705,7 +705,7 @@ done</li>
 <hr />
 <div class="sourceCode" id="cb47"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb47-1"><a href="#cb47-1"></a>(@label) This is an example.</span>
 <span id="cb47-2"><a href="#cb47-2"></a></span>
-<span id="cb47-3"><a href="#cb47-3"></a><span class="bn">    Example list continuations are always indented by four spaces.</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="in">    Example list continuations are always indented by four spaces.</span></span>
 <span id="cb47-4"><a href="#cb47-4"></a></span>
 <span id="cb47-5"><a href="#cb47-5"></a>As example @label illustrates, ...</span></code></pre></div>
 <ol start="4" class="example" type="1">
@@ -718,13 +718,13 @@ done</li>
 <p>If list item text is followed by a blank line, it is treated as a paragraph, otherwise the list becomes “compact”.</p>
 <p>In this case, “Second” is not followed by a blank line, so it’s not a paragraph:</p>
 <hr />
-<div class="sourceCode" id="cb48"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1"></a><span class="st">- First</span></span>
-<span id="cb48-2"><a href="#cb48-2"></a><span class="st">- Second:</span></span>
-<span id="cb48-3"><a href="#cb48-3"></a><span class="st">  - Foo</span></span>
-<span id="cb48-4"><a href="#cb48-4"></a><span class="st">  - Bar</span></span>
-<span id="cb48-5"><a href="#cb48-5"></a><span class="st">  - Baz</span></span>
+<div class="sourceCode" id="cb48"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1"></a><span class="ss">- </span>First</span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="ss">- </span>Second:</span>
+<span id="cb48-3"><a href="#cb48-3"></a><span class="ss">  - </span>Foo</span>
+<span id="cb48-4"><a href="#cb48-4"></a><span class="ss">  - </span>Bar</span>
+<span id="cb48-5"><a href="#cb48-5"></a><span class="ss">  - </span>Baz</span>
 <span id="cb48-6"><a href="#cb48-6"></a></span>
-<span id="cb48-7"><a href="#cb48-7"></a><span class="st">- Third</span></span></code></pre></div>
+<span id="cb48-7"><a href="#cb48-7"></a><span class="ss">- </span>Third</span></code></pre></div>
 <ul>
 <li>First</li>
 <li>Second:
@@ -739,10 +739,10 @@ done</li>
 <h2 id="ending-a-list"><a href="https://pandoc.org/MANUAL.html#ending-a-list">Ending a list</a></h2>
 <p>Inserting an indented code block right after a list results in a continuation paragraph:</p>
 <hr />
-<div class="sourceCode" id="cb49"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1"></a><span class="st">- one</span></span>
-<span id="cb49-2"><a href="#cb49-2"></a><span class="st">- two</span></span>
+<div class="sourceCode" id="cb49"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1"></a><span class="ss">- </span>one</span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="ss">- </span>two</span>
 <span id="cb49-3"><a href="#cb49-3"></a></span>
-<span id="cb49-4"><a href="#cb49-4"></a><span class="bn">    { code }</span></span></code></pre></div>
+<span id="cb49-4"><a href="#cb49-4"></a>    { code }</span></code></pre></div>
 <ul>
 <li><p>one</p></li>
 <li><p>two</p>
@@ -751,12 +751,12 @@ done</li>
 <hr />
 <p>Insert unindented content that won’t produce visible output to end a list:</p>
 <hr />
-<div class="sourceCode" id="cb50"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb50-1"><a href="#cb50-1"></a><span class="st">- one</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="st">- two</span></span>
+<div class="sourceCode" id="cb50"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb50-1"><a href="#cb50-1"></a><span class="ss">- </span>one</span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="ss">- </span>two</span>
 <span id="cb50-3"><a href="#cb50-3"></a></span>
-<span id="cb50-4"><a href="#cb50-4"></a>&lt;!--<span class="co"> --&gt;</span></span>
+<span id="cb50-4"><a href="#cb50-4"></a><span class="co">&lt;!-- --&gt;</span></span>
 <span id="cb50-5"><a href="#cb50-5"></a></span>
-<span id="cb50-6"><a href="#cb50-6"></a><span class="bn">    { code }</span></span></code></pre></div>
+<span id="cb50-6"><a href="#cb50-6"></a><span class="in">    { code }</span></span></code></pre></div>
 <ul>
 <li>one</li>
 <li>two</li>
@@ -766,15 +766,15 @@ done</li>
 <hr />
 <p>This also allows separating consecutive lists:</p>
 <hr />
-<div class="sourceCode" id="cb52"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1"></a><span class="st">1. one</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="st">2. two</span></span>
-<span id="cb52-3"><a href="#cb52-3"></a><span class="st">3. three</span></span>
+<div class="sourceCode" id="cb52"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1"></a><span class="ss">1. </span>one</span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="ss">2. </span>two</span>
+<span id="cb52-3"><a href="#cb52-3"></a><span class="ss">3. </span>three</span>
 <span id="cb52-4"><a href="#cb52-4"></a></span>
-<span id="cb52-5"><a href="#cb52-5"></a>&lt;!--<span class="co"> --&gt;</span></span>
+<span id="cb52-5"><a href="#cb52-5"></a><span class="co">&lt;!-- --&gt;</span></span>
 <span id="cb52-6"><a href="#cb52-6"></a></span>
-<span id="cb52-7"><a href="#cb52-7"></a><span class="st">1. one again</span></span>
-<span id="cb52-8"><a href="#cb52-8"></a><span class="st">2. two again</span></span>
-<span id="cb52-9"><a href="#cb52-9"></a><span class="st">3. three again</span></span></code></pre></div>
+<span id="cb52-7"><a href="#cb52-7"></a><span class="ss">1. </span>one again</span>
+<span id="cb52-8"><a href="#cb52-8"></a><span class="ss">2. </span>two again</span>
+<span id="cb52-9"><a href="#cb52-9"></a><span class="ss">3. </span>three again</span></code></pre></div>
 <ol type="1">
 <li>one</li>
 <li>two</li>
@@ -807,9 +807,9 @@ done</li>
 <hr />
 <div class="sourceCode" id="cb54"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb54-1"><a href="#cb54-1"></a> Right     Left   Center    Default</span>
 <span id="cb54-2"><a href="#cb54-2"></a>------     ----- --------   -------</span>
-<span id="cb54-3"><a href="#cb54-3"></a><span class="bn">    12     12      12           12</span></span>
+<span id="cb54-3"><a href="#cb54-3"></a><span class="in">    12     12      12           12</span></span>
 <span id="cb54-4"><a href="#cb54-4"></a>   123     123     123         123</span>
-<span id="cb54-5"><a href="#cb54-5"></a><span class="bn">     1     1        1            1</span></span>
+<span id="cb54-5"><a href="#cb54-5"></a>     1     1        1            1</span>
 <span id="cb54-6"><a href="#cb54-6"></a></span>
 <span id="cb54-7"><a href="#cb54-7"></a>Table: Demonstration of simple table syntax.</span></code></pre></div>
 <table>
@@ -883,10 +883,10 @@ done</li>
 <span id="cb56-3"><a href="#cb56-3"></a>  Header    Aligned         Aligned  Aligned</span>
 <span id="cb56-4"><a href="#cb56-4"></a>----------  -------  --------------  ---------------------</span>
 <span id="cb56-5"><a href="#cb56-5"></a> First      row                12.0  Example of a row that</span>
-<span id="cb56-6"><a href="#cb56-6"></a><span class="bn">                                     spans multiple lines.</span></span>
+<span id="cb56-6"><a href="#cb56-6"></a>                                     spans multiple lines.</span>
 <span id="cb56-7"><a href="#cb56-7"></a></span>
 <span id="cb56-8"><a href="#cb56-8"></a> Second     row                 5.0  Another multiline row</span>
-<span id="cb56-9"><a href="#cb56-9"></a><span class="bn">                                     after a blank line.</span></span>
+<span id="cb56-9"><a href="#cb56-9"></a>                                     after a blank line.</span>
 <span id="cb56-10"><a href="#cb56-10"></a>----------------------------------------------------------</span>
 <span id="cb56-11"><a href="#cb56-11"></a></span>
 <span id="cb56-12"><a href="#cb56-12"></a>Table: This is the multiline</span>
@@ -927,11 +927,11 @@ done</li>
 <hr />
 <div class="sourceCode" id="cb57"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb57-1"><a href="#cb57-1"></a>----------- ------- --------------- -------------------------</span>
 <span id="cb57-2"><a href="#cb57-2"></a>   First    row                12.0 Example of a row that</span>
-<span id="cb57-3"><a href="#cb57-3"></a><span class="bn">                                    spans multiple lines.</span></span>
+<span id="cb57-3"><a href="#cb57-3"></a>                                    spans multiple lines.</span>
 <span id="cb57-4"><a href="#cb57-4"></a></span>
 <span id="cb57-5"><a href="#cb57-5"></a>  Second    row                 5.0 Here&#39;s another one. Note</span>
-<span id="cb57-6"><a href="#cb57-6"></a><span class="bn">                                    the blank line between</span></span>
-<span id="cb57-7"><a href="#cb57-7"></a><span class="bn">                                    rows.</span></span>
+<span id="cb57-6"><a href="#cb57-6"></a>                                    the blank line between</span>
+<span id="cb57-7"><a href="#cb57-7"></a>                                    rows.</span>
 <span id="cb57-8"><a href="#cb57-8"></a>----------- ------- --------------- -------------------------</span>
 <span id="cb57-9"><a href="#cb57-9"></a></span>
 <span id="cb57-10"><a href="#cb57-10"></a>: Here&#39;s a multiline table without a header.</span></code></pre></div>
@@ -1012,9 +1012,9 @@ done</li>
 <div class="sourceCode" id="cb59"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb59-1"><a href="#cb59-1"></a>+---------------+---------------+----------------------+</span>
 <span id="cb59-2"><a href="#cb59-2"></a>| Right         | Left          | Centered             |</span>
 <span id="cb59-3"><a href="#cb59-3"></a>+==============:+:==============+:====================:+</span>
-<span id="cb59-4"><a href="#cb59-4"></a>| Bananas       | $1.34         | <span class="bn">```go                |</span></span>
-<span id="cb59-5"><a href="#cb59-5"></a><span class="bn">|               |               | fmt.Println(&quot;hello&quot;) |</span></span>
-<span id="cb59-6"><a href="#cb59-6"></a><span class="bn">|               |               | ```</span>                  |</span>
+<span id="cb59-4"><a href="#cb59-4"></a>| Bananas       | $1.34         | ```go                |</span>
+<span id="cb59-5"><a href="#cb59-5"></a>|               |               | fmt.Println(&quot;hello&quot;) |</span>
+<span id="cb59-6"><a href="#cb59-6"></a>|               |               | ```                  |</span>
 <span id="cb59-7"><a href="#cb59-7"></a>+---------------+---------------+----------------------+</span></code></pre></div>
 <table style="width:76%;">
 <colgroup>
@@ -1204,11 +1204,11 @@ done</li>
 <p><code>+yaml_metadata_block</code></p>
 <p>Arbitrary metadata can be set in a YAML block; I use this to <a href="2020-04-17-pbb-makefile-manpage.html#optional-table-of-contents">control table of contents</a> generation. The template has to match the structure; the default HTML template includes for example a <code>keywords</code> array.</p>
 <hr />
-<div class="sourceCode" id="cb68"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb68-1"><a href="#cb68-1"></a>---</span>
-<span id="cb68-2"><a href="#cb68-2"></a>keywords:</span>
-<span id="cb68-3"><a href="#cb68-3"></a>  - unix</span>
-<span id="cb68-4"><a href="#cb68-4"></a>  - linux</span>
-<span id="cb68-5"><a href="#cb68-5"></a>...</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb68-1"><a href="#cb68-1"></a><span class="co">---</span></span>
+<span id="cb68-2"><a href="#cb68-2"></a><span class="an">keywords:</span></span>
+<span id="cb68-3"><a href="#cb68-3"></a><span class="co">  - unix</span></span>
+<span id="cb68-4"><a href="#cb68-4"></a><span class="co">  - linux</span></span>
+<span id="cb68-5"><a href="#cb68-5"></a><span class="co">...</span></span></code></pre></div>
 <p>which results in metadata like</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb69-1"><a href="#cb69-1"></a><span class="kw">&lt;meta</span><span class="ot"> name=</span><span class="st">&quot;keywords&quot;</span><span class="ot"> content=</span><span class="st">&quot;unix, linux&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
 <hr />
@@ -1234,7 +1234,7 @@ escaped space</p>
 <span id="cb71-2"><a href="#cb71-2"></a></span>
 <span id="cb71-3"><a href="#cb71-3"></a>**Double them** for __strong emphasis__.</span>
 <span id="cb71-4"><a href="#cb71-4"></a></span>
-<span id="cb71-5"><a href="#cb71-5"></a>\*Escaped\* or _ standalone _ characters are literal.</span></code></pre></div>
+<span id="cb71-5"><a href="#cb71-5"></a><span class="sc">\*</span>Escaped<span class="sc">\*</span> or _ standalone _ characters are literal.</span></code></pre></div>
 <p>Use <em>asterisks</em> or <em>underscores</em> for emphasis.</p>
 <p><strong>Double them</strong> for <strong>strong emphasis</strong>.</p>
 <p>*Escaped* or _ standalone _ characters are literal.</p>
@@ -1266,26 +1266,26 @@ escaped space</p>
 <h2 id="verbatim"><a href="https://pandoc.org/MANUAL.html#verbatim">Verbatim</a></h2>
 <p>Verbatim text goes inside backticks; use double backticks to include a backtick.</p>
 <hr />
-<div class="sourceCode" id="cb75"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb75-1"><a href="#cb75-1"></a>Check out the <span class="bn">`README.md`</span>.</span>
+<div class="sourceCode" id="cb75"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb75-1"><a href="#cb75-1"></a>Check out the <span class="in">`README.md`</span>.</span>
 <span id="cb75-2"><a href="#cb75-2"></a></span>
-<span id="cb75-3"><a href="#cb75-3"></a>Prefer <span class="bn">`$(cmd)`</span> over `<span class="bn">` `</span>cmd<span class="bn">` `</span>`.</span></code></pre></div>
+<span id="cb75-3"><a href="#cb75-3"></a>Prefer <span class="in">`$(cmd)`</span> over <span class="in">`` `cmd` ``</span>.</span></code></pre></div>
 <p>Check out the <code>README.md</code>.</p>
 <p>Prefer <code>$(cmd)</code> over <code>`cmd`</code>.</p>
 <hr />
 <p><code>+inline_code_attributes</code></p>
 <p>Inline code takes the same attributes as fenced code blocks.</p>
 <hr />
-<div class="sourceCode" id="cb76"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb76-1"><a href="#cb76-1"></a>Use <span class="bn">`for f in ./*`</span>{.bash} instead of <span class="bn">`for f in $(ls)`</span>{.bash}.</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb76-1"><a href="#cb76-1"></a>Use <span class="in">`for f in ./*`</span>{.bash} instead of <span class="in">`for f in $(ls)`</span>{.bash}.</span></code></pre></div>
 <p>Use <code class="sourceCode bash"><span class="kw">for</span> <span class="ex">f</span> in ./*</code> instead of <code class="sourceCode bash"><span class="kw">for</span> <span class="ex">f</span> in <span class="va">$(</span><span class="fu">ls</span><span class="va">)</span></code>.</p>
 <hr />
 <h2 id="small-caps"><a href="https://pandoc.org/MANUAL.html#small-caps">Small caps</a></h2>
 <p>There is a <code>smallcaps</code> class; this example uses the <code>bracketed_spans</code> extension (see <a href="#divs-and-spansdands">Divs and Spans</a>), an HTML <code>class</code> attribute and inline CSS.</p>
 <hr />
-<div class="sourceCode" id="cb77"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb77-1"><a href="#cb77-1"></a>[With an extension]{.smallcaps}</span>
+<div class="sourceCode" id="cb77"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb77-1"><a href="#cb77-1"></a><span class="co">[</span><span class="ot">With an extension</span><span class="co">]</span>{.smallcaps}</span>
 <span id="cb77-2"><a href="#cb77-2"></a></span>
-<span id="cb77-3"><a href="#cb77-3"></a>&lt;span class=&quot;smallcaps&quot;&gt;With an HTML class attribute&lt;/span&gt;</span>
+<span id="cb77-3"><a href="#cb77-3"></a><span class="kw">&lt;span</span><span class="ot"> class=</span><span class="st">&quot;smallcaps&quot;</span><span class="kw">&gt;</span>With an HTML class attribute<span class="kw">&lt;/span&gt;</span></span>
 <span id="cb77-4"><a href="#cb77-4"></a></span>
-<span id="cb77-5"><a href="#cb77-5"></a>&lt;span style=&quot;font-variant:small-caps&quot;&gt;With inline CSS&lt;/span&gt;</span></code></pre></div>
+<span id="cb77-5"><a href="#cb77-5"></a><span class="kw">&lt;span</span><span class="ot"> style=</span><span class="st">&quot;font-variant:small-caps&quot;</span><span class="kw">&gt;</span>With inline CSS<span class="kw">&lt;/span&gt;</span></span></code></pre></div>
 <p><span class="smallcaps">With an extension</span></p>
 <p><span class="smallcaps">With an HTML class attribute</span></p>
 <p><span class="smallcaps">With inline CSS</span></p>
@@ -1313,13 +1313,13 @@ escaped space</p>
 <p><code>+markdown_in_html_blocks</code></p>
 <p>Unlike original Markdown, this extension will still interpret Markdown in raw HTML blocks (except within <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> elements).</p>
 <hr />
-<div class="sourceCode" id="cb79"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb79-1"><a href="#cb79-1"></a>&lt;details&gt;</span>
-<span id="cb79-2"><a href="#cb79-2"></a>&lt;summary&gt;What is your **Bash version**?&lt;/summary&gt;</span>
-<span id="cb79-3"><a href="#cb79-3"></a><span class="bn">```bash</span></span>
-<span id="cb79-4"><a href="#cb79-4"></a><span class="bn">$  </span><span class="bu">echo</span> <span class="va">$BASH_VERSION</span></span>
-<span id="cb79-5"><a href="#cb79-5"></a><span class="ex">5.0.3</span>(1<span class="bn">)</span><span class="ex">-release</span></span>
-<span id="cb79-6"><a href="#cb79-6"></a><span class="bn">```</span></span>
-<span id="cb79-7"><a href="#cb79-7"></a>&lt;/details&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb79-1"><a href="#cb79-1"></a><span class="kw">&lt;details&gt;</span></span>
+<span id="cb79-2"><a href="#cb79-2"></a><span class="kw">&lt;summary&gt;</span>What is your **Bash version**?<span class="kw">&lt;/summary&gt;</span></span>
+<span id="cb79-3"><a href="#cb79-3"></a><span class="in">```bash</span></span>
+<span id="cb79-4"><a href="#cb79-4"></a>$  <span class="bu">echo</span> <span class="va">$BASH_VERSION</span></span>
+<span id="cb79-5"><a href="#cb79-5"></a><span class="ex">5.0.3</span>(1)<span class="ex">-release</span></span>
+<span id="cb79-6"><a href="#cb79-6"></a><span class="kw">```</span></span>
+<span id="cb79-7"><a href="#cb79-7"></a><span class="op">&lt;</span>/<span class="ex">details</span><span class="op">&gt;</span></span></code></pre></div>
 <details>
 <p><summary>What is your <strong>Bash version</strong>?</summary></p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1"></a>$  <span class="bu">echo</span> <span class="va">$BASH_VERSION</span></span>
@@ -1334,11 +1334,11 @@ escaped space</p>
 <p><code>+raw_attribute</code></p>
 <p>This allows inserting raw blocks of any target format and is of limited use when targeting HTML as we can <em>already</em> insert HTML in Markdown.</p>
 <hr />
-<div class="sourceCode" id="cb81"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb81-1"><a href="#cb81-1"></a><span class="bn">```{=html}</span></span>
-<span id="cb81-2"><a href="#cb81-2"></a><span class="bn">&lt;p&gt;This is HTML in a &lt;i&gt;raw&lt;/i&gt; block.&lt;/p&gt;</span></span>
-<span id="cb81-3"><a href="#cb81-3"></a><span class="bn">```</span></span>
+<div class="sourceCode" id="cb81"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb81-1"><a href="#cb81-1"></a><span class="in">```{=html}</span></span>
+<span id="cb81-2"><a href="#cb81-2"></a><span class="in">&lt;p&gt;This is HTML in a &lt;i&gt;raw&lt;/i&gt; block.&lt;/p&gt;</span></span>
+<span id="cb81-3"><a href="#cb81-3"></a><span class="in">```</span></span>
 <span id="cb81-4"><a href="#cb81-4"></a></span>
-<span id="cb81-5"><a href="#cb81-5"></a>This is <span class="bn">`&lt;b&gt;HTML&lt;/b&gt;`</span>{=html} in an inline raw block.</span></code></pre></div>
+<span id="cb81-5"><a href="#cb81-5"></a>This is <span class="in">`&lt;b&gt;HTML&lt;/b&gt;`</span>{=html} in an inline raw block.</span></code></pre></div>
 <p>This is HTML in a <i>raw</i> block.</p>
 <p>This is <b>HTML</b> in an inline raw block.</p>
 <hr />
@@ -1346,7 +1346,7 @@ escaped space</p>
 <p><code>+latex_macros</code></p>
 <p>This lets you define LaTeX macros, and they are applied to LaTeX math and raw LaTeX.</p>
 <hr />
-<div class="sourceCode" id="cb82"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb82-1"><a href="#cb82-1"></a>\newcommand{\tuple}[1]{\langle #1 \rangle}</span>
+<div class="sourceCode" id="cb82"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb82-1"><a href="#cb82-1"></a>\newcommand{\tuple}<span class="co">[</span><span class="ot">1</span><span class="co">]</span>{\langle #1 \rangle}</span>
 <span id="cb82-2"><a href="#cb82-2"></a></span>
 <span id="cb82-3"><a href="#cb82-3"></a>$\tuple{a, b, c}$</span></code></pre></div>
 <p><span class="math inline">\(\langle a, b, c \rangle\)</span></p>
@@ -1364,11 +1364,11 @@ escaped space</p>
 <h2 id="inline-links"><a href="https://pandoc.org/MANUAL.html#inline-links">Inline links</a></h2>
 <p>The first of the two “classic” styles.</p>
 <hr />
-<div class="sourceCode" id="cb84"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb84-1"><a href="#cb84-1"></a>Link: <span class="ot">[example](https://example.com)</span></span>
+<div class="sourceCode" id="cb84"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb84-1"><a href="#cb84-1"></a><span class="an">Link:</span><span class="co"> [example](https://example.com)</span></span>
 <span id="cb84-2"><a href="#cb84-2"></a></span>
-<span id="cb84-3"><a href="#cb84-3"></a>Link with title: <span class="ot">[example](https://example.com &quot;Example website&quot;)</span></span>
+<span id="cb84-3"><a href="#cb84-3"></a>Link with title: <span class="co">[</span><span class="ot">example</span><span class="co">](https://example.com &quot;Example website&quot;)</span></span>
 <span id="cb84-4"><a href="#cb84-4"></a></span>
-<span id="cb84-5"><a href="#cb84-5"></a>Email addresses need the <span class="bn">`mailto`</span> explicitly: [email</span>
+<span id="cb84-5"><a href="#cb84-5"></a>Email addresses need the <span class="in">`mailto`</span> explicitly: [email</span>
 <span id="cb84-6"><a href="#cb84-6"></a>joe](mailto:joe@example.com)</span></code></pre></div>
 <p>Link: <a href="https://example.com">example</a></p>
 <p>Link with title: <a href="https://example.com" title="Example website">example</a></p>
@@ -1378,23 +1378,23 @@ escaped space</p>
 <p>Link definitions have an optional title (which can be on a separate line). The URL can be enclosed in <code>&lt;&gt;</code>; labels are case insensitive. Explicit reference links have a separate label; in implicit links, the second pair of brackets is empty.</p>
 <p>Link definitions can appear in nested elements.</p>
 <hr />
-<div class="sourceCode" id="cb85"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb85-1"><a href="#cb85-1"></a>Many links: <span class="ot">[link 1][label 1]</span>, <span class="ot">[link 2][label 2]</span>, <span class="ot">[link 3][label 3]</span>,</span>
-<span id="cb85-2"><a href="#cb85-2"></a><span class="ot">[link 4][label 4]</span>, <span class="ot">[link 5][label 5]</span>, <span class="ot">[link 6][label 6]</span>,</span>
-<span id="cb85-3"><a href="#cb85-3"></a><span class="ot">[link 7][LABEL 7]</span>, <span class="ot">[implicit link][]</span>.</span>
+<div class="sourceCode" id="cb85"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb85-1"><a href="#cb85-1"></a><span class="an">Many links:</span><span class="co"> [link 1][label 1], [link 2][label 2], [link 3][label 3],</span></span>
+<span id="cb85-2"><a href="#cb85-2"></a><span class="co">[</span><span class="ot">link 4</span><span class="co">][label 4]</span>, <span class="co">[</span><span class="ot">link 5</span><span class="co">][label 5]</span>, <span class="co">[</span><span class="ot">link 6</span><span class="co">][label 6]</span>,</span>
+<span id="cb85-3"><a href="#cb85-3"></a><span class="co">[</span><span class="ot">link 7</span><span class="co">][LABEL 7]</span>, <span class="co">[</span><span class="ot">implicit link</span><span class="co">][]</span>.</span>
 <span id="cb85-4"><a href="#cb85-4"></a></span>
-<span id="cb85-5"><a href="#cb85-5"></a><span class="ot">[label 1]: /index.html  &quot;Optional title&quot;</span></span>
-<span id="cb85-6"><a href="#cb85-6"></a><span class="ot">[label 2]: /index.html</span></span>
-<span id="cb85-7"><a href="#cb85-7"></a><span class="ot">[label 3]: https://github.com/</span> (Title in parentheses)</span>
-<span id="cb85-8"><a href="#cb85-8"></a><span class="ot">[label 4]: #paragraphs</span>  &#39;Title in single quotes&#39;</span>
+<span id="cb85-5"><a href="#cb85-5"></a><span class="ot">[label 1]: </span>/index.html  &quot;Optional title&quot;</span>
+<span id="cb85-6"><a href="#cb85-6"></a><span class="ot">[label 2]: </span>/index.html</span>
+<span id="cb85-7"><a href="#cb85-7"></a><span class="ot">[label 3]: https://github.com/ (Title in parentheses)</span></span>
+<span id="cb85-8"><a href="#cb85-8"></a><span class="ot">[label 4]: #paragraphs  &#39;Title in single quotes&#39;</span></span>
 <span id="cb85-9"><a href="#cb85-9"></a><span class="ot">[label 5]: &lt;https://example.com&gt; &quot;URL with angle brackets&quot;</span></span>
 <span id="cb85-10"><a href="#cb85-10"></a><span class="ot">[label 6]: https://example.com</span></span>
 <span id="cb85-11"><a href="#cb85-11"></a>  &quot;Title on another line&quot;</span>
-<span id="cb85-12"><a href="#cb85-12"></a><span class="ot">[label 7]: /index.html</span></span>
-<span id="cb85-13"><a href="#cb85-13"></a><span class="ot">[implicit linke]: /index.html</span></span>
+<span id="cb85-12"><a href="#cb85-12"></a><span class="ot">[label 7]: </span>/index.html</span>
+<span id="cb85-13"><a href="#cb85-13"></a><span class="ot">[implicit linke]: </span>/index.html</span>
 <span id="cb85-14"><a href="#cb85-14"></a></span>
-<span id="cb85-15"><a href="#cb85-15"></a>&gt;<span class="dt"> A block </span><span class="ot">[quote][]</span><span class="dt">.</span></span>
-<span id="cb85-16"><a href="#cb85-16"></a><span class="dt">&gt;</span></span>
-<span id="cb85-17"><a href="#cb85-17"></a><span class="dt">&gt; </span><span class="ot">[quote]: /index.html</span></span></code></pre></div>
+<span id="cb85-15"><a href="#cb85-15"></a><span class="at">&gt; A block </span><span class="co">[</span><span class="ot">quote</span><span class="co">][]</span><span class="at">.</span></span>
+<span id="cb85-16"><a href="#cb85-16"></a><span class="at">&gt;</span></span>
+<span id="cb85-17"><a href="#cb85-17"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">quote</span><span class="co">]</span><span class="at">: /index.html</span></span></code></pre></div>
 <p>Many links: <a href="/index.html" title="Optional title">link 1</a>, <a href="/index.html">link 2</a>, <a href="https://github.com/" title="Title in parentheses">link 3</a>, <a href="#paragraphs" title="Title in single quotes">link 4</a>, <a href="https://example.com" title="URL with angle brackets">link 5</a>, <a href="https://example.com" title="Title on another line">link 6</a>, <a href="/index.html">link 7</a>, <a href="/index.html">implicit link</a>.</p>
 <blockquote>
 <p>A block <a href="/index.html">quote</a>.</p>
@@ -1403,14 +1403,14 @@ escaped space</p>
 <p><code>+shortcut_reference_links</code></p>
 <p>This allows to drop the empty second pair of brackets in implicit reference links.</p>
 <hr />
-<div class="sourceCode" id="cb86"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb86-1"><a href="#cb86-1"></a>A link to [my TAOP summary].</span>
+<div class="sourceCode" id="cb86"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb86-1"><a href="#cb86-1"></a>A link to <span class="co">[</span><span class="ot">my TAOP summary</span><span class="co">]</span>.</span>
 <span id="cb86-2"><a href="#cb86-2"></a></span>
-<span id="cb86-3"><a href="#cb86-3"></a><span class="ot">[my TAOP summary]: /2020-04-05-taop-summary.html</span></span></code></pre></div>
+<span id="cb86-3"><a href="#cb86-3"></a><span class="ot">[my TAOP summary]: </span>/2020-04-05-taop-summary.html</span></code></pre></div>
 <p>A link to <a href="/2020-04-05-taop-summary.html">my TAOP summary</a>.</p>
 <hr />
 <h2 id="internal-links"><a href="https://pandoc.org/MANUAL.html#internal-links">Internal links</a></h2>
 <hr />
-<div class="sourceCode" id="cb87"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb87-1"><a href="#cb87-1"></a>Use <span class="ot">[heading identifiers](#heading-identifiers)</span>. See the [Headings</span>
+<div class="sourceCode" id="cb87"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb87-1"><a href="#cb87-1"></a>Use <span class="co">[</span><span class="ot">heading identifiers</span><span class="co">](#heading-identifiers)</span>. See the [Headings</span>
 <span id="cb87-2"><a href="#cb87-2"></a>section].</span>
 <span id="cb87-3"><a href="#cb87-3"></a></span>
 <span id="cb87-4"><a href="#cb87-4"></a><span class="ot">[Headings section]: #headings</span></span></code></pre></div>
@@ -1441,19 +1441,19 @@ escaped space</p>
 <hr />
 <div class="sourceCode" id="cb89"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb89-1"><a href="#cb89-1"></a><span class="al">![With `width=10%`][image1]</span></span>
 <span id="cb89-2"><a href="#cb89-2"></a></span>
-<span id="cb89-3"><a href="#cb89-3"></a><span class="ot">[image1]: images/2020-05-04-bashman.png</span> {width=10%}</span>
+<span id="cb89-3"><a href="#cb89-3"></a><span class="ot">[image1]: </span>images/2020-05-04-bashman.png {width=10%}</span>
 <span id="cb89-4"><a href="#cb89-4"></a></span>
 <span id="cb89-5"><a href="#cb89-5"></a><span class="al">![With `height=30px`][image2]</span></span>
 <span id="cb89-6"><a href="#cb89-6"></a></span>
-<span id="cb89-7"><a href="#cb89-7"></a><span class="ot">[image2]: images/2020-05-04-bashman.png</span> {height=30px}</span>
+<span id="cb89-7"><a href="#cb89-7"></a><span class="ot">[image2]: </span>images/2020-05-04-bashman.png {height=30px}</span>
 <span id="cb89-8"><a href="#cb89-8"></a></span>
 <span id="cb89-9"><a href="#cb89-9"></a><span class="al">![With `height=30px width=100px`][image3]</span></span>
 <span id="cb89-10"><a href="#cb89-10"></a></span>
-<span id="cb89-11"><a href="#cb89-11"></a><span class="ot">[image3]: images/2020-05-04-bashman.png</span> {height=30px width=100px}</span>
+<span id="cb89-11"><a href="#cb89-11"></a><span class="ot">[image3]: </span>images/2020-05-04-bashman.png {height=30px width=100px}</span>
 <span id="cb89-12"><a href="#cb89-12"></a></span>
 <span id="cb89-13"><a href="#cb89-13"></a><span class="al">![With `width=1in`; becomes 96px][image4]</span></span>
 <span id="cb89-14"><a href="#cb89-14"></a></span>
-<span id="cb89-15"><a href="#cb89-15"></a><span class="ot">[image4]: images/2020-05-04-bashman.png</span> {width=1in}</span></code></pre></div>
+<span id="cb89-15"><a href="#cb89-15"></a><span class="ot">[image4]: </span>images/2020-05-04-bashman.png {width=1in}</span></code></pre></div>
 <figure>
 <img src="images/2020-05-04-bashman.png" style="width:10.0%" alt="" /><figcaption>With <code>width=10%</code></figcaption>
 </figure>
@@ -1471,19 +1471,19 @@ escaped space</p>
 <p><code>+fenced_divs</code></p>
 <p>This allows to create native <code>Div</code> blocks; in HTML output, they come <code>&lt;div&gt;</code> blocks. Attribute syntax is the same as for <a href="#fenced-code-blocks">fenced code blocks</a>. Fenced divs can be nested.</p>
 <hr />
-<div class="sourceCode" id="cb90"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb90-1"><a href="#cb90-1"></a>&lt;style&gt;</span>
-<span id="cb90-2"><a href="#cb90-2"></a>.warning, .error {</span>
-<span id="cb90-3"><a href="#cb90-3"></a><span class="bn">    padding: 10px;</span></span>
+<div class="sourceCode" id="cb90"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb90-1"><a href="#cb90-1"></a><span class="kw">&lt;style&gt;</span></span>
+<span id="cb90-2"><a href="#cb90-2"></a><span class="fu">.warning</span><span class="op">,</span> <span class="fu">.error</span> {</span>
+<span id="cb90-3"><a href="#cb90-3"></a>    <span class="kw">padding</span>: <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
 <span id="cb90-4"><a href="#cb90-4"></a>}</span>
-<span id="cb90-5"><a href="#cb90-5"></a>.warning {</span>
-<span id="cb90-6"><a href="#cb90-6"></a><span class="bn">    color: #9F6000;</span></span>
-<span id="cb90-7"><a href="#cb90-7"></a><span class="bn">    background-color: #FEEFB3;</span></span>
+<span id="cb90-5"><a href="#cb90-5"></a><span class="fu">.warning</span> {</span>
+<span id="cb90-6"><a href="#cb90-6"></a>    <span class="kw">color</span>: <span class="cn">#9F6000</span><span class="op">;</span></span>
+<span id="cb90-7"><a href="#cb90-7"></a>    <span class="kw">background-color</span>: <span class="cn">#FEEFB3</span><span class="op">;</span></span>
 <span id="cb90-8"><a href="#cb90-8"></a>}</span>
-<span id="cb90-9"><a href="#cb90-9"></a>.error {</span>
-<span id="cb90-10"><a href="#cb90-10"></a><span class="bn">    color: #D8000C;</span></span>
-<span id="cb90-11"><a href="#cb90-11"></a><span class="bn">    background-color: #FFD2D2;</span></span>
+<span id="cb90-9"><a href="#cb90-9"></a><span class="fu">.error</span> {</span>
+<span id="cb90-10"><a href="#cb90-10"></a>    <span class="kw">color</span>: <span class="cn">#D8000C</span><span class="op">;</span></span>
+<span id="cb90-11"><a href="#cb90-11"></a>    <span class="kw">background-color</span>: <span class="cn">#FFD2D2</span><span class="op">;</span></span>
 <span id="cb90-12"><a href="#cb90-12"></a>}</span>
-<span id="cb90-13"><a href="#cb90-13"></a>&lt;/style&gt;</span>
+<span id="cb90-13"><a href="#cb90-13"></a><span class="kw">&lt;/style&gt;</span></span>
 <span id="cb90-14"><a href="#cb90-14"></a></span>
 <span id="cb90-15"><a href="#cb90-15"></a>::::: warning</span>
 <span id="cb90-16"><a href="#cb90-16"></a>This is a warning.</span>
@@ -1515,7 +1515,7 @@ escaped space</p>
 <p><code>+bracketed_spans</code></p>
 <p>A bracketed sequence directly followed by attributes becomes a <code>Span</code>.</p>
 <hr />
-<div class="sourceCode" id="cb91"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb91-1"><a href="#cb91-1"></a>Here is an [inline warning!]{.warning}</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb91-1"><a href="#cb91-1"></a>Here is an <span class="co">[</span><span class="ot">inline warning!</span><span class="co">]</span>{.warning}</span></code></pre></div>
 <p>Here is an <span class="warning">inline warning!</span></p>
 <hr />
 <h1 id="footnotes"><a href="https://pandoc.org/MANUAL.html#footnotes">Footnotes</a></h1>
@@ -1524,19 +1524,19 @@ escaped space</p>
 <hr />
 <div class="sourceCode" id="cb92"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb92-1"><a href="#cb92-1"></a>Here is some text,<span class="ot">[^1]</span> and then some.<span class="ot">[^label]</span></span>
 <span id="cb92-2"><a href="#cb92-2"></a></span>
-<span id="cb92-3"><a href="#cb92-3"></a><span class="ot">[^1]</span>: And a footnote!</span>
+<span id="cb92-3"><a href="#cb92-3"></a><span class="ot">[^1]: </span>And a footnote!</span>
 <span id="cb92-4"><a href="#cb92-4"></a></span>
-<span id="cb92-5"><a href="#cb92-5"></a><span class="ot">[^label]</span>: This one has multiple paragaphs.</span>
+<span id="cb92-5"><a href="#cb92-5"></a><span class="ot">[^label]: </span>This one has multiple paragaphs.</span>
 <span id="cb92-6"><a href="#cb92-6"></a></span>
-<span id="cb92-7"><a href="#cb92-7"></a><span class="bn">    Continuation is indented.</span></span>
+<span id="cb92-7"><a href="#cb92-7"></a><span class="in">    Continuation is indented.</span></span>
 <span id="cb92-8"><a href="#cb92-8"></a></span>
-<span id="cb92-9"><a href="#cb92-9"></a><span class="bn">        { code }</span></span></code></pre></div>
+<span id="cb92-9"><a href="#cb92-9"></a><span class="in">        { code }</span></span></code></pre></div>
 <p>Here is some text,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and then some.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <hr />
 <p><code>+inline_notes</code></p>
 <p>Footnotes can be inlined, but then you can’t use multiple paragraphs.</p>
 <hr />
-<div class="sourceCode" id="cb94"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb94-1"><a href="#cb94-1"></a>This is the text.^[And this is the inline footnote.]</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb94-1"><a href="#cb94-1"></a>This is the text.^<span class="co">[</span><span class="ot">And this is the inline footnote.</span><span class="co">]</span></span></code></pre></div>
 <p>This is the text.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <hr />
 <h1 id="citations"><a href="https://pandoc.org/MANUAL.html#citations">Citations</a></h1>
@@ -1547,11 +1547,11 @@ escaped space</p>
 <p>I have set <code>link-citations: true</code>, which turn referenes into links to the bibliography.</p>
 <p>Citations go into square brackets:</p>
 <hr />
-<div class="sourceCode" id="cb96"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb96-1"><a href="#cb96-1"></a>Blah blah [see @Ritchie1974, pp. 367-370; also @Wheeler1952, p. 235].</span>
+<div class="sourceCode" id="cb96"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb96-1"><a href="#cb96-1"></a>Blah blah <span class="co">[</span><span class="ot">see @Ritchie1974, pp. 367-370; also @Wheeler1952, p. 235</span><span class="co">]</span>.</span>
 <span id="cb96-2"><a href="#cb96-2"></a></span>
-<span id="cb96-3"><a href="#cb96-3"></a>Blah blah [@Ritchie1974, pp. 367-368, 370-372 and *passim*].</span>
+<span id="cb96-3"><a href="#cb96-3"></a>Blah blah <span class="co">[</span><span class="ot">@Ritchie1974, pp. 367-368, 370-372 and *passim*</span><span class="co">]</span>.</span>
 <span id="cb96-4"><a href="#cb96-4"></a></span>
-<span id="cb96-5"><a href="#cb96-5"></a>Blah blah [@Ritchie1974; @Wheeler1952].</span></code></pre></div>
+<span id="cb96-5"><a href="#cb96-5"></a>Blah blah <span class="co">[</span><span class="ot">@Ritchie1974; @Wheeler1952</span><span class="co">]</span>.</span></code></pre></div>
 <p>Blah blah <span class="citation" data-cites="Ritchie1974 Wheeler1952">(see Ritchie and Thompson <a href="#ref-Ritchie1974" role="doc-biblioref">1974</a>, 367–70; also Wheeler <a href="#ref-Wheeler1952" role="doc-biblioref">1952</a>, 235)</span>.</p>
 <p>Blah blah <span class="citation" data-cites="Ritchie1974">(Ritchie and Thompson <a href="#ref-Ritchie1974" role="doc-biblioref">1974</a>, 367–68, 370–72 and <em>passim</em>)</span>.</p>
 <p>Blah blah <span class="citation" data-cites="Ritchie1974 Wheeler1952">(Ritchie and Thompson <a href="#ref-Ritchie1974" role="doc-biblioref">1974</a>; Wheeler <a href="#ref-Wheeler1952" role="doc-biblioref">1952</a>)</span>.</p>
@@ -1559,19 +1559,19 @@ escaped space</p>
 <p>The <em>locator terms</em> such as <code>pp.</code>, <code>chapter</code> etc. are all recognized by <code>pandoc-citeproc</code> and handled according to the selected style.</p>
 <p>The locator can be explicitly separated from the suffix in complex cases:</p>
 <hr />
-<div class="sourceCode" id="cb97"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb97-1"><a href="#cb97-1"></a>[@Ritchie1974{ii, A, D-Z}, with a suffix]</span>
+<div class="sourceCode" id="cb97"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb97-1"><a href="#cb97-1"></a><span class="co">[</span><span class="ot">@Ritchie1974{ii, A, D-Z}, with a suffix</span><span class="co">]</span></span>
 <span id="cb97-2"><a href="#cb97-2"></a></span>
-<span id="cb97-3"><a href="#cb97-3"></a>[@Wheeler1952, {pp. iv, vi-xi, (xv)-(xvii)} with suffix here]</span></code></pre></div>
+<span id="cb97-3"><a href="#cb97-3"></a><span class="co">[</span><span class="ot">@Wheeler1952, {pp. iv, vi-xi, (xv)-(xvii)} with suffix here</span><span class="co">]</span></span></code></pre></div>
 <p><span class="citation" data-cites="Ritchie1974">(Ritchie and Thompson <a href="#ref-Ritchie1974" role="doc-biblioref">1974</a>, ii, A, D–Z, with a suffix)</span></p>
 <p><span class="citation" data-cites="Wheeler1952">(Wheeler <a href="#ref-Wheeler1952" role="doc-biblioref">1952</a>, iv, vi–xi, (xv)–(xvii) with suffix here)</span></p>
 <hr />
 <p>The author can be suppressed in the citation with <code>-@</code>, and there are in-text citations:</p>
 <hr />
-<div class="sourceCode" id="cb98"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb98-1"><a href="#cb98-1"></a>Ritchie says blah [-@Ritchie1974].</span>
+<div class="sourceCode" id="cb98"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb98-1"><a href="#cb98-1"></a>Ritchie says blah <span class="co">[</span><span class="ot">-@Ritchie1974</span><span class="co">]</span>.</span>
 <span id="cb98-2"><a href="#cb98-2"></a></span>
 <span id="cb98-3"><a href="#cb98-3"></a>@Wheeler1952 says blah.</span>
 <span id="cb98-4"><a href="#cb98-4"></a></span>
-<span id="cb98-5"><a href="#cb98-5"></a>@Wheeler1952 [p. 235] says blah.</span></code></pre></div>
+<span id="cb98-5"><a href="#cb98-5"></a>@Wheeler1952 <span class="co">[</span><span class="ot">p. 235</span><span class="co">]</span> says blah.</span></code></pre></div>
 <p>Ritchie says blah <span class="citation" data-cites="Ritchie1974">(<a href="#ref-Ritchie1974" role="doc-biblioref">1974</a>)</span>.</p>
 <p><span class="citation" data-cites="Wheeler1952">Wheeler (<a href="#ref-Wheeler1952" role="doc-biblioref">1952</a>)</span> says blah.</p>
 <p><span class="citation" data-cites="Wheeler1952">Wheeler (<a href="#ref-Wheeler1952" role="doc-biblioref">1952</a>, 235)</span> says blah.</p>
@@ -1590,7 +1590,7 @@ escaped space</p>
 <span id="cb100-4"><a href="#cb100-4"></a><span class="co">...</span></span></code></pre></div>
 <hr />
 <p>A wildcard <code>@*</code> can be used to get all citations in the bibliography.</p>
-<h1 class="unnumbered" id="bibliography" class="unnumbered">Bibliography</h1>
+<h1 class="unnumbered" id="bibliography">Bibliography</h1>
 <div id="refs" class="references hanging-indent" role="doc-bibliography">
 <div id="ref-Licklider1968">
 <p>Licklider, J. C. R., and Robert W. Taylor. 1968. “The Computer as a Communication Device.” <em>Science and Technology</em> 76: 21–31.</p>

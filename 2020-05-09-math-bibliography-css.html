@@ -86,7 +86,7 @@
   <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
 </head>
 <body>
-<p><a href="./">ArtifiShell Intelligence</a></p>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
 <header id="title-block-header">
 <h1 class="title">MathJax, bibliography and CSS tweaks for Pandoc Bash Blog</h1>
 <p class="date">2020-05-09</p>
@@ -117,24 +117,24 @@
 <p>I’m pretty sure there would have been a solution to this, but it eluded me, so now</p>
 <ul>
 <li><p>Code blocks with no indicated language such as</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="bn">```</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="bn">I am on a white background</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="bn">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="in">```</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="in">I am on a white background</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="in">```</span></span></code></pre></div>
 <p>are just rendered like this:</p>
 <p><img src="images/2020-05-09-white-bg.png" alt="Code on white background" /><br />
 </p>
 <p>(Using an image here so this still makes sense if the styling ever changes in the future.)</p></li>
 <li><p>Code blocks with a language indicated such as</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="bn">```bash</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="in">```bash</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="bu">echo</span> <span class="st">&quot;Hello there.&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="bn">```</span></span></code></pre></div>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="in">```</span></span></code></pre></div>
 <p>are rendered on grey:</p>
 <p><img src="images/2020-05-09-code-on-grey.png" alt="Code on grey" /><br />
 </p></li>
 <li><p>Code blocks with numbered lines such as</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="bn">```{.bash .numberLines}</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="bn">echo &quot;Hello there.&quot;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="bn">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="in">```{.bash .numberLines}</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="in">echo &quot;Hello there.&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="in">```</span></span></code></pre></div>
 <p>have non-invisible line numbers:</p>
 <p><img src="images/2020-05-09-yes-line-number.png" alt="Code on grey" /><br />
 </p></li>
