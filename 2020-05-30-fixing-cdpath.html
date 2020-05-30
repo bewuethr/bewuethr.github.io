@@ -146,7 +146,7 @@
 <p>That was the first hint: “non-empty directory name”!</p>
 <p>In the <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/cd.html">POSIX spec for <code>cd</code></a>, we can read this:</p>
 <blockquote>
-<p>Starting with the first pathname in the &lt;colon&gt;-separated pathnames of <em>CDPATH</em> […] if the pathname is null, test if the concatenation of dot, a <slash> character, and the operand names a directory.</p>
+<p>Starting with the first pathname in the &lt;colon&gt;-separated pathnames of <em>CDPATH</em> […] if the pathname is null, test if the concatenation of dot, a &lt;slash&gt; character, and the operand names a directory.</p>
 </blockquote>
 <p>Even more explicit. A null pathname in <code>CDPATH</code> is replaced with <code>./</code>, which is exactly what I want. The fix is really a one character change:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="bu">export</span> <span class="va">CDPATH=</span><span class="st">&#39;:/home/benjamin/go/src/github.com/bewuethr/awesome-project&#39;</span></span>
