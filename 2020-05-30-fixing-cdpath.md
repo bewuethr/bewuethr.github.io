@@ -124,7 +124,7 @@ In the [POSIX spec for `cd`][POSIX], we can read this:
 
 > Starting with the first pathname in the \<colon>-separated pathnames of
 > *CDPATH* [...] if the pathname is null, test if the concatenation of dot, a
-> <slash> character, and the operand names a directory.
+> \<slash> character, and the operand names a directory.
 
 Even more explicit. A null pathname in `CDPATH` is replaced with `./`, which is
 exactly what I want. The fix is really a one character change:
