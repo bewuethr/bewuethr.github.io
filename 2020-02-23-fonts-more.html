@@ -95,17 +95,17 @@
 <p><code>pbb</code> knows only a bunch of subcommands (five, to be precise); now, when typing <code>pbb</code>, tab completion suggests them. That is, if the completion file is in the right place, which a (forthcoming) installation script has to take care of.</p>
 <h1 id="language-setting">Language setting</h1>
 <p>Pandoc’s default HTML has an empty <code>lang</code> property in the opening <code>&lt;html&gt;</code> tag, which is <a href="https://youtu.be/NP94u7y_KkQ">bad for screen readers</a>. Previously, <code>pbb</code> would default to inserting <code>en-CA</code>; now, it tries to infer the language from environment variables. This is surprisingly non-straightforward; I settled on the same priority order as <a href="https://www.gnu.org/software/gettext/manual/html_node/Locale-Environment-Variables.html#Locale-Environment-Variables">gettext</a>, which collapses to this beautiful declaration:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">lang=${LANGUAGE:-${LC_ALL:-${LC_MESSAGES:-$LANG}}}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="va">lang=${LANGUAGE:-${LC_ALL:-${LC_MESSAGES:-$LANG}}}</span></span></code></pre></div>
 <p>Some special characters have to be replaced to make for a valid language tag; if none of these variables have a value, <code>pbb</code> defaults to <code>en-US</code>. I guess eventually, there should be an option to make the language a configuration value.</p>
 <h1 id="local-server">Local server</h1>
 <p>To look at the built site before deploying it, I used to use the Python one-liner that spins up an HTTP server on localhost; for convenience, this is now done by <code>pbb serve</code>, which just calls</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">python3</span> -m http.server --directory artifacts</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">python3</span> -m http.server --directory artifacts</span></code></pre></div>
 <p>under the hood.</p>
 <h1 id="favicon">Favicon</h1>
 <p><code>pbb build</code> now checks if there is an image with a name that matches <code>favicon.*</code> in the <code>assets</code> directory. If so, it gets converted to a 32x32 PNG file and included as the favicon on each page.</p>
 <p>The actual conversion is quite flexible: as long as ImageMagick can handle the input format, the favicon gets created. The input file can even be an animated GIF; in that case, the first frame is used. The command is this one:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">convert</span> <span class="st">&quot;</span><span class="va">${infile[0]}</span><span class="st">[0]&quot;</span> -resize 32x32^ -gravity center \</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    -background none -extent 32x32 artifacts/favicon.png</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">convert</span> <span class="st">&quot;</span><span class="va">${infile[0]}</span><span class="st">[0]&quot;</span> -resize 32x32^ -gravity center <span class="kw">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>    <span class="ex">-background</span> none -extent 32x32 artifacts/favicon.png</span></code></pre></div>
 <p><code>infile</code> is an array of all files matching <code>favicon.*</code>; at this point, there’s already been a test to make sure that its length is 1.</p>
 <p>The rest of the command takes care of all the details:</p>
 <ul>

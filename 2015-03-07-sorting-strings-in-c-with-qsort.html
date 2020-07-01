@@ -92,8 +92,8 @@
 </header>
 <p>While working on one of the last exercises in Stroustrup’s <a href="http://www.stroustrup.com/Programming/PPP1.html">Programming – Principles and Practice Using C++</a>, I came across this little problem: assume you want to sort an array of C-style strings using <code>qsort()</code> from the C standard library (<code>&lt;cstdlib&gt;</code> in C++ or <code>&lt;stdlib.h&gt;</code> in C).</p>
 <p>An array of C-style strings looks something like <code>char* words[ARR_LEN]</code>, where <code>ARR_LEN</code> is the number of strings in your array. <code>qsort</code> is declared as follows:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">void</span> qsort(<span class="dt">void</span>* ptr, <span class="dt">size_t</span> count, <span class="dt">size_t</span> size,</span>
-<span id="cb1-2"><a href="#cb1-2"></a>           <span class="dt">int</span> (*comp)(<span class="dt">const</span> <span class="dt">void</span>*, <span class="dt">const</span> <span class="dt">void</span>*));</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="dt">void</span> qsort(<span class="dt">void</span>* ptr, <span class="dt">size_t</span> count, <span class="dt">size_t</span> size,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>           <span class="dt">int</span> (*comp)(<span class="dt">const</span> <span class="dt">void</span>*, <span class="dt">const</span> <span class="dt">void</span>*));</span></code></pre></div>
 <p><code>ptr</code> points to your array, <code>count</code> is the number of elements in the array, <code>size</code> the size of an element and <code>comp</code> a comparison function that returns</p>
 <ul>
 <li>a <em>negative</em> value if the first argument is smaller than the second,</li>
@@ -102,33 +102,33 @@
 </ul>
 <p>Like <code>strcmp</code>, if you will.</p>
 <p>My strings all have the same maximum length, <code>WORD_LEN</code>. Obviously, I try to call qsort like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a>qsort(words,ctr,WORD_LEN,strcmp);</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>qsort(words,ctr,WORD_LEN,strcmp);</span></code></pre></div>
 <p>where <code>ctr</code> is the number of strings in <code>words</code>, and I want to use <code>strcmp</code> as my comparison function. This compiles just fine, but after the call to <code>qsort</code>, things are less fine: “stack corrupted”. Hmmm.</p>
 <p>I realize that the size of an element in my array is not the size of each individual string, but rather the size of a <code>char*</code>, because that’s what the array is: an array of <code>char*</code>, and not an array of actual strings. I change my call to</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a>qsort(words,ctr,<span class="kw">sizeof</span>(<span class="dt">char</span>*),strcmp);</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>qsort(words,ctr,<span class="kw">sizeof</span>(<span class="dt">char</span>*),strcmp);</span></code></pre></div>
 <p>Still compiles without problems. Good. And doesn’t crash. Even better! However, the results are still not quite what I want. If start with</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1"></a><span class="dt">char</span>* words[ARR_LEN] = { <span class="st">&quot;bb&quot;</span>, <span class="st">&quot;cc&quot;</span>, <span class="st">&quot;aa&quot;</span> };</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="dt">char</span>* words[ARR_LEN] = { <span class="st">&quot;bb&quot;</span>, <span class="st">&quot;cc&quot;</span>, <span class="st">&quot;aa&quot;</span> };</span></code></pre></div>
 <p>and sort that, I get <code>cc aa bb</code> as the result.</p>
 <p>I’m pretty sure I’m not the first person ever to try and sort C-strings with <code>qsort</code>, so I google. I come across <a href="https://stackoverflow.com/q/3757899/3266847">this Stack Overflow question</a> where somebody had a very similar problem. The problem is that the <code>comp</code> argument of <code>qsort</code> expects <code>const void*</code> arguments whereas <code>strcmp</code> expects <code>const char*</code>. The solution is to wrap the call to <code>strcmp</code> into a function that performs the proper casts, like so:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1"></a><span class="dt">int</span> cmpstr(<span class="dt">const</span> <span class="dt">void</span>* a, <span class="dt">const</span> <span class="dt">void</span>* b) {</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="dt">const</span> <span class="dt">char</span>* aa = (<span class="dt">const</span> <span class="dt">char</span>*)a;</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="dt">const</span> <span class="dt">char</span>* bb = (<span class="dt">const</span> <span class="dt">char</span>*)b;</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="cf">return</span> strcmp(aa, bb);</span>
-<span id="cb5-5"><a href="#cb5-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="dt">int</span> cmpstr(<span class="dt">const</span> <span class="dt">void</span>* a, <span class="dt">const</span> <span class="dt">void</span>* b) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>    <span class="dt">const</span> <span class="dt">char</span>* aa = (<span class="dt">const</span> <span class="dt">char</span>*)a;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>    <span class="dt">const</span> <span class="dt">char</span>* bb = (<span class="dt">const</span> <span class="dt">char</span>*)b;</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>    <span class="cf">return</span> strcmp(aa, bb);</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>}</span></code></pre></div>
 <p>This takes <code>const void*</code>, as required by <code>qsort</code>’s <code>comp</code>, and casts them to <code>const char*</code>, as required by <code>strcmp</code>. Neat. I call <code>qsort</code> with my new function:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1"></a>qsort(words,ctr,<span class="kw">sizeof</span>(<span class="dt">char</span>*),cmpstr);</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>qsort(words,ctr,<span class="kw">sizeof</span>(<span class="dt">char</span>*),cmpstr);</span></code></pre></div>
 <p>Same result! Still no proper sorting.</p>
 <p>A closer look at the mentioned Stack Overflow question explains why: the <code>cmpstr</code> function provided is not meant for an array of strings, <code>char* words[]</code>, but for an array of arrays of characters, <code>char words[][]</code>. One less level of indirection!</p>
 <p>An element of my array is a <code>char*</code>, and the <code>const void*</code> in <code>cmpstr</code> point to my elements, so what is actually being passed is a <code>char**</code>. The proper cast is thus <code>*(const char**)a</code>: this points to my string, instead of the pointer to it. The complete function looks like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1"></a><span class="dt">int</span> cmpstr(<span class="dt">const</span> <span class="dt">void</span>* a, <span class="dt">const</span> <span class="dt">void</span>* b)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>{</span>
-<span id="cb7-3"><a href="#cb7-3"></a>    <span class="dt">const</span> <span class="dt">char</span>* aa = *(<span class="dt">const</span> <span class="dt">char</span>**)a;</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="dt">const</span> <span class="dt">char</span>* bb = *(<span class="dt">const</span> <span class="dt">char</span>**)b;</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="cf">return</span> strcmp(aa,bb);</span>
-<span id="cb7-6"><a href="#cb7-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="dt">int</span> cmpstr(<span class="dt">const</span> <span class="dt">void</span>* a, <span class="dt">const</span> <span class="dt">void</span>* b)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>{</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>    <span class="dt">const</span> <span class="dt">char</span>* aa = *(<span class="dt">const</span> <span class="dt">char</span>**)a;</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>    <span class="dt">const</span> <span class="dt">char</span>* bb = *(<span class="dt">const</span> <span class="dt">char</span>**)b;</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>    <span class="cf">return</span> strcmp(aa,bb);</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>}</span></code></pre></div>
 <p>and lo and behold, it works properly!</p>
 <p>A more elegant solution can be found on the <a href="http://man7.org/linux/man-pages/man3/qsort.3.html">linux man page for qsort</a> where the casts are in the call:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1"></a><span class="cf">return</span> strcmp(*(<span class="dt">char</span>* <span class="dt">const</span>*) p1, *(<span class="dt">char</span>* <span class="dt">const</span>*) p2);</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="cf">return</span> strcmp(*(<span class="dt">char</span>* <span class="dt">const</span>*) p1, *(<span class="dt">char</span>* <span class="dt">const</span>*) p2);</span></code></pre></div>
 <p>“Cast <code>p1</code> to a pointer to a constant pointer to a character and dereference that”. How come this wasn’t the first thing that sprung to my mind?</p>
 <script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>

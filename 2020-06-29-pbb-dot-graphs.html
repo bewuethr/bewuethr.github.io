@@ -107,32 +107,32 @@
 <p>The main difference is probably that the example diagram generator uses the “<a href="https://pandoc.org/lua-filters.html#module-pandoc.mediabag">media bag</a>” for images, whereas I write them directly to the filesystem. Using the media bag requires the <a href="https://pandoc.org/MANUAL.html#option--extract-media"><code>--extract-media</code></a> option, and that <a href="https://github.com/jgm/pandoc/issues/1986">messes with the relative paths</a> of all images, which I wanted to avoid.</p>
 <h1 id="usage">Usage</h1>
 <p>The <a href="https://github.com/bewuethr/pandoc-bash-blog/blob/2884a020c09e946715c77ab012d3288d81967058/dotgraph.lua">final product</a> is a filter that checks for each code block if it has class <code>dot</code>, and if so, the code is piped to dot and the block then replaced with the generated graph. Like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="in">```dot</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="in">digraph G {</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="in">    rankdir = &quot;LR&quot;</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="in">    A -&gt; B</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="in">}</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="in">```dot</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="in">digraph G {</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="in">    rankdir = &quot;LR&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="in">    A -&gt; B</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="in">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="in">```</span></span></code></pre></div>
 <p>produces</p>
 <p><img src="diagrams/8728a4b.svg" alt="" /></p>
 <p>To get a caption (and an HTML <code>&lt;figure&gt;</code>), the property can be added:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="in">``` {.dot caption=&quot;A caption!&quot;}</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="in">digraph G {</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="in">    rankdir = &quot;LR&quot;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="in">    A -&gt; B</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="in">}</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="in">``` {.dot caption=&quot;A caption!&quot;}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="in">digraph G {</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="in">    rankdir = &quot;LR&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="in">    A -&gt; B</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="in">}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="in">```</span></span></code></pre></div>
 <p>resulting in</p>
 <figure>
 <img src="diagrams/8728a4b.svg" alt="" /><figcaption>A caption!</figcaption>
 </figure>
 <p>And finally, to get the dot description as HTML comments next to the figure (for, I don’t know, the people who want to recreate that great graph themselves), a special class <code>includeSource</code> can be added:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="in">``` {.dot .includeSource caption=&quot;A caption!&quot;}</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="in">digraph G {</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="in">    rankdir = &quot;LR&quot;</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="in">    A -&gt; B</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="in">}</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="in">``` {.dot .includeSource caption=&quot;A caption!&quot;}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="in">digraph G {</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="in">    rankdir = &quot;LR&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="in">    A -&gt; B</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="in">}</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="in">```</span></span></code></pre></div>
 <p>for which the graph looks the same:</p>
 <!--
 digraph G {
@@ -144,15 +144,15 @@ digraph G {
 <img src="diagrams/8728a4b.svg" alt="" /><figcaption>A caption!</figcaption>
 </figure>
 <p>but the HTML source now includes</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">&lt;!--</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">digraph G {</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">    rankdir = &quot;LR&quot;</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">    A -&gt; B</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">}</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">--&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">&lt;figure&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;diagrams/8728a4b.svg&quot;</span><span class="ot"> alt=</span><span class="st">&quot;&quot;</span> <span class="kw">/&gt;&lt;figcaption&gt;</span>A caption!<span class="kw">&lt;/figcaption&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="kw">&lt;/figure&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">&lt;!--</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">digraph G {</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">    rankdir = &quot;LR&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co">    A -&gt; B</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">}</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">--&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="kw">&lt;figure&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;diagrams/8728a4b.svg&quot;</span><span class="ot"> alt=</span><span class="st">&quot;&quot;</span> <span class="kw">/&gt;&lt;figcaption&gt;</span>A caption!<span class="kw">&lt;/figcaption&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="kw">&lt;/figure&gt;</span></span></code></pre></div>
 <p>The image file, by the way, has a prefix of its hash as the name, so all three graphs here generated just a single file as they’re identical.</p>
 <script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>

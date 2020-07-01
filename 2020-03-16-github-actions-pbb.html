@@ -97,41 +97,41 @@
 <p>My Markdown linter of choice is <a href="https://github.com/markdownlint/markdownlint">Markdownlint</a> (mdl) in its Ruby incarnation. I’ve used it for a long time with <a href="https://github.com/dense-analysis/ale">ALE</a> and have <a href="https://github.com/bewuethr/dotfiles/blob/master/.config/mdl/style.rb">my own style file</a> to enforce exactly the rules I want. (Two, actually; one is specifically for VimWiki.)</p>
 <p>There are two types of actions: JavaScript and Docker based ones. I’m using shell scripts in Docker containers for all my actions so far. The Docker container and the script are both very simple; the Docker container is just based on an Alpine image with Ruby, and I install the <code>mdl</code> gem.</p>
 <p>The script then checks if a style file is provided as a parameter. If yes, it runs mdl using that parameter, and if no, without it. Mdl checks all Markdown files recursively when called with a directory as its argument:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="va">stylefile=$1</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">if</span><span class="bu"> [</span> <span class="ot">-n</span> <span class="st">&quot;</span><span class="va">$stylefile</span><span class="st">&quot;</span><span class="bu"> ]</span>; <span class="kw">then</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>    <span class="ex">mdl</span> --style <span class="st">&quot;</span><span class="va">$GITHUB_WORKSPACE</span><span class="st">/</span><span class="va">$stylefile</span><span class="st">&quot;</span> .</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">else</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>    <span class="ex">mdl</span> .</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">fi</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="va">stylefile=$1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">if</span><span class="bu"> [</span> <span class="ot">-n</span> <span class="st">&quot;</span><span class="va">$stylefile</span><span class="st">&quot;</span><span class="bu"> ]</span>; <span class="kw">then</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="ex">mdl</span> --style <span class="st">&quot;</span><span class="va">$GITHUB_WORKSPACE</span><span class="st">/</span><span class="va">$stylefile</span><span class="st">&quot;</span> .</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">else</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="ex">mdl</span> .</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">fi</span></span></code></pre></div>
 <p>That’s all! Using the action is pretty simple:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/mdl-action@v1&#39;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="at">  </span><span class="fu">style-file</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;.github/workflows/style.rb&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/mdl-action@v1&#39;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="at">  </span><span class="fu">style-file</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;.github/workflows/style.rb&#39;</span></span></code></pre></div>
 <p>And without a style file, it’s just a one-liner. I like getting my own style file in a separate step in the same job:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">run</span><span class="kw">:</span><span class="at"> curl &quot;$STYLE_FILE&quot; &gt; .github/workflows/style.rb</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">run</span><span class="kw">:</span><span class="at"> curl &quot;$STYLE_FILE&quot; &gt; .github/workflows/style.rb</span></span></code></pre></div>
 <p>where <code>$STYLE_FILE</code> is the URL of my style file on GitHub.</p>
 <p>The action is alive and well on the <a href="https://github.com/marketplace/actions/run-mdl">Marketplace</a>.</p>
 <h1 id="a-shell-linter">A shell linter</h1>
 <p>The next action is even easier to use; it runs <a href="https://github.com/koalaman/shellcheck">ShellCheck</a> on all shell scripts in the repository.</p>
 <p>The Docker container uses the latest ShellCheck Alpine image and installs the <a href="https://www.darwinsys.com/file/"><code>file</code></a> command. ShellCheck doesn’t find shell script files for you, so we have to do that ourselves; the script being run in the action boils down to a single invocation of <code>find</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">find</span> . \</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    -type d \</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    -name <span class="st">&#39;.git&#39;</span> \</span>
-<span id="cb4-4"><a href="#cb4-4"></a>    -prune \</span>
-<span id="cb4-5"><a href="#cb4-5"></a>    -o \</span>
-<span id="cb4-6"><a href="#cb4-6"></a>    -type f \</span>
-<span id="cb4-7"><a href="#cb4-7"></a>    -exec sh -c \</span>
-<span id="cb4-8"><a href="#cb4-8"></a>        <span class="st">&#39;file --brief &quot;$1&quot; | grep -qw &quot;shell script&quot;&#39;</span> _ {} <span class="dt">\;</span> <span class="kw">\</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>    <span class="ex">-exec</span> shellcheck --color=always {} <span class="ex">+</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">find</span> . <span class="kw">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>    <span class="ex">-type</span> d <span class="kw">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="ex">-name</span> <span class="st">&#39;.git&#39;</span> <span class="kw">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    <span class="ex">-prune</span> <span class="kw">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    <span class="ex">-o</span> <span class="kw">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    <span class="ex">-type</span> f <span class="kw">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="ex">-exec</span> sh -c <span class="kw">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>        <span class="st">&#39;file --brief &quot;$1&quot; | grep -qw &quot;shell script&quot;&#39;</span> <span class="ex">_</span> {} <span class="dt">\;</span> <span class="kw">\</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>    <span class="ex">-exec</span> shellcheck --color=always {} <span class="ex">+</span></span></code></pre></div>
 <p>First, we ignore the <code>.git</code> directory; then, for each file, we compare the output of <code>file</code> to <code>shell script</code>, and the files that match get sent to <code>shellcheck</code>. <code>--color=always</code> is a nice touch for the output in the GitHub Actions tab.</p>
 <p>I’m very used to Bash and GNU Coreutils, so when using Alpine with its BusyBox provided ash shell and commands, I always have to double check I’m not using some Bashism or GNUism.</p>
 <p>Using the action requires just this:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/shellcheck-action@v1&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/shellcheck-action@v1&#39;</span></span></code></pre></div>
 <p>Like the Markdownlint action, the ShellCheck action is published on the <a href="https://github.com/marketplace/actions/run-shellcheck">Marketplace</a>.</p>
 <h1 id="a-release-tag-prefix-matcher">A release tag prefix matcher</h1>
 <p>Actions provided by GitHub itself such as the <a href="https://github.com/marketplace/actions/checkout">Checkout</a> action allow you to specify the version you want with just a prefix:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span></code></pre></div>
 <p>gets you the latest release with prefix <code>v2</code>. This is a convenient way to provide users of the action with non-breaking updates and patches without them having the do anything, so I wanted to do the same for my actions.</p>
 <p>As far as I can tell, these tags are manually updated, but wouldn’t that be a great use case for… an action? Exactly.</p>
 <p>Enter the <a href="https://github.com/marketplace/actions/release-tag-tracker">Release tag tracker</a> action!</p>
@@ -150,7 +150,7 @@
 <h2 id="api-struggles">API struggles</h2>
 <p>This added a few dependencies to the container: <code>curl</code> and <code>jq</code> had to be added. I continued to struggle for a few days; the worst bug to track down must have been the one where I kept getting “422 Unprocessable Entity” responses from the API, but the exact same commands worked just fine when running locally.</p>
 <p>In the end, I found the culprit; to create the timestamp to send in the request body, I used</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">date</span> -Iseconds</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="fu">date</span> -Iseconds</span></code></pre></div>
 <p>to get an ISO 8601 timestamp with second precision. Something like this:</p>
 <pre><code>2020-03-15T23:36:03-04:00</code></pre>
 <p>Just as required in the <a href="https://developer.github.com/v3/git/tags/#create-a-tag-object">API docs</a>: “a timestamp in ISO 8601 format”. Even with a helpful Wikipedia link and a formatting template: <code>YYYY-MM-DDTHH:MM:SSZ</code>. Aha.</p>

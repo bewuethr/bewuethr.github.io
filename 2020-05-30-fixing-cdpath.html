@@ -91,48 +91,48 @@
 <p class="date">2020-05-30</p>
 </header>
 <p>Let’s say we have a directory somewhere that we access often; maybe the directory that contains all our projects, or the parent directory of a bunch of services. And that directory has an annoyingly long path, potentially buried deep in some <code>GOPATH</code>, for example. To get there, we have to type something like</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="bu">cd</span> ~/go/src/github.com/bewuethr/awesome-project</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="bu">cd</span> ~/go/src/github.com/bewuethr/awesome-project</span></code></pre></div>
 <p>every time. Unacceptable, right?</p>
 <h1 id="solution-1-alias">Solution 1: alias</h1>
 <p>We can use an <a href="https://www.gnu.org/software/bash/manual/bash.html#Aliases">alias</a>! That’s what I did for a long time. I added</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="bu">alias</span> cdap=<span class="st">&#39;cd &quot;$HOME/go/src/github.com/bewuethr/awesome-project&quot;&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="bu">alias</span> cdap=<span class="st">&#39;cd &quot;$HOME/go/src/github.com/bewuethr/awesome-project&quot;&#39;</span></span></code></pre></div>
 <p>to my <code>~/.bashrc</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and was able to navigate like</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a>$ <span class="ex">cdap</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>$ <span class="bu">pwd</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>$ <span class="fu">ls</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="ex">bar</span>  baz  foo  go.mod  go.sum</span>
-<span id="cb3-6"><a href="#cb3-6"></a>$ <span class="bu">cd</span> bar</span>
-<span id="cb3-7"><a href="#cb3-7"></a>$ <span class="bu">pwd</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/bar</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>$ <span class="ex">cdap</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>$ <span class="bu">pwd</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>$ <span class="fu">ls</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="ex">bar</span>  baz  foo  go.mod  go.sum</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>$ <span class="bu">cd</span> bar</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>$ <span class="bu">pwd</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/bar</span></span></code></pre></div>
 <p>Great!</p>
 <h1 id="failed-attempt-at-improvement-naïve-cdpath">(Failed) attempt at improvement: naïve <code>CDPATH</code></h1>
 <p>I almost always want to access a subdirectory of <code>awesome-project</code>, rarely the directory itself. Bash (or any POSIX conformant shell) has a shell variable called <a href="https://www.gnu.org/software/bash/manual/bash.html#index-CDPATH"><code>CDPATH</code></a>: a colon-separated list of directories for <code>cd</code> to use as a search path.</p>
 <p>So, instead of my alias, I’d stick this into my <code>.bashrc</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="bu">export</span> <span class="va">CDPATH=</span><span class="st">&#39;/home/benjamin/go/src/github.com/bewuethr/awesome-project&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="bu">export</span> <span class="va">CDPATH=</span><span class="st">&#39;/home/benjamin/go/src/github.com/bewuethr/awesome-project&#39;</span></span></code></pre></div>
 <p>Now, from anywhere in my file system, I can just do this:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a>$ <span class="bu">pwd</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">/path/to/some/random/directory</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>$ <span class="bu">cd</span> foo</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>$ <span class="bu">pwd</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="ex">/path/to/some/random/directory</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>$ <span class="bu">cd</span> foo</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span></code></pre></div>
 <p>And sure enough, Bash even helpfully tells me that it took me there! Excellent.</p>
 <p>Or is it? Let’s assume I want to change into a directory <code>foo</code> within that random directory:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a>$ <span class="bu">pwd</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">/path/to/some/random/directory</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>$ <span class="fu">ls</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="ex">errcheck</span>  foo  lint  vet</span>
-<span id="cb6-5"><a href="#cb6-5"></a>$ <span class="bu">cd</span> foo</span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>$ <span class="bu">pwd</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="ex">/path/to/some/random/directory</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>$ <span class="fu">ls</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="ex">errcheck</span>  foo  lint  vet</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>$ <span class="bu">cd</span> foo</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span></code></pre></div>
 <p>That took me to the <code>foo</code> from <code>CDPATH</code>! Definitely not what I wanted. I could do this instead:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a>$ <span class="bu">cd</span> ./foo</span>
-<span id="cb7-2"><a href="#cb7-2"></a>$ <span class="bu">pwd</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="ex">/path/to/some/random/directory/foo</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>$ <span class="bu">cd</span> ./foo</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>$ <span class="bu">pwd</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="ex">/path/to/some/random/directory/foo</span></span></code></pre></div>
 <p>But in reality, that’d more likely look like</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a>$ <span class="bu">cd</span> foo  <span class="co"># Oops, uses CDPATH!</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>$ <span class="bu">cd</span> -  <span class="co"># Go to previous directory...</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="ex">/path/to/some/random/directory</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>$ <span class="bu">cd</span> ./foo  <span class="co"># Be explicit with ./</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>$ <span class="bu">cd</span> foo  # Oops, uses CDPATH!</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>$ <span class="bu">cd</span> -  # Go to previous directory...</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="ex">/path/to/some/random/directory</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>$ <span class="bu">cd</span> ./foo  # Be explicit with ./</span></code></pre></div>
 <p>and gone is any advantage <code>CDPATH</code> would have had over an alias. It tried using it like this for a while, but it got too annoying and I gave up, went back to my alias.</p>
 <h1 id="solution-2-cdpath-done-right">Solution 2: <code>CDPATH</code> done right</h1>
 <p>Until one day, I really wanted to figure out if there isn’t a better way. I took a closer look at the Bash manual; from the description of the <a href="https://www.gnu.org/software/bash/manual/bash.html#index-cd"><code>cd</code></a> builtin:</p>
@@ -149,21 +149,21 @@
 <p>Starting with the first pathname in the &lt;colon&gt;-separated pathnames of <em>CDPATH</em> […] if the pathname is null, test if the concatenation of dot, a &lt;slash&gt; character, and the operand names a directory.</p>
 </blockquote>
 <p>Even more explicit. A null pathname in <code>CDPATH</code> is replaced with <code>./</code>, which is exactly what I want. The fix is really a one character change:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="bu">export</span> <span class="va">CDPATH=</span><span class="st">&#39;:/home/benjamin/go/src/github.com/bewuethr/awesome-project&#39;</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co">#              └── this one!</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="bu">export</span> <span class="va">CDPATH=</span><span class="st">&#39;:/home/benjamin/go/src/github.com/bewuethr/awesome-project&#39;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">#              └── this one!</span></span></code></pre></div>
 <p>This prepends a null directory to <code>CDPATH</code>.</p>
 <p>Now I can do this:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a>$ <span class="bu">pwd</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="ex">/path/to/some/random/directory</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>$ <span class="fu">ls</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="ex">errcheck</span>  foo  lint  vet</span>
-<span id="cb10-5"><a href="#cb10-5"></a>$ <span class="bu">cd</span> foo  <span class="co"># Does cd ./foo</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a>$ <span class="bu">pwd</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="ex">/path/to/some/random/directory/foo</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>$ <span class="fu">ls</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="ex">foo.go</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a>$ <span class="bu">cd</span> foo  <span class="co"># Uses non-null CDPATH path</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>$ <span class="bu">pwd</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="ex">/path/to/some/random/directory</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>$ <span class="fu">ls</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="ex">errcheck</span>  foo  lint  vet</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>$ <span class="bu">cd</span> foo  # Does cd ./foo</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>$ <span class="bu">pwd</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="ex">/path/to/some/random/directory/foo</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a>$ <span class="fu">ls</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="ex">foo.go</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>$ <span class="bu">cd</span> foo  # Uses non-null CDPATH path</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span></code></pre></div>
 <p>Much better!</p>
 <h1 id="not-exactly-new">Not exactly new</h1>
 <p>As the POSIX spec tells us, <code>CDPATH</code> has been around since the System V shell. And indeed, the manual for System V Release 3.5 has this to say:</p>
@@ -172,12 +172,12 @@
 </figure>
 <h1 id="bonus-tab-completion">Bonus: tab completion</h1>
 <p>A nice side effect when using the (pretty standard) bash-completion package is that it is fully <code>CDPATH</code> aware (see the <a href="https://github.com/scop/bash-completion/blob/ba4c941faa1ff5eb63e7984a6a52a7b703e2887f/bash_completion#L1794-L1840">implementation of <code>_cd</code></a>), so I can do</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a>$ <span class="bu">pwd</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="ex">/home/benjamin/.vim</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>$ <span class="fu">ls</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="ex">after</span>  autoload  bundle  colors  ftdetect</span>
-<span id="cb11-5"><a href="#cb11-5"></a>$ <span class="bu">cd</span> f<span class="op">&lt;</span>tab<span class="op">&gt;</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="ex">foo/</span>      ftdetect/</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>$ <span class="bu">pwd</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="ex">/home/benjamin/.vim</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>$ <span class="fu">ls</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="ex">after</span>  autoload  bundle  colors  ftdetect</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>$ <span class="bu">cd</span> f<span class="op">&lt;</span>tab<span class="op">&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="ex">foo/</span>      ftdetect/</span></code></pre></div>
 <p>and get both local and <code>CDPATH</code> directories.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr />

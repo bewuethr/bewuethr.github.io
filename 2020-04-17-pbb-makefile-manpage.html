@@ -140,14 +140,14 @@
 <p>The <a href="2020-04-05-taop-summary.html">TAOP summary</a> is pretty long, so I thought it’d be useful to have a table of contents. Pandoc can create one, but I wanted it to be easy to control. There are a few knobs to turn, but I eventually figured out the correct ones.</p>
 <p>Initially, I thought I can use either of the <code>toc</code> or <code>table-of-contents</code> metadata fields and set them to <code>true</code> in the YAML header of the post I want a TOC for. That didn’t work.</p>
 <p>I was confused about the meaning of the variables. A glance at the default HTML template made things a little more clear:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1"></a>$if(toc)$</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">&lt;nav</span><span class="ot"> id=</span><span class="st">&quot;$idprefix$TOC&quot;</span><span class="ot"> role=</span><span class="st">&quot;doc-toc&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>$if(toc-title)$</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">&lt;h2</span><span class="ot"> id=</span><span class="st">&quot;$idprefix$toc-title&quot;</span><span class="kw">&gt;</span>$toc-title$<span class="kw">&lt;/h2&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>$endif$</span>
-<span id="cb1-6"><a href="#cb1-6"></a>$table-of-contents$</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">&lt;/nav&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>$endif$</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>$if(toc)$</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">&lt;nav</span><span class="ot"> id=</span><span class="st">&quot;$idprefix$TOC&quot;</span><span class="ot"> role=</span><span class="st">&quot;doc-toc&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>$if(toc-title)$</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">&lt;h2</span><span class="ot"> id=</span><span class="st">&quot;$idprefix$toc-title&quot;</span><span class="kw">&gt;</span>$toc-title$<span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>$endif$</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>$table-of-contents$</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">&lt;/nav&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>$endif$</span></code></pre></div>
 <p>They’re all different! <code>toc</code> serves to indicate if the TOC should be printed at all; <code>table-of-contents</code> actually <em>contains</em> the TOC. Aha. Setting <code>toc: true</code> in my post did give me an empty <code>&lt;nav&gt;</code> tag, but the table itself was missing.</p>
 <p>As it turns out, the <code>toc</code> metadata variable and the <code>--toc</code> command line option are different as well. <code>--toc</code> is required to generate the table, and the <code>toc</code> variable controls if it is displayed or not. But now I got the TOC everywhere, and I wanted the default to be “no TOC”!</p>
 <p>The last puzzle piece was to use a <a href="https://pandoc.org/MANUAL.html#option--metadata-file">metadata file</a> where I can set <code>toc: false</code> so the default is to not have a TOC; if I <em>do</em> want one, I can override the value in just the post where I want it. This also let me customize the heading used for the TOC by setting the <code>toc-title</code> variable.</p>

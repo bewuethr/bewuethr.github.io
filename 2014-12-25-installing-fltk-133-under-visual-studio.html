@@ -131,17 +131,17 @@
 <img src="images/2014-12-25-07.png" alt="" /><figcaption>Add new item menu</figcaption>
 </figure>
 <p>Enter this code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="pp">#include</span><span class="im">&lt;FL/Fl.H&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="pp">#include</span><span class="im">&lt;FL/Fl_Box.H&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="pp">#include</span><span class="im">&lt;FL/Fl_Window.H&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="dt">int</span> main()</span>
-<span id="cb1-6"><a href="#cb1-6"></a>{</span>
-<span id="cb1-7"><a href="#cb1-7"></a>    Fl_Window window(<span class="dv">200</span>,<span class="dv">200</span>,<span class="st">&quot;Window title&quot;</span>);</span>
-<span id="cb1-8"><a href="#cb1-8"></a>    Fl_Box box(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">200</span>,<span class="dv">200</span>,<span class="st">&quot;Hey, I mean, Hello, World!&quot;</span>);</span>
-<span id="cb1-9"><a href="#cb1-9"></a>    window.show();</span>
-<span id="cb1-10"><a href="#cb1-10"></a>    <span class="cf">return</span> Fl::run();</span>
-<span id="cb1-11"><a href="#cb1-11"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">#include</span><span class="im">&lt;FL/Fl.H&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="pp">#include</span><span class="im">&lt;FL/Fl_Box.H&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="pp">#include</span><span class="im">&lt;FL/Fl_Window.H&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="dt">int</span> main()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>{</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    Fl_Window window(<span class="dv">200</span>,<span class="dv">200</span>,<span class="st">&quot;Window title&quot;</span>);</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    Fl_Box box(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">200</span>,<span class="dv">200</span>,<span class="st">&quot;Hey, I mean, Hello, World!&quot;</span>);</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    window.show();</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    <span class="cf">return</span> Fl::run();</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>}</span></code></pre></div>
 <p>Now open <em>Project</em> – <em>Properties</em> and make sure you have selected <em>Debug</em> in <em>Configuration</em> in the top left corner. Under <em>Linker</em> – <em>Input</em>, edit <em>Additional Dependencies</em> and add <code>fltkd.lib</code>, <code>wsock32.lib</code>, <code>comctl32.lib</code>, <code>fltkjpegd.lib</code> and <code>fltkimagesd.lib</code>, each on their own line:</p>
 <figure>
 <img src="images/2014-12-25-08.png" alt="" /><figcaption>Dependencies dialogue</figcaption>
@@ -183,17 +183,17 @@
 <p>This is actually overkill as we’re not going to use <code>GUI.h</code> and <code>GUI.cpp</code> for a while, but you won’t have to add anything else when you eventually use them.</p>
 <p>For some reason, in <code>Point.h</code>, the constructors are commented out. Uncomment everything in the struct.</p>
 <p>Now edit <code>chapter12_drill.cpp</code> and enter this code:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">#include </span><span class="im">&quot;Graph.h&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="pp">#include </span><span class="im">&quot;Simple_window.h&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="dt">int</span> main()</span>
-<span id="cb2-5"><a href="#cb2-5"></a>{</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="kw">using</span> <span class="kw">namespace</span> Graph_lib;</span>
-<span id="cb2-7"><a href="#cb2-7"></a></span>
-<span id="cb2-8"><a href="#cb2-8"></a>    Point tl(<span class="dv">150</span>,<span class="dv">150</span>);</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    Simple_window win(tl,<span class="dv">600</span>,<span class="dv">400</span>,<span class="st">&quot;My window&quot;</span>);</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    win.wait_for_button();</span>
-<span id="cb2-11"><a href="#cb2-11"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;Graph.h&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;Simple_window.h&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="dt">int</span> main()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>{</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="kw">using</span> <span class="kw">namespace</span> Graph_lib;</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    Point tl(<span class="dv">150</span>,<span class="dv">150</span>);</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    Simple_window win(tl,<span class="dv">600</span>,<span class="dv">400</span>,<span class="st">&quot;My window&quot;</span>);</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    win.wait_for_button();</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>}</span></code></pre></div>
 <p>If you try to build your solution now, you get a slew of errors. Here is how to get rid of them:</p>
 <p>In <code>std_lib_facilities.h</code>, comment out the complete <code>vector</code> part:</p>
 <figure>

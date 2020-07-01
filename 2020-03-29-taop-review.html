@@ -138,17 +138,17 @@
 </blockquote>
 <p>But the indentation advice to “right align top-level SQL clauses”… I could just not warm up to that.</p>
 <p>Here’s how the author would write a simple query:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb1-1"><a href="#cb1-1"></a>  <span class="kw">select</span> <span class="kw">name</span>, milliseconds</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">from</span>           album</span>
-<span id="cb1-3"><a href="#cb1-3"></a>         <span class="kw">left</span> <span class="kw">join</span> track <span class="kw">using</span>(albumid)</span>
-<span id="cb1-4"><a href="#cb1-4"></a>   <span class="kw">where</span> albumid <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">order</span> <span class="kw">by</span> trackid;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>  <span class="kw">select</span> <span class="kw">name</span>, milliseconds</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="kw">from</span>           album</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>         <span class="kw">left</span> <span class="kw">join</span> track <span class="kw">using</span>(albumid)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>   <span class="kw">where</span> albumid <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">order</span> <span class="kw">by</span> trackid;</span></code></pre></div>
 <p>The whole thing starts with whitespace, and only on the last line can we see that it’s because <code>order by</code> is longer than <code>select</code>! The vertical separation is not obvious to me. And aligning the table names in the <code>from</code>/<code>join</code> part makes it look like there was an accident involving the space bar. I would write this like</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">SELECT</span> <span class="kw">name</span>, milliseconds</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">FROM</span> album</span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">LEFT</span> <span class="kw">JOIN</span> track <span class="kw">USING</span> (albumid)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">WHERE</span> albumid <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">ORDER</span> <span class="kw">BY</span> trackid;</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">SELECT</span> <span class="kw">name</span>, milliseconds</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">FROM</span> album</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="kw">LEFT</span> <span class="kw">JOIN</span> track <span class="kw">USING</span> (albumid)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">WHERE</span> albumid <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">ORDER</span> <span class="kw">BY</span> trackid;</span></code></pre></div>
 <p>But really, that’s not a complaint about the book. I’m just saying that until a team had agreed on a style for SQL, I’d try and nudge them away from the first one.</p>
 <h2 id="the-interviews">The interviews</h2>
 <p>Each part ends with an interview; I didn’t get too much value out of them. Some feel a bit too much like ads for Postgres, and I think a book about Postgres probably wouldn’t include an interview with somebody who’s super critical of it.</p>
