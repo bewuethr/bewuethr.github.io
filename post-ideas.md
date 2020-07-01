@@ -21,6 +21,7 @@ Resources:
 
 ## Just topics
 
+- Fixing the Postgres double quote highlighting
 - From for loop with `cat`/`grep` to just `grep`, and on to
 
     ```sh
