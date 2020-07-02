@@ -141,7 +141,7 @@
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a><span class="fu">git</span> -C <span class="st">&quot;</span><span class="va">$repo</span><span class="st">&quot;</span> remote add origin <span class="st">&quot;</span><span class="va">$remote</span><span class="st">&quot;</span></span></code></pre></div>
 <p>And now I can push as my heart desires!</p>
 <h2 id="bats-and-github-actions">Bats and GitHub Actions</h2>
-<p>After diving into <a href="https://www.benjaminwuethrich.dev/2020-03-16-github-actions-pbb.html">Actions</a> a while ago and writing a few of my own, I obviously wanted to run my shiny new Bats tests automatically in a GitHub workflow as well.</p>
+<p>After diving into <a href="2020-03-16-github-actions-pbb.html">Actions</a> a while ago and writing a few of my own, I obviously wanted to run my shiny new Bats tests automatically in a GitHub workflow as well.</p>
 <p>There is an <a href="https://github.com/marketplace/actions/setup-bats-testing-framework">existing action</a> to help set up Bats in a workflow, but it seemed pretty easy to do it directly. I ended up with this job:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="fu">test</span><span class="kw">:</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="at">  </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;ubuntu-latest&#39;</span></span>
