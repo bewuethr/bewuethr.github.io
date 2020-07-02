@@ -181,7 +181,7 @@ output I'm used to from interactive Bats usage; the runner doesn't like the
 terminal escapes Bats uses and I didn't feel like investigating. TAP-compliant
 output also says more clearly "CI", so that's fine.
 
-  [Actions]: https://www.benjaminwuethrich.dev/2020-03-16-github-actions-pbb.html
+  [Actions]: 2020-03-16-github-actions-pbb.html
   [existing action]: https://github.com/marketplace/actions/setup-bats-testing-framework
   [GitHub-hosted runners]: https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
 
