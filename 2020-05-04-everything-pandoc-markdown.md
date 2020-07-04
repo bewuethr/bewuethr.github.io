@@ -1754,12 +1754,12 @@ might come in handy.)
 ---
 
 ```markdown
-<https://www.benjamin.wuethrich.dev>
+<https://www.benjaminwuethrich.dev>
 
 <benjamin@benjaminwuethrich.dev>
 ```
 
-<https://www.benjamin.wuethrich.dev>
+<https://www.benjaminwuethrich.dev>
 
 <benjamin@benjaminwuethrich.dev>
 
