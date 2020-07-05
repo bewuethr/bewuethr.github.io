@@ -129,7 +129,7 @@ img {
 }
 
 p.date {
-	background: url(images/calendar.svg) left/1em no-repeat;
+	background: url(images/calendar.svg) left center/1em no-repeat;
 	color: #7e7e7e;
 	font-size: 90%;
 	font-style: italic;
