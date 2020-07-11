@@ -1967,7 +1967,7 @@ don't seem to have an effect for HTML output.
 
 `+fenced_divs`
 
-This allows to create native `Div` blocks; in HTML output, they come `<div>`
+This allows to create native `Div` blocks; in HTML output, they become `<div>`
 blocks. Attribute syntax is the same as for [fenced code blocks][fcb]. Fenced
 divs can be nested.
 
