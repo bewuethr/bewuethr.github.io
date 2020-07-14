@@ -33,12 +33,12 @@ pre > code {
 }
 
 div.indexDate {
-    background: url(images/calendar.svg) left center/.9em no-repeat;
-    color: #7e7e7e;
-    font-size: 90%;
-    font-style: italic;
-    margin: 1em 1.2em 0 0;
-    padding: 0 1.2em;
+	background: url(images/calendar.svg) left center/.9em no-repeat;
+	color: #7e7e7e;
+	font-size: 90%;
+	font-style: italic;
+	margin: 1em 1.2em 0 0;
+	padding: 0 1.2em;
 }
 
 div.indexTitle {
@@ -51,14 +51,13 @@ div.indexTitle p {
 }
 
 div.sourceCode {
-	background-color: #eee;
 	overflow-x: auto;
 }
 
 a {
-  outline: none;
-  -wekbit-tap-highlight-color: transparent;
-  text-decoration: none;
+	outline: none;
+	-wekbit-tap-highlight-color: transparent;
+	text-decoration: none;
 }
 
 a:link {
@@ -81,7 +80,8 @@ a:active {
 	text-shadow: -.25em .25em .16em #666;
 }
 
-figcaption {
+figcaption,
+table > caption {
 	color: #7e7e7e;
 	font-size: 90%;
 	font-style: italic;
@@ -161,7 +161,21 @@ pre  {
 }
 
 pre.numberSource {
-	padding-left: 3px;
+	border: none;
+}
+
+pre > code.sourceCode > span > a:first-child::before {
+	line-height: 1.6em;
+}
+
+pre > code.sourceCode > span:first-child > a:first-child::before {
+	margin-top: -9px;
+	padding-top: 9px;
+}
+
+pre > code.sourceCode > span:last-child > a:first-child::before {
+	margin-bottom: -9px;
+	padding-bottom: 9px;
 }
 
 summary:focus {
