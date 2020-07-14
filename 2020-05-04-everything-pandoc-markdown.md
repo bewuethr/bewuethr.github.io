@@ -54,13 +54,13 @@ references:
     volume: '76'
 ...
 
-# Everything Pandoc Markdown can do
+# Everything pandoc Markdown can do
 
 Pandoc Markdown is [well documented], but the thing I'm missing in the manual
-is seeing the HTML result---so here are all the things Pandoc Markdown can do
+is seeing the HTML result---so here are all the things pandoc Markdown can do
 (when producing HTML) and what they look like when rendered!
 
-I'll cover all the Pandoc extensions.
+I'll cover all the pandoc extensions.
 
 All titles link to the corresponding manual section; examples with Markdown
 input and rendered HTML output are between horizontal rules.
@@ -1677,9 +1677,9 @@ $  echo $BASH_VERSION
 
 These took me a while to understand, but after reading through [this long
 issue], I believe all they do is convert `<div>` and `<span>` elements (enabled
-via `markdown_in_html_blocks`) into `Div` and `Span` blocks in the Pandoc AST,
+via `markdown_in_html_blocks`) into `Div` and `Span` blocks in the pandoc AST,
 but when writing to HTML, the result is the same. They are meant mostly for
-usage with Pandoc filters.
+usage with pandoc filters.
 
   [this long issue]: https://github.com/jgm/pandoc/issues/168
 

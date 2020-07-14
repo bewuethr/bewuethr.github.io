@@ -4,13 +4,13 @@ toc: true
 
 # MathJax, bibliography and CSS tweaks for Pandoc Bash Blog
 
-While writing [Everything Pandoc Markdown can do], in which I try to cover
-everything possible when using Pandoc Markdown to generate HTML, I bumped into
+While writing [Everything pandoc Markdown can do], in which I try to cover
+everything possible when using pandoc Markdown to generate HTML, I bumped into
 a few things I had to fix while I went along: some CSS tweaks, and pbb wrappers
 for MathJax and bibliography functionality. Looks like "CSS tweaks" is a common
 theme in these update posts!
 
-  [Everything Pandoc Markdown can do]: 2020-05-04-everything-pandoc-markdown.html
+  [Everything pandoc Markdown can do]: 2020-05-04-everything-pandoc-markdown.html
 
 ## CSS tweaks
 
@@ -70,7 +70,7 @@ now
 
 ### Tables
 
-Default Pandoc HTML styling doesn't do anything with tables, and this
+Default pandoc HTML styling doesn't do anything with tables, and this
 
 ![Unstyled table](images/2020-05-09-unstyled-table.png)
 
@@ -120,7 +120,7 @@ doesn't offer a convenient way to control this, but it can be changed by adding
 a value for `csl` to the default metadata file, `.metadata.yml`. I'll revisit
 when I think I sorely need more options for citations styles.
 
-The current style can be seen in the [citations] section of my Pandoc Markdown
+The current style can be seen in the [citations] section of my pandoc Markdown
 post. The heading of the bibliography is just "Bibliography", which can also be
 changed in `.metadata.yml`.
 

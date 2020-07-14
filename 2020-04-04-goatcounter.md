@@ -59,7 +59,7 @@ snippet which, if the configuration setting for the code exists, gets added to
 each page.
 
 Adding something right before the `</body>` tag (which is where the GoatCounter
-snippet goes) is directly supported by Pandoc via the
+snippet goes) is directly supported by pandoc via the
 `-A`/`--include-after-body` option. This means I didn't have to touch the HTML
 template and can keep using the default; one day, I'll have to modify it, but
 not quite yet.

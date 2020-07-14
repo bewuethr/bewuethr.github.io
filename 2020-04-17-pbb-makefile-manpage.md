@@ -21,7 +21,7 @@ And to tell inline code better apart, it got some colour as well:
 ![Coloured inline code](images/2020-04-17-inlinecode.png)
 
 I first used the same grey background as for code blocks just like for example
-GitHub does for Markdown pages, but bumped into a snag; Pandoc believes that
+GitHub does for Markdown pages, but bumped into a snag; pandoc believes that
 whitespace should be conserved for inline code and sets `white-space: pre-wrap`
 for `code`. This preserves whitespace, but still breaks lines; it does leave a
 blank at the end of the line, though, and with a visible background colour,
@@ -103,7 +103,7 @@ that ship has sailed. Bash it is.
 ## Optional table of contents
 
 The [TAOP summary] is pretty long, so I thought it'd be useful to have a table
-of contents. Pandoc can create one, but I wanted it to be easy to control.
+of contents. pandoc can create one, but I wanted it to be easy to control.
 There are a few knobs to turn, but I eventually figured out the correct ones.
 
 Initially, I thought I can use either of the `toc` or `table-of-contents`

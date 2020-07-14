@@ -5,8 +5,8 @@ what I could write about, but because I didn't do it.
 
 This must have been due to "not invented here" syndrome as I was using a
 [Jekyll Now][jekyll] based blog; today, I've started writing my own little blog
-generator. So far, it's a shell wrapper around [Pandoc][pandoc] and does little
-more than this:
+generator. So far, it's a shell wrapper around [pandoc] and does little more
+than this:
 
 [jekyll]: https://github.com/barryclark/jekyll-now
 [pandoc]: https://pandoc.org
@@ -35,7 +35,7 @@ There's a little snippet that builds an index page:
 ```
 
 and that's it! The rest is some Git contortions to get the generated files into
-the right branch, assuming a blog published on GitHub pages. The Pandoc
+the right branch, assuming a blog published on GitHub pages. The pandoc
 defaults are quite alright, but I'm looking forward to endless fiddling with
 it. I'll spin the generator out into its own repository eventually, but I'll
 keep track of the progress here.
