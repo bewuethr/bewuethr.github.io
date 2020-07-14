@@ -93,7 +93,7 @@
 <p class="date">2020-02-09</p>
 </header>
 <p>This blog has seen very little love for a while; not because I had no ideas what I could write about, but because I didn’t do it.</p>
-<p>This must have been due to “not invented here” syndrome as I was using a <a href="https://github.com/barryclark/jekyll-now">Jekyll Now</a> based blog; today, I’ve started writing my own little blog generator. So far, it’s a shell wrapper around <a href="https://pandoc.org">Pandoc</a> and does little more than this:</p>
+<p>This must have been due to “not invented here” syndrome as I was using a <a href="https://github.com/barryclark/jekyll-now">Jekyll Now</a> based blog; today, I’ve started writing my own little blog generator. So far, it’s a shell wrapper around <a href="https://pandoc.org">pandoc</a> and does little more than this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">for</span> <span class="ex">f</span> in *.md<span class="kw">;</span> <span class="kw">do</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="ex">pandoc</span> <span class="kw">\</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>        <span class="ex">--from</span>=markdown <span class="kw">\</span></span>
@@ -110,7 +110,7 @@
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>        <span class="bu">printf</span> -- <span class="st">&#39;- [%s](%s)\n&#39;</span> <span class="st">&quot;</span><span class="va">$title</span><span class="st">&quot;</span> <span class="st">&quot;</span><span class="va">${f/</span>%.md<span class="va">/</span>.html<span class="va">}</span><span class="st">&quot;</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="kw">done</span> <span class="kw">|</span> <span class="fu">tac</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">}</span> <span class="op">&gt;</span> <span class="ex">index.md</span></span></code></pre></div>
-<p>and that’s it! The rest is some Git contortions to get the generated files into the right branch, assuming a blog published on GitHub pages. The Pandoc defaults are quite alright, but I’m looking forward to endless fiddling with it. I’ll spin the generator out into its own repository eventually, but I’ll keep track of the progress here.</p>
+<p>and that’s it! The rest is some Git contortions to get the generated files into the right branch, assuming a blog published on GitHub pages. The pandoc defaults are quite alright, but I’m looking forward to endless fiddling with it. I’ll spin the generator out into its own repository eventually, but I’ll keep track of the progress here.</p>
 <script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>

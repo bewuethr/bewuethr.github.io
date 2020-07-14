@@ -112,7 +112,7 @@
 <figure>
 <img src="images/2020-04-17-inlinecode.png" alt="" /><figcaption>Coloured inline code</figcaption>
 </figure>
-<p>I first used the same grey background as for code blocks just like for example GitHub does for Markdown pages, but bumped into a snag; Pandoc believes that whitespace should be conserved for inline code and sets <code>white-space: pre-wrap</code> for <code>code</code>. This preserves whitespace, but still breaks lines; it does leave a blank at the end of the line, though, and with a visible background colour, that blank can be seen.</p>
+<p>I first used the same grey background as for code blocks just like for example GitHub does for Markdown pages, but bumped into a snag; pandoc believes that whitespace should be conserved for inline code and sets <code>white-space: pre-wrap</code> for <code>code</code>. This preserves whitespace, but still breaks lines; it does leave a blank at the end of the line, though, and with a visible background colour, that blank can be seen.</p>
 <figure>
 <img src="images/2020-04-17-extrablank.png" alt="" /><figcaption>Visible extra blank at line end</figcaption>
 </figure>
@@ -139,7 +139,7 @@
 <p>Since I’m not compiling anything, the Makefile is basically a weird shell script wrapper, but “use <code>make install</code>” just has such a nice ring to it.</p>
 <p>I <em>did</em> realize that building the blog is actually a pretty good use case for a Makefile—rebuild those pages where the Markdown version is more recent—but that ship has sailed. Bash it is.</p>
 <h1 id="optional-table-of-contents">Optional table of contents</h1>
-<p>The <a href="2020-04-05-taop-summary.html">TAOP summary</a> is pretty long, so I thought it’d be useful to have a table of contents. Pandoc can create one, but I wanted it to be easy to control. There are a few knobs to turn, but I eventually figured out the correct ones.</p>
+<p>The <a href="2020-04-05-taop-summary.html">TAOP summary</a> is pretty long, so I thought it’d be useful to have a table of contents. pandoc can create one, but I wanted it to be easy to control. There are a few knobs to turn, but I eventually figured out the correct ones.</p>
 <p>Initially, I thought I can use either of the <code>toc</code> or <code>table-of-contents</code> metadata fields and set them to <code>true</code> in the YAML header of the post I want a TOC for. That didn’t work.</p>
 <p>I was confused about the meaning of the variables. A glance at the default HTML template made things a little more clear:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>$if(toc)$</span>

@@ -42,7 +42,7 @@
 <p>I wonder if the Bash testing framework <a href="https://github.com/bats-core/bats-core">Bats</a> really is so interesting that my <a href="2020-04-01-bats-tests-pandoc-bash-blog.html">post</a> about using it to test pbb tops the list, or maybe another currently ongoing and slightly bat-related event might be the reason for this peculiarity.</p>
 <h1 id="a-new-subcommand-for-pbb">A new subcommand for pbb</h1>
 <p>I’m using GoatCounter for my own site, but I also wanted to integrate it with <a href="https://github.com/bewuethr/pandoc-bash-blog">Pandoc Bash Blog</a>. To this end, there is a new subcommand <code>pbb gccode</code> (as in <strong>G</strong>oat<strong>C</strong>ounter <strong>code</strong>), which adds the site specific code into an HTML snippet which, if the configuration setting for the code exists, gets added to each page.</p>
-<p>Adding something right before the <code>&lt;/body&gt;</code> tag (which is where the GoatCounter snippet goes) is directly supported by Pandoc via the <code>-A</code>/<code>--include-after-body</code> option. This means I didn’t have to touch the HTML template and can keep using the default; one day, I’ll have to modify it, but not quite yet.</p>
+<p>Adding something right before the <code>&lt;/body&gt;</code> tag (which is where the GoatCounter snippet goes) is directly supported by pandoc via the <code>-A</code>/<code>--include-after-body</code> option. This means I didn’t have to touch the HTML template and can keep using the default; one day, I’ll have to modify it, but not quite yet.</p>
 <script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>

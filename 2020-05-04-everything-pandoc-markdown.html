@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="dcterms.date" content="2020-05-04" />
-  <title>Everything Pandoc Markdown can do</title>
+  <title>Everything pandoc Markdown can do</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -90,7 +90,7 @@
 <body>
 <div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
 <header id="title-block-header">
-<h1 class="title">Everything Pandoc Markdown can do</h1>
+<h1 class="title">Everything pandoc Markdown can do</h1>
 <p class="date">2020-05-04</p>
 </header>
 <nav id="TOC" role="doc-toc">
@@ -152,8 +152,8 @@
 <li><a href="#bibliography">Bibliography</a></li>
 </ul>
 </nav>
-<p>Pandoc Markdown is <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">well documented</a>, but the thing I’m missing in the manual is seeing the HTML result—so here are all the things Pandoc Markdown can do (when producing HTML) and what they look like when rendered!</p>
-<p>I’ll cover all the Pandoc extensions.</p>
+<p>Pandoc Markdown is <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">well documented</a>, but the thing I’m missing in the manual is seeing the HTML result—so here are all the things pandoc Markdown can do (when producing HTML) and what they look like when rendered!</p>
+<p>I’ll cover all the pandoc extensions.</p>
 <p>All titles link to the corresponding manual section; examples with Markdown input and rendered HTML output are between horizontal rules.</p>
 <h1 id="paragraphs"><a href="https://pandoc.org/MANUAL.html#paragraphs">Paragraphs</a></h1>
 <hr />
@@ -1331,7 +1331,7 @@ What is your <strong>Bash version</strong>?
 </details>
 <hr />
 <p><code>+native_divs</code>, <code>+native_spans</code></p>
-<p>These took me a while to understand, but after reading through <a href="https://github.com/jgm/pandoc/issues/168">this long issue</a>, I believe all they do is convert <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> elements (enabled via <code>markdown_in_html_blocks</code>) into <code>Div</code> and <code>Span</code> blocks in the Pandoc AST, but when writing to HTML, the result is the same. They are meant mostly for usage with Pandoc filters.</p>
+<p>These took me a while to understand, but after reading through <a href="https://github.com/jgm/pandoc/issues/168">this long issue</a>, I believe all they do is convert <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> elements (enabled via <code>markdown_in_html_blocks</code>) into <code>Div</code> and <code>Span</code> blocks in the pandoc AST, but when writing to HTML, the result is the same. They are meant mostly for usage with pandoc filters.</p>
 <p><code>+raw_tex</code></p>
 <p>This allows to write inline LaTeX, but it is ignored for HTML output.</p>
 <h2 id="generic-raw-attribute"><a href="https://pandoc.org/MANUAL.html#generic-raw-attribute">Generic raw attribute</a></h2>

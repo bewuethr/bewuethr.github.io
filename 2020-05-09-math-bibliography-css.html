@@ -105,7 +105,7 @@
 <li><a href="#bibliography-and-citations">Bibliography and citations</a></li>
 </ul>
 </nav>
-<p>While writing <a href="2020-05-04-everything-pandoc-markdown.html">Everything Pandoc Markdown can do</a>, in which I try to cover everything possible when using Pandoc Markdown to generate HTML, I bumped into a few things I had to fix while I went along: some CSS tweaks, and pbb wrappers for MathJax and bibliography functionality. Looks like “CSS tweaks” is a common theme in these update posts!</p>
+<p>While writing <a href="2020-05-04-everything-pandoc-markdown.html">Everything pandoc Markdown can do</a>, in which I try to cover everything possible when using pandoc Markdown to generate HTML, I bumped into a few things I had to fix while I went along: some CSS tweaks, and pbb wrappers for MathJax and bibliography functionality. Looks like “CSS tweaks” is a common theme in these update posts!</p>
 <h1 id="css-tweaks">CSS tweaks</h1>
 <h2 id="code-blocks">Code blocks</h2>
 <p>For this round of CSS tweaks, I removed the grey background from all <code>&lt;pre&gt;</code> (code) blocks as I ran into problems when displaying code blocks with line numbers; <code>overflow-x</code> would either make long lines overflow:</p>
@@ -142,7 +142,7 @@
 </p></li>
 </ul>
 <h2 id="tables">Tables</h2>
-<p>Default Pandoc HTML styling doesn’t do anything with tables, and this</p>
+<p>Default pandoc HTML styling doesn’t do anything with tables, and this</p>
 <figure>
 <img src="images/2020-05-09-unstyled-table.png" alt="" /><figcaption>Unstyled table</figcaption>
 </figure>
@@ -160,7 +160,7 @@
 <p>The second feature that can be toggled using <code>pbb enable</code> is to allow using citations and bibliography; <code>pbb enable bibliography</code> adds <code>--filter=pandoc-citeproc</code> to the <code>pandoc</code> incantation.</p>
 <p>After this, citations to a bibliography provided as a separate file or inline in the YAML front matter are rendered using the default citation style, <a href="https://www.chicagomanualofstyle.org/home.html">Chicago Manual of Style</a> author–date.</p>
 <p>Pandoc supports any style supported by the <a href="https://citationstyles.org/">Citation Style Language</a> (CSL). Pbb doesn’t offer a convenient way to control this, but it can be changed by adding a value for <code>csl</code> to the default metadata file, <code>.metadata.yml</code>. I’ll revisit when I think I sorely need more options for citations styles.</p>
-<p>The current style can be seen in the <a href="2020-05-04-everything-pandoc-markdown.html#citations">citations</a> section of my Pandoc Markdown post. The heading of the bibliography is just “Bibliography”, which can also be changed in <code>.metadata.yml</code>.</p>
+<p>The current style can be seen in the <a href="2020-05-04-everything-pandoc-markdown.html#citations">citations</a> section of my pandoc Markdown post. The heading of the bibliography is just “Bibliography”, which can also be changed in <code>.metadata.yml</code>.</p>
 <script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
