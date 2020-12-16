@@ -43,3 +43,5 @@ Resources:
 - Underdocumented Bash features
 - A Git aware prompt
 - Watching all of Star Trek (in production order)
+- Bash loadable builtins
+- What's new in Bash 5.1
