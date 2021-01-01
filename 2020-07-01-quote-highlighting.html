@@ -108,18 +108,18 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">&lt;span</span><span class="ot"> class=</span><span class="st">&quot;co&quot;</span><span class="kw">&gt;</span><span class="dv">&amp;quot;</span><span class="kw">&lt;/span&gt;&lt;span</span><span class="ot"> class=</span><span class="st">&quot;ot&quot;</span><span class="kw">&gt;</span>prev<span class="dv">&amp;quot;</span><span class="kw">&lt;/span&gt;</span></span></code></pre></div>
 <p>where <code>co</code> refers to a comment, and <code>ot</code> is for “other”. The opening double quote was weirdly designated a comment.</p>
 <p>Now, pbb uses pandoc to produce its output. I should probably illustrate that with a <a href="2020-06-29-pbb-dot-graphs.html">dot graph</a>…</p>
-<p><img src="diagrams/6eae1c5.svg" alt="" /></p>
+<p><img src="diagrams/1d2ef7e.svg" alt="" /></p>
 <p>Accordingly, I opened an issue in pandoc. But, as it turns out, pandoc uses a separate tool for syntax highlighting: <a href="https://github.com/jgm/skylighting">skylighting</a>, by the same author, John MacFarlane.</p>
-<p><img src="diagrams/99c7174.svg" alt="" /></p>
+<p><img src="diagrams/65cd7d0.svg" alt="" /></p>
 <p>Accordingly, John moved my <a href="https://github.com/jgm/skylighting/issues/95">issue</a> to skylighting, and also immediately pointed out the likely culprit. Skylighting uses KDE XML syntax highlighting descriptions:</p>
-<p><img src="diagrams/659576d.svg" alt="" /></p>
+<p><img src="diagrams/73d10b2.svg" alt="" /></p>
 <p>The syntax file for PostgreSQL contained this line:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">&lt;DetectChar</span><span class="ot"> attribute=</span><span class="st">&quot;Comment&quot;</span><span class="ot"> context=</span><span class="st">&quot;Identifier&quot;</span><span class="ot"> char=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="kw">/&gt;</span></span></code></pre></div>
 <p>And even without knowing much about how these syntax files work, this looked suspicious. John suggested I’d submit a bug report to the KDE project, as skylighting from time to time pulls the latest syntax files from upstream, and he wants to avoid getting out of sync.</p>
 <p>I dug happily into how a bug report should be filed for the KDE project and eventually <a href="https://bugs.kde.org/show_bug.cgi?id=421445">submitted one</a>. And since the fix was likely to be trivial, I read up on <a href="https://docs.kde.org/stable5/en/applications/katepart/highlight.html">syntax highlighting for KatePart</a> (where KatePart is the “text editor component” used by QT and KDE applications).</p>
 <p>Today, <a href="https://github.com/KDE/syntax-highlighting">KDE syntax highlighting</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is its own project. Until 2016, the syntax definitions were part of the <a href="https://github.com/KDE/ktexteditor">KTextEditor project</a>, and before that, until 2014, they were in <a href="https://github.com/KDE/kate">Kate</a>.</p>
 <p>I think a clarifying dot graph is in order<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, this time to illustrate the migration of KDE syntax highlighting:</p>
-<p><img src="diagrams/b488528.svg" alt="" /></p>
+<p><img src="diagrams/0f574a9.svg" alt="" /></p>
 <p>The PostgreSQL syntax file was added in 2002, in <a href="https://github.com/KDE/kate/commit/8eb69d93e3a0bee856f9d404bd8de395c6bfca76#diff-23999c6941df50d23a602798ad93d229">this commit</a>, and the line for double quotes looked like this:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;DetectChar</span><span class="ot"> attribute=</span><span class="st">&quot;9&quot;</span><span class="ot"> context=</span><span class="st">&quot;5&quot;</span><span class="ot"> char=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="kw">/&gt;</span></span></code></pre></div>
 <p>where <code>attribute</code> and <code>context</code> are indices into arrays: both attribute 9 and context 5 are for “identifiers”.</p>
