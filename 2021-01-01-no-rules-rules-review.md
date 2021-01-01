@@ -93,8 +93,8 @@ I did like the reference to the "bad apple" study [@Felps2006], though, seeing
 that it was also mentioned in [*The Culture Code*][tcc]: a single
 underperforming (or actively disruptive) team member pulls down the performance
 of the whole team significantly. In *The Culture Code*, the focus was on how
-there can be "good apples" to counteract this; in NRR, the emphasis is on the
-negative effects and eliminating them.
+there can be "good apples" to counteract this; in *No Rules Rules*, the
+emphasis is on the negative effects and eliminating them.
 
 Another great reference introduced me to the origins of the mythical "10x
 engineer": a paper from the 60s describes how programmers were given
@@ -118,12 +118,13 @@ app for personal banking?
 
 I don't recall the book using any examples involving Netflix engineers, so it's
 not obvious if the same principles are applied also for engineers, or if
-engineering is somehow treated differently as "not all that creative". 
+engineering is somehow treated differently within Netflix as "not all that
+creative". 
 
 There are surveys comparing employee happiness among FAANG (and MSFT) workers
 such as [this one][angel] conducted by AngelList and Blind in October 2019:
 
-![Reported happiness among FAANG workers](images/2021-01-01-faang-happiness.png)
+![Reported happiness among FAANG (and MSFT) workers](images/2021-01-01-faang-happiness.png)
 
 Or a [similar survey][blind] from November 2020, this time by Blind alone,
 where Netflix tops every single category. There are of course valid questions
@@ -143,7 +144,7 @@ didn't exactly nod in agreement with every single section.
 Some of the examples talk about people for whom the culture wasn't a good fit,
 like "Michelle" and her problematic "business" trips to Las Vegas with
 suspiciously high food and drink expenses (which got her fired). To me, these
-examples felt very contrived and eroded my trust into the authenticity of the
+examples felt very contrived and eroded my trust in the authenticity of the
 examples for things working out fine---but to be fair, many of the latter use
 full names of high profile Netflix employees. There also didn't seem to be much
 in terms of helping people adapt to such a culture; apparently, you're either a
@@ -164,7 +165,7 @@ Chapter 10 talks about scaling Netflix culture globally. There are a few neat
 ideas, like a culture map of the company and anticipating regional challenges
 for strong deviations in certain dimensions: "communication in Japan is a lot
 more high-context than at Netflix, we should probably take that into
-consideration when working there."
+consideration for the local workforce there."
 
 The rest of the chapter, however, read a bit like people realizing for the
 first time in their lives that the world consists of more than just the United
@@ -183,7 +184,8 @@ useful on their own.
 - **A policy of not just unlimited "personal time off" days, but unlimited
   holidays.** Multiple references indicate that people take about the same
   amount of time off as they would with limited holidays, but it would be more
-  flexible, and signal trust in employees.
+  flexible, and signal trust in employees. (As long as leaders model actually
+  taking time off.)
 - **No expense policy.** At Netflix, the entire policy is
 
   > Act in Netflix's best interest
@@ -199,10 +201,11 @@ useful on their own.
 - **Actually giving and encouraging feedback.** I'm pretty sure every company
   ever says that personal growth and feedback are very important to them;
   actually living that is another story. I want to point out the "Live 360s"
-  from the book as going way too far for my taste, though---but "Only say about
-  someone what you will say to their face" sounds like a solid principle. And
-  the "4A" guidelines for providers and recipients of feedback (aim to assist,
-  actionable, appreciate, accept or discard) feel useful as well.
+  from the book (public, real-time feedback frenzies) as going way too far for
+  my taste, though---but "Only say about someone what you will say to their
+  face" sounds like a solid principle. And the "4A" guidelines for providers
+  and recipients of feedback (aim to assist, actionable, appreciate, accept or
+  discard) feel useful as well.
 - **Leading with context.** Understanding why you're doing something is always
   going to get better results than being an implementation robot.
 
