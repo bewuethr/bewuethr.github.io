@@ -1,7 +1,7 @@
 # Post ideas
 
 - [x] Review of "No Rules Rules"
-- [ ] Review of "Designing Data-Intensive Applications"
+- [x] Review of "Designing Data-Intensive Applications"
 - [ ] Summary of "Designing Data-Intensive Applications" (requires Pages feature)
 - [ ] Review of "Where Wizards Stay Up Late"
 - [ ] Review of "The Idea Factory"
