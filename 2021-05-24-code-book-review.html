@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2021-05-24" />
+  <title>An ode to “Code”</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">An ode to “Code”</h1>
+<p class="date">2021-05-24</p>
+</header>
+<p><a href="https://www.charlespetzold.com/code/"><em>Code</em></a> by Charles Petzold was the third title we tackled in our “technical book club” at work. After <a href="2021-02-02-ddia-review.html"><em>Designing Data-Intensive Applications</em></a>, the idea was to pick something a little more easily digestible—plus, <em>Code</em> had been on my list for quite a while, so I was more than happy with the choice.</p>
+<figure>
+<img src="images/2021-05-24-code-cover.png" alt="" /><figcaption>Cover of <em>Code</em></figcaption>
+</figure>
+<p>Throughout reading, I had the impression that this was written by somebody who is <em>so passionate</em> about a topic that they want everybody else to be able to understand and appreciate said topic. The book aims to be understandable by everybody, regardless of any background in computing, and I think it probably achieves that goal—but I suspect somebody truly unfamiliar with everything covered would have to put in a substantial amount of work while reading.</p>
+<p>Going through the book was a very pleasant experience. There was barely a chapter where I didn’t either</p>
+<ul>
+<li>learn how something I’ve seen a million times <em>really</em> works (like bar codes), or</li>
+<li>found something familiar explained in a much better way than I’ve ever seen before (such as two’s complement, or floating point rounding errors), or</li>
+<li>build an understanding of something I only had a fuzzy idea about (like how a CPU works).</li>
+</ul>
+<p>In other words: many, many “A-ha!” moments.</p>
+<p>Not too long ago, I’ve read <a href="http://jongertner.net/the-idea-factory/"><em>The Idea Factory</em></a> about the history of Bell Labs, so the whole build-up around telegraphs and relays was a nice recap of the early parts of that book.</p>
+<p>I particularly liked the relay computer with all the “selective lying” (or maybe just “omissions”) for pedagogic reasons: for example, Petzold shows how to build memory using relays, based on circuitry previously introduced—only to reveal in the end that that would be entirely unpractical to actually do. But the principles carry over without a problem when using transistors instead of relays, so all the understanding gained until the reveal is not lost.</p>
+<h1 id="relay-computer-inspiration">Relay computer inspiration</h1>
+<p>The part about the popular microchips and their instruction sets had me dig through manuals online, and I can only imagine how much fun it must have been to tinker with that stuff at the time. In fact, being inspired to do something hands-on based on the book was a very common theme among the participants in the book club.</p>
+<p>While researching a bit more about relay computers, I’ve found that a few people have built amazing machines and produced excellent documentation for them:</p>
+<ul>
+<li><a href="http://web.cecs.pdx.edu/~harry/Relay/">Harry Porter’s relay computer</a> seem to be the classic in the field</li>
+<li>The <a href="http://www.computerculture.org/projects/rc3/">RC-3 relay computer</a> is a refined and more compact version of Porter’s machine</li>
+<li>Paul Law writes about his take on the Porter design on his <a href="https://relaycomputer.co.uk/">blog</a>; he has produced an excellent <a href="https://www.youtube.com/playlist?list=PLLACadYlrOka4N5IEfm1cmSuf39ZQSQst">video series</a> describing his machine in great detail</li>
+<li>Clickety Clack’s relay computer as showcased in <a href="https://www.youtube.com/playlist?list=PL_1HsIiuOfg3QA91DUd9kGJjQoOHwlt5Q">this playlist</a> is directly inspired by <em>Code</em> and makes a great complement to the book</li>
+<li>Ben Eater has a ton of videos very close to the subject matter in <em>Code</em>; the <a href="https://www.youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU">series describing how to build an 8-bit CPU</a> comes with a <a href="https://eater.net/8bit">companion website</a>, and you can even buy complete <a href="https://eater.net/8bit/kits">kits</a> and start breadboarding! Once we can have in-person office days again, I’d love to start a weekly meetup where people work on this.</li>
+</ul>
+<h1 id="takeaways">Takeaways</h1>
+<p>My main takeaway is the actual feeling of understanding how a computer works from the bottom up. While the technology described doesn’t get much more sophisticated than what PCs did in the early 80s, the principles haven’t fundamentally changed and still make a good foundation when taking a closer look at more recent developments. I often feel I get more out of what I read because of <em>Code</em>: articles describing the architecture of the M1 CPU make a lot more sense to me now, or reading about the boot sequence in the <a href="https://admin.com/">sysadmin tome</a> I’m currently going through is much more understandable.</p>
+<p>Apart from building physical stuff, I also feel like working with assembly code might be interesting. Now to find a useful project to do just that!</p>
+<p>And for follow-up reading, <a href="https://csapp.cs.cmu.edu/"><em>Computer Systems: A Programmer’s Perspective</em></a> is often recommended as a more in-depth treatise.</p>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
