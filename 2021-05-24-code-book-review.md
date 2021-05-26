@@ -22,7 +22,7 @@ chapter where I didn't either
 
 - learn how something I've seen a million times *really* works (like bar
   codes), or
-- found something familiar explained in a much better way than I've ever seen
+- find something familiar explained in a much better way than I've ever seen
   before (such as two's complement, or floating point rounding errors), or
 - build an understanding of something I only had a fuzzy idea about (like how a
   CPU works).
