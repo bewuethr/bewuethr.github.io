@@ -35,7 +35,7 @@ up a picture of a security camera as a tongue-in-cheek reminder, and the
 experiment seems to confirm that this kind of thing would actually have a
 measurable impact.
 
-The takeaway would be actually putting up such a picture; I'll revisit next
+The takeaway would be to put up such a picture for real; I'll revisit next
 year, I guess!
 
 ## Avoid biasing each other
@@ -92,7 +92,7 @@ that their chances are bad.
 
 The *premortem* is a method to remedy the planning fallacy somewhat: when close
 to a decision, people should describe how, one year in the future, the plan
-completely and utterly failed. This can overcome groupthink, legitimize doubt
+completely and utterly failed. This can overcome groupthink, legitimize doubt,
 and uncover threats.
 
 ## Take a broad view on gambles
@@ -122,7 +122,7 @@ something concrete enough to be considered a "takeaway".
 This is discussed in Chapter 26 ("Prospect Theory"); the fear of losing \$100 is
 stronger than the hope of gaining \$150. A takeaway could be that if you want
 somebody to want something, instead of telling them how great the thing is, you
-give it to them and then take it away again--like a car salesperson letting you
+give it to them and then take it away again---like a car salesperson letting you
 test drive a car all by yourself.
 
 ### The peak-end rule
