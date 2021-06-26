@@ -1,10 +1,11 @@
 # Post ideas
 
-- [x] Review of "No Rules Rules"
-- [x] Review of "Designing Data-Intensive Applications"
+- [ ] Write about experience in Stack Overflow user research for Collectives
 - [ ] Summary of "Designing Data-Intensive Applications" (requires Pages feature)
 - [ ] Review of "Where Wizards Stay Up Late"
 - [ ] Review of "The Idea Factory"
+- [x] Review of "No Rules Rules"
+- [x] Review of "Designing Data-Intensive Applications"
 
 ## Up next
 
