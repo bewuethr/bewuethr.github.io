@@ -1,5 +1,6 @@
 # Post ideas
 
+- [ ] Exact behaviours of GitHub action triggers; are they AND or OR?
 - [ ] Git mailmap post
 - [ ] Write about experience in Stack Overflow user research for Collectives
 - [ ] Summary of "Designing Data-Intensive Applications" (requires Pages feature)
