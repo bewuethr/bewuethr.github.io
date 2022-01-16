@@ -1,8 +1,8 @@
 # JavaScript silliness, 1: mouse trail
 
-I have *finally* finished reading the excellent [Eloquent JavaScript][ejs], and
-some of the exercises were fun enough that I don't want them to just collect
-dust in GitHub.
+I have *finally* finished reading the excellent [*Eloquent JavaScript*][ejs],
+and some of the exercises were fun enough that I don't want them to just
+collect dust in GitHub.
 
 First up: mouse trails! This was in the chapter about event handling.
 
