@@ -31,7 +31,7 @@ class Grid {
     }
 
     static create(elem, fillRate = 0.25, side = 33) {
-        elem.style.lineHeight = 0.75;
+        elem.style.lineHeight = 0.6;
         let g = new Grid(fillRate, side);
         g.grid.forEach(row => {
             row.forEach(box => elem.appendChild(box));
@@ -100,7 +100,16 @@ class Grid {
 }
 
 let div = document.getElementById("grid");
-let grid = Grid.create(div);
+
+// Figure out how many boxes to draw
+let cb = document.createElement("input");
+cb.type = "checkbox";
+cb.style.margin = 0;
+div.appendChild(cb);
+let n = Math.min(33, Math.floor(div.clientWidth / cb.clientWidth));
+cb.remove();
+
+let grid = Grid.create(div, 0.25, n);
 
 document.getElementById("next").addEventListener("click", () => grid.update(div));
 </script>
