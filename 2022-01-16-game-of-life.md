@@ -1,6 +1,6 @@
 # JavaScript silliness, 2: checkbox Game of Life
 
-This was another task from [*Eloquent Javascript*][ejs], to get familiar with
+This was another task from [*Eloquent JavaScript*][ejs], to get familiar with
 form elements: an implementation of [Conway's Game of Life][gol] using
 checkboxes.
 
