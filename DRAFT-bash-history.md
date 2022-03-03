@@ -100,11 +100,11 @@ shopt -u histappend
 
 to overwrite the history file.
 
-The size of the history is controlled with the `HISTSIZE` variable, and the
-size of the history file with `HISTFILESIZE`. Common advice is to just set
-these to large numbers; however, since Bash 4.3, they can be set to a negative
-value for unlimited history. (Watch out, setting to `0` truncates the history
-file.)
+The size of the history is controlled with the `HISTSIZE` variable (defaults to
+500), and the size of the history file with `HISTFILESIZE`. Common advice is to
+just set these to large numbers; however, since Bash 4.3, they can be set to a
+negative value for unlimited history. (Watch out, setting to 0 truncates the
+history file!)
 
 So, for an infinite history (and so far ignoring implications of parallel shell
 session), we'd want something like this in our `.bashrc`:
