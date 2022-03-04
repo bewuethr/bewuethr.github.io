@@ -1,17 +1,15 @@
----
-toc: true
-...
+# The perfect Bash history setup: infinite history
 
-# The perfect Bash history setup
+This is the first in a series of posts about Bash history configuration.
 
 Bash can keep a history of the commands you've issued and make them available
 via multiple methods, including [Readline history commands][rlhistcmds] and
 [history expansion][histexp].
 
 An example of a Readline history command is
-[`reverse-search-history`][revhist], which is usually mapped to `C-r`
+[`reverse-search-history`][revhist], which is usually bound to `C-r`
 (<kbd>Ctrl</kbd>+<kbd>R</kbd>), and incrementally searches the history
-backward.
+backwards.
 
 An example for history expansion is `!!`, an [event designator][evdesig] for
 the previous command.
@@ -26,7 +24,7 @@ things on the table:
   separate entries, or even seem to change how they're stored
 - Parallel shell sessions overwrite each other's history
 
-In this post, I explain my Bash history setup, which addresses all of these
+In these posts, I explain my Bash history setup, which addresses all of these
 points. "Perfect" is of course in jest---I don't think I've seen many topics
 where people are as opinionated as when it comes to customizing a command-line
 setup. So, "perfect for me", probably.
@@ -45,8 +43,8 @@ Bash can be compiled without history support (`--enable-history` option for
 `configure`), but it's enabled by default unless not supported by the operating
 system.
 
-Given history support, interactive shells have history enabled by default, but
-this can also be controlled using the `history` shell option:
+Given history support, interactive shells have history turned on by default,
+but this can also be controlled using the `history` shell option:
 
 ```bash
 set -o history
@@ -72,17 +70,20 @@ history. Command history is stored in multiple places: each session has an
 in-memory history, which is initialized from a history file; when the session
 is finished, the in-memory history is written back to the history file.
 
-See [below][multsesh] how to configure this in a way so multiple parallel
-sessions don't wipe out each other's histories; for now, we're just thinking
-about a single session.
+Configuring this in a way so multiple parallel sessions don't wipe out each
+other's histories will be subject of a separate post; for now, we're just
+thinking about a single session.
 
 The history file by default lives at `~/.bash_history`; to put it elsewhere,
-set the `HISTFILE` variable. I like my home directory uncluttered, so I have
-this in my `.bashrc`:
+set the [`HISTFILE`][histfile] variable. I like my home directory uncluttered,
+and I try to follow the [XDG Base Directory Specification][xdg], so I have this
+in my `.bashrc`:
 
 ```bash
 HISTFILE="$HOME/.local/share/bash/history"
 ```
+
+where `~/.local/share` is the default value of `$XDG_DATA_HOME`.
 
 When the session history gets written to the history file, the file is either
 overwritten, or the history is appended. This is controlled with the
@@ -100,11 +101,15 @@ shopt -u histappend
 
 to overwrite the history file.
 
-The size of the history is controlled with the `HISTSIZE` variable (defaults to
-500), and the size of the history file with `HISTFILESIZE`. Common advice is to
-just set these to large numbers; however, since Bash 4.3, they can be set to a
-negative value for unlimited history. (Watch out, setting to 0 truncates the
-history file!)
+Since we only care about an individual shell session so far, we don't need to
+append; we can overwrite the history file at the end of each session without
+losing anything.
+
+The size of the history is controlled with the [`HISTSIZE`][histsize] variable
+(defaults to 500), and the size of the history file with
+[`HISTFILESIZE`][histfilesize]. Common advice is to just set these to large
+numbers; however, since Bash 4.3, they can be set to a negative value for
+unlimited history. (Watch out, setting to 0 truncates the history file!)
 
 So, for an infinite history (and so far ignoring implications of parallel shell
 session), we'd want something like this in our `.bashrc`:
@@ -113,8 +118,8 @@ session), we'd want something like this in our `.bashrc`:
 # No clutter in the home directory
 HISTFILE="$HOME/.local/share/bash/history"
 
-# Append when storing
-shopt -s histappend
+# Overwrite when storing
+shopt -u histappend
 
 # Infinite session history
 HISTSIZE=-1
@@ -123,30 +128,10 @@ HISTSIZE=-1
 HISTFILESIZE=-1
 ```
 
-[multsesh]: <#combine-history-from-multiple-shell-sessions>
+In the next post, we'll look at controlling which commands go into history and
+which don't.
 
-## Control what goes into history
-
-```bash
-HISTIGNORE='exit:history:l:l[1als]:lla:+(.)'
-HISTCONTROL='ignoreboth'
-```
-
-## Control how commands are stored in history
-
-```bash
-shopt -s cmdhist
-shopt -s lithist
-HISTTIMEFORMAT='%F %T '
-```
-
-## Combine history from different shell sessions
-
-```bash
-PROMPT_COMMAND="history -a; history -c; history -r${PROMPT_COMMAND:+$'\n'"$PROMPT_COMMAND"}"
-```
-
-## References
-
-- Q&A with nice overview of multi-line commands:
-  <https://unix.stackexchange.com/a/353407/118235>
+[histfile]: <https://www.gnu.org/software/bash/manual/bash.html#index-HISTFILE>
+[xdg]: <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
+[histsize]: <https://www.gnu.org/software/bash/manual/bash.html#index-HISTSIZE>
+[histfilesize]: <https://www.gnu.org/software/bash/manual/bash.html#index-HISTFILESIZE>
