@@ -35,7 +35,7 @@ history expansion, but only how history is stored.
 [rlhistcmds]: <https://www.gnu.org/software/bash/manual/bash.html#Commands-For-History>
 [histexp]: <https://www.gnu.org/software/bash/manual/bash.html#History-Interaction>
 [revhist]: <https://www.gnu.org/software/bash/manual/bash.html#index-reverse_002dsearch_002dhistory-_0028C_002dr_0029>
-[evdsig]: <https://www.gnu.org/software/bash/manual/bash.html#Event-Designators>
+[evdesig]: <https://www.gnu.org/software/bash/manual/bash.html#Event-Designators>
 
 ## Enabling history
 
@@ -87,7 +87,7 @@ where `~/.local/share` is the default value of `$XDG_DATA_HOME`.
 
 When the session history gets written to the history file, the file is either
 overwritten, or the history is appended. This is controlled with the
-`histappend` shell option:
+[`histappend` shell option][histapp]:
 
 ```bash
 shopt -s histappend
@@ -109,7 +109,8 @@ The size of the history is controlled with the [`HISTSIZE`][histsize] variable
 (defaults to 500), and the size of the history file with
 [`HISTFILESIZE`][histfilesize]. Common advice is to just set these to large
 numbers; however, since Bash 4.3, they can be set to a negative value for
-unlimited history. (Watch out, setting to 0 truncates the history file!)
+unlimited history. (Watch out, setting to 0 disables history and truncates the
+history file, respectively!)
 
 So, for an infinite history (and so far ignoring implications of parallel shell
 session), we'd want something like this in our `.bashrc`:
@@ -128,10 +129,10 @@ HISTSIZE=-1
 HISTFILESIZE=-1
 ```
 
-In the next post, we'll look at controlling which commands go into history and
-which don't.
+In the next post, we'll look at controlling what exactly goes into the history.
 
 [histfile]: <https://www.gnu.org/software/bash/manual/bash.html#index-HISTFILE>
 [xdg]: <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
+[histapp]: <https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin>
 [histsize]: <https://www.gnu.org/software/bash/manual/bash.html#index-HISTSIZE>
 [histfilesize]: <https://www.gnu.org/software/bash/manual/bash.html#index-HISTFILESIZE>
