@@ -1,5 +1,5 @@
 ---
-toc:true
+toc: true
 ---
 
 # StaffPlus New York 2022
