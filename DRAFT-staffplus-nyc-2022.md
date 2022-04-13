@@ -4,7 +4,11 @@ toc: true
 
 # StaffPlus New York 2022
 
+<https://twitter.com/whereistanya>
+
 ## Silvia: Being a Principal Engineer
+
+<https://twitter.com/dbsmasher>
 
 - Senior IC means making technical decisions and leading, i.e., not do
   everything yourself
@@ -19,6 +23,8 @@ toc: true
 
 ## Ryan: Focusing on the most important thing
 
+<https://twitter.com/harterrt>
+
 - Bad: inertia, decibels, guilt
 - Ritual: empty inbox, reflect on last week, choose your work
 - Identify bad patterns: delegate? What should I be working on? What feels
@@ -26,6 +32,8 @@ toc: true
   I better at the end of the week than the beginning?
 
 ## Amy: Starting a new job as Staff+
+
+<https://twitter.com/cdwort>
 
 - Why were you hired? And why externally? Explore the need, identify the
   problem you were hired to solve
@@ -48,6 +56,8 @@ toc: true
 
 ## Michelle: API design lifecycle
 
+<https://twitter.com/hazelcough>
+
 1. Start with quickstart guide
 2. Model the domain; don't shy away from non technical complexity
    - Learn the domain: integrate, read docs
@@ -57,6 +67,8 @@ toc: true
 4. Test and iterate: build lots of integrations, remove friction
 
 ## Katie: Long term projects
+
+<https://twitter.com/ksylor>
 
 - Example project: turning Etsy into a PWA
 - Rebuild or refactor? Decided to refactor, but that's slower to market
@@ -78,6 +90,8 @@ toc: true
 
 ## Mattie: Getting to commitment
 
+<https://twitter.com/fiftyvolts>
+
 1. Know your goal: convince yourself, what don't others know, what will change
 2. Focus on values: deeper meaning; changing org values is very hard, use
    existing alignment, reframe goals to better align
@@ -90,6 +104,8 @@ toc: true
    others make your idea their own
 
 ## Bobby: Inefficiency challenges at datacenter scale
+
+<https://twitter.com/BobbyD_FL>
 
 - SRE: avoid operational burden; don't get paged because you didn't plan for
   capacity
@@ -105,6 +121,8 @@ toc: true
   created 10% capacity for "free"
 
 ## Leslie: Influencing
+
+<https://twitter.com/LeslieAChapman>
 
 - Influencing without direct reports and budget
 - Learning from social media influencers
@@ -129,6 +147,8 @@ toc: true
 
 ## Alice: Accessibility
 
+<https://twitter.com/AliceLiCode>
+
 - Solve for one, extend to many (ramps: wheelchairs, but also strollers)
 - Screen readers: remember ancient HTML that was already semantic; CSS
   introduced "divitis", and only later semantic HTML became popular
@@ -138,6 +158,8 @@ toc: true
   eyes and improves legibility; but respect user preference
 
 ## Scott: Ambiguous projects
+
+<https://twitter.com/scott_triglia>
 
 - Projects where you can't even see the proper outline, unknown tech, new team
   dynamics
@@ -169,6 +191,8 @@ toc: true
 
 ## John: Decision buy-in
 
+<https://twitter.com/JohnRiv>
+
 - Decision: most senior engineer? Everybody votes? Wisdom of the crowds?
   Multiple independent judgments > individual expert judgment
 - Watch out for anchoring; form opinions before knowing other opinions;
@@ -189,6 +213,8 @@ toc: true
 
 ## Bryan: Building bridges
 
+<https://twitter.com/bryanl>
+
 - There is no road, it's all swamp
 - There is no how-to
 - Leading without being the boss: be a good example
@@ -208,6 +234,8 @@ toc: true
 <https://simonsinek.com/product/start-with-why/>
 
 ## David: Building peer groups
+
+<https://twitter.com/DavidDaly44>
 
 - Examples: new hire peer groups, peer group for new engineering managers
 - Staff engineer community: low barrier of entry (Slack channel, Google group,
