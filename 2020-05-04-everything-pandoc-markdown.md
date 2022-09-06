@@ -2092,8 +2092,8 @@ This is the text.^[And this is the inline footnote.]
 
 `+citations`
 
-Together with the `pandoc-citeproc` filter, this allows generating citations
-and a bibliography. For this document, I've used
+Together with the `--citeproc` option, this allows generating citations and a
+bibliography. For this document, I've used
 
 ```bash
 pandoc-citeproc --bib2yaml
@@ -2103,7 +2103,7 @@ to generate a CSL YAML bibliography with three entries and stuck it into the
 `references` field in the YAML front matter. I haven't changed the Citation
 Style Language, so it defaults to Chicago Manual of Style author-date format.
 
-I have set `link-citations: true`, which turn referenes into links to the
+I have set `link-citations: true`, which turn references into links to the
 bibliography.
 
 Citations go into square brackets:
