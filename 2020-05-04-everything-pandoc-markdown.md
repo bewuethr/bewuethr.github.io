@@ -1817,7 +1817,7 @@ Many links: [link 1][label 1], [link 2][label 2], [link 3][label 3],
 [label 6]: https://example.com
   "Title on another line"
 [label 7]: /index.html
-[implicit linke]: /index.html
+[implicit link]: /index.html
 
 > A block [quote][].
 >
