@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-04-17" />
+  <title>Makefile, man page, TOC and CSS tweaks for Pandoc Bash Blog</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #073642;
+        color: #839496;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #839496;  padding-left: 4px; }
+    div.sourceCode
+      { color: #839496; background-color: #002b36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #dc322f; } /* Annotation */
+    code span.at { color: #b58900; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #859900; } /* BuiltIn */
+    code span.cf { color: #859900; } /* ControlFlow */
+    code span.ch { color: #dc322f; } /* Char */
+    code span.cn { color: #2aa198; } /* Constant */
+    code span.co { color: #586e75; font-style: italic; } /* Comment */
+    code span.cv { color: #268bd2; } /* CommentVar */
+    code span.do { color: #2aa198; } /* Documentation */
+    code span.dt { color: #cb4b16; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #ffffff; background-color: #ff0000; } /* Error */
+    code span.ex { color: #839496; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #2aa198; } /* Information */
+    code span.kw { color: #859900; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #cb4b16; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #268bd2; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #cb4b16; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">Makefile, man page, TOC and CSS tweaks for Pandoc Bash
+Blog</h1>
+<p class="date">2020-04-17</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#css-tweaks" id="toc-css-tweaks">CSS tweaks</a></li>
+<li><a href="#yaml-lint-action" id="toc-yaml-lint-action">YAML lint
+action</a></li>
+<li><a href="#makefile-for-installation"
+id="toc-makefile-for-installation">Makefile for installation</a></li>
+<li><a href="#optional-table-of-contents"
+id="toc-optional-table-of-contents">Optional table of contents</a></li>
+<li><a href="#a-man-page-for-pbb" id="toc-a-man-page-for-pbb">A man page
+for pbb</a></li>
+</ul>
+</nav>
+<p>I’ve added a few features to Pandoc Bash Blog since <a
+href="2020-04-04-goatcounter.html">adding GoatCounter</a>: some
+cosmetic, some useful, some very behind the scenes.</p>
+<h1 id="css-tweaks">CSS tweaks</h1>
+<p>To separate code blocks more clearly from the rest of the text, they
+now have a darker background colour:</p>
+<figure>
+<img src="images/2020-04-17-codeblock.png"
+alt="Code block with grey background" />
+<figcaption aria-hidden="true">Code block with grey
+background</figcaption>
+</figure>
+<p>And to tell inline code better apart, it got some colour as well:</p>
+<figure>
+<img src="images/2020-04-17-inlinecode.png"
+alt="Coloured inline code" />
+<figcaption aria-hidden="true">Coloured inline code</figcaption>
+</figure>
+<p>I first used the same grey background as for code blocks just like
+for example GitHub does for Markdown pages, but bumped into a snag;
+pandoc believes that whitespace should be conserved for inline code and
+sets <code>white-space: pre-wrap</code> for <code>code</code>. This
+preserves whitespace, but still breaks lines; it does leave a blank at
+the end of the line, though, and with a visible background colour, that
+blank can be seen.</p>
+<figure>
+<img src="images/2020-04-17-extrablank.png"
+alt="Visible extra blank at line end" />
+<figcaption aria-hidden="true">Visible extra blank at line
+end</figcaption>
+</figure>
+<p>So, a different font colour it was, and after looking at the defaults
+for a few CSS frameworks, I settled on <code>#C7254E</code>. Which keeps
+the blank, it’s just invisible now.</p>
+<p>And finally, because I noticed that my amateur mess of font sizes
+resulted in tiny code in headings, I switched everything to relative
+font sizes using <code>rem</code>s and <code>em</code>s, and in an
+exhaustive test of one browser on two screens, nothing looks
+fundamentally broken, so I declare that a success.</p>
+<figure>
+<img src="images/2020-04-17-titlefont-before.png" alt="Before fix" />
+<figcaption aria-hidden="true">Before fix</figcaption>
+</figure>
+<figure>
+<img src="images/2020-04-17-titlefont-after.png" alt="After fix" />
+<figcaption aria-hidden="true">After fix</figcaption>
+</figure>
+<h1 id="yaml-lint-action">YAML lint action</h1>
+<p>All those actions I wrote <a
+href="2020-03-16-github-actions-pbb.html">when a learned about GitHub
+Actions</a> have generated quite a pile of YAML files: each action has
+one for metadata, and each workflow is in one. Since all the actions run
+on each other, that results in about a dozen or so YAML files floating
+around.</p>
+<p>What’s more obvious than having yet another action to lint these as
+well? <a href="https://github.com/marketplace/actions/run-yamllint">Run
+yamllint</a> to the rescue!</p>
+<p>The action wraps <a
+href="https://github.com/adrienverge/yamllint">yamllint</a> and works
+pretty much the same as the <a
+href="https://github.com/marketplace/actions/run-markdownlint-mdl">Run
+markdownlint</a> action: the linter checks the whole repo, and an
+optional config file can be supplied. As for the Markdown linter, I
+fetch my own from my <a
+href="https://github.com/bewuethr/dotfiles/blob/master/.config/yamllint/config">dotfiles</a>.</p>
+<p>Now I just have to update all my files because I recently enabled a
+new quoting rule…</p>
+<figure>
+<img src="images/2020-04-17-yamllint.png"
+alt="My linting emoji are subject of another post" />
+<figcaption aria-hidden="true">My linting emoji are subject of another
+post</figcaption>
+</figure>
+<p>Anyway, I mention this here because Pandoc Bash Blog uses this action
+to lint its YAML files.</p>
+<h1 id="makefile-for-installation">Makefile for installation</h1>
+<p>As a side effect of having grown from very minimal to slightly more
+involved, pbb used to make a bunch of assumptions about where specific
+files would live. At first, I just symlinked things like the style sheet
+from the pbb directory into this blog; later, I updated
+<code>pbb init</code> to symlink from the <code>/usr/local</code>
+hierarchy and the Bats test setup would actually copy things there.</p>
+<p>Now, finally, there is a proper way to install pbb from scratch: a
+Makefile! I’m far from a Make expert, but let’s say I have seen worse
+than <a
+href="https://github.com/bewuethr/pandoc-bash-blog/blob/e3618db2daf0267efd38f39e832ceccd00f183f5/Makefile">this</a>.
+The file is “self-documenting” by way of parsing specifically formatted
+comments with Awk, offers a “dev mode” option to symlink instead of copy
+things, has an uninstall recipe, and respects the <a
+href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG
+Base Directory Specificiation</a>. Or at least my personal flavour of
+it, combined with a sprinkle of the <a
+href="https://www.freedesktop.org/software/systemd/man/file-hierarchy.html">systemd
+file system hierarchy</a>. Everything goes into
+<code>~/.local/share</code> (or wherever <code>$XDG_DATA_HOME</code>
+points to), and the binary lives in <code>~/.local/bin</code>, leaving
+both <code>$HOME</code> clutter free and allowing for non-sudo
+installation.</p>
+<p>Since I’m not compiling anything, the Makefile is basically a weird
+shell script wrapper, but “use <code>make install</code>” just has such
+a nice ring to it.</p>
+<p>I <em>did</em> realize that building the blog is actually a pretty
+good use case for a Makefile—rebuild those pages where the Markdown
+version is more recent—but that ship has sailed. Bash it is.</p>
+<h1 id="optional-table-of-contents">Optional table of contents</h1>
+<p>The <a href="2020-04-05-taop-summary.html">TAOP summary</a> is pretty
+long, so I thought it’d be useful to have a table of contents. pandoc
+can create one, but I wanted it to be easy to control. There are a few
+knobs to turn, but I eventually figured out the correct ones.</p>
+<p>Initially, I thought I can use either of the <code>toc</code> or
+<code>table-of-contents</code> metadata fields and set them to
+<code>true</code> in the YAML header of the post I want a TOC for. That
+didn’t work.</p>
+<p>I was confused about the meaning of the variables. A glance at the
+default HTML template made things a little more clear:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$if(toc)$</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;nav</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;$idprefix$TOC&quot;</span> <span class="er">role</span><span class="ot">=</span><span class="st">&quot;doc-toc&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>$if(toc-title)$</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h2</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;$idprefix$toc-title&quot;</span><span class="kw">&gt;</span>$toc-title$<span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>$endif$</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>$table-of-contents$</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/nav&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>$endif$</span></code></pre></div>
+<p>They’re all different! <code>toc</code> serves to indicate if the TOC
+should be printed at all; <code>table-of-contents</code> actually
+<em>contains</em> the TOC. Aha. Setting <code>toc: true</code> in my
+post did give me an empty <code>&lt;nav&gt;</code> tag, but the table
+itself was missing.</p>
+<p>As it turns out, the <code>toc</code> metadata variable and the
+<code>--toc</code> command line option are different as well.
+<code>--toc</code> is required to generate the table, and the
+<code>toc</code> variable controls if it is displayed or not. But now I
+got the TOC everywhere, and I wanted the default to be “no TOC”!</p>
+<p>The last puzzle piece was to use a <a
+href="https://pandoc.org/MANUAL.html#option--metadata-file">metadata
+file</a> where I can set <code>toc: false</code> so the default is to
+not have a TOC; if I <em>do</em> want one, I can override the value in
+just the post where I want it. This also let me customize the heading
+used for the TOC by setting the <code>toc-title</code> variable.</p>
+<p>Or at least that’s how I think everything works, but who knows. This
+post uses a TOC, just to show what it looks like.</p>
+<h1 id="a-man-page-for-pbb">A man page for pbb</h1>
+<p>Last, but not least, pbb now has a proper man page. It’s officially
+the official source of truth, other than the code itself, that is.</p>
+<p>Not everybody considers writing documents using the <code>man</code>
+macros for <code>roff</code> exactly “thrilling” or “fun” or “not a
+waste of time”, but I kind of like it. It’s a bit like Markdown’s
+great-great-great-grandma! I keep hearing about <code>mdoc</code> being
+all the rage (mostly when I read anything written by its author) and
+“semantic” instead of just “presentation formatting”, but whenever I
+think of it, I’m already halfway through whatever I’m writing and
+promise myself to check it out next time.</p>
+<p>I try and follow the Linux man page conventions as outlined by <a
+href="http://man7.org/linux/man-pages/man7/man-pages.7.html"><code>man-pages(7)</code></a>
+regarding structure and style; the man page for the <code>man</code>
+macros <a
+href="http://man7.org/linux/man-pages/man7/man.7.html"><code>man(7)</code></a>
+and its longer cousin <a
+href="http://man7.org/linux/man-pages/man7/groff_man.7.html"><code>groff_man(7)</code></a>
+come in handy to remind me of how to start a paragraph with a hanging
+tag (<code>.TP</code>!) and how to get pretty quotes (<code>\*(lq</code>
+and <code>\*(rq</code>!); the GNU <code>roff</code> short reference <a
+href="http://man7.org/linux/man-pages/man7/groff.7.html"><code>groff(7)</code></a>
+is useful for all those non-<code>man</code> requests (new line?
+<code>.br</code>); and finally, if all else fails, there’s always the
+full-blown <a
+href="https://www.gnu.org/software/groff/manual/groff.html">GNU
+<code>troff</code> manual</a>.</p>
+<p>There surely are a lot of <code>man</code> man pages.</p>
+<p>In the end, all that counts is that going from this</p>
+<figure>
+<img src="images/2020-04-17-roff.png" alt="The Zen of roff source" />
+<figcaption aria-hidden="true">The Zen of roff source</figcaption>
+</figure>
+<p>to this</p>
+<figure>
+<img src="images/2020-04-17-manpage.png" alt="The rendered man page" />
+<figcaption aria-hidden="true">The rendered man page</figcaption>
+</figure>
+<p>is super satisfying. To me.</p>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

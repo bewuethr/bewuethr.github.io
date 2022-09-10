@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-04-05" />
+  <title>My summary of “The Art of PostgreSQL”</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #073642;
+        color: #839496;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #839496;  padding-left: 4px; }
+    div.sourceCode
+      { color: #839496; background-color: #002b36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #dc322f; } /* Annotation */
+    code span.at { color: #b58900; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #859900; } /* BuiltIn */
+    code span.cf { color: #859900; } /* ControlFlow */
+    code span.ch { color: #dc322f; } /* Char */
+    code span.cn { color: #2aa198; } /* Constant */
+    code span.co { color: #586e75; font-style: italic; } /* Comment */
+    code span.cv { color: #268bd2; } /* CommentVar */
+    code span.do { color: #2aa198; } /* Documentation */
+    code span.dt { color: #cb4b16; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #ffffff; background-color: #ff0000; } /* Error */
+    code span.ex { color: #839496; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #2aa198; } /* Information */
+    code span.kw { color: #859900; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #cb4b16; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #268bd2; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #cb4b16; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">My summary of “The Art of PostgreSQL”</h1>
+<p class="date">2020-04-05</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#parts-i-and-ii-preface-and-introduction"
+id="toc-parts-i-and-ii-preface-and-introduction">Parts I and II: Preface
+and Introduction</a></li>
+<li><a href="#part-iii-writing-sql-queries"
+id="toc-part-iii-writing-sql-queries">Part III: Writing SQL Queries</a>
+<ul>
+<li><a href="#chapter-4-business-logic"
+id="toc-chapter-4-business-logic">Chapter 4: Business Logic</a></li>
+<li><a href="#chapter-5-a-small-application"
+id="toc-chapter-5-a-small-application">Chapter 5: A Small
+Application</a></li>
+<li><a href="#chapter-6-the-sql-replan-interactive-setup"
+id="toc-chapter-6-the-sql-replan-interactive-setup">Chapter 6: The SQL
+REPL—An Interactive Setup</a></li>
+<li><a href="#chapter-7-sql-is-code"
+id="toc-chapter-7-sql-is-code">Chapter 7: SQL is Code</a></li>
+</ul></li>
+<li><a href="#part-iv-sql-toolbox" id="toc-part-iv-sql-toolbox">Part IV:
+SQL Toolbox</a>
+<ul>
+<li><a href="#chapter-13-select-from-where"
+id="toc-chapter-13-select-from-where">Chapter 13: Select, From,
+Where</a></li>
+<li><a href="#chapter-14-order-by-limit-no-offset"
+id="toc-chapter-14-order-by-limit-no-offset">Chapter 14: Order By,
+Limit, No Offset</a></li>
+<li><a href="#chapter-15-group-by-having-with-union-all"
+id="toc-chapter-15-group-by-having-with-union-all">Chapter 15: Group By,
+Having, With, Union All</a></li>
+<li><a href="#chapter-16-understanding-nulls"
+id="toc-chapter-16-understanding-nulls">Chapter 16: Understanding
+Nulls</a></li>
+<li><a href="#chapter-17-understanding-window-functions"
+id="toc-chapter-17-understanding-window-functions">Chapter 17:
+Understanding Window Functions</a></li>
+<li><a href="#chapter-18-understanding-relations-and-joins"
+id="toc-chapter-18-understanding-relations-and-joins">Chapter 18:
+Understanding Relations and Joins</a></li>
+</ul></li>
+<li><a href="#part-v-data-types" id="toc-part-v-data-types">Part V: Data
+Types</a>
+<ul>
+<li><a href="#chapter-20-serialization-and-deserialization"
+id="toc-chapter-20-serialization-and-deserialization">Chapter 20:
+Serialization and Deserialization</a></li>
+<li><a href="#chapter-21-some-relational-theory"
+id="toc-chapter-21-some-relational-theory">Chapter 21: Some Relational
+Theory</a></li>
+<li><a href="#chapter-22-postgresql-data-types"
+id="toc-chapter-22-postgresql-data-types">Chapter 22: PostgreSQL Data
+Types</a>
+<ul>
+<li><a href="#boolean" id="toc-boolean">Boolean</a></li>
+<li><a href="#character-and-text" id="toc-character-and-text">Character
+and Text</a></li>
+<li><a href="#server-encoding-and-client-encoding"
+id="toc-server-encoding-and-client-encoding">Server Encoding and Client
+Encoding</a></li>
+<li><a href="#numbers" id="toc-numbers">Numbers</a></li>
+<li><a href="#sequences" id="toc-sequences">Sequences</a></li>
+<li><a href="#uuids" id="toc-uuids">UUIDs</a></li>
+<li><a href="#datetime-and-time-zones"
+id="toc-datetime-and-time-zones">Date/Time and Time Zones</a></li>
+<li><a href="#intervals" id="toc-intervals">Intervals</a></li>
+<li><a href="#datetime-processing-and-querying"
+id="toc-datetime-processing-and-querying">Date/Time Processing and
+Querying</a></li>
+<li><a href="#network-address-types"
+id="toc-network-address-types">Network Address Types</a></li>
+<li><a href="#ranges" id="toc-ranges">Ranges</a></li>
+</ul></li>
+<li><a href="#chapter-23-denormalized-data-types"
+id="toc-chapter-23-denormalized-data-types">Chapter 23: Denormalized
+Data Types</a>
+<ul>
+<li><a href="#arrays" id="toc-arrays">Arrays</a></li>
+<li><a href="#composite-types" id="toc-composite-types">Composite
+Types</a></li>
+<li><a href="#xml" id="toc-xml">XML</a></li>
+<li><a href="#json" id="toc-json">JSON</a></li>
+<li><a href="#enum" id="toc-enum">Enum</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#part-vi-data-modeling" id="toc-part-vi-data-modeling">Part
+VI: Data Modeling</a>
+<ul>
+<li><a href="#chapter-26-object-relational-mapping"
+id="toc-chapter-26-object-relational-mapping">Chapter 26: Object
+Relational Mapping</a></li>
+<li><a href="#chapter-27-tooling-for-database-modeling"
+id="toc-chapter-27-tooling-for-database-modeling">Chapter 27: Tooling
+for Database Modeling</a></li>
+<li><a href="#chapter-28-normalization"
+id="toc-chapter-28-normalization">Chapter 28: Normalization</a></li>
+<li><a href="#chapter-29-practical-use-case-geonames"
+id="toc-chapter-29-practical-use-case-geonames">Chapter 29: Practical
+Use Case: Geonames</a></li>
+<li><a href="#chapter-30-modelization-anti-patterns"
+id="toc-chapter-30-modelization-anti-patterns">Chapter 30: Modelization
+Anti-Patterns</a></li>
+<li><a href="#chapter-31-denormalization"
+id="toc-chapter-31-denormalization">Chapter 31: Denormalization</a></li>
+<li><a href="#chapter-32-not-only-sql"
+id="toc-chapter-32-not-only-sql">Chapter 32: Not Only SQL</a></li>
+</ul></li>
+<li><a href="#part-vii-data-manipulation-and-concurrency-control"
+id="toc-part-vii-data-manipulation-and-concurrency-control">Part VII:
+Data Manipulation and Concurrency Control</a>
+<ul>
+<li><a href="#chapter-34-another-small-application"
+id="toc-chapter-34-another-small-application">Chapter 34: Another Small
+Application</a></li>
+<li><a href="#chapter-35-insert-update-delete"
+id="toc-chapter-35-insert-update-delete">Chapter 35: Insert, Update,
+Delete</a>
+<ul>
+<li><a href="#insert" id="toc-insert">Insert</a></li>
+<li><a href="#update" id="toc-update">Update</a></li>
+<li><a href="#inserting-some-tweets"
+id="toc-inserting-some-tweets">Inserting Some Tweets</a></li>
+<li><a href="#delete" id="toc-delete">Delete</a></li>
+</ul></li>
+<li><a href="#chapter-36-isolation-and-locking"
+id="toc-chapter-36-isolation-and-locking">Chapter 36: Isolation and
+Locking</a>
+<ul>
+<li><a href="#modeling-for-concurrency"
+id="toc-modeling-for-concurrency">Modeling for Concurrency</a></li>
+</ul></li>
+<li><a href="#chapter-37-computing-and-caching-in-sql"
+id="toc-chapter-37-computing-and-caching-in-sql">Chapter 37: Computing
+and Caching in SQL</a></li>
+<li><a href="#chapter-38-triggers" id="toc-chapter-38-triggers">Chapter
+38: Triggers</a></li>
+<li><a href="#chapter-39-listen-and-notify"
+id="toc-chapter-39-listen-and-notify">Chapter 39: Listen and
+Notify</a></li>
+<li><a href="#chapter-40-batch-update-moma-collection"
+id="toc-chapter-40-batch-update-moma-collection">Chapter 40: Batch
+Update, MoMA Collection</a></li>
+</ul></li>
+<li><a href="#part-viii-postgresql-extensions"
+id="toc-part-viii-postgresql-extensions">Part VIII: PostgreSQL
+Extensions</a>
+<ul>
+<li><a href="#chapter-42-whats-a-postgresql-extension"
+id="toc-chapter-42-whats-a-postgresql-extension">Chapter 42: What’s a
+PostgreSQL Extension?</a></li>
+<li><a href="#chapter-43-auditing-changes-with-hstore"
+id="toc-chapter-43-auditing-changes-with-hstore">Chapter 43: Auditing
+Changes with hstore</a></li>
+<li><a href="#chapter-44-last.fm-million-song-dataset"
+id="toc-chapter-44-last.fm-million-song-dataset">Chapter 44: Last.fm
+Million Song Dataset</a></li>
+<li><a href="#chapter-45-using-trigrams-for-typos"
+id="toc-chapter-45-using-trigrams-for-typos">Chapter 45: Using Trigrams
+For Typos</a></li>
+<li><a href="#chapter-46-denormalizing-tags-with-intarray"
+id="toc-chapter-46-denormalizing-tags-with-intarray">Chapter 46:
+Denormalizing Tags with <code>intarray</code></a></li>
+<li><a href="#chapter-47-the-most-popular-pub-names"
+id="toc-chapter-47-the-most-popular-pub-names">Chapter 47: The Most
+Popular Pub Names</a></li>
+<li><a href="#chapter-48-how-far-is-the-nearest-pub"
+id="toc-chapter-48-how-far-is-the-nearest-pub">Chapter 48: How far is
+the nearest pub?</a></li>
+<li><a href="#chapter-49-geolocation-with-postgresql"
+id="toc-chapter-49-geolocation-with-postgresql">Chapter 49: Geolocation
+with PostgreSQL</a></li>
+<li><a href="#chapter-50-counting-distinct-users-with-hyperloglog"
+id="toc-chapter-50-counting-distinct-users-with-hyperloglog">Chapter 50:
+Counting Distinct Users with HyperLogLog</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>I’ve recently finished reading <em>The Art of PostgreSQL</em> (see my
+<a href="2020-03-29-taop-review.html">review</a>). I took a lot of
+notes, mostly to help me read in a more focused manner; I thought it’d
+be nice to polish and publish them.</p>
+<p>I first wanted to call this “What I’ve learned from TAOP”, but it
+also includes things I already knew, so there.</p>
+<h1 id="parts-i-and-ii-preface-and-introduction">Parts I and II: Preface
+and Introduction</h1>
+<p>I didn’t take any notes for these—they’re a very general introduction
+to the book, a first application example, and why you should use
+Postgres. Got it.</p>
+<h1 id="part-iii-writing-sql-queries">Part III: Writing SQL Queries</h1>
+<h2 id="chapter-4-business-logic">Chapter 4: Business Logic</h2>
+<ul>
+<li>Isolation levels (read uncommitted, read committed etc.); there’s
+more about this later</li>
+<li>Stored procedure: <code>create or replace function</code></li>
+<li>Lateral joins: iterate over each row of a result and evaluate
+sub-query with that row as a parameter, see <a
+href="https://heap.io/blog/engineering/postgresqls-powerful-new-join-type-lateral">this
+article</a> and the “top-n artist by genre” query</li>
+<li>Prefer SQL for stored procedures over PLpgSQL</li>
+</ul>
+<h2 id="chapter-5-a-small-application">Chapter 5: A Small
+Application</h2>
+<ul>
+<li>Variables in psql:
+<ul>
+<li>Set with <code>\set n 1</code></li>
+<li>From the command line: <code>psql --variable 'n=1'</code> (or
+<code>--set</code> or <code>-v</code>)</li>
+<li>Referred to using <code>:n</code></li>
+</ul></li>
+<li>Python library that lets you store SQL queries in separate files: <a
+href="https://github.com/honza/anosql">anosql</a></li>
+<li><code>limit :n</code> seems to eat the blank, have to use
+<code>limit  :n</code> for some reason</li>
+</ul>
+<h2 id="chapter-6-the-sql-replan-interactive-setup">Chapter 6: The SQL
+REPL—An Interactive Setup</h2>
+<p>This chapter was great, I’ve totally overhauled my psql configuration
+file after reading it and the whole <a
+href="https://www.postgresql.org/docs/12/app-psql.html">man page</a>. My
+favourites:</p>
+<ul>
+<li>Unicode border style: <code>\pset linestyle unicode</code></li>
+<li>Flag for transaction in prompt: <code>%x</code> in the prompt
+string</li>
+<li><code>\e</code> opens the last command in an editor!</li>
+<li><code>-P format=html</code>, or <code>asciidoc</code>,
+<code>latex</code>, …</li>
+<li><code>\set ECHO_HIDDEN true</code> shows the queries run by slash
+commands</li>
+</ul>
+<h2 id="chapter-7-sql-is-code">Chapter 7: SQL is Code</h2>
+<p>This chapter basically says that all the ususal software engineering
+practices apply to SQL code as well: use a consistent style, use tests,
+use meaningful names, and so on. The style guide promoted by the author
+is roughly</p>
+<ul>
+<li><p>Do not use uppercase SQL keywords because it’s a leftover from
+ancient times</p></li>
+<li><p>Right-align top-level keywords</p></li>
+<li><p>Use meaningful names, for example to indicate the meaning of a
+table in a self-join:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span>      artist</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     <span class="kw">join</span> track <span class="kw">on</span> track.<span class="kw">name</span> <span class="op">=</span> artist.<span class="kw">name</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     <span class="kw">join</span> album <span class="kw">on</span> album.albumid <span class="op">=</span> track.albumid</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>     <span class="kw">join</span> artist inspired <span class="kw">on</span> inspired.artistid <span class="op">=</span> album.artistid</span></code></pre></div>
+<p>That example also demonstrates the style in action, and until the end
+of the book, I could not get myself to like it.</p></li>
+</ul>
+<p>Other advice:</p>
+<ul>
+<li>Use meaningful aliases, such as <code>artist</code> and
+<code>inspired</code> instead of <code>a1</code> and
+<code>a2</code></li>
+<li>Unit testing for Postgres: <a
+href="https://pgtap.org">pgTAP</a></li>
+<li>CLI tool to run tests: <a
+href="https://pgtap.org/pg_prove.html">pg_prove</a></li>
+<li>Tool for temp environments running tests: <a
+href="http://manpages.ubuntu.com/manpages/eoan/man1/pg_virtualenv.1.html">pg_virtualenv</a></li>
+<li>Regression testing tool: <a
+href="https://github.com/dimitri/regresql">regresql</a></li>
+<li><code>application_name</code> parameter lets you specify who made a
+request</li>
+</ul>
+<h1 id="part-iv-sql-toolbox">Part IV: SQL Toolbox</h1>
+<h2 id="chapter-13-select-from-where">Chapter 13: Select, From,
+Where</h2>
+<ul>
+<li><p>Shortcut for <code>select * from</code>:
+<code>table</code></p></li>
+<li><p><code>select *</code> is bad</p></li>
+<li><p><code>format('%s %s', forename, surname)</code> instead of
+<code>||</code> concatenation</p></li>
+<li><p>Outer joins: restrictions in the <code>on</code> clause are
+processed <em>before</em> the join; restrictions in the
+<code>where</code> clause are processed <em>after</em> the join</p></li>
+<li><p><code>generate_series</code> to, uh, generate a series</p></li>
+<li><p><em>anti-join:</em> exclude rows that fail test, for example</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> <span class="kw">not</span> <span class="kw">exists</span> (<span class="kw">select</span> <span class="dv">1</span> <span class="kw">from</span> subquery)</span></code></pre></div></li>
+</ul>
+<h2 id="chapter-14-order-by-limit-no-offset">Chapter 14: Order By,
+Limit, No Offset</h2>
+<ul>
+<li><p><code>order by</code> with nulls last:
+<code>order by column nulls last</code></p></li>
+<li><p><code>order by</code> with complex condition:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> <span class="cf">case</span> <span class="cf">when</span> status <span class="op">=</span> <span class="st">&#39;Power Unit&#39;</span> <span class="cf">then</span> <span class="dv">1</span> <span class="cf">else</span> <span class="dv">2</span> <span class="cf">end</span></span></code></pre></div></li>
+<li><p><code>point(lng, lat)</code> and <code>&lt;-&gt;</code> to get
+distance between points</p></li>
+<li><p><code>extract(field from timestamp)</code> to get just one field
+out of a timestamp</p></li>
+<li><p><code>offset</code> is bad, don’t use it; it reads everything
+anyway, but then discards most of it; use index lookups instead:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>      <span class="kw">where</span> raceid <span class="op">=</span> <span class="dv">972</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">and</span> <span class="kw">row</span>(lap, <span class="fu">position</span>) <span class="op">&gt;</span> (<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">order</span> <span class="kw">by</span> lap, <span class="fu">position</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fetch</span> <span class="kw">first</span> <span class="dv">3</span> <span class="kw">rows</span> <span class="kw">only</span>;</span></code></pre></div></li>
+</ul>
+<h2 id="chapter-15-group-by-having-with-union-all">Chapter 15: Group By,
+Having, With, Union All</h2>
+<ul>
+<li><p>Compare a row to the previous row: <code>lag()</code> function,
+example:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">lag</span>(nbraces, <span class="dv">1</span>) <span class="kw">over</span>(<span class="kw">order</span> <span class="kw">by</span> decade)</span></code></pre></div></li>
+<li><p>Syntax for aggregate filter: <code>filter(where ...)</code></p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(<span class="op">*</span>) <span class="kw">filter</span>(<span class="kw">where</span> <span class="fu">position</span> <span class="kw">is</span> <span class="kw">null</span>) <span class="kw">as</span> outs,</span></code></pre></div>
+<p>I use this one all the time now!</p></li>
+<li><p>Filter groups: <code>having</code> clause; can’t reference
+<code>select</code> output aliases!</p></li>
+<li><p>Grouping sets: group by multiple groups, as in</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> <span class="kw">grouping</span> <span class="kw">sets</span>((drivers.surname),</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                       (constructors.<span class="kw">name</span>))</span></code></pre></div></li>
+<li><p><code>group by rollup(...)</code>: creates permutations for each
+column in the grouping sets</p></li>
+<li><p><code>group by cube(...)</code>: includes partial
+permutations</p></li>
+<li><p><em>Common table expressions:</em>
+<code>with alias as (...)</code></p></li>
+<li><p>Repeating strings: <code>repeat(string text, number int)</code>,
+e.g., build a histogram with</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">repeat</span>(<span class="fu">text</span> <span class="st">&#39;■&#39;</span>, <span class="dv">10</span>)</span></code></pre></div></li>
+<li><p>Can’t nest aggregate queries, but you can chain common table
+expressions</p></li>
+<li><p>SQL alternative to PostgreSQL’s <code>distinct on</code>: use
+<code>group by</code> without aggregates</p></li>
+<li><p>Set difference: <code>except</code> (useful for regression
+testing)</p></li>
+</ul>
+<h2 id="chapter-16-understanding-nulls">Chapter 16: Understanding
+Nulls</h2>
+<ul>
+<li>Any boolean comparison involving <code>null</code> has value
+<code>null</code>, even <code>null = null</code></li>
+<li><code>null</code> is “we don’t know”</li>
+<li>“Pretend SQL doesn’t implement three-valued logic”:
+<code>is [not] distinct from</code></li>
+</ul>
+<h2 id="chapter-17-understanding-window-functions">Chapter 17:
+Understanding Window Functions</h2>
+<p>I definitely still don’t understand window functions.</p>
+<ul>
+<li><p><code>over (order by x)</code> is short for</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">over</span> (<span class="kw">order</span> <span class="kw">by</span> x <span class="kw">rows</span> <span class="kw">between</span> <span class="kw">unbounded</span> <span class="kw">preceding</span> <span class="kw">and</span> <span class="kw">current</span> <span class="kw">row</span>)</span></code></pre></div></li>
+<li><p><code>over ()</code> sees the whole set of rows</p></li>
+<li><p>Window functions happen <em>after</em> the <code>where</code>
+clause</p></li>
+<li><p><code>over (partition by column)</code> is a frame showing
+<em>peer rows</em> with the same value for <code>column</code></p></li>
+<li><p>All aggregate functions can be used against a window
+frame</p></li>
+<li><p>The book got the fastest lap speed wrong; it’s a velocity, not a
+time, so should be ordered like this:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">over</span>(<span class="kw">order</span> <span class="kw">by</span> fastestlapspeed<span class="ch">::</span><span class="dt">numeric</span> <span class="kw">desc</span>)</span></code></pre></div>
+<p>The author even comments on how it’s counterintuitive that the
+fastest lap seems to be almost inversely correlated to doing well in the
+race.</p></li>
+<li><p>Re-using a window definition:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> surname,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>       <span class="kw">lag</span>(code, <span class="dv">1</span>) <span class="kw">over</span> w <span class="kw">as</span> <span class="ot">&quot;prev&quot;</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>       <span class="kw">lead</span>(code, <span class="dv">1</span>) <span class="kw">over</span> w <span class="kw">as</span> <span class="ot">&quot;next&quot;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">from</span>      results</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="kw">join</span> drivers <span class="kw">using</span>(driverid)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a> <span class="kw">where</span> raceid <span class="op">=</span> <span class="dv">890</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">window</span> w <span class="kw">as</span> (<span class="kw">order</span> <span class="kw">by</span> <span class="fu">position</span>)</span></code></pre></div></li>
+<li><p>Divide into groups: <code>ntile()</code> function</p></li>
+</ul>
+<h2 id="chapter-18-understanding-relations-and-joins">Chapter 18:
+Understanding Relations and Joins</h2>
+<ul>
+<li><p>A table is really a <em>relation</em>, and you can query the
+“composite data type”:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> relation <span class="kw">from</span> relation</span></code></pre></div></li>
+<li><p><code>create table</code> really creates a new data type</p></li>
+</ul>
+<h1 id="part-v-data-types">Part V: Data Types</h1>
+<h2 id="chapter-20-serialization-and-deserialization">Chapter 20:
+Serialization and Deserialization</h2>
+<p>Storing and retrieving values out of and back into memory isn’t a
+problem for which you need a database system.</p>
+<h2 id="chapter-21-some-relational-theory">Chapter 21: Some Relational
+Theory</h2>
+<ul>
+<li>A <em>tuple</em> is a list of attributes</li>
+<li>A <em>relation</em> is a list of tuples that all share the same list
+of attribute domains: <em>names</em> and <em>data type</em></li>
+<li>There’s a time literal called <code>allballs</code>, which is
+<code>00:00:00.00 UTC</code></li>
+<li>There is a table that determines which function is run depending on
+the operand types on both sides of <code>=</code></li>
+<li>You can add your own as extensions</li>
+</ul>
+<h2 id="chapter-22-postgresql-data-types">Chapter 22: PostgreSQL Data
+Types</h2>
+<p>Get a sample from a table: <code>tablesample</code>; for example:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="op">*</span> <span class="kw">from</span> <span class="kw">table</span> <span class="kw">tablesample</span> <span class="kw">bernoulli</span>(<span class="dv">10</span>);</span></code></pre></div>
+<p>gets a sample where each row has a chance of 10% to appear in the
+output.</p>
+<h3 id="boolean">Boolean</h3>
+<ul>
+<li>Aggregates for booleans: <code>bool_and</code>,
+<code>bool_or</code></li>
+<li>Use <code>is</code>, not <code>=</code> for comparison to
+booleans</li>
+<li>Remember that nulls are skipped, so use
+<code>is [not] distinct from</code> when required</li>
+</ul>
+<h3 id="character-and-text">Character and Text</h3>
+<ul>
+<li>Regular expression support with main operator <code>~</code></li>
+<li>Split field into separate table:
+<code>regex_split_to_table</code></li>
+<li>Split into array: <code>regex_split_to_array</code></li>
+<li>There’s lots of advanced support for documents, text search queries,
+ranking, highlighting etc.</li>
+</ul>
+<h3 id="server-encoding-and-client-encoding">Server Encoding and Client
+Encoding</h3>
+<ul>
+<li>Never use <code>SQL_ASCII</code></li>
+<li>If a client doesn’t understand <code>UTF8</code>, you can have
+Postgres do conversion on the fly</li>
+</ul>
+<h3 id="numbers">Numbers</h3>
+<p>All combinations of operand types have to be supported, so Postgres
+has only few numeric types (no unsigned, for example).</p>
+<h3 id="sequences">Sequences</h3>
+<ul>
+<li>Declaring a column <code>SERIAL</code> is a shorthand for
+<code>create sequence</code>, <code>default nextval()</code> and
+<code>owned by</code></li>
+<li>Notice that you can exhaust a sequence; <code>serial</code> is 4
+bytes (but internally 8, just like <code>bigserial</code>)</li>
+</ul>
+<h3 id="uuids">UUIDs</h3>
+<ul>
+<li>Storing as UUID type makes sense: 16 bytes instead of 37 byte
+strings</li>
+<li>Should we use them as identifiers? See <a
+href="#chapter-30-modelization-anti-patterns">next part</a></li>
+</ul>
+<h3 id="datetime-and-time-zones">Date/Time and Time Zones</h3>
+<ul>
+<li>Always use timestamps <em>with</em> time zones (no storage
+penalty!)</li>
+<li>Time zones aren’t stored; input and output timezones are converted
+to, similar to <code>client_encoding</code></li>
+<li><code>now()</code> within a transaction always returns the same
+time</li>
+<li>If you don’t specify a time zone, the local time zone is
+assumed</li>
+<li>Easiest way to enter a timestamp: ISO, like
+<code>'2019-01-08 04:05:06'</code> or
+<code>'2019-01-08 04:05:06+02'</code></li>
+</ul>
+<h3 id="intervals">Intervals</h3>
+<p>Intervals are aware of month lengths when attached to a date, so use
+them.</p>
+<h3 id="datetime-processing-and-querying">Date/Time Processing and
+Querying</h3>
+<ul>
+<li>Function to calculate percentiles: <code>percentile_cont</code></li>
+<li>Ironically, the query to show commits for a specific date shows
+different results depending on the time zone of the querying system</li>
+<li>Another useful function: <code>date_trunc</code> truncates to a
+specified precision</li>
+</ul>
+<h3 id="network-address-types">Network Address Types</h3>
+<p>There are proper data types for IP addresses: <code>inet</code> for
+hosts and networks, <code>cidr</code> for networks.</p>
+<h3 id="ranges">Ranges</h3>
+<ul>
+<li>Unique to Postgres</li>
+<li>Provides concurrent safe check against overlapping ranges</li>
+<li>Constraint written using <code>exclude using gist</code>; requires
+<code>btree_gist</code> extension</li>
+<li>Query with <code>validity @&gt; date '2017-05-18'</code>, where
+<code>@&gt;</code> is the “contains” operator and <code>validity</code>
+is a <code>daterange</code> column</li>
+</ul>
+<h2 id="chapter-23-denormalized-data-types">Chapter 23: Denormalized
+Data Types</h2>
+<h3 id="arrays">Arrays</h3>
+<ul>
+<li>Rule of thumb for when to use them: when they’re mostly used as a
+whole, example: user defined tags</li>
+<li>Index on an array column: <code>using gin</code></li>
+<li>Search for element in array:
+<code>where hashtags @&gt; array['#job']</code></li>
+<li>Use <code>unnest()</code> to turn an array into a relation</li>
+<li>But if you need a lot of <code>unnest</code>, you probably should be
+using a lookup table</li>
+</ul>
+<h3 id="composite-types">Composite Types</h3>
+<p>For advanced cases not covered in this book.</p>
+<h3 id="xml">XML</h3>
+<p>You can write XSLT stored procedures in Postgres, see <a
+href="https://github.com/petere/plxslt">PL/XSLT</a>.</p>
+<h3 id="json">JSON</h3>
+<ul>
+<li><code>json</code> is a leftover with no processing, only form
+validation</li>
+<li>You almost certainly want <code>jsonb</code></li>
+<li>Check if array <code>extra</code> contains array <code>[2,4]</code>:
+<code>where extra @&gt; '[2,4]'</code></li>
+</ul>
+<h3 id="enum">Enum</h3>
+<ul>
+<li>Mostly added to make it easier to migrate from MySQL; proper design
+would use a reference table with foreign key</li>
+<li>Enums make a globally consistent state hard to maintain</li>
+<li>Matter of taste (and the author clearly implies “bad taste”)</li>
+</ul>
+<h1 id="part-vi-data-modeling">Part VI: Data Modeling</h1>
+<h2 id="chapter-26-object-relational-mapping">Chapter 26: Object
+Relational Mapping</h2>
+<p>Database modeling and object modeling are separate and both
+required.</p>
+<h2 id="chapter-27-tooling-for-database-modeling">Chapter 27: Tooling
+for Database Modeling</h2>
+<ul>
+<li>Schema should be versioned as well as source code of DB schema</li>
+<li><code>psql</code> and visual tools; focused on schema itself here,
+not visual tools</li>
+<li><em>Databases</em> are separated environments that can’t interact
+with each other</li>
+<li>If you want to interact with existing models, use a <em>schema</em>
+instead</li>
+<li>Testing new schema: write as SQL script with explicit transaction,
+finish with testing queries and a rollback</li>
+<li>Seems to use singular for table names: <code>article</code>,
+<code>comment</code> (but doesn’t mention that as a guideline)</li>
+<li>Test out main anticipated queries on dummy data</li>
+</ul>
+<h2 id="chapter-28-normalization">Chapter 28: Normalization</h2>
+<p>This was a very useful chapter. It helped me better understand
+primary keys, when to use surrogate keys and to think about constraints
+on what would be natural keys.</p>
+<ul>
+<li>Normalization: organizing columns and tables to reduce redundancy
+and improve integrity, while simplifying database design</li>
+<li>Fewer tables aren’t better or simpler</li>
+<li>The interface to connect our data structures are the join
+operations</li>
+<li>Different levels; models often reach <em>BCNF</em> (Boyce-Codd
+Normal Form) or <em>4NF</em> (4th Normal Form)</li>
+<li>Insufficiently normalized tables can suffer from database anomalies
+(update, insertion, deletion)</li>
+<li><em>Primary keys</em> have non-null attributes that are unique; they
+allow implementing 1NF
+<ul>
+<li><em>Natural keys</em> prevent duplicate entries and consist of
+columns with business meaning</li>
+<li><em>Surrogate keys</em> are artificially generated, but allow
+violations of 1NF</li>
+<li>Compromise: surrogate key as primary key for easy referencing from
+other tables, but <code>not null</code> and <code>unique</code>
+constraints on what would be natural primary key attributes</li>
+</ul></li>
+<li><em>Foreign keys</em> reference keys known to be <em>unique</em> in
+the target table, so they must have either a <em>unique</em> or a
+<em>primary key</em> constraint</li>
+<li><em>Not null</em> constraint disallows unspecified entries</li>
+<li><code>check</code> constraints allow conditions on fields, like
+<code>check (price &gt; 0)</code></li>
+<li><code>create domain</code> allows to create a custom type to
+validate, e.g., against a regex</li>
+<li><em>Exclusion constraints</em> are like generalized <em>unique</em>
+constraints with a custom operator choice, see ranges</li>
+</ul>
+<h2 id="chapter-29-practical-use-case-geonames">Chapter 29: Practical
+Use Case: Geonames</h2>
+<p>In this chapter, the author goes through a poorly laid out schema and
+normalizes it. I used a tool to visualize the schema after the
+normalization:</p>
+<figure>
+<img src="images/2020-04-05-schema.svg" alt="Normalized schema" />
+<figcaption aria-hidden="true">Normalized schema</figcaption>
+</figure>
+<p>It would have been interesting to see the schema before as well, but
+I realized that too late.</p>
+<h2 id="chapter-30-modelization-anti-patterns">Chapter 30: Modelization
+Anti-Patterns</h2>
+<p>The discussion about UUIDs as primary keys was teased a few times
+before this chapter, but I’m not convinced by the recommendation; while
+sequences are easier to handle and guarantee that there won’t be
+collisions, you wouldn’t want to leak them in externally visible data.
+This wasn’t addressed in this chapter, though.</p>
+<p>Anti-patterns:</p>
+<ul>
+<li>Sticking all your data into a non-descript <code>value</code> text
+field (<em>entity attribute values</em>)</li>
+<li>Multiple values per column, like comma separated data</li>
+<li>UUIDs: strong theoretical guarantee against collision—but sequences
+<em>guarantee</em> it</li>
+</ul>
+<h2 id="chapter-31-denormalization">Chapter 31: Denormalization</h2>
+<ul>
+<li>Fully normalized schemas have a high number of tables and references
+between them</li>
+<li>Sometimes, we want to relax normalization, but this should be done
+with care</li>
+<li>Before optimizing performance with denormalization, be sure you have
+benchmarked your queries and there is no other way</li>
+<li>You might have to repeat data; make sure there is an integrated
+<em>cache invalidation</em> mechanism</li>
+<li><em>Materialized views</em>: way to cache something that is read
+much more often than updated; <code>create view</code>, then
+<code>create materialized view</code>; to invalidate cache,
+<code>refresh materialized view</code></li>
+<li><em>History table</em> to keep track of changes where the record
+structure might change over time: use a <code>data jsonb</code> column
+and stick data into it with <code>row_to_json()</code></li>
+<li>Use a range as a <em>validity period</em>, see currency example</li>
+<li>Multiple values per attribute with an <em>array</em> (supports
+search and indexing)</li>
+<li><em>Sparse matrix</em>: use <code>jsonb</code></li>
+<li><em>Partitioning</em>: supported as of Postgres 10, but
+<ul>
+<li>Indexes must be added to each partition separately</li>
+<li>No way to create primary key, unique constraint or exclusion
+constraint spanning all partitions</li>
+<li><code>on conflict</code> results in errors</li>
+<li>An <code>update</code> that moves a row into a different partition
+fails</li>
+<li>Can’t even reach first normal form</li>
+</ul></li>
+</ul>
+<h2 id="chapter-32-not-only-sql">Chapter 32: Not Only SQL</h2>
+<ul>
+<li>Schemaless in PostgreSQL: stick everything into a <code>jsonb</code>
+field</li>
+<li><em>GIN</em> indexing supports indexing such a field</li>
+</ul>
+<h1 id="part-vii-data-manipulation-and-concurrency-control">Part VII:
+Data Manipulation and Concurrency Control</h1>
+<h2 id="chapter-34-another-small-application">Chapter 34: Another Small
+Application</h2>
+<ul>
+<li>Remember that 2NF means “non-key attributes depend on the key”;
+example of violation: Tweet table has column with profile
+information</li>
+<li>Transitive dependencies violate 3NF, example: country and place
+depend on location</li>
+</ul>
+<h2 id="chapter-35-insert-update-delete">Chapter 35: Insert, Update,
+Delete</h2>
+<ul>
+<li>In Postgres, insert, update and delete commands accept a
+<code>returning</code> clause (which I now use all the time!)</li>
+<li>They also support <em>joins</em>, but each statement does it
+differently</li>
+</ul>
+<h3 id="insert">Insert</h3>
+<ul>
+<li><p><code>insert into</code>: <code>values</code> is accepted
+wherever <code>select</code> is expected and takes multiple rows; for
+many rows, consider <code>copy</code> instead</p></li>
+<li><p>Pull a regex match out of a string:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substring</span>(users.bio <span class="kw">from</span> <span class="st">&#39;in love with #?(.*).&#39;</span>)</span></code></pre></div></li>
+</ul>
+<h3 id="update">Update</h3>
+<ul>
+<li><p>Allows replacing existing values while other users are
+concurrently working with the database</p></li>
+<li><p>Use primary key plus real value if primary is synthetic:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> userid <span class="op">=</span> <span class="dv">17</span> <span class="kw">and</span> uname <span class="op">=</span> <span class="st">&#39;Puck&#39;</span></span></code></pre></div>
+<p>This gives us both typo protection and better concurrency
+behaviour.</p></li>
+</ul>
+<h3 id="inserting-some-tweets">Inserting Some Tweets</h3>
+<p>There is an <a
+href="https://research.cs.wisc.edu/niagara/data/shakes/shaksper.htm">XML
+version of Shakespeare’s works</a>!</p>
+<h3 id="delete">Delete</h3>
+<ul>
+<li><p>Delete doesn’t actually delete immediately; <em>vacuum</em>
+deletes</p></li>
+<li><p><code>returning</code> in a delete statement can be used to
+summarize what has been deleted</p></li>
+<li><p>Joins for delete statements: <code>using</code></p></li>
+<li><p>A <em>row</em> is what a query sees, a <em>tuple</em> what is on
+disk; a single row can exist as multiple tuples on disk</p></li>
+<li><p>Delete all rows: <code>truncate</code>—faster (deletes on disk),
+still MVCC compliant</p></li>
+<li><p>Delete almost everything: faster to create new table and select
+into it from old table with</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> new_name (<span class="kw">like</span> <span class="kw">name</span> <span class="kw">including</span> <span class="kw">all</span>)</span></code></pre></div>
+<p>insert, then <code>drop table name</code> and</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> new_name <span class="kw">rename</span> <span class="kw">to</span> <span class="kw">name</span></span></code></pre></div>
+<p>The only problem is that <code>drop table</code> and
+<code>alter table</code> require an access exclusive lock; delete and
+vacuum can run in the middle of concurrent traffic.</p></li>
+</ul>
+<h2 id="chapter-36-isolation-and-locking">Chapter 36: Isolation and
+Locking</h2>
+<ul>
+<li>Postgres takes care of concurrency and leaves some control of it to
+the user</li>
+<li>Use case for isolation: <em>online backups</em> with
+<code>pg_dump</code> to take a snapshot; isolation level <em>repeatable
+read</em> (up to Postgres 9.0) / <em>serializable</em> (9.1 onward)</li>
+<li>Four isolation levels, with serializable being the most strict</li>
+<li>Phenomena which are prohibited at various levels:
+<ul>
+<li>Dirty read—isolation level <em>read uncommitted</em> (not
+implemented by Postgres)</li>
+<li>Nonrepeatable read—level <em>read committed</em> (Postgres
+default)</li>
+<li>Phantom read—level <em>repeatable read</em></li>
+<li>Serialization anomaly—level <em>serializable</em></li>
+</ul></li>
+<li>Implementation of serializable: “<a
+href="https://wiki.postgresql.org/wiki/SSI">Serializable Snapshot
+Isolation</a>” (SSI)</li>
+<li>Set isolation with
+<code>start transaction isolation level &lt;level&gt;;</code></li>
+</ul>
+<h3 id="modeling-for-concurrency">Modeling for Concurrency</h3>
+<ul>
+<li>Tweet example: retweets and favourites pulled into separate
+<code>activity</code> table</li>
+<li>Getting the count is now more complex, but incrementing it is just
+an insert into <code>activity</code>
+<ul>
+<li>Using an <code>insert</code> instead of an <code>update</code> is
+better for concurrency</li>
+</ul></li>
+<li>Expensive query to get count should probably be cached, see <a
+href="#chapter-37-computing-and-caching-in-sql">below</a></li>
+<li>Watch out for overly restrictive unique constraints</li>
+<li>Optimizing might be worth it when concurrent activity competes for a
+single shared resource</li>
+</ul>
+<h2 id="chapter-37-computing-and-caching-in-sql">Chapter 37: Computing
+and Caching in SQL</h2>
+<ul>
+<li>Create table that is a snapshot (but doesn’t update):
+<code>create table as</code></li>
+<li>Create a table that is a view of a query (but doesn’t cache
+anything): <code>create view</code>
+<ul>
+<li>Lets you query like a normal table and hide away the complexity</li>
+</ul></li>
+<li>Cache snapshot into permanent relation:
+<code>create materialized view</code>, but now we have to
+invalidate</li>
+<li>An <em>escape string constant</em> interprets C-style backslash
+escapes: <code>E'[^\n]+'</code> matches the first line of a multi-line
+string</li>
+<li>Invalidate cache with <code>refresh materialized view</code></li>
+<li>Cache invalidation should follow a <em>cache invalidation
+policy</em>; can be as simple as nightly cron</li>
+</ul>
+<h2 id="chapter-38-triggers">Chapter 38: Triggers</h2>
+<ul>
+<li>Run a stored procedure when an event is produced</li>
+<li>Check <a
+href="https://www.postgresql.org/docs/current/sql-createtrigger.html"><code>CREATE TRIGGER</code></a>
+in the manual</li>
+<li>And also <a
+href="https://www.postgresql.org/docs/current/plpgsql-trigger.html">PL/pgSQL
+trigger procedures</a></li>
+<li>Procedures and triggers can also be written in Tcl, Perl, Python and
+C (more via extensions)</li>
+<li>Procedure is executed as part of the transaction</li>
+<li>Watch out for concurrency issues on upsert; see <a
+href="https://www.postgresql.org/docs/current/plpgsql-trigger.html#PLPGSQL-TRIGGER-SUMMARY-EXAMPLE">this
+example</a> for a way this can be done properly (or use
+<code>on conflict</code>)</li>
+<li><em>Event triggers</em> allow triggers on more events, mostly DDL
+commands; see <a
+href="https://www.postgresql.org/docs/current/event-trigger-table-rewrite-example.html">this
+example</a> in the manual</li>
+</ul>
+<h2 id="chapter-39-listen-and-notify">Chapter 39: Listen and Notify</h2>
+<ul>
+<li>You can send messages around with <code>notify</code> and
+<code>listen</code></li>
+<li>You can notify an external client from a trigger</li>
+<li>The DB server can deduplicate events on identical payloads</li>
+<li><code>listen</code> and <code>notify</code> are great for
+maintaining a cache</li>
+<li>Insert JSON “magically” into relational tuple:
+<code>json_populate_record()</code></li>
+<li>Postgres listen/notify doesn’t provide queueing, so it must be okay
+to miss events</li>
+<li>Go DB driver supports asynchronous notifications (not all do, like
+Java doesn’t)</li>
+</ul>
+<h2 id="chapter-40-batch-update-moma-collection">Chapter 40: Batch
+Update, MoMA Collection</h2>
+<ul>
+<li>Update existing data with overlapping new data:
+<ul>
+<li>use temp table with <code>like</code> existing table, and maybe with
+<code>on commit drop</code></li>
+<li><code>\copy</code> into temp table from file</li>
+<li>use update and insert with diff check and maybe return stats about
+inserts</li>
+</ul></li>
+<li>To avoid problems caused by running such an update concurrently,
+either lock table explicitly with <code>lock table</code> or use
+<code>on conflict</code></li>
+</ul>
+<h1 id="part-viii-postgresql-extensions">Part VIII: PostgreSQL
+Extensions</h1>
+<h2 id="chapter-42-whats-a-postgresql-extension">Chapter 42: What’s a
+PostgreSQL Extension?</h2>
+<ul>
+<li>Set of SQL objects that can be enabled at run-time</li>
+<li>Types:
+<ul>
+<li>Extensions for developers</li>
+<li>Extensions for administrators</li>
+<li>Pluggable languages (in-core: C, SQL, pgSQL, Tcl, Perl, Python)</li>
+<li>Foreign data wrappers</li>
+</ul></li>
+<li>Enable with <code>create extension &lt;name&gt;</code></li>
+<li>Install support files via OS package manager</li>
+<li>Check installed extensions with
+<code>table pg_available_extensions</code></li>
+<li>Sources:
+<ul>
+<li>Contribs (come with PostgreSQL)</li>
+<li><a href="https://pgxn.org">PostgreSQL Extension Network</a></li>
+</ul></li>
+<li>Noteworthy extensions:
+<ul>
+<li>Contribs:
+<ul>
+<li>Bloom Index Filters (test set membership)</li>
+<li>earthdistance (great circle distances)</li>
+<li>hstore (storing sets of key/value pairs within a single PostgreSQL
+value)</li>
+<li>ltree (data type for labels stored in tree-like structure)</li>
+<li>pg_trgm (trigram matching)</li>
+</ul></li>
+<li>Third party:
+<ul>
+<li>PostGIS (spatial database extender)</li>
+<li>ip4r (IPv4/v6 range index type)</li>
+<li>citus (horizontally scale across commodity servers)</li>
+<li>pgpartman (table partition sets)</li>
+<li>postgres-hll (HyperLogLog data structure)</li>
+<li>prefix (prefix matching, typically for telephony applications)</li>
+<li>madlib (analytics)</li>
+<li>RUM (indexing useful for full text search)</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="chapter-43-auditing-changes-with-hstore">Chapter 43: Auditing
+Changes with hstore</h2>
+<ul>
+<li>Precursor to JSON support, but
+<ul>
+<li>only one data type (<code>text</code>)</li>
+<li>dictionaries are flat (no nesting)</li>
+</ul></li>
+<li>Used to track changes to a table by storing rows before/after change
+in hstore format in separate table</li>
+<li>Actual changes can be shown as diff,
+<code>after - before as diff</code> with the hstore <code>-</code>
+operator</li>
+<li>Record to hstore with <code>hstore()</code>, back again with
+<code>populate_record()</code></li>
+</ul>
+<h2 id="chapter-44-last.fm-million-song-dataset">Chapter 44: Last.fm
+Million Song Dataset</h2>
+<p>Really just loads zipped JSON into a table using a Lisp script.</p>
+<h2 id="chapter-45-using-trigrams-for-typos">Chapter 45: Using Trigrams
+For Typos</h2>
+<ul>
+<li>pg_trgm extension: determine similarity of text based on trigram
+matching, fast search for similar strings</li>
+<li>Postgres offers powerful full text search facilities natively</li>
+<li>Trigram: split text into consecutive groups of three letters each;
+compare groups for similarity
+<ul>
+<li>Example: <code>tomy</code> –&gt; <code> t</code>, <code> to</code>,
+<code>tom</code>, <code>omy</code></li>
+</ul></li>
+<li>Compare using the function <code>similarity()</code>; returns a
+value between 0 (completely dissimilar) and 1 (identical)</li>
+<li>There is a threshold (default 0.3)</li>
+<li>New operators:
+<ul>
+<li><code>%</code> (similar to)</li>
+<li><code>&lt;-&gt;</code> (distance; 1 - similarity value)</li>
+</ul></li>
+<li>Trigrams are case insensitive</li>
+<li><code>word_similarity()</code> for longer words (no padding);
+<code>%&gt;</code> operator (or <code>&lt;%</code>)</li>
+<li>Allows indexing: <code>using gist(title gist_trgm_ops)</code> (also
+indexes regular expression searching)</li>
+</ul>
+<h2 id="chapter-46-denormalizing-tags-with-intarray">Chapter 46:
+Denormalizing Tags with <code>intarray</code></h2>
+<ul>
+<li>intarray provides new operators, <code>@@</code> and
+<code>~~</code>, to test arrays against special <code>query_int</code>
+queries</li>
+<li>Queries use int values checked against array elements, combined with
+logical operators</li>
+<li>Example: <code>1&amp;(2|3)</code> matches arrays that contain
+<code>1</code> and also either <code>2</code> or <code>3</code></li>
+<li>Special index operator to index on intarrays:
+<code>using gin(tags gin__int_ops)</code></li>
+<li>Build a query dynamically, then use as join restriction, like
+<code>join t on tags   @@ query</code></li>
+<li>Use case: user-defined tags with maybe exclusions; query specialized
+language with direct index support</li>
+</ul>
+<h2 id="chapter-47-the-most-popular-pub-names">Chapter 47: The Most
+Popular Pub Names</h2>
+<ul>
+<li><code>point</code> data type isn’t bound to any projection</li>
+<li>Distance operator (<code>&lt;-&gt;</code>) is Euclidean, not Earth
+distance</li>
+<li>kNN GiST indexing: <code>using gist(pos)</code></li>
+</ul>
+<h2 id="chapter-48-how-far-is-the-nearest-pub">Chapter 48: How far is
+the nearest pub?</h2>
+<ul>
+<li>earthdistance contrib: <code>&lt;@&gt;</code> operator to compute
+true distance between two points</li>
+</ul>
+<h2 id="chapter-49-geolocation-with-postgresql">Chapter 49: Geolocation
+with PostgreSQL</h2>
+<ul>
+<li>ip4r extension: provides <code>ip4r</code> data type for IP address
+ranges</li>
+<li>Example: “range contains” is
+<code>where iprange &gt;&gt;= '91.121.37.122'</code></li>
+</ul>
+<h2 id="chapter-50-counting-distinct-users-with-hyperloglog">Chapter 50:
+Counting Distinct Users with HyperLogLog</h2>
+<ul>
+<li>Extension postgresql-hll</li>
+<li>A “very special hash value”</li>
+<li>Main operations:
+<ul>
+<li>Build hash from input value</li>
+<li>Update the already known <code>hll</code> value with the hash</li>
+</ul></li>
+<li>Side note: unique constraint for multiple columns with
+<code>unique(id, datetime)</code></li>
+<li><code>#</code> operator: compute estimated number of distinct
+entries stored in hll set (unary operator)</li>
+<li>Application: count unique visitors per week, and get unique visitors
+per month by union without double counting</li>
+</ul>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

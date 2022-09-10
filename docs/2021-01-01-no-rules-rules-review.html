@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2021-01-01" />
+  <title>Does “No Rules Rules” rule?</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">Does “No Rules Rules” rule?</h1>
+<p class="date">2021-01-01</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#is-this-whole-thing-a-non-starter"
+id="toc-is-this-whole-thing-a-non-starter">Is this whole thing a
+non-starter?</a></li>
+<li><a href="#does-this-even-apply-to-us"
+id="toc-does-this-even-apply-to-us">Does this even apply to us?</a></li>
+<li><a href="#a-few-dislikes" id="toc-a-few-dislikes">A few
+dislikes</a></li>
+<li><a href="#things-id-be-happy-to-see-adopted"
+id="toc-things-id-be-happy-to-see-adopted">Things I’d be happy to see
+adopted</a></li>
+<li><a href="#bibliography" id="toc-bibliography">Bibliography</a></li>
+</ul>
+</nav>
+<p><a
+href="https://www.penguinrandomhouse.com/books/606529/no-rules-rules-by-reed-hastings-and-erin-meyer/"><em>No
+Rules Rules</em></a> was book number eleven for our book club at work.
+We had previously read <a
+href="https://pattymccord.com/book/"><em>Powerful</em></a> by Patty
+McCord, so many concepts weren’t new, but it was an interesting new
+perspective.</p>
+<figure>
+<img src="images/2021-01-01-nrr-cover.jpg"
+alt="Cover of No Rules Rules" />
+<figcaption aria-hidden="true">Cover of <em>No Rules
+Rules</em></figcaption>
+</figure>
+<p>Overall, how I felt about the book was a bit of an emotional roller
+coaster.</p>
+<h1 id="is-this-whole-thing-a-non-starter">Is this whole thing a
+non-starter?</h1>
+<p>The whole book is laid out as a sequence of quite specific steps a
+company can take to become like Netflix, by</p>
+<ul>
+<li>building up talent density,</li>
+<li>increasing candor,</li>
+<li>and releasing controls.</li>
+</ul>
+<p>Each dimension then is iterated over three times. The first step, and
+a precondition for all the rest, is to have high “talent density”, i.e.,
+only have really high performers working at the company. For Netflix,
+this kind of happened when they had to lay off a third of their
+workforce in 2001: executives realized that everything was suddenly
+better because all the “just adequately” performing employees were
+gone.</p>
+<p>Well, what if your company happens to not go through an existential
+crisis? How do you identify and get rid of all the non-stellar employees
+in a way that doesn’t cause (justified) outrage? Is this even possible
+for an already established company? I couldn’t find an answer to this,
+and seeing that all other steps require this high talent density, it
+felt like the rest of the book might be difficult to apply.</p>
+<p>I did like the reference to the “bad apple” study <span
+class="citation" data-cites="Felps2006">(<a href="#ref-Felps2006"
+role="doc-biblioref">Felps, Mitchell, and Byington 2006</a>)</span>,
+though, seeing that it was also mentioned in <a
+href="2020-09-06-culture-code-takeaways.html"><em>The Culture
+Code</em></a>: a single underperforming (or actively disruptive) team
+member pulls down the performance of the whole team significantly. In
+<em>The Culture Code</em>, the focus was on how there can be “good
+apples” to counteract this; in <em>No Rules Rules</em>, the emphasis is
+on the negative effects and eliminating them.</p>
+<p>Another great reference introduced me to the origins of the mythical
+“10x engineer”: a paper from the 60s describes how programmers were
+given standardized tasks and how vast the performance differences
+between individuals were <span class="citation"
+data-cites="Sackman1968">(<a href="#ref-Sackman1968"
+role="doc-biblioref">Sackman, Erikson, and Grant 1968</a>)</span>. I’m
+not convinced that this should be taken at face value for engineers 50
+years later, though.</p>
+<h1 id="does-this-even-apply-to-us">Does this even apply to us?</h1>
+<p>On a related note, the authors point out multiple times that the
+model they describe isn’t applicable everywhere. It’s great for creative
+endeavours where failure isn’t critical, but probably shouldn’t be used
+when you want to produce “a million doses of penicillin” or “ten
+thousand identical cars”.</p>
+<p>Now, software engineers fancy their craft as somewhat creative at
+times—can the model be applied here? My guess is that it still depends:
+are you writing software to control a nuclear submarine, or to stream
+cartoons? What about an app for personal banking?</p>
+<p>I don’t recall the book using any examples involving Netflix
+engineers, so it’s not obvious if the same principles are applied also
+for engineers, or if engineering is somehow treated differently within
+Netflix as “not all that creative”.</p>
+<p>There are surveys comparing employee happiness among FAANG (and MSFT)
+workers such as <a
+href="https://angel.co/blog/over-60-of-employees-are-happy-at-startups-far-outpacing-faang-and-msft">this
+one</a> conducted by AngelList and Blind in October 2019:</p>
+<figure>
+<img src="images/2021-01-01-faang-happiness.png"
+alt="Reported happiness among FAANG (and MSFT) workers" />
+<figcaption aria-hidden="true">Reported happiness among FAANG (and MSFT)
+workers</figcaption>
+</figure>
+<p>Or a <a
+href="https://www.teamblind.com/blog/index.php/2020/11/17/which-faang-is-best-to-work-for-we-figured-it-out/">similar
+survey</a> from November 2020, this time by Blind alone, where Netflix
+tops every single category. There are of course valid questions such as
+“how was this measured?”, “this is all self-reported, survivor bias
+much?”, or “what about significant differences between engineering and
+the rest of a company?”, but it’s at least <em>some</em> evidence that
+Netflix seems to be doing alright as an employer.</p>
+<h1 id="a-few-dislikes">A few dislikes</h1>
+<p>While overall I felt the time spent reading the book was a good
+investment, I didn’t exactly nod in agreement with every single
+section.</p>
+<p>Some of the examples talk about people for whom the culture wasn’t a
+good fit, like “Michelle” and her problematic “business” trips to Las
+Vegas with suspiciously high food and drink expenses (which got her
+fired). To me, these examples felt very contrived and eroded my trust in
+the authenticity of the examples for things working out fine—but to be
+fair, many of the latter use full names of high profile Netflix
+employees. There also didn’t seem to be much in terms of helping people
+adapt to such a culture; apparently, you’re either a fit or you are
+not.</p>
+<p>Reading about the Keeper Test <a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a>, I couldn’t help but
+being slightly horrified at the thought of having this kind of pressure
+looming over me. The examples of people having trouble to adjust to it
+didn’t exactly help, either: what happened to Marta, who moved from
+Spain to the Netherlands, and had trouble breathing in the elevator
+every single morning from all the stress? I need closure! Since her full
+name was given, I kind of expected to read about a marvellous
+transformation, but for all I know, she still suffers from anxiety every
+day. (But she still works at Netflix, I checked!)</p>
+<p>Chapter 10 talks about scaling Netflix culture globally. There are a
+few neat ideas, like a culture map of the company and anticipating
+regional challenges for strong deviations in certain dimensions:
+“communication in Japan is a lot more high-context than at Netflix, we
+should probably take that into consideration for the local workforce
+there.”</p>
+<p>The rest of the chapter, however, read a bit like people realizing
+for the first time in their lives that the world consists of more than
+just the United States, and then applying that knowledge by means of a
+cultural clichée hammer: “the Dutch do X, the Japanese do Y”—I feel like
+there’s more nuance to it.</p>
+<p>My overall impression oscillated between “this all makes so much
+sense” and “of course they think it’s great, it’s their company, but it
+sounds like a cult”.</p>
+<h1 id="things-id-be-happy-to-see-adopted">Things I’d be happy to see
+adopted</h1>
+<p>I concluded that it’s unlikely for any company I work at to ever
+undergo the complete “Netflixification”, but there are a few key points
+I’m taking away as useful on their own.</p>
+<ul>
+<li><p><strong>A policy of not just unlimited “personal time off” days,
+but unlimited holidays.</strong> Multiple references indicate that
+people take about the same amount of time off as they would with limited
+holidays, but it would be more flexible, and signal trust in employees.
+(As long as leaders model actually taking time off.)</p></li>
+<li><p><strong>No expense policy.</strong> At Netflix, the entire policy
+is</p>
+<blockquote>
+<p>Act in Netflix’s best interest</p>
+</blockquote>
+<p>(and if you abuse it, you’re fired). This might be too extreme for
+many companies, but there probably is some middle ground between “every
+expensed pencil goes through a five-tier approval process” and “there is
+no approval process”.</p></li>
+<li><p><strong>Defaulting to public visibility.</strong> With very few
+exceptions for things that are personal, everything (meeting notes,
+strategy docs, roadmaps and so on) should be accessible by everybody. I
+don’t see any benefit to selectively withholding information, and having
+the information provides context.</p></li>
+<li><p><strong>Actually giving and encouraging feedback.</strong> I’m
+pretty sure every company ever says that personal growth and feedback
+are very important to them; actually living that is another story. I
+want to point out the “Live 360s” from the book (public, real-time
+feedback frenzies) as going way too far for my taste, though—but “Only
+say about someone what you will say to their face” sounds like a solid
+principle. And the “4A” guidelines for providers and recipients of
+feedback (aim to assist, actionable, appreciate, accept or discard) feel
+useful as well.</p></li>
+<li><p><strong>Leading with context.</strong> Understanding why you’re
+doing something is always going to get better results than being an
+implementation robot.</p></li>
+</ul>
+<p>Overall, I wouldn’t say that <em>No Rules Rules</em> rules
+indiscriminately, but there are certainly a few interesting ideas in
+there, and it’s an entertaining read.</p>
+<h1 class="unnumbered" id="bibliography">Bibliography</h1>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
+<div id="ref-Felps2006" class="csl-entry" role="doc-biblioentry">
+Felps, Will, Terence Mitchell, and Eliza Byington. 2006. <span>“How,
+When, and Why Bad Apples Spoil the Barrel: Negative Group Members and
+Dysfunctional Groups.”</span> <em>Research in Organizational Behavior -
+RES ORGAN BEH</em> 27 (December): 175–222. <a
+href="https://doi.org/10.1016/S0191-3085(06)27005-9">https://doi.org/10.1016/S0191-3085(06)27005-9</a>.
+</div>
+<div id="ref-Sackman1968" class="csl-entry" role="doc-biblioentry">
+Sackman, H., W. J. Erikson, and E. E. Grant. 1968. <span>“Exploratory
+Experimental Studies Comparing Online and Offline Programming
+Performance.”</span> <em>Commun. ACM</em> 11 (1): 3–11. <a
+href="https://doi.org/10.1145/362851.362858">https://doi.org/10.1145/362851.362858</a>.
+</div>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Would my manager fight to keep me if I told them I want
+to leave? If no, they should have let me go already.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

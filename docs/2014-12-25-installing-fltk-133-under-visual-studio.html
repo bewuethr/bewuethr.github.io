@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2014-12-25" />
+  <title>Installing FLTK 1.3.3 under Visual Studio Community 2013</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #073642;
+        color: #839496;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #839496;  padding-left: 4px; }
+    div.sourceCode
+      { color: #839496; background-color: #002b36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #dc322f; } /* Annotation */
+    code span.at { color: #b58900; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #859900; } /* BuiltIn */
+    code span.cf { color: #859900; } /* ControlFlow */
+    code span.ch { color: #dc322f; } /* Char */
+    code span.cn { color: #2aa198; } /* Constant */
+    code span.co { color: #586e75; font-style: italic; } /* Comment */
+    code span.cv { color: #268bd2; } /* CommentVar */
+    code span.do { color: #2aa198; } /* Documentation */
+    code span.dt { color: #cb4b16; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #ffffff; background-color: #ff0000; } /* Error */
+    code span.ex { color: #839496; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #2aa198; } /* Information */
+    code span.kw { color: #859900; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #cb4b16; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #268bd2; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #cb4b16; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">Installing FLTK 1.3.3 under Visual Studio Community
+2013</h1>
+<p class="date">2014-12-25</p>
+</header>
+<p><em>Before starting to read this: Phil has written <a
+href="https://bumpyroadtocode.com/2017/08/29/how-to-install">an updated
+version</a> of this guide, using FLTK 1.3.4 and Visual Studio 2017. You
+should probably head over there.</em></p>
+<h1 id="downloading-and-building-fltk">Downloading and building
+FLTK</h1>
+<p>Download FLTK from [here][ftlk]: get
+<code>fltk-1.3.3-source.tar.gz</code> and decompress it, using for
+example <a href="http://www.7-zip.org">7-Zip</a>. You should end up with
+a directory <code>fltk-1.3.3</code>; I have put mine in a subfolder of
+my <code>Documents</code> folder:</p>
+<figure>
+<img src="images/2014-12-25-01.png" alt="FLTK folder" />
+<figcaption aria-hidden="true">FLTK folder</figcaption>
+</figure>
+<p>Now open the project file <code>fltk.sln</code> in
+<code>fltk-1.3.3/ide/VisualC2010</code>. If asked, say you’re okay with
+updating the project files.</p>
+<p>Make sure you have selected <em>Debug</em> as your solution
+configuration.</p>
+<figure>
+<img src="images/2014-12-25-02.png" alt="Debug configuration" />
+<figcaption aria-hidden="true">Debug configuration</figcaption>
+</figure>
+<p>In the context menu of the <em>demo</em> project, select <em>Set as
+StartUp Project</em>.</p>
+<figure>
+<img src="images/2014-12-25-03.png" alt="Project context menu" />
+<figcaption aria-hidden="true">Project context menu</figcaption>
+</figure>
+<p>Now build the solution (<em>Build</em> – <em>Build Solution</em> or
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd>). If successful, you
+should be able to run the <em>demo</em> project (<em>Debug</em> –
+<em>Start Debugging</em> or <kbd>F5</kbd>).</p>
+<p>Change the solution configuration to <em>Release</em> and build
+again. Check if you can run the <em>demo</em> project
+(<kbd>F5</kbd>).</p>
+<p>Now we have to copy the generated library files to the right
+directory so Visual Studio finds them. In my installation, the libraries
+and headers are in
+<code>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC</code>
+(just <code>VC</code> from now on). If you have the right directory,
+there should be a bunch of subdirectories:</p>
+<figure>
+<img src="images/2014-12-25-04.png" alt="Subdirectories" />
+<figcaption aria-hidden="true">Subdirectories</figcaption>
+</figure>
+<p>Now copy (don’t move) the following from you <code>fltk-1.3.3</code>
+folder:</p>
+<ul>
+<li><p>The complete <code>FL</code> directory to
+<code>VC\include</code></p></li>
+<li><p>All <code>.lib</code> files from <code>fltk-1.3.3\lib</code>
+(except <code>README.lib</code>) to <code>VC\lib</code>. There should be
+14 files: seven pairs of two files each, one of which has an added “d”
+(for “debug”) at the end of the file name.</p></li>
+<li><p><code>fluid.exe</code> and <code>fluidd.exe</code> from
+<code>fltk-1.3.3\fluid</code> to <code>VC\bin</code></p></li>
+</ul>
+<h1 id="setting-up-a-fltk-project">Setting up a FLTK project</h1>
+<p>To set up a FLTK project, select <em>File</em> – <em>New</em> –
+<em>Project</em> and choose <em>Win32 Project</em>:</p>
+<figure>
+<img src="images/2014-12-25-05.png" alt="New project menu" />
+<figcaption aria-hidden="true">New project menu</figcaption>
+</figure>
+<p>In the wizard under <em>Application Settings</em>, check <em>Empty
+project</em>:</p>
+<figure>
+<img src="images/2014-12-25-06.png" alt="Application settings menu" />
+<figcaption aria-hidden="true">Application settings menu</figcaption>
+</figure>
+<p>Create a source file with <em>Project</em> – <em>Add New
+Item</em>:</p>
+<figure>
+<img src="images/2014-12-25-07.png" alt="Add new item menu" />
+<figcaption aria-hidden="true">Add new item menu</figcaption>
+</figure>
+<p>Enter this code:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;FL/Fl.H&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;FL/Fl_Box.H&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;FL/Fl_Window.H&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    Fl_Window window<span class="op">(</span><span class="dv">200</span><span class="op">,</span><span class="dv">200</span><span class="op">,</span><span class="st">&quot;Window title&quot;</span><span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    Fl_Box box<span class="op">(</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">200</span><span class="op">,</span><span class="dv">200</span><span class="op">,</span><span class="st">&quot;Hey, I mean, Hello, World!&quot;</span><span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    window<span class="op">.</span>show<span class="op">();</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Fl<span class="op">::</span>run<span class="op">();</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Now open <em>Project</em> – <em>Properties</em> and make sure you
+have selected <em>Debug</em> in <em>Configuration</em> in the top left
+corner. Under <em>Linker</em> – <em>Input</em>, edit <em>Additional
+Dependencies</em> and add <code>fltkd.lib</code>,
+<code>wsock32.lib</code>, <code>comctl32.lib</code>,
+<code>fltkjpegd.lib</code> and <code>fltkimagesd.lib</code>, each on
+their own line:</p>
+<figure>
+<img src="images/2014-12-25-08.png" alt="Dependencies dialogue" />
+<figcaption aria-hidden="true">Dependencies dialogue</figcaption>
+</figure>
+<p>Because this is the <em>Debug</em> configuration, we would like to
+have a visible console window. To get that, go to <em>Linker</em> –
+<em>System</em> and set <code>/SUBSYSTEM:CONSOLE</code> for
+<em>SubSystem</em>:</p>
+<figure>
+<img src="images/2014-12-25-09.png" alt="Property Pages dialogue" />
+<figcaption aria-hidden="true">Property Pages dialogue</figcaption>
+</figure>
+<p>Now build and run the project. You should get a console window and
+the GUI window:</p>
+<figure>
+<img src="images/2014-12-25-10.png" alt="Console and GUI windows" />
+<figcaption aria-hidden="true">Console and GUI windows</figcaption>
+</figure>
+<p>Now go back to <em>Project</em> – <em>Properties</em> and select
+<em>Release</em> as the configuration. Go to <em>Linker</em> –
+<em>Input</em> and edit the <em>Additional Dependencies</em> just like
+before, but this time, add <code>fltk.lib</code>,
+<code>wsock32.lib</code>, <code>comctl32.lib</code>,
+<code>fltkjpeg.lib</code> and <code>fltkimages.lib</code>—notice the
+missing <code>d</code> at the end of the names:</p>
+<figure>
+<img src="images/2014-12-25-11.png"
+alt="Dependencies dialogue for release" />
+<figcaption aria-hidden="true">Dependencies dialogue for
+release</figcaption>
+</figure>
+<p>Make sure that under <em>Linker</em> – <em>System</em>, the option
+<code>/SUBSYSTEM:WINDOWS</code> is selected so we don’t get a console
+window. Now build and run to see if only the GUI window shows up.</p>
+<p>That’s how you set up any project using FLTK!</p>
+<h1 id="getting-fltk-with-headers-from-stroustrups-book-to-run">Getting
+FLTK with headers from Stroustrup’s book to run</h1>
+<p>A lot of people struggling with FLTK are using it in the first place
+because they’re working through Bjarne Stroustrup’s book “<a
+href="http://www.stroustrup.com/Programming/">Programming—Principles and
+Practice Using C++</a>”, which uses FLTK in its Chapters 12 to 16 for
+GUI examples. Stroustrup provides a small interface library to be used
+in all the exercises. Here is how to set up a project using this
+interface library!</p>
+<p>Create a new Win32 project. I’ve called mine
+<code>stroustrup_ppp</code>:</p>
+<figure>
+<img src="images/2014-12-25-12.png" alt="New project dialogue" />
+<figcaption aria-hidden="true">New project dialogue</figcaption>
+</figure>
+<p>Make sure it’s empty by selecting <em>Empty project</em> in
+<em>Application Settings</em> in the Application Wizard.</p>
+<p>Now set all the project properties just like above so Visual Studio
+properly links to the FLTK library files.</p>
+<p>For the example, we’re going to do the drill of Chapter 12. Select
+<em>Project</em> – <em>Add New Item</em> to add a new file:</p>
+<figure>
+<img src="images/2014-12-25-13.png" alt="Add New Item dialogue" />
+<figcaption aria-hidden="true">Add New Item dialogue</figcaption>
+</figure>
+<p>If you haven’t already, download the <a
+href="http://www.stroustrup.com/Programming/PPP2code/std_lib_facilities.h">standard
+library access header</a> and the <a
+href="http://www.stroustrup.com/Programming/PPP2code/">GUI support
+code</a> from the <a
+href="http://www.stroustrup.com/Programming/">website</a> and put them
+in the same directory as <code>chapter12_drill.cpp</code>. Ignore all
+the matrix files and <code>Gui.h</code>—download <code>GUI.h</code>.
+Don’t download <code>simple_window.cpp</code> as everything is already
+defined in <code>simple_window.h</code>. The directory should look like
+this afterwards:</p>
+<figure>
+<img src="images/2014-12-25-14.png" alt="stroustrup_ppp directory" />
+<figcaption aria-hidden="true"><code>stroustrup_ppp</code>
+directory</figcaption>
+</figure>
+<p>Now add all the files to the project using <em>Project</em> – <em>Add
+Existing Item</em>:</p>
+<figure>
+<img src="images/2014-12-25-15.png" alt="Add Item dialogue" />
+<figcaption aria-hidden="true">Add Item dialogue</figcaption>
+</figure>
+<p>This is actually overkill as we’re not going to use
+<code>GUI.h</code> and <code>GUI.cpp</code> for a while, but you won’t
+have to add anything else when you eventually use them.</p>
+<p>For some reason, in <code>Point.h</code>, the constructors are
+commented out. Uncomment everything in the struct.</p>
+<p>Now edit <code>chapter12_drill.cpp</code> and enter this code:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;Graph.h&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;Simple_window.h&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">using</span> <span class="kw">namespace</span> Graph_lib<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    Point tl<span class="op">(</span><span class="dv">150</span><span class="op">,</span><span class="dv">150</span><span class="op">);</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    Simple_window win<span class="op">(</span>tl<span class="op">,</span><span class="dv">600</span><span class="op">,</span><span class="dv">400</span><span class="op">,</span><span class="st">&quot;My window&quot;</span><span class="op">);</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    win<span class="op">.</span>wait_for_button<span class="op">();</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>If you try to build your solution now, you get a slew of errors. Here
+is how to get rid of them:</p>
+<p>In <code>std_lib_facilities.h</code>, comment out the complete
+<code>vector</code> part:</p>
+<figure>
+<img src="images/2014-12-25-16.png" alt="std_lib_facilities.h" />
+<figcaption
+aria-hidden="true"><code>std_lib_facilities.h</code></figcaption>
+</figure>
+<p>This should get rid of errors related to <code>vector</code> and
+initializer lists; you lose range checking, though.</p>
+<p>Next, because <a
+href="http://msdn.microsoft.com/en-us/library/dn793970.aspx">list
+initialization inside member initializer list or non-static data member
+initializer is not implemented</a> in VS 2013, comment out the
+constructor of <code>Lines</code> in <code>graph.h</code> (line 238).
+For the same reason, replace the constructor of <code>Text</code>:</p>
+<figure>
+<img src="images/2014-12-25-17.png" alt="graph.h" />
+<figcaption aria-hidden="true"><code>graph.h</code></figcaption>
+</figure>
+<p>Next, in <code>GUI.cpp</code>, add <code>Graph_lib::</code> in front
+of <code>Window&amp;</code> in the definition of
+<code>Button::attach</code> (line 8), <code>In_box::attach</code> (line
+30) and <code>Out_box::attach</code> (line 49). In
+<code>Graph.cpp</code>, in the definition of <code>can_open</code>,
+replace <code>return ff;</code> with <code>return bool(ff);</code> (line
+319).</p>
+<p>Finally, in <code>GUI.cpp</code>, remove the constructor
+<code>Menu::Menu</code> as it is already defined in
+<code>GUI.h</code>.</p>
+<p>Now you should be able to build and run the project!</p>
+<figure>
+<img src="images/2014-12-25-18.png" alt="FTLK GUI window" />
+<figcaption aria-hidden="true">FTLK GUI window</figcaption>
+</figure>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

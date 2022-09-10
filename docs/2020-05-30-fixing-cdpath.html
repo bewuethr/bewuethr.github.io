@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-05-30" />
+  <title>Fixing CDPATH</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #073642;
+        color: #839496;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #839496;  padding-left: 4px; }
+    div.sourceCode
+      { color: #839496; background-color: #002b36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #dc322f; } /* Annotation */
+    code span.at { color: #b58900; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #859900; } /* BuiltIn */
+    code span.cf { color: #859900; } /* ControlFlow */
+    code span.ch { color: #dc322f; } /* Char */
+    code span.cn { color: #2aa198; } /* Constant */
+    code span.co { color: #586e75; font-style: italic; } /* Comment */
+    code span.cv { color: #268bd2; } /* CommentVar */
+    code span.do { color: #2aa198; } /* Documentation */
+    code span.dt { color: #cb4b16; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #ffffff; background-color: #ff0000; } /* Error */
+    code span.ex { color: #839496; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #2aa198; } /* Information */
+    code span.kw { color: #859900; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #cb4b16; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #268bd2; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #cb4b16; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">Fixing <code>CDPATH</code></h1>
+<p class="date">2020-05-30</p>
+</header>
+<p>Let’s say we have a directory somewhere that we access often; maybe
+the directory that contains all our projects, or the parent directory of
+a bunch of services. And that directory has an annoyingly long path,
+potentially buried deep in some <code>GOPATH</code>, for example. To get
+there, we have to type something like</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/go/src/github.com/bewuethr/awesome-project</span></code></pre></div>
+<p>every time. Unacceptable, right?</p>
+<h1 id="solution-1-alias">Solution 1: alias</h1>
+<p>We can use an <a
+href="https://www.gnu.org/software/bash/manual/bash.html#Aliases">alias</a>!
+That’s what I did for a long time. I added</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> cdap=<span class="st">&#39;cd &quot;$HOME/go/src/github.com/bewuethr/awesome-project&quot;&#39;</span></span></code></pre></div>
+<p>to my <code>~/.bashrc</code><a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a>, and was able to
+navigate like</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cdap</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bar</span>  baz  foo  go.mod  go.sum</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd bar</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/bar</span></span></code></pre></div>
+<p>Great!</p>
+<h1 id="failed-attempt-at-improvement-naïve-cdpath">(Failed) attempt at
+improvement: naïve <code>CDPATH</code></h1>
+<p>I almost always want to access a subdirectory of
+<code>awesome-project</code>, rarely the directory itself. Bash (or any
+POSIX conformant shell) has a shell variable called <a
+href="https://www.gnu.org/software/bash/manual/bash.html#index-CDPATH"><code>CDPATH</code></a>:
+a colon-separated list of directories for <code>cd</code> to use as a
+search path.</p>
+<p>So, instead of my alias, I’d stick this into my
+<code>.bashrc</code>:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CDPATH</span><span class="op">=</span><span class="st">&#39;/home/benjamin/go/src/github.com/bewuethr/awesome-project&#39;</span></span></code></pre></div>
+<p>Now, from anywhere in my file system, I can just do this:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/path/to/some/random/directory</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd foo</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span></code></pre></div>
+<p>And sure enough, Bash even helpfully tells me that it took me there!
+Excellent.</p>
+<p>Or is it? Let’s assume I want to change into a directory
+<code>foo</code> within that random directory:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/path/to/some/random/directory</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">errcheck</span>  foo  lint  vet</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd foo</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span></code></pre></div>
+<p>That took me to the <code>foo</code> from <code>CDPATH</code>!
+Definitely not what I wanted. I could do this instead:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ./foo</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/path/to/some/random/directory/foo</span></span></code></pre></div>
+<p>But in reality, that’d more likely look like</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd foo  <span class="co"># Oops, uses CDPATH!</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd <span class="at">-</span>  <span class="co"># Go to previous directory...</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/path/to/some/random/directory</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ./foo  <span class="co"># Be explicit with ./</span></span></code></pre></div>
+<p>and gone is any advantage <code>CDPATH</code> would have had over an
+alias. It tried using it like this for a while, but it got too annoying
+and I gave up, went back to my alias.</p>
+<h1 id="solution-2-cdpath-done-right">Solution 2: <code>CDPATH</code>
+done right</h1>
+<p>Until one day, I really wanted to figure out if there isn’t a better
+way. I took a closer look at the Bash manual; from the description of
+the <a
+href="https://www.gnu.org/software/bash/manual/bash.html#index-cd"><code>cd</code></a>
+builtin:</p>
+<blockquote>
+<p>If the shell variable <code>CDPATH</code> exists, it is used as a
+search path: each directory name in <code>CDPATH</code> is searched for
+<em>directory</em>, with alternative directory names in
+<code>CDPATH</code> separated by a colon (<code>:</code>).</p>
+</blockquote>
+<p>And a bit later:</p>
+<blockquote>
+<p>If a non-empty directory name from <code>CDPATH</code> is used, or if
+<code>-</code> is the first argument, and the directory change is
+successful, the absolute pathname of the new working directory is
+written to the standard output.</p>
+</blockquote>
+<p>That was the first hint: “non-empty directory name”!</p>
+<p>In the <a
+href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/cd.html">POSIX
+spec for <code>cd</code></a>, we can read this:</p>
+<blockquote>
+<p>Starting with the first pathname in the &lt;colon&gt;-separated
+pathnames of <em>CDPATH</em> […] if the pathname is null, test if the
+concatenation of dot, a &lt;slash&gt; character, and the operand names a
+directory.</p>
+</blockquote>
+<p>Even more explicit. A null pathname in <code>CDPATH</code> is
+replaced with <code>./</code>, which is exactly what I want. The fix is
+really a one character change:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CDPATH</span><span class="op">=</span><span class="st">&#39;:/home/benjamin/go/src/github.com/bewuethr/awesome-project&#39;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#              └── this one!</span></span></code></pre></div>
+<p>This prepends a null directory to <code>CDPATH</code>.</p>
+<p>Now I can do this:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/path/to/some/random/directory</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">errcheck</span>  foo  lint  vet</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd foo  <span class="co"># Does cd ./foo</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">/path/to/some/random/directory/foo</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="ex">foo.go</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd foo  <span class="co"># Uses non-null CDPATH path</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span></code></pre></div>
+<p>Much better!</p>
+<h1 id="not-exactly-new">Not exactly new</h1>
+<p>As the POSIX spec tells us, <code>CDPATH</code> has been around since
+the System V shell. And indeed, the manual for System V Release 3.5 has
+this to say:</p>
+<figure>
+<img src="images/2020-05-30-sysv-manual.png" alt="1986!" />
+<figcaption aria-hidden="true">1986!</figcaption>
+</figure>
+<h1 id="bonus-tab-completion">Bonus: tab completion</h1>
+<p>A nice side effect when using the (pretty standard) bash-completion
+package is that it is fully <code>CDPATH</code> aware (see the <a
+href="https://github.com/scop/bash-completion/blob/ba4c941faa1ff5eb63e7984a6a52a7b703e2887f/bash_completion#L1794-L1840">implementation
+of <code>_cd</code></a>), so I can do</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/benjamin/.vim</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">after</span>  autoload  bundle  colors  ftdetect</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd f<span class="op">&lt;</span>tab<span class="op">&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">foo/</span>      ftdetect/</span></code></pre></div>
+<p>and get both local and <code>CDPATH</code> directories.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Really to a separate file sourced from my
+<code>~/.bashrc</code>, but I’m getting ahead of myself. The post about
+my (perfect) dotfile setup is still in the making.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

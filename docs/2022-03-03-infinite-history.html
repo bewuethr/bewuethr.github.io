@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2022-03-03" />
+  <title>The perfect Bash history setup: infinite history</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #073642;
+        color: #839496;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #839496;  padding-left: 4px; }
+    div.sourceCode
+      { color: #839496; background-color: #002b36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #dc322f; } /* Annotation */
+    code span.at { color: #b58900; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #859900; } /* BuiltIn */
+    code span.cf { color: #859900; } /* ControlFlow */
+    code span.ch { color: #dc322f; } /* Char */
+    code span.cn { color: #2aa198; } /* Constant */
+    code span.co { color: #586e75; font-style: italic; } /* Comment */
+    code span.cv { color: #268bd2; } /* CommentVar */
+    code span.do { color: #2aa198; } /* Documentation */
+    code span.dt { color: #cb4b16; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #ffffff; background-color: #ff0000; } /* Error */
+    code span.ex { color: #839496; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #2aa198; } /* Information */
+    code span.kw { color: #859900; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #cb4b16; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #268bd2; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #cb4b16; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">The perfect Bash history setup: infinite history</h1>
+<p class="date">2022-03-03</p>
+</header>
+<p>This is the first in a series of posts about Bash history
+configuration.</p>
+<p>Bash can keep a history of the commands you’ve issued and make them
+available via multiple methods, including <a
+href="https://www.gnu.org/software/bash/manual/bash.html#Commands-For-History">Readline
+history commands</a> and <a
+href="https://www.gnu.org/software/bash/manual/bash.html#History-Interaction">history
+expansion</a>.</p>
+<p>An example of a Readline history command is <a
+href="https://www.gnu.org/software/bash/manual/bash.html#index-reverse_002dsearch_002dhistory-_0028C_002dr_0029"><code>reverse-search-history</code></a>,
+which is usually bound to <code>C-r</code>
+(<kbd>Ctrl</kbd>+<kbd>R</kbd>), and incrementally searches the history
+backwards.</p>
+<p>An example for history expansion is <code>!!</code>, an <a
+href="https://www.gnu.org/software/bash/manual/bash.html#Event-Designators">event
+designator</a> for the previous command.</p>
+<p>Having your history around is very useful, but the default settings
+leave a few things on the table:</p>
+<ul>
+<li>History entries seem to disappear</li>
+<li>History contains duplicates and useless junk like <code>ls</code>,
+which you’re not very likely ever to feel like retrieving</li>
+<li>Multi-line entries are folded into a single line, or split into
+multiple separate entries, or even seem to change how they’re
+stored</li>
+<li>Parallel shell sessions overwrite each other’s history</li>
+</ul>
+<p>In these posts, I explain my Bash history setup, which addresses all
+of these points. “Perfect” is of course in jest—I don’t think I’ve seen
+many topics where people are as opinionated as when it comes to
+customizing a command-line setup. So, “perfect for me”, probably.</p>
+<p>Note that I’m <em>not</em> going to talk about settings that change
+the behaviour of history expansion, but only how history is stored.</p>
+<h1 id="enabling-history">Enabling history</h1>
+<p>Bash can be compiled without history support
+(<code>--enable-history</code> option for <code>configure</code>), but
+it’s enabled by default unless not supported by the operating
+system.</p>
+<p>Given history support, interactive shells have history turned on by
+default, but this can also be controlled using the <code>history</code>
+shell option:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-o</span> history</span></code></pre></div>
+<p>to enable, and</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> +o history</span></code></pre></div>
+<p>to disable. If enabled, the <a
+href="https://www.gnu.org/software/bash/manual/bash.html#index-SHELLOPTS"><code>SHELLOPTS</code></a>
+variable contains <code>history</code>, and the status is also reported
+by <code>set -o</code>.</p>
+<h1 id="infinite-history">Infinite history</h1>
+<p>The first nice-to-have is history that goes back all the way.</p>
+<p>To understand how this works, we have to know a bit about how Bash
+stores history. Command history is stored in multiple places: each
+session has an in-memory history, which is initialized from a history
+file; when the session is finished, the in-memory history is written
+back to the history file.</p>
+<p>Configuring this in a way so multiple parallel sessions don’t wipe
+out each other’s histories will be subject of a separate post; for now,
+we’re just thinking about a single session.</p>
+<p>The history file by default lives at <code>~/.bash_history</code>; to
+put it elsewhere, set the <a
+href="https://www.gnu.org/software/bash/manual/bash.html#index-HISTFILE"><code>HISTFILE</code></a>
+variable. I like my home directory uncluttered, and I try to follow the
+<a
+href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG
+Base Directory Specification</a>, so I have this in my
+<code>.bashrc</code>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">HISTFILE</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$HOME</span><span class="st">/.local/share/bash/history&quot;</span></span></code></pre></div>
+<p>where <code>~/.local/share</code> is the default value of
+<code>$XDG_DATA_HOME</code>.</p>
+<p>When the session history gets written to the history file, the file
+is either overwritten, or the history is appended. This is controlled
+with the <a
+href="https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin"><code>histappend</code>
+shell option</a>:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">shopt</span> <span class="at">-s</span> histappend</span></code></pre></div>
+<p>to append, and</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">shopt</span> <span class="at">-u</span> histappend</span></code></pre></div>
+<p>to overwrite the history file.</p>
+<p>Since we only care about an individual shell session so far, we don’t
+need to append; we can overwrite the history file at the end of each
+session without losing anything.</p>
+<p>The size of the history is controlled with the <a
+href="https://www.gnu.org/software/bash/manual/bash.html#index-HISTSIZE"><code>HISTSIZE</code></a>
+variable (defaults to 500), and the size of the history file with <a
+href="https://www.gnu.org/software/bash/manual/bash.html#index-HISTFILESIZE"><code>HISTFILESIZE</code></a>.
+Common advice is to just set these to large numbers; however, since Bash
+4.3, they can be set to a negative value for unlimited history. (Watch
+out, setting to 0 disables history and truncates the history file,
+respectively!)</p>
+<p>So, for an infinite history (and so far ignoring implications of
+parallel shell session), we’d want something like this in our
+<code>.bashrc</code>:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No clutter in the home directory</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">HISTFILE</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$HOME</span><span class="st">/.local/share/bash/history&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Overwrite when storing</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">shopt</span> <span class="at">-u</span> histappend</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Infinite session history</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="va">HISTSIZE</span><span class="op">=</span>-1</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Infinite history file</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="va">HISTFILESIZE</span><span class="op">=</span>-1</span></code></pre></div>
+<p>In the next post, we’ll look at controlling what exactly goes into
+the history.</p>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

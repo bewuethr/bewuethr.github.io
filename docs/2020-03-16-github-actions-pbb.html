@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-03-16" />
+  <title>GitHub Actions for pbb</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #073642;
+        color: #839496;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #839496;  padding-left: 4px; }
+    div.sourceCode
+      { color: #839496; background-color: #002b36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #dc322f; } /* Annotation */
+    code span.at { color: #b58900; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #859900; } /* BuiltIn */
+    code span.cf { color: #859900; } /* ControlFlow */
+    code span.ch { color: #dc322f; } /* Char */
+    code span.cn { color: #2aa198; } /* Constant */
+    code span.co { color: #586e75; font-style: italic; } /* Comment */
+    code span.cv { color: #268bd2; } /* CommentVar */
+    code span.do { color: #2aa198; } /* Documentation */
+    code span.dt { color: #cb4b16; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #ffffff; background-color: #ff0000; } /* Error */
+    code span.ex { color: #839496; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #2aa198; } /* Information */
+    code span.kw { color: #859900; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #cb4b16; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #268bd2; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #cb4b16; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">GitHub Actions for pbb</h1>
+<p class="date">2020-03-16</p>
+</header>
+<p>I used working on <a
+href="https://github.com/bewuethr/pandoc-bash-blog">Pandoc Bash Blog</a>
+as an excuse to look into <a
+href="https://github.com/features/actions">GitHub Actions</a>.
+Eventually, I want pbb to be an action that converts your Markdown files
+to HTML and deploys them to GitHub Pages instead of you having to deploy
+manually.</p>
+<p>I ended up creating three pretty simple actions.</p>
+<h1 id="a-markdown-linter">A Markdown linter</h1>
+<p>There were already actions similar to this one on the Marketplace,
+but a) I wanted to learn to write actions myself and b) none of them
+allows to use your own style file.</p>
+<p>My Markdown linter of choice is <a
+href="https://github.com/markdownlint/markdownlint">Markdownlint</a>
+(mdl) in its Ruby incarnation. I’ve used it for a long time with <a
+href="https://github.com/dense-analysis/ale">ALE</a> and have <a
+href="https://github.com/bewuethr/dotfiles/blob/master/.config/mdl/style.rb">my
+own style file</a> to enforce exactly the rules I want. (Two, actually;
+one is specifically for VimWiki.)</p>
+<p>There are two types of actions: JavaScript and Docker based ones. I’m
+using shell scripts in Docker containers for all my actions so far. The
+Docker container and the script are both very simple; the Docker
+container is just based on an Alpine image with Ruby, and I install the
+<code>mdl</code> gem.</p>
+<p>The script then checks if a style file is provided as a parameter. If
+yes, it runs mdl using that parameter, and if no, without it. Mdl checks
+all Markdown files recursively when called with a directory as its
+argument:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">stylefile</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-n</span> <span class="st">&quot;</span><span class="va">$stylefile</span><span class="st">&quot;</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mdl</span> <span class="at">--style</span> <span class="st">&quot;</span><span class="va">$GITHUB_WORKSPACE</span><span class="st">/</span><span class="va">$stylefile</span><span class="st">&quot;</span> .</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mdl</span> .</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
+<p>That’s all! Using the action is pretty simple:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/mdl-action@v1&#39;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">style-file</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;.github/workflows/style.rb&#39;</span></span></code></pre></div>
+<p>And without a style file, it’s just a one-liner. I like getting my
+own style file in a separate step in the same job:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run</span><span class="kw">:</span><span class="at"> curl &quot;$STYLE_FILE&quot; &gt; .github/workflows/style.rb</span></span></code></pre></div>
+<p>where <code>$STYLE_FILE</code> is the URL of my style file on
+GitHub.</p>
+<p>The action is alive and well on the <a
+href="https://github.com/marketplace/actions/run-mdl">Marketplace</a>.</p>
+<h1 id="a-shell-linter">A shell linter</h1>
+<p>The next action is even easier to use; it runs <a
+href="https://github.com/koalaman/shellcheck">ShellCheck</a> on all
+shell scripts in the repository.</p>
+<p>The Docker container uses the latest ShellCheck Alpine image and
+installs the <a
+href="https://www.darwinsys.com/file/"><code>file</code></a> command.
+ShellCheck doesn’t find shell script files for you, so we have to do
+that ourselves; the script being run in the action boils down to a
+single invocation of <code>find</code>.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> . <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-type</span> d <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-name</span> <span class="st">&#39;.git&#39;</span> <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">-prune</span> <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">-type</span> f <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">-exec</span> sh <span class="at">-c</span> <span class="dt">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;file --brief &quot;$1&quot; | grep -qw &quot;shell script&quot;&#39;</span> _ {} <span class="dt">\;</span> <span class="dt">\</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">-exec</span> shellcheck <span class="at">--color</span><span class="op">=</span>always {} +</span></code></pre></div>
+<p>First, we ignore the <code>.git</code> directory; then, for each
+file, we compare the output of <code>file</code> to
+<code>shell script</code>, and the files that match get sent to
+<code>shellcheck</code>. <code>--color=always</code> is a nice touch for
+the output in the GitHub Actions tab.</p>
+<p>I’m very used to Bash and GNU Coreutils, so when using Alpine with
+its BusyBox provided ash shell and commands, I always have to double
+check I’m not using some Bashism or GNUism.</p>
+<p>Using the action requires just this:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uses</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;bewuethr/shellcheck-action@v1&#39;</span></span></code></pre></div>
+<p>Like the Markdownlint action, the ShellCheck action is published on
+the <a
+href="https://github.com/marketplace/actions/run-shellcheck">Marketplace</a>.</p>
+<h1 id="a-release-tag-prefix-matcher">A release tag prefix matcher</h1>
+<p>Actions provided by GitHub itself such as the <a
+href="https://github.com/marketplace/actions/checkout">Checkout</a>
+action allow you to specify the version you want with just a prefix:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span></code></pre></div>
+<p>gets you the latest release with prefix <code>v2</code>. This is a
+convenient way to provide users of the action with non-breaking updates
+and patches without them having the do anything, so I wanted to do the
+same for my actions.</p>
+<p>As far as I can tell, these tags are manually updated, but wouldn’t
+that be a great use case for… an action? Exactly.</p>
+<p>Enter the <a
+href="https://github.com/marketplace/actions/release-tag-tracker">Release
+tag tracker</a> action!</p>
+<p>It goes through all tags in a repository and finds the most recent
+one per minor and major release. Then, it checks if a prefix tag for
+them exists and if so, deletes it; finally, it creates a new prefix tag
+pointing at the proper object and pushes everything to the remote.</p>
+<p>I got the fundamentals right pretty soon, and deleting tags worked
+fine. Pushing new tags, however, eluded me for many hours. I wasn’t
+trying to use the GitHub API, I just wanted the action to run a shell
+script that pushes the new tags in the end with a simple
+<code>git push</code>.</p>
+<p>This was met with an extremely annoying error:</p>
+<pre><code>refusing to allow a bot to create or update workflow</code></pre>
+<p>even though I didn’t do that! I tried everything I could think of or
+find online:</p>
+<ul>
+<li>Use SSH instead of HTTPS for the remote URL</li>
+<li>Use the GitHub token explicitly in the remote URL</li>
+<li>Play around with appending <code>.git</code> to the remote URL</li>
+</ul>
+<p>I eventually <a
+href="https://github.community/t5/GitHub-Actions/quot-refusing-to-allow-a-bot-to-create-or-update-workflow-quot/m-p/49223">asked
+in the Community Forum</a>, and the (not very satisfying) answer was
+that it was “because <code>GITHUB_TOKEN</code> is used to update the
+tag”. Deleting tags is okay, but pushing new ones isn’t? Strange. And
+the error message is just completely wrong, as I wasn’t touching the
+workflow file.</p>
+<p>In any case, the choice was now between using a personal access token
+or using the API. PAT seemed to be annoying (and would trigger the
+action to run again, causing an infinite loop), so API it was.</p>
+<h2 id="api-struggles">API struggles</h2>
+<p>This added a few dependencies to the container: <code>curl</code> and
+<code>jq</code> had to be added. I continued to struggle for a few days;
+the worst bug to track down must have been the one where I kept getting
+“422 Unprocessable Entity” responses from the API, but the exact same
+commands worked just fine when running locally.</p>
+<p>In the end, I found the culprit; to create the timestamp to send in
+the request body, I used</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span> <span class="at">-Iseconds</span></span></code></pre></div>
+<p>to get an ISO 8601 timestamp with second precision. Something like
+this:</p>
+<pre><code>2020-03-15T23:36:03-04:00</code></pre>
+<p>Just as required in the <a
+href="https://developer.github.com/v3/git/tags/#create-a-tag-object">API
+docs</a>: “a timestamp in ISO 8601 format”. Even with a helpful
+Wikipedia link and a formatting template:
+<code>YYYY-MM-DDTHH:MM:SSZ</code>. Aha.</p>
+<p>After lots of squinting, I figured it out: in BusyBox, the output of
+<code>date -Iseconds</code> looks like</p>
+<pre><code>2020-03-16T03:40:51+0000</code></pre>
+<p>First of all, UTC, but that’s fine; the crucial difference is that
+the timezone offset has no colon in it! <a
+href="https://en.wikipedia.org/wiki/ISO_8601#Time_offsets_from_UTC">ISO
+8601</a> says</p>
+<blockquote>
+<p>The UTC offset is appended to the time in the same way that
+<code>Z</code> was above, in the form <code>±[hh]:[mm]</code>,
+<code>±[hh][mm]</code>, or <code>±[hh]</code>.</p>
+</blockquote>
+<p>And in the relevant <a
+href="https://tools.ietf.org/html/rfc3339#page-12">RFC 3339</a>, “Date
+and Time on the Internet: Timestamps”, the formal definition of the
+offset is</p>
+<pre><code>time-numoffset = (&quot;+&quot; / &quot;-&quot;) time-hour [[&quot;:&quot;] time-minute]</code></pre>
+<p>Again, colon optional! Looks like GitHub is too strict here.</p>
+<p>Anyway, after I finally realized all this, I also noticed that the
+timestamp is optional, and I just stopped sending it. Success!</p>
+<p>The three actions are now happily running on each other, and pbb is
+using them as well.</p>
+<h1 id="learnings">Learnings</h1>
+<p>I have a pretty good understanding of GitHub Actions now, not least
+because of the quite readable <a
+href="https://help.github.com/en/actions">documentation</a>. I’m looking
+forward to playing around with something more substantial, like turning
+pbb into an action.</p>
+<p>Because my simplistic approach (“just a shell script”) didn’t pan
+out, I also got to touch the GitHub API, which doesn’t hurt either.</p>
+<p>We tried using actions at work to run a simple pull request title
+linter and even talked about moving our whole CI/CD pipeline from
+Jenkins to actions, but bumped into a pretty big roadblock: a pull
+request from the fork of a private repository <a
+href="https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-events-for-forked-repositories">does
+not trigger a workflow</a>. Which is exactly our setup at work.</p>
+<p>We’re <a
+href="https://github.community/t5/GitHub-Actions/Will-GitHub-Actions-support-pull-request-events-from-a-fork-to-a/td-p/44488">not
+the only ones</a> surprised by this and the <a
+href="https://github.community/t5/GitHub-Actions/Will-GitHub-Actions-support-pull-request-events-from-a-fork-to-a/m-p/47975/highlight/true#M7029">official
+GitHub response</a> is</p>
+<blockquote>
+<p>This is a feature we want to support and plan to.</p>
+</blockquote>
+<p>but that was three weeks ago. Until then, I’ll just play around with
+actions for my hobby projects, but it would be nice to get that feature
+eventually, as overall, actions integrate very nicely and are quite
+powerful!</p>
+<p>After this little tangent into CI/CD, I’ll get back to feature work
+on pbb. Or maybe some unit tests first, which would of course be run in
+a workflow.</p>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

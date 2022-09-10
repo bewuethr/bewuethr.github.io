@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-03-29" />
+  <title>Book review: The Art of PostgreSQL</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #073642;
+        color: #839496;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #839496;  padding-left: 4px; }
+    div.sourceCode
+      { color: #839496; background-color: #002b36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #dc322f; } /* Annotation */
+    code span.at { color: #b58900; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #859900; } /* BuiltIn */
+    code span.cf { color: #859900; } /* ControlFlow */
+    code span.ch { color: #dc322f; } /* Char */
+    code span.cn { color: #2aa198; } /* Constant */
+    code span.co { color: #586e75; font-style: italic; } /* Comment */
+    code span.cv { color: #268bd2; } /* CommentVar */
+    code span.do { color: #2aa198; } /* Documentation */
+    code span.dt { color: #cb4b16; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #ffffff; background-color: #ff0000; } /* Error */
+    code span.ex { color: #839496; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #2aa198; } /* Information */
+    code span.kw { color: #859900; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #cb4b16; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #268bd2; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #cb4b16; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">Book review: The Art of PostgreSQL</h1>
+<p class="date">2020-03-29</p>
+</header>
+<p>A few months ago, we set up a “SQL book club” at work and tackled <a
+href="https://theartofpostgresql.com/"><em>The Art of
+PostgreSQL</em></a> by Dimitri Fontaine as our first book. Here’s what I
+thought about it.</p>
+<figure>
+<img src="images/2020-03-29-taop.jpg"
+alt="Cover of The Art of PostgreSQL" />
+<figcaption aria-hidden="true">Cover of <em>The Art of
+PostgreSQL</em></figcaption>
+</figure>
+<h1 id="the-good">The good</h1>
+<p>Even though working through a technical book isn’t all that much fun,
+I’ve been able to stick to a “one part per two weeks” schedule (mostly
+because of the peer pressure in the form of an upcoming book club
+meeting). The book clocks in at about 430 pages, spread over eight parts
+with 51 chapters total. Reading one part and following along with the
+examples took be about three hours or so per part; we started in
+December and finished last week.</p>
+<p>I’ve definitely learned a lot. Enough for a separate post, actually;
+I’ve taken notes for all chapters and want to polish and publish them,
+if only as a resource for my future self.</p>
+<p>The book’s tag line is</p>
+<blockquote>
+<p>Turn Thousands of Lines of Code into Simple Queries</p>
+</blockquote>
+<p>and I’m definitely more aware of things we could do using Postgres
+instead of application code.</p>
+<p>The book is pretty complete in the sense that it starts from queries
+that just read data, goes on to data modelling and ends up with data
+manipulation and Postgres extensions. It is <em>not</em> a book about
+learning to write queries, but working through all the examples
+certainly helps by way of exposure to presumably well-written
+queries.</p>
+<p>Throughout the book, I had lots of small “a-ha!” moments when an
+example used a handy string function or some other functionality I
+hadn’t been aware of but could immediately start using; the chapter
+about setting up <code>psql</code> inspired me to work through the
+complete <a
+href="https://www.postgresql.org/docs/current/app-psql.html">documentation</a>
+for it and definitely improved my efficiency.</p>
+<h1 id="the-bad">The bad</h1>
+<h2 id="price">Price</h2>
+<p>The book is expensive! There are four editions:</p>
+<ul>
+<li>“Standard” for $49 with the electronic version (PDF, EPUB and MOBI)
+and all the queries as <code>.sql</code> files</li>
+<li>“Full” for $99, with additionally a DB dump to load</li>
+<li>“Dead Tree” for $129, with additionally the printed book</li>
+<li>“Enterprise” for $229, which is like the Full Edition, but for 15
+people and including a Docker container (but see <a
+href="#the-docker-container">below</a>)</li>
+</ul>
+<p>I pre-ordered the Full Edition for $69, if I remember correctly,
+which is still pretty steep, and work purchased the Enterprise Edition
+for the book club.</p>
+<h2 id="the-distribution-platform-is-weird">The distribution platform is
+weird</h2>
+<p>The book and data download takes place on Thinkific, a platform that
+seems to be meant for online courses, but all the features just get in
+the way of quickly downloading the files: I have to “start” or “replay”
+a “course” to get them. And I swear it aggressively messed up my
+password multiple times.</p>
+<h2 id="sloppiness">Sloppiness</h2>
+<p>I might be overly sensitive to typos, but if I pay a lot of money for
+a book, I kind of expect some level of quality control, and not the
+outlook to Part 3 to mention “<em>Writting</em> SQL queries”. There’s a
+noticeable typo every few pages, and in some places the sentences could
+have done with a little love from a copy editor, leaving a not-so-great
+impression of “self published” overall, which is at odds with the steep
+price.</p>
+<h2 id="the-data-set">The data set</h2>
+<p>The Full Edition comes with a data set and a script to load it all,
+but I definitely didn’t manage to run that successfully. Loading
+individual files was hit and miss, and I spent more than enough time
+just loading the example data to follow along.</p>
+<p>Some of the queries contain little bugs like referring to the wrong
+schema, but those were fixed easily most of the time.</p>
+<p>For some examples, the author only shows how he loads the publicly
+available data using a Common Lisp script, and I didn’t even try to get
+those examples running. Too bad, because the queries on that data were
+about the most common pub names near a city identified by an IP address,
+which is the best kind of query.</p>
+<h2 id="the-docker-container">The Docker container</h2>
+<p>Part of the allure of the Enterprise Edition is that it comes with a
+Docker container; spin it up, and start playing around with the data
+immediately! Great, isn’t it?</p>
+<p>Except, this:</p>
+<figure>
+<img src="images/2020-03-29-docker.png" alt="IOU 1 Docker container" />
+<figcaption aria-hidden="true">IOU 1 Docker container</figcaption>
+</figure>
+<p>The book has been out for a few months now; I don’t think the sales
+pitch for the Enterprise Edition should even mention the Docker
+container if quite clearly it’s not there yet.</p>
+<h2 id="the-epub-version-is-broken">The EPUB version is broken</h2>
+<p>I usually read my e-books with the Google Play Books reader, but it
+would stubbornly refuse to recognize the file as a valid EPUB file. I
+emailed the author about this, but I didn’t get an answer; I also tried
+the chat function on Thinkific, which could as well just not be there,
+as I didn’t get any response on there either<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.
+Booh.</p>
+<h2 id="indentation-style">Indentation style</h2>
+<p>This one’s really just my personal preference. I can live with this
+statement:</p>
+<blockquote>
+<p>we now have color screens and syntax highlighting and we don’t write
+all-caps code anymore… not even in SQL.</p>
+</blockquote>
+<p>But the indentation advice to “right align top-level SQL clauses”… I
+could just not warm up to that.</p>
+<p>Here’s how the author would write a simple query:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">select</span> <span class="kw">name</span>, milliseconds</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">from</span>           album</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         <span class="kw">left</span> <span class="kw">join</span> track <span class="kw">using</span>(albumid)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   <span class="kw">where</span> albumid <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> trackid;</span></code></pre></div>
+<p>The whole thing starts with whitespace, and only on the last line can
+we see that it’s because <code>order by</code> is longer than
+<code>select</code>! The vertical separation is not obvious to me. And
+aligning the table names in the <code>from</code>/<code>join</code> part
+makes it look like there was an accident involving the space bar. I
+would write this like</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">name</span>, milliseconds</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> album</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">LEFT</span> <span class="kw">JOIN</span> track <span class="kw">USING</span> (albumid)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> albumid <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> trackid;</span></code></pre></div>
+<p>But really, that’s not a complaint about the book. I’m just saying
+that until a team had agreed on a style for SQL, I’d try and nudge them
+away from the first one.</p>
+<h2 id="the-interviews">The interviews</h2>
+<p>Each part ends with an interview; I didn’t get too much value out of
+them. Some feel a bit too much like ads for Postgres, and I think a book
+about Postgres probably wouldn’t include an interview with somebody
+who’s super critical of it.</p>
+<h1 id="summary">Summary</h1>
+<p>I don’t regret spending quite some time to work through this book;
+I’ve learned a lot and will often come back to it to look up things I’ve
+forgotten the specifics about but remember their existence
+(<code>JOIN LATERAL</code>, anybody?).</p>
+<p>It’s far from perfect, though, and I don’t like being promised (and
+paying for) things I don’t get, such as a working EPUB version or the
+mythical Docker container.</p>
+<p>Let’s call this 4 out of 5 for content, but 3 out of 5 taking price
+and non-delivered features into account.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>It seems that the chat function has since been removed.
+Makes sense.<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2015-03-07" />
+  <title>Sorting strings in C with qsort</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #073642;
+        color: #839496;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #839496;  padding-left: 4px; }
+    div.sourceCode
+      { color: #839496; background-color: #002b36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #dc322f; } /* Annotation */
+    code span.at { color: #b58900; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #859900; } /* BuiltIn */
+    code span.cf { color: #859900; } /* ControlFlow */
+    code span.ch { color: #dc322f; } /* Char */
+    code span.cn { color: #2aa198; } /* Constant */
+    code span.co { color: #586e75; font-style: italic; } /* Comment */
+    code span.cv { color: #268bd2; } /* CommentVar */
+    code span.do { color: #2aa198; } /* Documentation */
+    code span.dt { color: #cb4b16; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #ffffff; background-color: #ff0000; } /* Error */
+    code span.ex { color: #839496; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #2aa198; } /* Information */
+    code span.kw { color: #859900; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #cb4b16; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #268bd2; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #cb4b16; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">Sorting strings in C with qsort</h1>
+<p class="date">2015-03-07</p>
+</header>
+<p>While working on one of the last exercises in Stroustrup’s <a
+href="http://www.stroustrup.com/Programming/PPP1.html">Programming –
+Principles and Practice Using C++</a>, I came across this little
+problem: assume you want to sort an array of C-style strings using
+<code>qsort()</code> from the C standard library
+(<code>&lt;cstdlib&gt;</code> in C++ or <code>&lt;stdlib.h&gt;</code> in
+C).</p>
+<p>An array of C-style strings looks something like
+<code>char* words[ARR_LEN]</code>, where <code>ARR_LEN</code> is the
+number of strings in your array. <code>qsort</code> is declared as
+follows:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> qsort<span class="op">(</span><span class="dt">void</span><span class="op">*</span> ptr<span class="op">,</span> <span class="dt">size_t</span> count<span class="op">,</span> <span class="dt">size_t</span> size<span class="op">,</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>           <span class="dt">int</span> <span class="op">(*</span>comp<span class="op">)(</span><span class="dt">const</span> <span class="dt">void</span><span class="op">*,</span> <span class="dt">const</span> <span class="dt">void</span><span class="op">*));</span></span></code></pre></div>
+<p><code>ptr</code> points to your array, <code>count</code> is the
+number of elements in the array, <code>size</code> the size of an
+element and <code>comp</code> a comparison function that returns</p>
+<ul>
+<li>a <em>negative</em> value if the first argument is smaller than the
+second,</li>
+<li>a <em>positive</em> value if it is bigger than the second, and</li>
+<li><em>zero</em> if they are equal.</li>
+</ul>
+<p>Like <code>strcmp</code>, if you will.</p>
+<p>My strings all have the same maximum length, <code>WORD_LEN</code>.
+Obviously, I try to call qsort like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>qsort<span class="op">(</span>words<span class="op">,</span>ctr<span class="op">,</span>WORD_LEN<span class="op">,</span>strcmp<span class="op">);</span></span></code></pre></div>
+<p>where <code>ctr</code> is the number of strings in
+<code>words</code>, and I want to use <code>strcmp</code> as my
+comparison function. This compiles just fine, but after the call to
+<code>qsort</code>, things are less fine: “stack corrupted”. Hmmm.</p>
+<p>I realize that the size of an element in my array is not the size of
+each individual string, but rather the size of a <code>char*</code>,
+because that’s what the array is: an array of <code>char*</code>, and
+not an array of actual strings. I change my call to</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>qsort<span class="op">(</span>words<span class="op">,</span>ctr<span class="op">,</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">char</span><span class="op">*),</span>strcmp<span class="op">);</span></span></code></pre></div>
+<p>Still compiles without problems. Good. And doesn’t crash. Even
+better! However, the results are still not quite what I want. If start
+with</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span><span class="op">*</span> words<span class="op">[</span>ARR_LEN<span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="st">&quot;bb&quot;</span><span class="op">,</span> <span class="st">&quot;cc&quot;</span><span class="op">,</span> <span class="st">&quot;aa&quot;</span> <span class="op">};</span></span></code></pre></div>
+<p>and sort that, I get <code>cc aa bb</code> as the result.</p>
+<p>I’m pretty sure I’m not the first person ever to try and sort
+C-strings with <code>qsort</code>, so I google. I come across <a
+href="https://stackoverflow.com/q/3757899/3266847">this Stack Overflow
+question</a> where somebody had a very similar problem. The problem is
+that the <code>comp</code> argument of <code>qsort</code> expects
+<code>const void*</code> arguments whereas <code>strcmp</code> expects
+<code>const char*</code>. The solution is to wrap the call to
+<code>strcmp</code> into a function that performs the proper casts, like
+so:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> cmpstr<span class="op">(</span><span class="dt">const</span> <span class="dt">void</span><span class="op">*</span> a<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span><span class="op">*</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> aa <span class="op">=</span> <span class="op">(</span><span class="dt">const</span> <span class="dt">char</span><span class="op">*)</span>a<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> bb <span class="op">=</span> <span class="op">(</span><span class="dt">const</span> <span class="dt">char</span><span class="op">*)</span>b<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> strcmp<span class="op">(</span>aa<span class="op">,</span> bb<span class="op">);</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>This takes <code>const void*</code>, as required by
+<code>qsort</code>’s <code>comp</code>, and casts them to
+<code>const char*</code>, as required by <code>strcmp</code>. Neat. I
+call <code>qsort</code> with my new function:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>qsort<span class="op">(</span>words<span class="op">,</span>ctr<span class="op">,</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">char</span><span class="op">*),</span>cmpstr<span class="op">);</span></span></code></pre></div>
+<p>Same result! Still no proper sorting.</p>
+<p>A closer look at the mentioned Stack Overflow question explains why:
+the <code>cmpstr</code> function provided is not meant for an array of
+strings, <code>char* words[]</code>, but for an array of arrays of
+characters, <code>char words[][]</code>. One less level of
+indirection!</p>
+<p>An element of my array is a <code>char*</code>, and the
+<code>const void*</code> in <code>cmpstr</code> point to my elements, so
+what is actually being passed is a <code>char**</code>. The proper cast
+is thus <code>*(const char**)a</code>: this points to my string, instead
+of the pointer to it. The complete function looks like this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> cmpstr<span class="op">(</span><span class="dt">const</span> <span class="dt">void</span><span class="op">*</span> a<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span><span class="op">*</span> b<span class="op">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> aa <span class="op">=</span> <span class="op">*(</span><span class="dt">const</span> <span class="dt">char</span><span class="op">**)</span>a<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> bb <span class="op">=</span> <span class="op">*(</span><span class="dt">const</span> <span class="dt">char</span><span class="op">**)</span>b<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> strcmp<span class="op">(</span>aa<span class="op">,</span>bb<span class="op">);</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>and lo and behold, it works properly!</p>
+<p>A more elegant solution can be found on the <a
+href="http://man7.org/linux/man-pages/man3/qsort.3.html">linux man page
+for qsort</a> where the casts are in the call:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> strcmp<span class="op">(*(</span><span class="dt">char</span><span class="op">*</span> <span class="dt">const</span><span class="op">*)</span> p1<span class="op">,</span> <span class="op">*(</span><span class="dt">char</span><span class="op">*</span> <span class="dt">const</span><span class="op">*)</span> p2<span class="op">);</span></span></code></pre></div>
+<p>“Cast <code>p1</code> to a pointer to a constant pointer to a
+character and dereference that”. How come this wasn’t the first thing
+that sprung to my mind?</p>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

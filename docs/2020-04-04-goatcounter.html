@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2020-04-04" />
+  <title>GoatCounter: analytics for Pandoc Bash Blog</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">GoatCounter: analytics for Pandoc Bash Blog</h1>
+<p class="date">2020-04-04</p>
+</header>
+<p>Is anybody even reading any of this? The question is only
+semi-important, because half of the fun of building my own static site
+generator is actually using it.</p>
+<p>It would still be interesting to know, though. I don’t really want to
+use Google Analytics because a) it’s total overkill and b) I like it
+when websites reduce the amount of data they shovel to tech giants at
+least somewhat.</p>
+<p>The proper answer is of course “roll your own”, but I’m not hosting
+my website myself currently.</p>
+<p>Enter <a href="https://www.goatcounter.com/">GoatCounter</a>! It does
+everything I want, is very easy to integrate, and part of the <a
+href="https://github.com/zgoat/goatcounter/blob/master/docs/rationale.markdown">rationale</a>
+for the project is to help “de-Google-fying” the internet a little,
+which sounds like a good idea. Don’t get me wrong, I use Google for
+pretty much everything, but there should always be alternatives.</p>
+<p>The project is very privacy minded and, as explained in the <a
+href="https://www.goatcounter.com/privacy">privacy policy</a>, does not
+store any personal information about visitors. It is open source and can
+be inspected on <a
+href="https://github.com/zgoat/goatcounter">GitHub</a>.</p>
+<p>Part of the project’s philosophy is to provide a free tier for
+non-commercial usage, which is pretty awesome. After trying it for a
+while, I liked it enough to start <a
+href="https://github.com/sponsors/arp242">sponsoring</a> the author.
+I’ve actually come across Martin before: he used to be quite active on
+Meta Stack Overflow, is the highest rep user on the <a
+href="https://vi.stackexchange.com/">Vi and Vim Beta Stack Exchange</a>,
+and his <a href="https://www.arp242.net/">blog</a> regularly pops up on
+the front page of Hacker News, which is where (I think) I’ve first heard
+of GoatCounter.</p>
+<h1 id="yes">Yes</h1>
+<p>To answer the question from above: people <em>do</em> read what I
+write. (Or at least visit the site.) Even if only in very modest
+numbers.</p>
+<figure>
+<img src="images/2020-04-04-goatcounter.png"
+alt="Visitor numbers for ArtifiShell Intelligence" />
+<figcaption aria-hidden="true">Visitor numbers for <em>ArtifiShell
+Intelligence</em></figcaption>
+</figure>
+<p>I wonder if the Bash testing framework <a
+href="https://github.com/bats-core/bats-core">Bats</a> really is so
+interesting that my <a
+href="2020-04-01-bats-tests-pandoc-bash-blog.html">post</a> about using
+it to test pbb tops the list, or maybe another currently ongoing and
+slightly bat-related event might be the reason for this peculiarity.</p>
+<h1 id="a-new-subcommand-for-pbb">A new subcommand for pbb</h1>
+<p>I’m using GoatCounter for my own site, but I also wanted to integrate
+it with <a href="https://github.com/bewuethr/pandoc-bash-blog">Pandoc
+Bash Blog</a>. To this end, there is a new subcommand
+<code>pbb gccode</code> (as in
+<strong>G</strong>oat<strong>C</strong>ounter <strong>code</strong>),
+which adds the site specific code into an HTML snippet which, if the
+configuration setting for the code exists, gets added to each page.</p>
+<p>Adding something right before the <code>&lt;/body&gt;</code> tag
+(which is where the GoatCounter snippet goes) is directly supported by
+pandoc via the <code>-A</code>/<code>--include-after-body</code> option.
+This means I didn’t have to touch the HTML template and can keep using
+the default; one day, I’ll have to modify it, but not quite yet.</p>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

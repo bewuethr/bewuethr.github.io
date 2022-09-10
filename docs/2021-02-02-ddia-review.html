@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2021-02-02" />
+  <title>Book review: Designing Data-Intensive Applications</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #073642;
+        color: #839496;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #839496;  padding-left: 4px; }
+    div.sourceCode
+      { color: #839496; background-color: #002b36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #dc322f; } /* Annotation */
+    code span.at { color: #b58900; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #859900; } /* BuiltIn */
+    code span.cf { color: #859900; } /* ControlFlow */
+    code span.ch { color: #dc322f; } /* Char */
+    code span.cn { color: #2aa198; } /* Constant */
+    code span.co { color: #586e75; font-style: italic; } /* Comment */
+    code span.cv { color: #268bd2; } /* CommentVar */
+    code span.do { color: #2aa198; } /* Documentation */
+    code span.dt { color: #cb4b16; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #ffffff; background-color: #ff0000; } /* Error */
+    code span.ex { color: #839496; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #2aa198; } /* Information */
+    code span.kw { color: #859900; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #cb4b16; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #268bd2; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #cb4b16; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">Book review: Designing Data-Intensive
+Applications</h1>
+<p class="date">2021-02-02</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#quality" id="toc-quality">Quality</a></li>
+<li><a href="#the-maps" id="toc-the-maps">The maps</a></li>
+<li><a href="#the-references" id="toc-the-references">The
+references</a></li>
+<li><a href="#my-main-takeaways" id="toc-my-main-takeaways">My main
+takeaways</a></li>
+</ul>
+</nav>
+<p>After kicking off our technical book club at work over a year ago
+with <em>The Art of PostgreSQL</em> (see my <a
+href="2020-03-29-taop-review.html">review</a> and <a
+href="2020-04-05-taop-summary.html">summary</a>), we took almost half a
+year of a hiatus before deciding to tackle another book—but in August,
+we decided to give <a href="https://dataintensive.net/"><em>Designing
+Data-Intensive Applications</em></a> (DDIA) by Martin Kleppmann a
+go.</p>
+<figure>
+<img src="images/2021-02-02-ddia-cover.png"
+alt="Cover of Designing Data-Intensive Applications" />
+<figcaption aria-hidden="true">Cover of <em>Designing Data-Intensive
+Applications</em></figcaption>
+</figure>
+<p>We “worked” on the book from August until December, and it was not
+exactly a breeze to read; I don’t think anybody regretted the time spent
+on reading and discussing, though.</p>
+<h1 id="quality">Quality</h1>
+<p>This is not a short book by any standard, and a few typos in such a
+dense text would certainly be forgivable. However, I don’t remember
+seeing any at all. This book has been around for a few years, and the <a
+href="https://www.oreilly.com/catalog/errata.csp?isbn=0636920032175">errata</a>
+aren’t non-existent, but whatever process there is in place to fix typos
+resulted in the version I ended up reading being near-perfect.<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></p>
+<p>The level of care is exceptional also elsewhere. A pet peeve of mine
+are technical books with shell script snippets full of outdated and bad
+practices, as if it didn’t matter; I appreciate it all the more when an
+author cares about these little things as well. (And can you trust
+somebody who doesn’t quote their variables? Surely not.)</p>
+<p>There are several examples where concepts are explained using simple
+shell implementations, for example the “world’s simplest database”:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">db_set ()</span> <span class="kw">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">,</span><span class="va">$2</span><span class="st">&quot;</span> <span class="op">&gt;&gt;</span> database</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">db_get ()</span> <span class="kw">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grep</span> <span class="st">&quot;^</span><span class="va">$1</span><span class="st">,&quot;</span> database <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-e</span> <span class="st">&quot;s/^</span><span class="va">$1</span><span class="st">,//&quot;</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
+<p>Everything neatly quoted, no <a
+href="http://porkmail.org/era/unix/award.html">Useless Use of Cat</a>,
+no ugly (and <a
+href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/tail.html#tag_20_125_18">not
+even POSIX compliant</a>) <code>tail -1</code>… perfect.</p>
+<h1 id="the-maps">The maps</h1>
+<p>Each chapter starts with a beautiful map with locations named after
+the material introduced in the chapter. Kleppmann wrote a <a
+href="https://martin.kleppmann.com/2017/03/15/map-distributed-data-systems.html">blog
+post</a> about this where he explains that the regions stand for the
+concepts, and the cities are specific implementations. There was even a
+Kickstarter campaign for <a
+href="https://dataintensive.net/poster.html">posters</a> with all the
+maps!</p>
+<p>I enjoyed looking at the maps before reading, seeing some terms I’d
+heard before and some I had no clue what they meant—and then coming back
+to the map after reading, and understanding why things are grouped
+together and what the concepts behind the names are.</p>
+<h1 id="the-references">The references</h1>
+<p>Throughout each chapter, a ton of references are listed (about one
+hundred per chapter), so if I’m more interested in any topic (just
+because, or maybe because I’m working on a related problem), there’s no
+shortage of material to dive deeper. Almost every reference links to the
+source, and Kleppmann maintains a <a
+href="https://github.com/ept/ddia-references">Git repository</a><a
+href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a> with updated links. (Now, if he
+would only merge my pull request with a fix…)</p>
+<h1 id="my-main-takeaways">My main takeaways</h1>
+<p>Reading this often felt like studying for a university exam: I would
+read and highlight, then go through the chapter again and write a
+summary for it. That’s of course not required, but I feel like I’m
+retaining much better like this. (If only I would have enjoyed studying
+as much when it would have been more useful!)</p>
+<p>The book covered a lot I only have passing familiarity with (such as
+non-relational datastores), barely even knew existed (for example
+leaderless replication), or just took for granted without knowing how it
+works (like indexing). If I need to know more about a topic, I now know
+where to start.</p>
+<p>For some concepts, I realized how incomplete my understanding had
+been (example: ACID and isolation levels), and I’m now at least aware of
+that. Know what you don’t know!</p>
+<p>And, almost the biggest win for me, a lot more problems I encounter
+or read about every day make a lot more sense now: I have a better idea
+what approaches and tradeoffs there are, or at the very least I remember
+that I <em>should</em> know what something is about—and then I can go
+look it up. <del>I can also drop more buzzwords in interviews now, which
+always impresses everybody involved.</del></p>
+<p>All in all, the book deserves all the praise it gets, and I can’t
+imagine anybody buying and reading it ending up thinking that either
+money or time was wasted.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>My version was the Kindle version, which has been
+getting regular updates every few months, with the latest release in
+June 2020.<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Bonus: there’s a PDF with a high-resolution version of
+all the maps!<a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
