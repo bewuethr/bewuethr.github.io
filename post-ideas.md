@@ -32,14 +32,16 @@ Resources:
 
 - From for loop with `cat`/`grep` to just `grep`, and on to
 
-    ```sh
-    printf | xargs grep
-    find | xargs
-    find -exec
-    find -exec {}
-    find | xargs -P
-    parallel
-    ```
+  ```sh
+  printf | xargs grep
+  find | xargs
+  find -exec
+  find -exec {}
+  find | xargs -P
+  parallel
+  ```
+
+  and `-print0` versions, too
 
 - Why story points shouldn't take into account experience of the person
   working: it normalizes by team capacity
