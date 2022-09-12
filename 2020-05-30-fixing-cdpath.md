@@ -1,4 +1,4 @@
-# Fixing `CDPATH`
+# Fixing CDPATH
 
 Let's say we have a directory somewhere that we access often; maybe the
 directory that contains all our projects, or the parent directory of a bunch of
