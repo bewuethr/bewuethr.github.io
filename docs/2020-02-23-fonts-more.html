@@ -242,12 +242,12 @@
 href="https://bewuethr.github.io/2020-02-16-css-for-pbb.html">addition
 of CSS</a>. Some are conveniences when using <code>pbb</code> on the
 command line, some change the appearance of the published result.</p>
-<h1 id="tab-completion">Tab completion</h1>
+<h2 id="tab-completion">Tab completion</h2>
 <p><code>pbb</code> knows only a bunch of subcommands (five, to be
 precise); now, when typing <code>pbb</code>, tab completion suggests
 them. That is, if the completion file is in the right place, which a
 (forthcoming) installation script has to take care of.</p>
-<h1 id="language-setting">Language setting</h1>
+<h2 id="language-setting">Language setting</h2>
 <p>Pandoc’s default HTML has an empty <code>lang</code> property in the
 opening <code>&lt;html&gt;</code> tag, which is <a
 href="https://youtu.be/NP94u7y_KkQ">bad for screen readers</a>.
@@ -263,7 +263,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="
 language tag; if none of these variables have a value, <code>pbb</code>
 defaults to <code>en-US</code>. I guess eventually, there should be an
 option to make the language a configuration value.</p>
-<h1 id="local-server">Local server</h1>
+<h2 id="local-server">Local server</h2>
 <p>To look at the built site before deploying it, I used to use the
 Python one-liner that spins up an HTTP server on localhost; for
 convenience, this is now done by <code>pbb serve</code>, which just
@@ -271,7 +271,7 @@ calls</p>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> http.server <span class="at">--directory</span> artifacts</span></code></pre></div>
 <p>under the hood.</p>
-<h1 id="favicon">Favicon</h1>
+<h2 id="favicon">Favicon</h2>
 <p><code>pbb build</code> now checks if there is an image with a name
 that matches <code>favicon.*</code> in the <code>assets</code>
 directory. If so, it gets converted to a 32x32 PNG file and included as
@@ -299,7 +299,7 @@ centre of the input image with
 <li>Crop outside of the 32x32 square with
 <code>-extent 32x32</code></li>
 </ul>
-<h1 id="web-fonts">Web fonts</h1>
+<h2 id="web-fonts">Web fonts</h2>
 <p>I wanted to have pretty fonts instead of the system defaults. A
 convenient way for doing so is to include fonts via <a
 href="https://developers.google.com/fonts">Google web fonts</a>. I want

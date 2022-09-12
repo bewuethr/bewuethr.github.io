@@ -353,8 +353,8 @@ producing HTML) and what they look like when rendered!</p>
 <p>All titles link to the corresponding manual section; examples with
 Markdown input and rendered HTML output are between horizontal
 rules.</p>
-<h1 id="paragraphs"><a
-href="https://pandoc.org/MANUAL.html#paragraphs">Paragraphs</a></h1>
+<h2 id="paragraphs"><a
+href="https://pandoc.org/MANUAL.html#paragraphs">Paragraphs</a></h2>
 <hr />
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>One or more lines of text followed by one or more blank lines.</span>
@@ -376,11 +376,11 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><
 <p>This extension allows hard linebreaks<br />
 with backslash followed by a newline.</p>
 <hr />
-<h1 id="headings"><a
-href="https://pandoc.org/MANUAL.html#headings">Headings</a></h1>
-<h2 id="setext-style-headings"><a
+<h2 id="headings"><a
+href="https://pandoc.org/MANUAL.html#headings">Headings</a></h2>
+<h3 id="setext-style-headings"><a
 href="https://pandoc.org/MANUAL.html#setext-style-headings">Setext-style
-headings</a></h2>
+headings</a></h3>
 <hr />
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>A level-one heading</span>
@@ -395,9 +395,9 @@ A level-one heading
 A level-two heading
 </h1>
 <hr />
-<h2 id="atx-style-headings"><a
+<h3 id="atx-style-headings"><a
 href="https://pandoc.org/MANUAL.html#atx-style-headings">ATX-style
-headings</a></h2>
+headings</a></h3>
 <hr />
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## A level-two heading</span></span>
@@ -408,8 +408,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><
 <h1>
 A level-two heading
 </h1>
-<h2 class="unlisted" id="a-level-three-heading">A level-three
-heading</h2>
+<h3 class="unlisted" id="a-level-three-heading">A level-three
+heading</h3>
 <h1 class="title">
 A level-one heading with a <a href="/url">link</a> and <em>emphasis</em>
 </h1>
@@ -433,17 +433,17 @@ ATX headers.</p>
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>#golang is the hashtag used for Go on Twitter.</span></code></pre></div>
 <p>#golang is the hashtag used for Go on Twitter.</p>
 <hr />
-<h2 id="heading-identifiers"><a
+<h3 id="heading-identifiers"><a
 href="https://pandoc.org/MANUAL.html#heading-identifiers">Heading
-identifiers</a></h2>
+identifiers</a></h3>
 <p><code>+header_attributes</code></p>
 <p>Assign attributes to headers; I use this in this document to prevent
 headings from showing up in the table of contents.</p>
 <hr />
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Heading that won&#39;t show up in TOC {.unlisted}</span></span></code></pre></div>
-<h1 class="unlisted" id="heading-that-wont-show-up-in-toc">Heading that
-won’t show up in TOC</h1>
+<h2 class="unlisted" id="heading-that-wont-show-up-in-toc">Heading that
+won’t show up in TOC</h2>
 <hr />
 <p><code>+implicit_header_references</code></p>
 <p>Reference links for headings are implicitly defined.</p>
@@ -456,16 +456,16 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">My section title</span><span class="co">][]</span>,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">this section</span><span class="co">][my section title]</span>,</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">this section</span><span class="co">](#my-section-title)</span></span></code></pre></div>
-<h2 class="unlisted" id="my-section-title">My section title</h2>
+<h3 class="unlisted" id="my-section-title">My section title</h3>
 <p>These all link to the heading of this section: <a
 href="#my-section-title">My section title</a>, <a
 href="#my-section-title">My section title</a>, <a
 href="#my-section-title">this section</a>, <a
 href="#my-section-title">this section</a></p>
 <hr />
-<h1 id="block-quotations"><a
+<h2 id="block-quotations"><a
 href="https://pandoc.org/MANUAL.html#block-quotations">Block
-quotations</a></h1>
+quotations</a></h2>
 <p>Block quotes have each line preceded by <code>&gt;</code> and an
 optional space.</p>
 <hr />
@@ -533,12 +533,12 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb14-1">
 <p>This is a block quote. &gt; This is not considered nested.</p>
 </blockquote>
 <hr />
-<h1 id="verbatim-code-blocks"><a
+<h2 id="verbatim-code-blocks"><a
 href="https://pandoc.org/MANUAL.html#verbatim-code-blocks">Verbatim
-(code) blocks</a></h1>
-<h2 id="indented-code-blocks"><a
+(code) blocks</a></h2>
+<h3 id="indented-code-blocks"><a
 href="https://pandoc.org/MANUAL.html#indented-code-blocks">Indented code
-blocks</a></h2>
+blocks</a></h3>
 <p>Indent by four spaces or one tab for a verbatim block.</p>
 <hr />
 <div class="sourceCode" id="cb15"><pre
@@ -549,9 +549,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb15-1">
     fmt.Println(&quot;Hello, world&quot;)
 }</code></pre>
 <hr />
-<h2 id="fenced-code-blocks"><a
+<h3 id="fenced-code-blocks"><a
 href="https://pandoc.org/MANUAL.html#fenced-code-blocks">Fenced code
-blocks</a></h2>
+blocks</a></h3>
 <p><code>+fenced_code_blocks</code></p>
 <p>Wrap code block between lines of at least three <code>~</code>, where
 the end row must be at least as long as the starting row. (Notice how
@@ -626,8 +626,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb24-1">
 <div class="sourceCode" id="cb25"><pre
 class="sourceCode go"><code class="sourceCode go"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> start time<span class="op">.</span>Time</span></code></pre></div>
 <hr />
-<h1 id="line-blocks"><a
-href="https://pandoc.org/MANUAL.html#line-blocks">Line blocks</a></h1>
+<h2 id="line-blocks"><a
+href="https://pandoc.org/MANUAL.html#line-blocks">Line blocks</a></h2>
 <p><code>+line_blocks</code></p>
 <p>Blocks where lines begin with <code>|</code> will maintain division
 into lines and leading whitespace. Formatting is still applied. When
@@ -652,10 +652,10 @@ Was the hyperlinked knowledge, all free.</div>
 blanks.<br />
 Just like this.</div>
 <hr />
-<h1 id="lists"><a
-href="https://pandoc.org/MANUAL.html#lists">Lists</a></h1>
-<h2 id="bullet-lists"><a
-href="https://pandoc.org/MANUAL.html#bullet-lists">Bullet lists</a></h2>
+<h2 id="lists"><a
+href="https://pandoc.org/MANUAL.html#lists">Lists</a></h2>
+<h3 id="bullet-lists"><a
+href="https://pandoc.org/MANUAL.html#bullet-lists">Bullet lists</a></h3>
 <p>Different markers can be used. Compact list:</p>
 <hr />
 <div class="sourceCode" id="cb27"><pre
@@ -704,9 +704,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb30-1">
 <li>and my second.</li>
 </ul>
 <hr />
-<h2 id="block-content-in-list-items"><a
+<h3 id="block-content-in-list-items"><a
 href="https://pandoc.org/MANUAL.html#block-content-in-list-items">Block
-content in list items</a></h2>
+content in list items</a></h3>
 <p>List items can have multiple paragraphs and code blocks:</p>
 <hr />
 <div class="sourceCode" id="cb31"><pre
@@ -789,9 +789,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb36-1">
 <p>A continuation paragraph has to be indented.</p></li>
 </ul>
 <hr />
-<h2 id="ordered-lists"><a
+<h3 id="ordered-lists"><a
 href="https://pandoc.org/MANUAL.html#ordered-lists">Ordered
-lists</a></h2>
+lists</a></h3>
 <p>Standard ordered lists use decimal numbers followed by period and
 space; the actual numbers are ignored (but see <code>+startnum</code>
 below):</p>
@@ -913,9 +913,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb41-1">
 <li><input type="checkbox" disabled="" checked="" />done</li>
 </ul>
 <hr />
-<h2 id="definition-lists"><a
+<h3 id="definition-lists"><a
 href="https://pandoc.org/MANUAL.html#definition-lists">Definition
-lists</a></h2>
+lists</a></h3>
 <p><code>+definition_lists</code></p>
 <p>Borrowed from PHP Markdown Extra. Terms must fit on one line;
 definitions start with an optionally indented colon or tilde. The
@@ -994,9 +994,9 @@ Definition 2b with lazy continuation
 </dd>
 </dl>
 <hr />
-<h2 id="numbered-example-lists"><a
+<h3 id="numbered-example-lists"><a
 href="https://pandoc.org/MANUAL.html#numbered-example-lists">Numbered
-example lists</a></h2>
+example lists</a></h3>
 <p><code>+example_lists</code></p>
 <p>The <code>@</code> marker can be used for sequentially numbered
 examples across the whole document.</p>
@@ -1032,9 +1032,9 @@ spaces.</p></li>
 </ol>
 <p>As example 4 illustrates, …</p>
 <hr />
-<h2 id="compact-and-loose-lists"><a
+<h3 id="compact-and-loose-lists"><a
 href="https://pandoc.org/MANUAL.html#compact-and-loose-lists">Compact
-and loose lists</a></h2>
+and loose lists</a></h3>
 <p>If list item text is followed by a blank line, it is treated as a
 paragraph, otherwise the list becomes “compact”.</p>
 <p>In this case, “Second” is not followed by a blank line, so it’s not a
@@ -1059,9 +1059,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb48-1">
 <li>Third</li>
 </ul>
 <hr />
-<h2 id="ending-a-list"><a
+<h3 id="ending-a-list"><a
 href="https://pandoc.org/MANUAL.html#ending-a-list">Ending a
-list</a></h2>
+list</a></h3>
 <p>Inserting an indented code block right after a list results in a
 continuation paragraph:</p>
 <hr />
@@ -1117,9 +1117,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb52-1">
 <li>three again</li>
 </ol>
 <hr />
-<h1 id="horizontal-rules"><a
+<h2 id="horizontal-rules"><a
 href="https://pandoc.org/MANUAL.html#horizontal-rules">Horizontal
-rules</a></h1>
+rules</a></h2>
 <p>Three or more of <code>*</code>, <code>-</code> or <code>_</code>
 (optionally space separated) produce a horizontal rule.</p>
 <hr />
@@ -1133,8 +1133,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb53-1">
 <hr />
 <hr />
 <hr />
-<h1 id="tables"><a
-href="https://pandoc.org/MANUAL.html#tables">Tables</a></h1>
+<h2 id="tables"><a
+href="https://pandoc.org/MANUAL.html#tables">Tables</a></h2>
 <p><code>+table_captions</code></p>
 <p>An optional paragraph beginning with <code>Table:</code> or just
 <code>:</code> before or after the table is used as the table
@@ -1552,9 +1552,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb65-1">
 </tbody>
 </table>
 <hr />
-<h1 id="metadata-blocks"><a
+<h2 id="metadata-blocks"><a
 href="https://pandoc.org/MANUAL.html#metadata-blocks">Metadata
-blocks</a></h1>
+blocks</a></h2>
 <p><code>+pandoc_title_block</code></p>
 <p>Specify title, author and date in a title block at the beginning of
 the file:</p>
@@ -1593,9 +1593,9 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb69-1"><a href=
 <hr />
 <p>With a little template fiddling, this can become a tagging
 system.</p>
-<h1 id="backslash-escapes"><a
+<h2 id="backslash-escapes"><a
 href="https://pandoc.org/MANUAL.html#backslash-escapes">Backslash
-escapes</a></h1>
+escapes</a></h2>
 <p><code>+all_symbols_escapable</code></p>
 <p>Any symbol can be escaped to prevent it from having a formatting
 effect. An escaped space (supposedly) becomes a literal Unicode
@@ -1612,11 +1612,11 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb70-1">
 <p><strong>hello</strong><br />
 escaped space</p>
 <hr />
-<h1 id="inline-formatting"><a
+<h2 id="inline-formatting"><a
 href="https://pandoc.org/MANUAL.html#inline-formatting">Inline
-formatting</a></h1>
-<h2 id="emphasis"><a
-href="https://pandoc.org/MANUAL.html#emphasis">Emphasis</a></h2>
+formatting</a></h2>
+<h3 id="emphasis"><a
+href="https://pandoc.org/MANUAL.html#emphasis">Emphasis</a></h3>
 <p>Emphasis is toggled with <code>*</code> or <code>_</code>; when
 escaped or surrounded by spaces, they won’t trigger emphasis.</p>
 <hr />
@@ -1640,8 +1640,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb72-1">
 <p><em>Emph</em>asized, but un_im_pres_sed.</p>
 <!-- fix vim pandoc syntax highlighter: * -->
 <hr />
-<h2 id="strikeout"><a
-href="https://pandoc.org/MANUAL.html#strikeout">Strikeout</a></h2>
+<h3 id="strikeout"><a
+href="https://pandoc.org/MANUAL.html#strikeout">Strikeout</a></h3>
 <p><code>+strikeout</code></p>
 <p>Strike out words by delimiting with <code>~~</code>; this renders as
 a <code>&lt;del&gt;</code> element.</p>
@@ -1650,9 +1650,9 @@ a <code>&lt;del&gt;</code> element.</p>
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>Coffee is ~~a drug~~ the best thing ever!</span></code></pre></div>
 <p>Coffee is <del>a drug</del> the best thing ever!</p>
 <hr />
-<h2 id="superscripts-and-subscripts"><a
+<h3 id="superscripts-and-subscripts"><a
 href="https://pandoc.org/MANUAL.html#superscripts-and-subscripts">Superscripts
-and subscripts</a></h2>
+and subscripts</a></h3>
 <p><code>+superscript</code>, <code>+subscript</code></p>
 <p>Use <code>^</code> and <code>~</code> for superscript and subscript.
 Spaces in the super-/subscripted text have to be escaped.</p>
@@ -1664,8 +1664,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb74-1">
 <p>Super<sup>script</sup> and sub<sub>script</sub></p>
 <p>P<sub>is correct</sub> but P~is wrong~</p>
 <hr />
-<h2 id="verbatim"><a
-href="https://pandoc.org/MANUAL.html#verbatim">Verbatim</a></h2>
+<h3 id="verbatim"><a
+href="https://pandoc.org/MANUAL.html#verbatim">Verbatim</a></h3>
 <p>Verbatim text goes inside backticks; use double backticks to include
 a backtick.</p>
 <hr />
@@ -1686,8 +1686,8 @@ class="sourceCode bash"><span class="cf">for</span> f <span class="kw">in</span>
 instead of <code
 class="sourceCode bash"><span class="cf">for</span> f <span class="kw">in</span> <span class="va">$(</span><span class="fu">ls</span><span class="va">)</span></code>.</p>
 <hr />
-<h2 id="small-caps"><a
-href="https://pandoc.org/MANUAL.html#small-caps">Small caps</a></h2>
+<h3 id="small-caps"><a
+href="https://pandoc.org/MANUAL.html#small-caps">Small caps</a></h3>
 <p>There is a <code>smallcaps</code> class; this example uses the
 <code>bracketed_spans</code> extension (see <a
 href="#divs-and-spansdands">Divs and Spans</a>), an HTML
@@ -1703,8 +1703,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb77-1">
 <p><span class="smallcaps">With an HTML class attribute</span></p>
 <p><span class="smallcaps">With inline CSS</span></p>
 <hr />
-<h1 id="math"><a
-href="https://pandoc.org/MANUAL.html#math">Math</a></h1>
+<h2 id="math"><a
+href="https://pandoc.org/MANUAL.html#math">Math</a></h2>
 <p><code>+tex_math_dollars</code></p>
 <p>Text between pairs of <code>$</code> or <code>$$</code> is rendered
 as TeX Math. For HTML without further options, Unicode characters are
@@ -1726,8 +1726,8 @@ m\text{c}^2\)</span>.</p>
 <p>$10,000 and $20,000 don’t have to be escaped.</p>
 <!-- fix vim pandoc syntax highlighter: $ -->
 <hr />
-<h1 id="raw-html"><a href="https://pandoc.org/MANUAL.html#raw-html">Raw
-HTML</a></h1>
+<h2 id="raw-html"><a href="https://pandoc.org/MANUAL.html#raw-html">Raw
+HTML</a></h2>
 <p><code>+raw_html</code></p>
 <p>Raw HTML can be included directly.</p>
 <p><code>+markdown_in_html_blocks</code></p>
@@ -1764,9 +1764,9 @@ filters.</p>
 <p><code>+raw_tex</code></p>
 <p>This allows to write inline LaTeX, but it is ignored for HTML
 output.</p>
-<h2 id="generic-raw-attribute"><a
+<h3 id="generic-raw-attribute"><a
 href="https://pandoc.org/MANUAL.html#generic-raw-attribute">Generic raw
-attribute</a></h2>
+attribute</a></h3>
 <p><code>+raw_attribute</code></p>
 <p>This allows inserting raw blocks of any target format and is of
 limited use when targeting HTML as we can <em>already</em> insert HTML
@@ -1781,8 +1781,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb81-1">
 <p>This is HTML in a <i>raw</i> block.</p>
 <p>This is <b>HTML</b> in an inline raw block.</p>
 <hr />
-<h1 id="latex-macros"><a
-href="https://pandoc.org/MANUAL.html#latex-macros">LaTeX macros</a></h1>
+<h2 id="latex-macros"><a
+href="https://pandoc.org/MANUAL.html#latex-macros">LaTeX macros</a></h2>
 <p><code>+latex_macros</code></p>
 <p>This lets you define LaTeX macros, and they are applied to LaTeX math
 and raw LaTeX.</p>
@@ -1793,11 +1793,11 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb82-1">
 <span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>$\tuple{a, b, c}$</span></code></pre></div>
 <p><span class="math inline">\(\langle a, b, c \rangle\)</span></p>
 <hr />
-<h1 id="links"><a
-href="https://pandoc.org/MANUAL.html#links-1">Links</a></h1>
-<h2 id="automatic-links"><a
+<h2 id="links"><a
+href="https://pandoc.org/MANUAL.html#links-1">Links</a></h2>
+<h3 id="automatic-links"><a
 href="https://pandoc.org/MANUAL.html#automatic-links">Automatic
-links</a></h2>
+links</a></h3>
 <p>URLs and email addresses enclosed in <code>&lt;&gt;</code> become
 links. (Tangent: there is an option to obfuscate the produced email
 address, <a
@@ -1812,8 +1812,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb83-1">
 class="uri">https://www.benjaminwuethrich.dev</a></p>
 <p><a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#98;&#x65;&#110;&#106;&#x61;&#x6d;&#x69;&#110;&#64;&#98;&#x65;&#110;&#106;&#x61;&#x6d;&#x69;&#110;&#x77;&#x75;&#x65;&#116;&#104;&#114;&#x69;&#x63;&#104;&#46;&#100;&#x65;&#118;" class="email">&#98;&#x65;&#110;&#106;&#x61;&#x6d;&#x69;&#110;&#64;&#98;&#x65;&#110;&#106;&#x61;&#x6d;&#x69;&#110;&#x77;&#x75;&#x65;&#116;&#104;&#114;&#x69;&#x63;&#104;&#46;&#100;&#x65;&#118;</a></p>
 <hr />
-<h2 id="inline-links"><a
-href="https://pandoc.org/MANUAL.html#inline-links">Inline links</a></h2>
+<h3 id="inline-links"><a
+href="https://pandoc.org/MANUAL.html#inline-links">Inline links</a></h3>
 <p>The first of the two “classic” styles.</p>
 <hr />
 <div class="sourceCode" id="cb84"><pre
@@ -1829,9 +1829,9 @@ title="Example website">example</a></p>
 <p>Email addresses need the <code>mailto</code> explicitly:
 <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#106;&#x6f;&#x65;&#64;&#x65;&#120;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#x6d;" class="email">&#x65;&#x6d;&#x61;&#x69;&#108;&#32;&#106;&#x6f;&#x65;</a></p>
 <hr />
-<h2 id="reference-links"><a
+<h3 id="reference-links"><a
 href="https://pandoc.org/MANUAL.html#reference-links">Reference
-links</a></h2>
+links</a></h3>
 <p>Link definitions have an optional title (which can be on a separate
 line). The URL can be enclosed in <code>&lt;&gt;</code>; labels are case
 insensitive. Explicit reference links have a separate label; in implicit
@@ -1879,9 +1879,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb86-1">
 <p>A link to <a href="/2020-04-05-taop-summary.html">my TAOP
 summary</a>.</p>
 <hr />
-<h2 id="internal-links"><a
+<h3 id="internal-links"><a
 href="https://pandoc.org/MANUAL.html#internal-links">Internal
-links</a></h2>
+links</a></h3>
 <hr />
 <div class="sourceCode" id="cb87"><pre
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>Use <span class="co">[</span><span class="ot">heading identifiers</span><span class="co">](#heading-identifiers)</span>. See the [Headings</span>
@@ -1891,8 +1891,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb87-1">
 <p>Use <a href="#heading-identifiers">heading identifiers</a>. See the
 <a href="#headings">Headings section</a>.</p>
 <hr />
-<h1 id="images"><a
-href="https://pandoc.org/MANUAL.html#images">Images</a></h1>
+<h2 id="images"><a
+href="https://pandoc.org/MANUAL.html#images">Images</a></h2>
 <p>A link preceded by <code>!</code> is treated as an image. The link
 text is used as the image’s alt text, and the link title becomes the
 image title.</p>
@@ -1970,9 +1970,9 @@ alt="With width=1in; becomes 96px" />
 96px</figcaption>
 </figure>
 <hr />
-<h1 id="divs-and-spansdands"><a
+<h2 id="divs-and-spansdands"><a
 href="https://pandoc.org/MANUAL.html#divs-and-spans">Divs and
-Spans</a></h1>
+Spans</a></h2>
 <p><code>+fenced_divs</code></p>
 <p>This allows to create native <code>Div</code> blocks; in HTML output,
 they become <code>&lt;div&gt;</code> blocks. Attribute syntax is the
@@ -2029,8 +2029,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb90-1">
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>Here is an <span class="co">[</span><span class="ot">inline warning!</span><span class="co">]</span>{.warning}</span></code></pre></div>
 <p>Here is an <span class="warning">inline warning!</span></p>
 <hr />
-<h1 id="footnotes"><a
-href="https://pandoc.org/MANUAL.html#footnotes">Footnotes</a></h1>
+<h2 id="footnotes"><a
+href="https://pandoc.org/MANUAL.html#footnotes">Footnotes</a></h2>
 <p><code>+footnotes</code></p>
 <p>This allows footnotes. If the footnote contains multiple paragraphs,
 they must be indented.</p>
@@ -2058,8 +2058,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb94-1">
 <p>This is the text.<a href="#fn3" class="footnote-ref" id="fnref3"
 role="doc-noteref"><sup>3</sup></a></p>
 <hr />
-<h1 id="citations"><a
-href="https://pandoc.org/MANUAL.html#citations">Citations</a></h1>
+<h2 id="citations"><a
+href="https://pandoc.org/MANUAL.html#citations">Citations</a></h2>
 <p><code>+citations</code></p>
 <p>Together with the <code>--citeproc</code> option, this allows
 generating citations and a bibliography. For this document, I’ve

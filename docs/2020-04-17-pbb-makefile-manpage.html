@@ -256,7 +256,7 @@ for pbb</a></li>
 <p>I’ve added a few features to Pandoc Bash Blog since <a
 href="2020-04-04-goatcounter.html">adding GoatCounter</a>: some
 cosmetic, some useful, some very behind the scenes.</p>
-<h1 id="css-tweaks">CSS tweaks</h1>
+<h2 id="css-tweaks">CSS tweaks</h2>
 <p>To separate code blocks more clearly from the rest of the text, they
 now have a darker background colour:</p>
 <figure>
@@ -300,7 +300,7 @@ fundamentally broken, so I declare that a success.</p>
 <img src="images/2020-04-17-titlefont-after.png" alt="After fix" />
 <figcaption aria-hidden="true">After fix</figcaption>
 </figure>
-<h1 id="yaml-lint-action">YAML lint action</h1>
+<h2 id="yaml-lint-action">YAML lint action</h2>
 <p>All those actions I wrote <a
 href="2020-03-16-github-actions-pbb.html">when a learned about GitHub
 Actions</a> have generated quite a pile of YAML files: each action has
@@ -328,7 +328,7 @@ post</figcaption>
 </figure>
 <p>Anyway, I mention this here because Pandoc Bash Blog uses this action
 to lint its YAML files.</p>
-<h1 id="makefile-for-installation">Makefile for installation</h1>
+<h2 id="makefile-for-installation">Makefile for installation</h2>
 <p>As a side effect of having grown from very minimal to slightly more
 involved, pbb used to make a bunch of assumptions about where specific
 files would live. At first, I just symlinked things like the style sheet
@@ -357,7 +357,7 @@ a nice ring to it.</p>
 <p>I <em>did</em> realize that building the blog is actually a pretty
 good use case for a Makefile—rebuild those pages where the Markdown
 version is more recent—but that ship has sailed. Bash it is.</p>
-<h1 id="optional-table-of-contents">Optional table of contents</h1>
+<h2 id="optional-table-of-contents">Optional table of contents</h2>
 <p>The <a href="2020-04-05-taop-summary.html">TAOP summary</a> is pretty
 long, so I thought it’d be useful to have a table of contents. pandoc
 can create one, but I wanted it to be easy to control. There are a few
@@ -395,7 +395,7 @@ just the post where I want it. This also let me customize the heading
 used for the TOC by setting the <code>toc-title</code> variable.</p>
 <p>Or at least that’s how I think everything works, but who knows. This
 post uses a TOC, just to show what it looks like.</p>
-<h1 id="a-man-page-for-pbb">A man page for pbb</h1>
+<h2 id="a-man-page-for-pbb">A man page for pbb</h2>
 <p>Last, but not least, pbb now has a proper man page. It’s officially
 the official source of truth, other than the code itself, that is.</p>
 <p>Not everybody considers writing documents using the <code>man</code>

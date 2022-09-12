@@ -271,7 +271,7 @@ many topics where people are as opinionated as when it comes to
 customizing a command-line setup. So, “perfect for me”, probably.</p>
 <p>Note that I’m <em>not</em> going to talk about settings that change
 the behaviour of history expansion, but only how history is stored.</p>
-<h1 id="enabling-history">Enabling history</h1>
+<h2 id="enabling-history">Enabling history</h2>
 <p>Bash can be compiled without history support
 (<code>--enable-history</code> option for <code>configure</code>), but
 it’s enabled by default unless not supported by the operating
@@ -288,7 +288,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="
 href="https://www.gnu.org/software/bash/manual/bash.html#index-SHELLOPTS"><code>SHELLOPTS</code></a>
 variable contains <code>history</code>, and the status is also reported
 by <code>set -o</code>.</p>
-<h1 id="infinite-history">Infinite history</h1>
+<h2 id="infinite-history">Infinite history</h2>
 <p>The first nice-to-have is history that goes back all the way.</p>
 <p>To understand how this works, we have to know a bit about how Bash
 stores history. Command history is stored in multiple places: each
