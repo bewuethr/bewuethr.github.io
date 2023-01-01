@@ -121,9 +121,9 @@ A level-two heading
 -------------------
 ```
 
-<h1 class="title">A level-one heading</h1>
+<h1>A level-one heading</h1>
 
-<h1>A level-two heading</h1>
+<h2>A level-two heading</h2>
 
 ---
 
@@ -141,11 +141,11 @@ A level-two heading
 # A level-one heading with a [link](/url) and *emphasis*
 ```
 
-<h1>A level-two heading</h1>
+<h2>A level-two heading</h2>
 
-### A level-three heading {.unlisted}
+### A level-three heading ### {.unlisted}
 
-<h1 class="title">A level-one heading with a [link](/url) and *emphasis*</h1>
+<h1>A level-one heading with a [link](/url) and *emphasis*</h1>
 
 ---
 
