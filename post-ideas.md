@@ -8,6 +8,7 @@
 - [ ] Review of "The Idea Factory"
 - [x] Review of "No Rules Rules"
 - [x] Review of "Designing Data-Intensive Applications"
+- [ ] Book reading plans for 2023
 
 ## Up next
 
