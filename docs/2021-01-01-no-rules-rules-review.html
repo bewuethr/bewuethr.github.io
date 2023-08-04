@@ -8,9 +8,6 @@
   <title>Does “No Rules Rules” rule?</title>
   <style>
     html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
     }
@@ -29,13 +26,16 @@
     @media (max-width: 600px) {
       body {
         font-size: 0.9em;
-        padding: 1em;
+        padding: 12px;
       }
       h1 {
         font-size: 1.8em;
       }
     }
     @media print {
+      html {
+        background-color: white;
+      }
       body {
         background-color: transparent;
         color: black;
@@ -85,9 +85,10 @@
       color: #606060;
     }
     code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
+      hyphens: manual;
     }
     pre {
       margin: 1em 0;
@@ -152,17 +153,21 @@
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for citations */
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
     }
-    .hanging div.csl-entry {
+    .hanging-indent div.csl-entry {
       margin-left:2em;
       text-indent:-2em;
     }
@@ -176,8 +181,7 @@
     }
     div.csl-indent {
       margin-left: 2em;
-    }
-  </style>
+    }  </style>
   <link rel="stylesheet" href="/pbb.css" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
@@ -375,22 +379,22 @@ indiscriminately, but there are certainly a few interesting ideas in
 there, and it’s an entertaining read.</p>
 <h1 class="unnumbered" id="bibliography">Bibliography</h1>
 <div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
-<div id="ref-Felps2006" class="csl-entry" role="doc-biblioentry">
+role="list">
+<div id="ref-Felps2006" class="csl-entry" role="listitem">
 Felps, Will, Terence Mitchell, and Eliza Byington. 2006. <span>“How,
 When, and Why Bad Apples Spoil the Barrel: Negative Group Members and
 Dysfunctional Groups.”</span> <em>Research in Organizational Behavior -
 RES ORGAN BEH</em> 27 (December): 175–222. <a
 href="https://doi.org/10.1016/S0191-3085(06)27005-9">https://doi.org/10.1016/S0191-3085(06)27005-9</a>.
 </div>
-<div id="ref-Sackman1968" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Sackman1968" class="csl-entry" role="listitem">
 Sackman, H., W. J. Erikson, and E. E. Grant. 1968. <span>“Exploratory
 Experimental Studies Comparing Online and Offline Programming
 Performance.”</span> <em>Commun. ACM</em> 11 (1): 3–11. <a
 href="https://doi.org/10.1145/362851.362858">https://doi.org/10.1145/362851.362858</a>.
 </div>
 </div>
-<section id="footnotes" class="footnotes footnotes-end-of-document"
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
@@ -398,7 +402,7 @@ role="doc-endnotes">
 to leave? If no, they should have let me go already.<a href="#fnref1"
 class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section>
+</aside>
 <script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>

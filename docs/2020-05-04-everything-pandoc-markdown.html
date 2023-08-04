@@ -8,9 +8,6 @@
   <title>Everything pandoc Markdown can do</title>
   <style>
     html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
     }
@@ -29,13 +26,16 @@
     @media (max-width: 600px) {
       body {
         font-size: 0.9em;
-        padding: 1em;
+        padding: 12px;
       }
       h1 {
         font-size: 1.8em;
       }
     }
     @media print {
+      html {
+        background-color: white;
+      }
       body {
         background-color: transparent;
         color: black;
@@ -85,9 +85,10 @@
       color: #606060;
     }
     code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
+      hyphens: manual;
     }
     pre {
       margin: 1em 0;
@@ -152,12 +153,16 @@
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -223,11 +228,12 @@
     code span.va { color: #cb4b16; } /* Variable */
     code span.vs { color: #2aa198; } /* VerbatimString */
     code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+    /* CSS for citations */
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
     }
-    .hanging div.csl-entry {
+    .hanging-indent div.csl-entry {
       margin-left:2em;
       text-indent:-2em;
     }
@@ -241,12 +247,12 @@
     }
     div.csl-indent {
       margin-left: 2em;
-    }
-  </style>
+    }  </style>
   <link rel="stylesheet" href="/pbb.css" />
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
   type="text/javascript"></script>
@@ -909,8 +915,8 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb40-1">
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> to do</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[x]</span> done</span></code></pre></div>
 <ul class="task-list">
-<li><input type="checkbox" disabled="" />to do</li>
-<li><input type="checkbox" disabled="" checked="" />done</li>
+<li><label><input type="checkbox" />to do</label></li>
+<li><label><input type="checkbox" checked="" />done</label></li>
 </ul>
 <hr />
 <h3 id="definition-lists"><a
@@ -1567,9 +1573,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb66-1">
 title="Result of setting a title block" /></p>
 <p>This also sets meta tags for the authors and the date:</p>
 <div class="sourceCode" id="cb67"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;author&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;Donald Knuth&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;author&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;Brian W. Kernighan&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;dcterms.date&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;1970-01-01&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;author&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;Donald Knuth&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;author&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;Brian W. Kernighan&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;dcterms.date&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;1970-01-01&quot;</span> <span class="dt">/&gt;</span></span></code></pre></div>
 <p>Author and date get separate classes and can be styled with CSS.</p>
 <hr />
 <p>Date or date and authors can just be skipped; to skip the title, or
@@ -1589,7 +1595,7 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb68-1">
 <span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
 <p>which results in metadata like</p>
 <div class="sourceCode" id="cb69"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;keywords&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;unix, linux&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;keywords&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;unix, linux&quot;</span> <span class="dt">/&gt;</span></span></code></pre></div>
 <hr />
 <p>With a little template fiddling, this can become a tagging
 system.</p>
@@ -1696,9 +1702,9 @@ href="#divs-and-spansdands">Divs and Spans</a>), an HTML
 <div class="sourceCode" id="cb77"><pre
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">With an extension</span><span class="co">]</span>{.smallcaps}</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;smallcaps&quot;</span><span class="kw">&gt;</span>With an HTML class attribute<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;smallcaps&quot;</span><span class="dt">&gt;</span>With an HTML class attribute<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
 <span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;font-variant:small-caps&quot;</span><span class="kw">&gt;</span>With inline CSS<span class="kw">&lt;/span&gt;</span></span></code></pre></div>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;font-variant:small-caps&quot;</span><span class="dt">&gt;</span>With inline CSS<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span></code></pre></div>
 <p><span class="smallcaps">With an extension</span></p>
 <p><span class="smallcaps">With an HTML class attribute</span></p>
 <p><span class="smallcaps">With inline CSS</span></p>
@@ -1736,13 +1742,13 @@ Markdown in raw HTML blocks (except within <code>&lt;script&gt;</code>
 and <code>&lt;style&gt;</code> elements).</p>
 <hr />
 <div class="sourceCode" id="cb79"><pre
-class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;details&gt;</span></span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;summary&gt;</span>What is your **Bash version**?<span class="kw">&lt;/summary&gt;</span></span>
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>What is your **Bash version**?<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
 <span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>  echo <span class="va">$BASH_VERSION</span></span>
 <span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="ex">5.0.3</span><span class="er">(</span><span class="ex">1</span><span class="kw">)</span><span class="ex">-release</span></span>
 <span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/details&gt;</span></span></code></pre></div>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span></code></pre></div>
 <details>
 <summary>
 What is your <strong>Bash version</strong>?
@@ -1980,7 +1986,7 @@ same as for <a href="#fenced-code-blocks">fenced code blocks</a>. Fenced
 divs can be nested.</p>
 <hr />
 <div class="sourceCode" id="cb90"><pre
-class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;style&gt;</span></span>
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">style</span><span class="dt">&gt;</span></span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.warning</span><span class="op">,</span> <span class="fu">.error</span> {</span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span>: <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
 <span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -1992,7 +1998,7 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb90-1">
 <span id="cb90-10"><a href="#cb90-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>: <span class="cn">#D8000C</span><span class="op">;</span></span>
 <span id="cb90-11"><a href="#cb90-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>: <span class="cn">#FFD2D2</span><span class="op">;</span></span>
 <span id="cb90-12"><a href="#cb90-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb90-13"><a href="#cb90-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/style&gt;</span></span>
+<span id="cb90-13"><a href="#cb90-13" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">style</span><span class="dt">&gt;</span></span>
 <span id="cb90-14"><a href="#cb90-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb90-15"><a href="#cb90-15" aria-hidden="true" tabindex="-1"></a>::::: warning</span>
 <span id="cb90-16"><a href="#cb90-16" aria-hidden="true" tabindex="-1"></a>This is a warning.</span>
@@ -2153,18 +2159,18 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb100-1"><a href
 bibliography.</p>
 <h1 class="unnumbered" id="bibliography">Bibliography</h1>
 <div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
-<div id="ref-Licklider1968" class="csl-entry" role="doc-biblioentry">
+role="list">
+<div id="ref-Licklider1968" class="csl-entry" role="listitem">
 Licklider, J. C. R., and Robert W. Taylor. 1968. <span>“The Computer as
 a Communication Device.”</span> <em>Science and Technology</em> 76:
 21–31.
 </div>
-<div id="ref-Ritchie1974" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Ritchie1974" class="csl-entry" role="listitem">
 Ritchie, Dennis M., and Ken Thompson. 1974. <span>“The Unix Time-Sharing
 System.”</span> <em>Commun. ACM</em> 17 (7): 365–75. <a
 href="https://doi.org/10.1145/361011.361061">https://doi.org/10.1145/361011.361061</a>.
 </div>
-<div id="ref-Wheeler1952" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Wheeler1952" class="csl-entry" role="listitem">
 Wheeler, D. J. 1952. <span>“The Use of Sub-Routines in
 Programmes.”</span> In <em>Proceedings of the 1952 ACM National Meeting
 (Pittsburgh)</em>, 235–36. ACM ’52. New York, NY, USA: Association for
@@ -2172,7 +2178,7 @@ Computing Machinery. <a
 href="https://doi.org/10.1145/609784.609816">https://doi.org/10.1145/609784.609816</a>.
 </div>
 </div>
-<section id="footnotes" class="footnotes footnotes-end-of-document"
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
@@ -2185,7 +2191,7 @@ role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>And this is the inline footnote.<a href="#fnref3"
 class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section>
+</aside>
 <script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>

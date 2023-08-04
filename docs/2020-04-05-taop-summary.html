@@ -8,9 +8,6 @@
   <title>My summary of “The Art of PostgreSQL”</title>
   <style>
     html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
     }
@@ -29,13 +26,16 @@
     @media (max-width: 600px) {
       body {
         font-size: 0.9em;
-        padding: 1em;
+        padding: 12px;
       }
       h1 {
         font-size: 1.8em;
       }
     }
     @media print {
+      html {
+        background-color: white;
+      }
       body {
         background-color: transparent;
         color: black;
@@ -85,9 +85,10 @@
       color: #606060;
     }
     code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
+      hyphens: manual;
     }
     pre {
       margin: 1em 0;
@@ -152,12 +153,16 @@
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -529,7 +534,7 @@ Limit, No Offset</h3>
 <code>order by column nulls last</code></p></li>
 <li><p><code>order by</code> with complex condition:</p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> <span class="cf">case</span> <span class="cf">when</span> status <span class="op">=</span> <span class="st">&#39;Power Unit&#39;</span> <span class="cf">then</span> <span class="dv">1</span> <span class="cf">else</span> <span class="dv">2</span> <span class="cf">end</span></span></code></pre></div></li>
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> <span class="cf">case</span> <span class="cf">when</span> status <span class="op">=</span> <span class="vs">&#39;Power Unit</span><span class="st">&#39;</span> <span class="cf">then</span> <span class="dv">1</span> <span class="cf">else</span> <span class="dv">2</span> <span class="cf">end</span></span></code></pre></div></li>
 <li><p><code>point(lng, lat)</code> and <code>&lt;-&gt;</code> to get
 distance between points</p></li>
 <li><p><code>extract(field from timestamp)</code> to get just one field
@@ -538,8 +543,8 @@ out of a timestamp</p></li>
 anyway, but then discards most of it; use index lookups instead:</p>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>      <span class="kw">where</span> raceid <span class="op">=</span> <span class="dv">972</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">and</span> <span class="kw">row</span>(lap, <span class="fu">position</span>) <span class="op">&gt;</span> (<span class="dv">1</span>, <span class="dv">3</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">order</span> <span class="kw">by</span> lap, <span class="fu">position</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">and</span> <span class="kw">row</span>(lap, position) <span class="op">&gt;</span> (<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">order</span> <span class="kw">by</span> lap, position</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fetch</span> <span class="kw">first</span> <span class="dv">3</span> <span class="kw">rows</span> <span class="kw">only</span>;</span></code></pre></div></li>
 </ul>
 <h3 id="chapter-15-group-by-having-with-union-all">Chapter 15: Group By,
@@ -551,7 +556,7 @@ example:</p>
 class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">lag</span>(nbraces, <span class="dv">1</span>) <span class="kw">over</span>(<span class="kw">order</span> <span class="kw">by</span> decade)</span></code></pre></div></li>
 <li><p>Syntax for aggregate filter: <code>filter(where ...)</code></p>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(<span class="op">*</span>) <span class="kw">filter</span>(<span class="kw">where</span> <span class="fu">position</span> <span class="kw">is</span> <span class="kw">null</span>) <span class="kw">as</span> outs,</span></code></pre></div>
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(<span class="op">*</span>) <span class="kw">filter</span>(<span class="kw">where</span> position <span class="kw">is</span> <span class="kw">null</span>) <span class="kw">as</span> outs,</span></code></pre></div>
 <p>I use this one all the time now!</p></li>
 <li><p>Filter groups: <code>having</code> clause; can’t reference
 <code>select</code> output aliases!</p></li>
@@ -568,7 +573,7 @@ permutations</p></li>
 <li><p>Repeating strings: <code>repeat(string text, number int)</code>,
 e.g., build a histogram with</p>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">repeat</span>(<span class="fu">text</span> <span class="st">&#39;■&#39;</span>, <span class="dv">10</span>)</span></code></pre></div></li>
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">repeat</span>(<span class="dt">text</span> <span class="vs">&#39;■</span><span class="st">&#39;</span>, <span class="dv">10</span>)</span></code></pre></div></li>
 <li><p>Can’t nest aggregate queries, but you can chain common table
 expressions</p></li>
 <li><p>SQL alternative to PostgreSQL’s <code>distinct on</code>: use
@@ -614,7 +619,7 @@ class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">from</span>      results</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="kw">join</span> drivers <span class="kw">using</span>(driverid)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a> <span class="kw">where</span> raceid <span class="op">=</span> <span class="dv">890</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">window</span> w <span class="kw">as</span> (<span class="kw">order</span> <span class="kw">by</span> <span class="fu">position</span>)</span></code></pre></div></li>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">window</span> w <span class="kw">as</span> (<span class="kw">order</span> <span class="kw">by</span> position)</span></code></pre></div></li>
 <li><p>Divide into groups: <code>ntile()</code> function</p></li>
 </ul>
 <h3 id="chapter-18-understanding-relations-and-joins">Chapter 18:
@@ -912,7 +917,7 @@ wherever <code>select</code> is expected and takes multiple rows; for
 many rows, consider <code>copy</code> instead</p></li>
 <li><p>Pull a regex match out of a string:</p>
 <div class="sourceCode" id="cb14"><pre
-class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substring</span>(users.bio <span class="kw">from</span> <span class="st">&#39;in love with #?(.*).&#39;</span>)</span></code></pre></div></li>
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substring</span>(users.bio <span class="kw">from</span> <span class="vs">&#39;in love with #?(.*).</span><span class="st">&#39;</span>)</span></code></pre></div></li>
 </ul>
 <h4 id="update">Update</h4>
 <ul>
@@ -920,7 +925,7 @@ class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id
 concurrently working with the database</p></li>
 <li><p>Use primary key plus real value if primary is synthetic:</p>
 <div class="sourceCode" id="cb15"><pre
-class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> userid <span class="op">=</span> <span class="dv">17</span> <span class="kw">and</span> uname <span class="op">=</span> <span class="st">&#39;Puck&#39;</span></span></code></pre></div>
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> userid <span class="op">=</span> <span class="dv">17</span> <span class="kw">and</span> uname <span class="op">=</span> <span class="vs">&#39;Puck</span><span class="st">&#39;</span></span></code></pre></div>
 <p>This gives us both typo protection and better concurrency
 behaviour.</p></li>
 </ul>

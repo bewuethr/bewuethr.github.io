@@ -8,9 +8,6 @@
   <title>Fixing pandoc PostgreSQL quote syntax highlighting</title>
   <style>
     html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
     }
@@ -29,13 +26,16 @@
     @media (max-width: 600px) {
       body {
         font-size: 0.9em;
-        padding: 1em;
+        padding: 12px;
       }
       h1 {
         font-size: 1.8em;
       }
     }
     @media print {
+      html {
+        background-color: white;
+      }
       body {
         background-color: transparent;
         color: black;
@@ -85,9 +85,10 @@
       color: #606060;
     }
     code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
+      hyphens: manual;
     }
     pre {
       margin: 1em 0;
@@ -152,12 +153,16 @@
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -278,7 +283,7 @@ for myself so I wouldn’t forget, and let it sit for a month.</p>
 <p>Eventually, I had a closer look. The HTML for the highlighted code
 looked something like</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;co&quot;</span><span class="kw">&gt;</span><span class="dv">&amp;quot;</span><span class="kw">&lt;/span&gt;&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;ot&quot;</span><span class="kw">&gt;</span>prev<span class="dv">&amp;quot;</span><span class="kw">&lt;/span&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;co&quot;</span><span class="dt">&gt;</span><span class="dv">&amp;quot;</span><span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;ot&quot;</span><span class="dt">&gt;</span>prev<span class="dv">&amp;quot;</span><span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span></code></pre></div>
 <p>where <code>co</code> refers to a comment, and <code>ot</code> is for
 “other”. The opening double quote was weirdly designated a comment.</p>
 <p>Now, pbb uses pandoc to produce its output. I should probably
@@ -297,7 +302,7 @@ Skylighting uses KDE XML syntax highlighting descriptions:</p>
 <p><img src="diagrams/73d10b2.svg" /></p>
 <p>The syntax file for PostgreSQL contained this line:</p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;DetectChar</span> <span class="er">attribute</span><span class="ot">=</span><span class="st">&quot;Comment&quot;</span> <span class="er">context</span><span class="ot">=</span><span class="st">&quot;Identifier&quot;</span> <span class="er">char</span><span class="ot">=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="kw">/&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">DetectChar</span> <span class="er">attribute</span><span class="ot">=</span><span class="st">&quot;Comment&quot;</span> <span class="er">context</span><span class="ot">=</span><span class="st">&quot;Identifier&quot;</span> <span class="er">char</span><span class="ot">=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="dt">/&gt;</span></span></code></pre></div>
 <p>And even without knowing much about how these syntax files work, this
 looked suspicious. John suggested I’d submit a bug report to the KDE
 project, as skylighting from time to time pulls the latest syntax files
@@ -324,7 +329,7 @@ this time to illustrate the migration of KDE syntax highlighting:</p>
 href="https://github.com/KDE/kate/commit/8eb69d93e3a0bee856f9d404bd8de395c6bfca76#diff-23999c6941df50d23a602798ad93d229">this
 commit</a>, and the line for double quotes looked like this:</p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;DetectChar</span> <span class="er">attribute</span><span class="ot">=</span><span class="st">&quot;9&quot;</span> <span class="er">context</span><span class="ot">=</span><span class="st">&quot;5&quot;</span> <span class="er">char</span><span class="ot">=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="kw">/&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">DetectChar</span> <span class="er">attribute</span><span class="ot">=</span><span class="st">&quot;9&quot;</span> <span class="er">context</span><span class="ot">=</span><span class="st">&quot;5&quot;</span> <span class="er">char</span><span class="ot">=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="dt">/&gt;</span></span></code></pre></div>
 <p>where <code>attribute</code> and <code>context</code> are indices
 into arrays: both attribute 9 and context 5 are for “identifiers”.</p>
 <p>Then, in 2003, somebody <a
@@ -356,7 +361,7 @@ June 30</li>
 </ul>
 <p>And behold:</p>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="st">&#39;foo&#39;</span> <span class="ot">&quot;bar&quot;</span>;</span></code></pre></div>
+class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="vs">&#39;foo</span><span class="st">&#39;</span> <span class="ot">&quot;bar&quot;</span>;</span></code></pre></div>
 <figure>
 <img src="images/2020-07-01-correct-quotes.png" alt="Correct quotes!" />
 <figcaption aria-hidden="true">Correct quotes!</figcaption>
@@ -366,7 +371,7 @@ of many people.</p>
 <p>Fine, it won’t—but it was fun diving into this obscure bit of syntax
 highlighting history, and I really appreciated how friendly I was
 treated by all the open source maintainers I interacted with.</p>
-<section id="footnotes" class="footnotes footnotes-end-of-document"
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
@@ -378,7 +383,7 @@ href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Or maybe I just want to use my new feature.<a
 href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section>
+</aside>
 <script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>

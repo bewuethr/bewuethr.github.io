@@ -8,9 +8,6 @@
   <title>Dot graphs for Pandoc Bash Blog</title>
   <style>
     html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
     }
@@ -29,13 +26,16 @@
     @media (max-width: 600px) {
       body {
         font-size: 0.9em;
-        padding: 1em;
+        padding: 12px;
       }
       h1 {
         font-size: 1.8em;
       }
     }
     @media print {
+      html {
+        background-color: white;
+      }
       body {
         background-color: transparent;
         color: black;
@@ -85,9 +85,10 @@
       color: #606060;
     }
     code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
+      hyphens: manual;
     }
     pre {
       margin: 1em 0;
@@ -152,12 +153,16 @@
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -314,10 +319,7 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>resulting in</p>
-<figure>
-<img src="diagrams/b14fcd5.svg" alt="A caption!" />
-<figcaption aria-hidden="true">A caption!</figcaption>
-</figure>
+<p><img src="diagrams/b14fcd5.svg" title="fig:" alt="A caption!" /></p>
 <p>And finally, to get the dot description as HTML comments next to the
 figure (for, I don’t know, the people who want to recreate that great
 graph themselves), a special class <code>includeSource</code> can be
@@ -336,10 +338,7 @@ digraph G {
     A -> B
 }
 -->
-<figure>
-<img src="diagrams/b14fcd5.svg" alt="A caption!" />
-<figcaption aria-hidden="true">A caption!</figcaption>
-</figure>
+<p><img src="diagrams/b14fcd5.svg" title="fig:" alt="A caption!" /></p>
 <p>but the HTML source now includes</p>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
@@ -348,9 +347,9 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    A -&gt; B</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;figure&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;img</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;diagrams/8728a4b.svg&quot;</span> <span class="er">alt</span><span class="ot">=</span><span class="st">&quot;&quot;</span> <span class="kw">/&gt;&lt;figcaption&gt;</span>A caption!<span class="kw">&lt;/figcaption&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/figure&gt;</span></span></code></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">figure</span><span class="dt">&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">img</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;diagrams/8728a4b.svg&quot;</span> <span class="er">alt</span><span class="ot">=</span><span class="st">&quot;&quot;</span> <span class="dt">/&gt;&lt;</span><span class="kw">figcaption</span><span class="dt">&gt;</span>A caption!<span class="dt">&lt;/</span><span class="kw">figcaption</span><span class="dt">&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">figure</span><span class="dt">&gt;</span></span></code></pre></div>
 <p>The image file, by the way, has a prefix of its hash as the name, so
 all three graphs here generated just a single file as they’re
 identical.</p>
