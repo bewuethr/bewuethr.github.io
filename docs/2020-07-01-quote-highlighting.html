@@ -293,17 +293,17 @@ class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="
 <p>Now, pbb uses pandoc to produce its output. I should probably
 illustrate that with a <a href="2020-06-29-pbb-dot-graphs.html">dot
 graph</a>…</p>
-<p><img src="diagrams/1d2ef7e.svg" /></p>
+<img src="diagrams/1d2ef7e.svg" />
 <p>Accordingly, I opened an issue in pandoc. But, as it turns out,
 pandoc uses a separate tool for syntax highlighting: <a
 href="https://github.com/jgm/skylighting">skylighting</a>, by the same
 author, John MacFarlane.</p>
-<p><img src="diagrams/65cd7d0.svg" /></p>
+<img src="diagrams/65cd7d0.svg" />
 <p>Accordingly, John moved my <a
 href="https://github.com/jgm/skylighting/issues/95">issue</a> to
 skylighting, and also immediately pointed out the likely culprit.
 Skylighting uses KDE XML syntax highlighting descriptions:</p>
-<p><img src="diagrams/73d10b2.svg" /></p>
+<img src="diagrams/73d10b2.svg" />
 <p>The syntax file for PostgreSQL contained this line:</p>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">DetectChar</span> <span class="er">attribute</span><span class="ot">=</span><span class="st">&quot;Comment&quot;</span> <span class="er">context</span><span class="ot">=</span><span class="st">&quot;Identifier&quot;</span> <span class="er">char</span><span class="ot">=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="dt">/&gt;</span></span></code></pre></div>
@@ -328,7 +328,7 @@ href="https://github.com/KDE/kate">Kate</a>.</p>
 <p>I think a clarifying dot graph is in order<a href="#fn2"
 class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>,
 this time to illustrate the migration of KDE syntax highlighting:</p>
-<p><img src="diagrams/0f574a9.svg" /></p>
+<img src="diagrams/0f574a9.svg" />
 <p>The PostgreSQL syntax file was added in 2002, in <a
 href="https://github.com/KDE/kate/commit/8eb69d93e3a0bee856f9d404bd8de395c6bfca76#diff-23999c6941df50d23a602798ad93d229">this
 commit</a>, and the line for double quotes looked like this:</p>

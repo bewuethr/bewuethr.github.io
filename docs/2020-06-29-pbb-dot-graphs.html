@@ -312,7 +312,7 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>produces</p>
-<p><img src="diagrams/b14fcd5.svg" /></p>
+<img src="diagrams/b14fcd5.svg" />
 <p>To get a caption (and an HTML <code>&lt;figure&gt;</code>), the
 property can be added:</p>
 <div class="sourceCode" id="cb2"><pre
@@ -323,7 +323,10 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>resulting in</p>
-<p><img src="diagrams/b14fcd5.svg" title="fig:" alt="A caption!" /></p>
+<figure>
+<img src="diagrams/b14fcd5.svg" alt="A caption!" />
+<figcaption aria-hidden="true">A caption!</figcaption>
+</figure>
 <p>And finally, to get the dot description as HTML comments next to the
 figure (for, I don’t know, the people who want to recreate that great
 graph themselves), a special class <code>includeSource</code> can be
@@ -342,7 +345,10 @@ digraph G {
     A -> B
 }
 -->
-<p><img src="diagrams/b14fcd5.svg" title="fig:" alt="A caption!" /></p>
+<figure>
+<img src="diagrams/b14fcd5.svg" alt="A caption!" />
+<figcaption aria-hidden="true">A caption!</figcaption>
+</figure>
 <p>but the HTML source now includes</p>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--</span></span>
