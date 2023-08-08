@@ -431,13 +431,13 @@ notes, mostly to help me read in a more focused manner; I thought it’d
 be nice to polish and publish them.</p>
 <p>I first wanted to call this “What I’ve learned from TAOP”, but it
 also includes things I already knew, so there.</p>
-<h2 id="parts-i-and-ii-preface-and-introduction">Parts I and II: Preface
-and Introduction</h2>
+<h1 id="parts-i-and-ii-preface-and-introduction">Parts I and II: Preface
+and Introduction</h1>
 <p>I didn’t take any notes for these—they’re a very general introduction
 to the book, a first application example, and why you should use
 Postgres. Got it.</p>
-<h2 id="part-iii-writing-sql-queries">Part III: Writing SQL Queries</h2>
-<h3 id="chapter-4-business-logic">Chapter 4: Business Logic</h3>
+<h1 id="part-iii-writing-sql-queries">Part III: Writing SQL Queries</h1>
+<h2 id="chapter-4-business-logic">Chapter 4: Business Logic</h2>
 <ul>
 <li>Isolation levels (read uncommitted, read committed etc.); there’s
 more about this later</li>
@@ -448,8 +448,8 @@ href="https://heap.io/blog/engineering/postgresqls-powerful-new-join-type-latera
 article</a> and the “top-n artist by genre” query</li>
 <li>Prefer SQL for stored procedures over PLpgSQL</li>
 </ul>
-<h3 id="chapter-5-a-small-application">Chapter 5: A Small
-Application</h3>
+<h2 id="chapter-5-a-small-application">Chapter 5: A Small
+Application</h2>
 <ul>
 <li>Variables in psql:
 <ul>
@@ -463,8 +463,8 @@ href="https://github.com/honza/anosql">anosql</a></li>
 <li><code>limit :n</code> seems to eat the blank, have to use
 <code>limit  :n</code> for some reason</li>
 </ul>
-<h3 id="chapter-6-the-sql-replan-interactive-setup">Chapter 6: The SQL
-REPL—An Interactive Setup</h3>
+<h2 id="chapter-6-the-sql-replan-interactive-setup">Chapter 6: The SQL
+REPL—An Interactive Setup</h2>
 <p>This chapter was great, I’ve totally overhauled my psql configuration
 file after reading it and the whole <a
 href="https://www.postgresql.org/docs/12/app-psql.html">man page</a>. My
@@ -479,7 +479,7 @@ string</li>
 <li><code>\set ECHO_HIDDEN true</code> shows the queries run by slash
 commands</li>
 </ul>
-<h3 id="chapter-7-sql-is-code">Chapter 7: SQL is Code</h3>
+<h2 id="chapter-7-sql-is-code">Chapter 7: SQL is Code</h2>
 <p>This chapter basically says that all the ususal software engineering
 practices apply to SQL code as well: use a consistent style, use tests,
 use meaningful names, and so on. The style guide promoted by the author
@@ -514,9 +514,9 @@ href="https://github.com/dimitri/regresql">regresql</a></li>
 <li><code>application_name</code> parameter lets you specify who made a
 request</li>
 </ul>
-<h2 id="part-iv-sql-toolbox">Part IV: SQL Toolbox</h2>
-<h3 id="chapter-13-select-from-where">Chapter 13: Select, From,
-Where</h3>
+<h1 id="part-iv-sql-toolbox">Part IV: SQL Toolbox</h1>
+<h2 id="chapter-13-select-from-where">Chapter 13: Select, From,
+Where</h2>
 <ul>
 <li><p>Shortcut for <code>select * from</code>:
 <code>table</code></p></li>
@@ -531,8 +531,8 @@ processed <em>before</em> the join; restrictions in the
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> <span class="kw">not</span> <span class="kw">exists</span> (<span class="kw">select</span> <span class="dv">1</span> <span class="kw">from</span> subquery)</span></code></pre></div></li>
 </ul>
-<h3 id="chapter-14-order-by-limit-no-offset">Chapter 14: Order By,
-Limit, No Offset</h3>
+<h2 id="chapter-14-order-by-limit-no-offset">Chapter 14: Order By,
+Limit, No Offset</h2>
 <ul>
 <li><p><code>order by</code> with nulls last:
 <code>order by column nulls last</code></p></li>
@@ -551,8 +551,8 @@ class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">order</span> <span class="kw">by</span> lap, position</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fetch</span> <span class="kw">first</span> <span class="dv">3</span> <span class="kw">rows</span> <span class="kw">only</span>;</span></code></pre></div></li>
 </ul>
-<h3 id="chapter-15-group-by-having-with-union-all">Chapter 15: Group By,
-Having, With, Union All</h3>
+<h2 id="chapter-15-group-by-having-with-union-all">Chapter 15: Group By,
+Having, With, Union All</h2>
 <ul>
 <li><p>Compare a row to the previous row: <code>lag()</code> function,
 example:</p>
@@ -585,8 +585,8 @@ expressions</p></li>
 <li><p>Set difference: <code>except</code> (useful for regression
 testing)</p></li>
 </ul>
-<h3 id="chapter-16-understanding-nulls">Chapter 16: Understanding
-Nulls</h3>
+<h2 id="chapter-16-understanding-nulls">Chapter 16: Understanding
+Nulls</h2>
 <ul>
 <li>Any boolean comparison involving <code>null</code> has value
 <code>null</code>, even <code>null = null</code></li>
@@ -594,8 +594,8 @@ Nulls</h3>
 <li>“Pretend SQL doesn’t implement three-valued logic”:
 <code>is [not] distinct from</code></li>
 </ul>
-<h3 id="chapter-17-understanding-window-functions">Chapter 17:
-Understanding Window Functions</h3>
+<h2 id="chapter-17-understanding-window-functions">Chapter 17:
+Understanding Window Functions</h2>
 <p>I definitely still don’t understand window functions.</p>
 <ul>
 <li><p><code>over (order by x)</code> is short for</p>
@@ -626,8 +626,8 @@ class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">window</span> w <span class="kw">as</span> (<span class="kw">order</span> <span class="kw">by</span> position)</span></code></pre></div></li>
 <li><p>Divide into groups: <code>ntile()</code> function</p></li>
 </ul>
-<h3 id="chapter-18-understanding-relations-and-joins">Chapter 18:
-Understanding Relations and Joins</h3>
+<h2 id="chapter-18-understanding-relations-and-joins">Chapter 18:
+Understanding Relations and Joins</h2>
 <ul>
 <li><p>A table is really a <em>relation</em>, and you can query the
 “composite data type”:</p>
@@ -635,13 +635,13 @@ Understanding Relations and Joins</h3>
 class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> relation <span class="kw">from</span> relation</span></code></pre></div></li>
 <li><p><code>create table</code> really creates a new data type</p></li>
 </ul>
-<h2 id="part-v-data-types">Part V: Data Types</h2>
-<h3 id="chapter-20-serialization-and-deserialization">Chapter 20:
-Serialization and Deserialization</h3>
+<h1 id="part-v-data-types">Part V: Data Types</h1>
+<h2 id="chapter-20-serialization-and-deserialization">Chapter 20:
+Serialization and Deserialization</h2>
 <p>Storing and retrieving values out of and back into memory isn’t a
 problem for which you need a database system.</p>
-<h3 id="chapter-21-some-relational-theory">Chapter 21: Some Relational
-Theory</h3>
+<h2 id="chapter-21-some-relational-theory">Chapter 21: Some Relational
+Theory</h2>
 <ul>
 <li>A <em>tuple</em> is a list of attributes</li>
 <li>A <em>relation</em> is a list of tuples that all share the same list
@@ -652,14 +652,14 @@ of attribute domains: <em>names</em> and <em>data type</em></li>
 the operand types on both sides of <code>=</code></li>
 <li>You can add your own as extensions</li>
 </ul>
-<h3 id="chapter-22-postgresql-data-types">Chapter 22: PostgreSQL Data
-Types</h3>
+<h2 id="chapter-22-postgresql-data-types">Chapter 22: PostgreSQL Data
+Types</h2>
 <p>Get a sample from a table: <code>tablesample</code>; for example:</p>
 <div class="sourceCode" id="cb13"><pre
 class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="op">*</span> <span class="kw">from</span> <span class="kw">table</span> <span class="kw">tablesample</span> <span class="kw">bernoulli</span>(<span class="dv">10</span>);</span></code></pre></div>
 <p>gets a sample where each row has a chance of 10% to appear in the
 output.</p>
-<h4 id="boolean">Boolean</h4>
+<h3 id="boolean">Boolean</h3>
 <ul>
 <li>Aggregates for booleans: <code>bool_and</code>,
 <code>bool_or</code></li>
@@ -668,7 +668,7 @@ booleans</li>
 <li>Remember that nulls are skipped, so use
 <code>is [not] distinct from</code> when required</li>
 </ul>
-<h4 id="character-and-text">Character and Text</h4>
+<h3 id="character-and-text">Character and Text</h3>
 <ul>
 <li>Regular expression support with main operator <code>~</code></li>
 <li>Split field into separate table:
@@ -677,17 +677,17 @@ booleans</li>
 <li>There’s lots of advanced support for documents, text search queries,
 ranking, highlighting etc.</li>
 </ul>
-<h4 id="server-encoding-and-client-encoding">Server Encoding and Client
-Encoding</h4>
+<h3 id="server-encoding-and-client-encoding">Server Encoding and Client
+Encoding</h3>
 <ul>
 <li>Never use <code>SQL_ASCII</code></li>
 <li>If a client doesn’t understand <code>UTF8</code>, you can have
 Postgres do conversion on the fly</li>
 </ul>
-<h4 id="numbers">Numbers</h4>
+<h3 id="numbers">Numbers</h3>
 <p>All combinations of operand types have to be supported, so Postgres
 has only few numeric types (no unsigned, for example).</p>
-<h4 id="sequences">Sequences</h4>
+<h3 id="sequences">Sequences</h3>
 <ul>
 <li>Declaring a column <code>SERIAL</code> is a shorthand for
 <code>create sequence</code>, <code>default nextval()</code> and
@@ -695,14 +695,14 @@ has only few numeric types (no unsigned, for example).</p>
 <li>Notice that you can exhaust a sequence; <code>serial</code> is 4
 bytes (but internally 8, just like <code>bigserial</code>)</li>
 </ul>
-<h4 id="uuids">UUIDs</h4>
+<h3 id="uuids">UUIDs</h3>
 <ul>
 <li>Storing as UUID type makes sense: 16 bytes instead of 37 byte
 strings</li>
 <li>Should we use them as identifiers? See <a
 href="#chapter-30-modelization-anti-patterns">next part</a></li>
 </ul>
-<h4 id="datetime-and-time-zones">Date/Time and Time Zones</h4>
+<h3 id="datetime-and-time-zones">Date/Time and Time Zones</h3>
 <ul>
 <li>Always use timestamps <em>with</em> time zones (no storage
 penalty!)</li>
@@ -716,11 +716,11 @@ assumed</li>
 <code>'2019-01-08 04:05:06'</code> or
 <code>'2019-01-08 04:05:06+02'</code></li>
 </ul>
-<h4 id="intervals">Intervals</h4>
+<h3 id="intervals">Intervals</h3>
 <p>Intervals are aware of month lengths when attached to a date, so use
 them.</p>
-<h4 id="datetime-processing-and-querying">Date/Time Processing and
-Querying</h4>
+<h3 id="datetime-processing-and-querying">Date/Time Processing and
+Querying</h3>
 <ul>
 <li>Function to calculate percentiles: <code>percentile_cont</code></li>
 <li>Ironically, the query to show commits for a specific date shows
@@ -728,10 +728,10 @@ different results depending on the time zone of the querying system</li>
 <li>Another useful function: <code>date_trunc</code> truncates to a
 specified precision</li>
 </ul>
-<h4 id="network-address-types">Network Address Types</h4>
+<h3 id="network-address-types">Network Address Types</h3>
 <p>There are proper data types for IP addresses: <code>inet</code> for
 hosts and networks, <code>cidr</code> for networks.</p>
-<h4 id="ranges">Ranges</h4>
+<h3 id="ranges">Ranges</h3>
 <ul>
 <li>Unique to Postgres</li>
 <li>Provides concurrent safe check against overlapping ranges</li>
@@ -741,9 +741,9 @@ hosts and networks, <code>cidr</code> for networks.</p>
 <code>@&gt;</code> is the “contains” operator and <code>validity</code>
 is a <code>daterange</code> column</li>
 </ul>
-<h3 id="chapter-23-denormalized-data-types">Chapter 23: Denormalized
-Data Types</h3>
-<h4 id="arrays">Arrays</h4>
+<h2 id="chapter-23-denormalized-data-types">Chapter 23: Denormalized
+Data Types</h2>
+<h3 id="arrays">Arrays</h3>
 <ul>
 <li>Rule of thumb for when to use them: when they’re mostly used as a
 whole, example: user defined tags</li>
@@ -754,12 +754,12 @@ whole, example: user defined tags</li>
 <li>But if you need a lot of <code>unnest</code>, you probably should be
 using a lookup table</li>
 </ul>
-<h4 id="composite-types">Composite Types</h4>
+<h3 id="composite-types">Composite Types</h3>
 <p>For advanced cases not covered in this book.</p>
-<h4 id="xml">XML</h4>
+<h3 id="xml">XML</h3>
 <p>You can write XSLT stored procedures in Postgres, see <a
 href="https://github.com/petere/plxslt">PL/XSLT</a>.</p>
-<h4 id="json">JSON</h4>
+<h3 id="json">JSON</h3>
 <ul>
 <li><code>json</code> is a leftover with no processing, only form
 validation</li>
@@ -767,20 +767,20 @@ validation</li>
 <li>Check if array <code>extra</code> contains array <code>[2,4]</code>:
 <code>where extra @&gt; '[2,4]'</code></li>
 </ul>
-<h4 id="enum">Enum</h4>
+<h3 id="enum">Enum</h3>
 <ul>
 <li>Mostly added to make it easier to migrate from MySQL; proper design
 would use a reference table with foreign key</li>
 <li>Enums make a globally consistent state hard to maintain</li>
 <li>Matter of taste (and the author clearly implies “bad taste”)</li>
 </ul>
-<h2 id="part-vi-data-modeling">Part VI: Data Modeling</h2>
-<h3 id="chapter-26-object-relational-mapping">Chapter 26: Object
-Relational Mapping</h3>
+<h1 id="part-vi-data-modeling">Part VI: Data Modeling</h1>
+<h2 id="chapter-26-object-relational-mapping">Chapter 26: Object
+Relational Mapping</h2>
 <p>Database modeling and object modeling are separate and both
 required.</p>
-<h3 id="chapter-27-tooling-for-database-modeling">Chapter 27: Tooling
-for Database Modeling</h3>
+<h2 id="chapter-27-tooling-for-database-modeling">Chapter 27: Tooling
+for Database Modeling</h2>
 <ul>
 <li>Schema should be versioned as well as source code of DB schema</li>
 <li><code>psql</code> and visual tools; focused on schema itself here,
@@ -795,7 +795,7 @@ finish with testing queries and a rollback</li>
 <code>comment</code> (but doesn’t mention that as a guideline)</li>
 <li>Test out main anticipated queries on dummy data</li>
 </ul>
-<h3 id="chapter-28-normalization">Chapter 28: Normalization</h3>
+<h2 id="chapter-28-normalization">Chapter 28: Normalization</h2>
 <p>This was a very useful chapter. It helped me better understand
 primary keys, when to use surrogate keys and to think about constraints
 on what would be natural keys.</p>
@@ -831,8 +831,8 @@ validate, e.g., against a regex</li>
 <li><em>Exclusion constraints</em> are like generalized <em>unique</em>
 constraints with a custom operator choice, see ranges</li>
 </ul>
-<h3 id="chapter-29-practical-use-case-geonames">Chapter 29: Practical
-Use Case: Geonames</h3>
+<h2 id="chapter-29-practical-use-case-geonames">Chapter 29: Practical
+Use Case: Geonames</h2>
 <p>In this chapter, the author goes through a poorly laid out schema and
 normalizes it. I used a tool to visualize the schema after the
 normalization:</p>
@@ -842,8 +842,8 @@ normalization:</p>
 </figure>
 <p>It would have been interesting to see the schema before as well, but
 I realized that too late.</p>
-<h3 id="chapter-30-modelization-anti-patterns">Chapter 30: Modelization
-Anti-Patterns</h3>
+<h2 id="chapter-30-modelization-anti-patterns">Chapter 30: Modelization
+Anti-Patterns</h2>
 <p>The discussion about UUIDs as primary keys was teased a few times
 before this chapter, but I’m not convinced by the recommendation; while
 sequences are easier to handle and guarantee that there won’t be
@@ -857,7 +857,7 @@ field (<em>entity attribute values</em>)</li>
 <li>UUIDs: strong theoretical guarantee against collision—but sequences
 <em>guarantee</em> it</li>
 </ul>
-<h3 id="chapter-31-denormalization">Chapter 31: Denormalization</h3>
+<h2 id="chapter-31-denormalization">Chapter 31: Denormalization</h2>
 <ul>
 <li>Fully normalized schemas have a high number of tables and references
 between them</li>
@@ -889,16 +889,16 @@ fails</li>
 <li>Can’t even reach first normal form</li>
 </ul></li>
 </ul>
-<h3 id="chapter-32-not-only-sql">Chapter 32: Not Only SQL</h3>
+<h2 id="chapter-32-not-only-sql">Chapter 32: Not Only SQL</h2>
 <ul>
 <li>Schemaless in PostgreSQL: stick everything into a <code>jsonb</code>
 field</li>
 <li><em>GIN</em> indexing supports indexing such a field</li>
 </ul>
-<h2 id="part-vii-data-manipulation-and-concurrency-control">Part VII:
-Data Manipulation and Concurrency Control</h2>
-<h3 id="chapter-34-another-small-application">Chapter 34: Another Small
-Application</h3>
+<h1 id="part-vii-data-manipulation-and-concurrency-control">Part VII:
+Data Manipulation and Concurrency Control</h1>
+<h2 id="chapter-34-another-small-application">Chapter 34: Another Small
+Application</h2>
 <ul>
 <li>Remember that 2NF means “non-key attributes depend on the key”;
 example of violation: Tweet table has column with profile
@@ -906,15 +906,15 @@ information</li>
 <li>Transitive dependencies violate 3NF, example: country and place
 depend on location</li>
 </ul>
-<h3 id="chapter-35-insert-update-delete">Chapter 35: Insert, Update,
-Delete</h3>
+<h2 id="chapter-35-insert-update-delete">Chapter 35: Insert, Update,
+Delete</h2>
 <ul>
 <li>In Postgres, insert, update and delete commands accept a
 <code>returning</code> clause (which I now use all the time!)</li>
 <li>They also support <em>joins</em>, but each statement does it
 differently</li>
 </ul>
-<h4 id="insert">Insert</h4>
+<h3 id="insert">Insert</h3>
 <ul>
 <li><p><code>insert into</code>: <code>values</code> is accepted
 wherever <code>select</code> is expected and takes multiple rows; for
@@ -923,7 +923,7 @@ many rows, consider <code>copy</code> instead</p></li>
 <div class="sourceCode" id="cb14"><pre
 class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substring</span>(users.bio <span class="kw">from</span> <span class="vs">&#39;in love with #?(.*).</span><span class="st">&#39;</span>)</span></code></pre></div></li>
 </ul>
-<h4 id="update">Update</h4>
+<h3 id="update">Update</h3>
 <ul>
 <li><p>Allows replacing existing values while other users are
 concurrently working with the database</p></li>
@@ -933,11 +933,11 @@ class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id
 <p>This gives us both typo protection and better concurrency
 behaviour.</p></li>
 </ul>
-<h4 id="inserting-some-tweets">Inserting Some Tweets</h4>
+<h3 id="inserting-some-tweets">Inserting Some Tweets</h3>
 <p>There is an <a
 href="https://research.cs.wisc.edu/niagara/data/shakes/shaksper.htm">XML
 version of Shakespeare’s works</a>!</p>
-<h4 id="delete">Delete</h4>
+<h3 id="delete">Delete</h3>
 <ul>
 <li><p>Delete doesn’t actually delete immediately; <em>vacuum</em>
 deletes</p></li>
@@ -959,8 +959,8 @@ class="sourceCode sqlpostgresql"><code class="sourceCode sqlpostgresql"><span id
 <code>alter table</code> require an access exclusive lock; delete and
 vacuum can run in the middle of concurrent traffic.</p></li>
 </ul>
-<h3 id="chapter-36-isolation-and-locking">Chapter 36: Isolation and
-Locking</h3>
+<h2 id="chapter-36-isolation-and-locking">Chapter 36: Isolation and
+Locking</h2>
 <ul>
 <li>Postgres takes care of concurrency and leaves some control of it to
 the user</li>
@@ -983,7 +983,7 @@ Isolation</a>” (SSI)</li>
 <li>Set isolation with
 <code>start transaction isolation level &lt;level&gt;;</code></li>
 </ul>
-<h4 id="modeling-for-concurrency">Modeling for Concurrency</h4>
+<h3 id="modeling-for-concurrency">Modeling for Concurrency</h3>
 <ul>
 <li>Tweet example: retweets and favourites pulled into separate
 <code>activity</code> table</li>
@@ -999,8 +999,8 @@ href="#chapter-37-computing-and-caching-in-sql">below</a></li>
 <li>Optimizing might be worth it when concurrent activity competes for a
 single shared resource</li>
 </ul>
-<h3 id="chapter-37-computing-and-caching-in-sql">Chapter 37: Computing
-and Caching in SQL</h3>
+<h2 id="chapter-37-computing-and-caching-in-sql">Chapter 37: Computing
+and Caching in SQL</h2>
 <ul>
 <li>Create table that is a snapshot (but doesn’t update):
 <code>create table as</code></li>
@@ -1019,7 +1019,7 @@ string</li>
 <li>Cache invalidation should follow a <em>cache invalidation
 policy</em>; can be as simple as nightly cron</li>
 </ul>
-<h3 id="chapter-38-triggers">Chapter 38: Triggers</h3>
+<h2 id="chapter-38-triggers">Chapter 38: Triggers</h2>
 <ul>
 <li>Run a stored procedure when an event is produced</li>
 <li>Check <a
@@ -1040,7 +1040,7 @@ commands; see <a
 href="https://www.postgresql.org/docs/current/event-trigger-table-rewrite-example.html">this
 example</a> in the manual</li>
 </ul>
-<h3 id="chapter-39-listen-and-notify">Chapter 39: Listen and Notify</h3>
+<h2 id="chapter-39-listen-and-notify">Chapter 39: Listen and Notify</h2>
 <ul>
 <li>You can send messages around with <code>notify</code> and
 <code>listen</code></li>
@@ -1055,8 +1055,8 @@ to miss events</li>
 <li>Go DB driver supports asynchronous notifications (not all do, like
 Java doesn’t)</li>
 </ul>
-<h3 id="chapter-40-batch-update-moma-collection">Chapter 40: Batch
-Update, MoMA Collection</h3>
+<h2 id="chapter-40-batch-update-moma-collection">Chapter 40: Batch
+Update, MoMA Collection</h2>
 <ul>
 <li>Update existing data with overlapping new data:
 <ul>
@@ -1070,10 +1070,10 @@ inserts</li>
 either lock table explicitly with <code>lock table</code> or use
 <code>on conflict</code></li>
 </ul>
-<h2 id="part-viii-postgresql-extensions">Part VIII: PostgreSQL
-Extensions</h2>
-<h3 id="chapter-42-whats-a-postgresql-extension">Chapter 42: What’s a
-PostgreSQL Extension?</h3>
+<h1 id="part-viii-postgresql-extensions">Part VIII: PostgreSQL
+Extensions</h1>
+<h2 id="chapter-42-whats-a-postgresql-extension">Chapter 42: What’s a
+PostgreSQL Extension?</h2>
 <ul>
 <li>Set of SQL objects that can be enabled at run-time</li>
 <li>Types:
@@ -1116,8 +1116,8 @@ value)</li>
 </ul></li>
 </ul></li>
 </ul>
-<h3 id="chapter-43-auditing-changes-with-hstore">Chapter 43: Auditing
-Changes with hstore</h3>
+<h2 id="chapter-43-auditing-changes-with-hstore">Chapter 43: Auditing
+Changes with hstore</h2>
 <ul>
 <li>Precursor to JSON support, but
 <ul>
@@ -1132,11 +1132,11 @@ operator</li>
 <li>Record to hstore with <code>hstore()</code>, back again with
 <code>populate_record()</code></li>
 </ul>
-<h3 id="chapter-44-last.fm-million-song-dataset">Chapter 44: Last.fm
-Million Song Dataset</h3>
+<h2 id="chapter-44-last.fm-million-song-dataset">Chapter 44: Last.fm
+Million Song Dataset</h2>
 <p>Really just loads zipped JSON into a table using a Lisp script.</p>
-<h3 id="chapter-45-using-trigrams-for-typos">Chapter 45: Using Trigrams
-For Typos</h3>
+<h2 id="chapter-45-using-trigrams-for-typos">Chapter 45: Using Trigrams
+For Typos</h2>
 <ul>
 <li>pg_trgm extension: determine similarity of text based on trigram
 matching, fast search for similar strings</li>
@@ -1161,8 +1161,8 @@ value between 0 (completely dissimilar) and 1 (identical)</li>
 <li>Allows indexing: <code>using gist(title gist_trgm_ops)</code> (also
 indexes regular expression searching)</li>
 </ul>
-<h3 id="chapter-46-denormalizing-tags-with-intarray">Chapter 46:
-Denormalizing Tags with <code>intarray</code></h3>
+<h2 id="chapter-46-denormalizing-tags-with-intarray">Chapter 46:
+Denormalizing Tags with <code>intarray</code></h2>
 <ul>
 <li>intarray provides new operators, <code>@@</code> and
 <code>~~</code>, to test arrays against special <code>query_int</code>
@@ -1178,30 +1178,30 @@ logical operators</li>
 <li>Use case: user-defined tags with maybe exclusions; query specialized
 language with direct index support</li>
 </ul>
-<h3 id="chapter-47-the-most-popular-pub-names">Chapter 47: The Most
-Popular Pub Names</h3>
+<h2 id="chapter-47-the-most-popular-pub-names">Chapter 47: The Most
+Popular Pub Names</h2>
 <ul>
 <li><code>point</code> data type isn’t bound to any projection</li>
 <li>Distance operator (<code>&lt;-&gt;</code>) is Euclidean, not Earth
 distance</li>
 <li>kNN GiST indexing: <code>using gist(pos)</code></li>
 </ul>
-<h3 id="chapter-48-how-far-is-the-nearest-pub">Chapter 48: How far is
-the nearest pub?</h3>
+<h2 id="chapter-48-how-far-is-the-nearest-pub">Chapter 48: How far is
+the nearest pub?</h2>
 <ul>
 <li>earthdistance contrib: <code>&lt;@&gt;</code> operator to compute
 true distance between two points</li>
 </ul>
-<h3 id="chapter-49-geolocation-with-postgresql">Chapter 49: Geolocation
-with PostgreSQL</h3>
+<h2 id="chapter-49-geolocation-with-postgresql">Chapter 49: Geolocation
+with PostgreSQL</h2>
 <ul>
 <li>ip4r extension: provides <code>ip4r</code> data type for IP address
 ranges</li>
 <li>Example: “range contains” is
 <code>where iprange &gt;&gt;= '91.121.37.122'</code></li>
 </ul>
-<h3 id="chapter-50-counting-distinct-users-with-hyperloglog">Chapter 50:
-Counting Distinct Users with HyperLogLog</h3>
+<h2 id="chapter-50-counting-distinct-users-with-hyperloglog">Chapter 50:
+Counting Distinct Users with HyperLogLog</h2>
 <ul>
 <li>Extension postgresql-hll</li>
 <li>A “very special hash value”</li>

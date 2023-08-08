@@ -272,8 +272,8 @@ using pandoc Markdown to generate HTML, I bumped into a few things I had
 to fix while I went along: some CSS tweaks, and pbb wrappers for MathJax
 and bibliography functionality. Looks like “CSS tweaks” is a common
 theme in these update posts!</p>
-<h2 id="css-tweaks">CSS tweaks</h2>
-<h3 id="code-blocks">Code blocks</h3>
+<h1 id="css-tweaks">CSS tweaks</h1>
+<h2 id="code-blocks">Code blocks</h2>
 <p>For this round of CSS tweaks, I removed the grey background from all
 <code>&lt;pre&gt;</code> (code) blocks as I ran into problems when
 displaying code blocks with line numbers; <code>overflow-x</code> would
@@ -320,7 +320,7 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><
 alt="Code on grey" /><br />
 </p></li>
 </ul>
-<h3 id="tables">Tables</h3>
+<h2 id="tables">Tables</h2>
 <p>Default pandoc HTML styling doesn’t do anything with tables, and
 this</p>
 <figure>
@@ -334,7 +334,7 @@ they look like this:</p>
 <img src="images/2020-05-09-styled-table.png" alt="Styled table" />
 <figcaption aria-hidden="true">Styled table</figcaption>
 </figure>
-<h2 id="mathjax">MathJax</h2>
+<h1 id="mathjax">MathJax</h1>
 <p>Pandoc supports inline and display math (see <a
 href="2020-05-04-everything-pandoc-markdown.html#math">here</a>). To
 make it look prettier, there is a range of <a
@@ -358,7 +358,7 @@ around somewhere.)</p>
 <code>--mathjax</code>. However, if a page does not include any math,
 the MathJax script isn’t loaded anyway, so there’s no unnecessary weight
 added.</p>
-<h2 id="bibliography-and-citations">Bibliography and citations</h2>
+<h1 id="bibliography-and-citations">Bibliography and citations</h1>
 <p>The second feature that can be toggled using <code>pbb enable</code>
 is to allow using citations and bibliography;
 <code>pbb enable bibliography</code> adds

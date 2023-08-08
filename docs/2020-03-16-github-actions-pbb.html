@@ -255,7 +255,7 @@ Eventually, I want pbb to be an action that converts your Markdown files
 to HTML and deploys them to GitHub Pages instead of you having to deploy
 manually.</p>
 <p>I ended up creating three pretty simple actions.</p>
-<h2 id="a-markdown-linter">A Markdown linter</h2>
+<h1 id="a-markdown-linter">A Markdown linter</h1>
 <p>There were already actions similar to this one on the Marketplace,
 but a) I wanted to learn to write actions myself and b) none of them
 allows to use your own style file.</p>
@@ -296,7 +296,7 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="
 GitHub.</p>
 <p>The action is alive and well on the <a
 href="https://github.com/marketplace/actions/run-mdl">Marketplace</a>.</p>
-<h2 id="a-shell-linter">A shell linter</h2>
+<h1 id="a-shell-linter">A shell linter</h1>
 <p>The next action is even easier to use; it runs <a
 href="https://github.com/koalaman/shellcheck">ShellCheck</a> on all
 shell scripts in the repository.</p>
@@ -330,7 +330,7 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="
 <p>Like the Markdownlint action, the ShellCheck action is published on
 the <a
 href="https://github.com/marketplace/actions/run-shellcheck">Marketplace</a>.</p>
-<h2 id="a-release-tag-prefix-matcher">A release tag prefix matcher</h2>
+<h1 id="a-release-tag-prefix-matcher">A release tag prefix matcher</h1>
 <p>Actions provided by GitHub itself such as the <a
 href="https://github.com/marketplace/actions/checkout">Checkout</a>
 action allow you to specify the version you want with just a prefix:</p>
@@ -373,7 +373,7 @@ workflow file.</p>
 <p>In any case, the choice was now between using a personal access token
 or using the API. PAT seemed to be annoying (and would trigger the
 action to run again, causing an infinite loop), so API it was.</p>
-<h3 id="api-struggles">API struggles</h3>
+<h2 id="api-struggles">API struggles</h2>
 <p>This added a few dependencies to the container: <code>curl</code> and
 <code>jq</code> had to be added. I continued to struggle for a few days;
 the worst bug to track down must have been the one where I kept getting
@@ -413,7 +413,7 @@ offset is</p>
 timestamp is optional, and I just stopped sending it. Success!</p>
 <p>The three actions are now happily running on each other, and pbb is
 using them as well.</p>
-<h2 id="learnings">Learnings</h2>
+<h1 id="learnings">Learnings</h1>
 <p>I have a pretty good understanding of GitHub Actions now, not least
 because of the quite readable <a
 href="https://help.github.com/en/actions">documentation</a>. I’m looking

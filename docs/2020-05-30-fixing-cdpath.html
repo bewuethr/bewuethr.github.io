@@ -255,7 +255,7 @@ there, we have to type something like</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/go/src/github.com/bewuethr/awesome-project</span></code></pre></div>
 <p>every time. Unacceptable, right?</p>
-<h2 id="solution-1-alias">Solution 1: alias</h2>
+<h1 id="solution-1-alias">Solution 1: alias</h1>
 <p>We can use an <a
 href="https://www.gnu.org/software/bash/manual/bash.html#Aliases">alias</a>!
 That’s what I did for a long time. I added</p>
@@ -274,8 +274,8 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/bar</span></span></code></pre></div>
 <p>Great!</p>
-<h2 id="failed-attempt-at-improvement-naïve-cdpath">(Failed) attempt at
-improvement: naïve <code>CDPATH</code></h2>
+<h1 id="failed-attempt-at-improvement-naïve-cdpath">(Failed) attempt at
+improvement: naïve <code>CDPATH</code></h1>
 <p>I almost always want to access a subdirectory of
 <code>awesome-project</code>, rarely the directory itself. Bash (or any
 POSIX conformant shell) has a shell variable called <a
@@ -319,8 +319,8 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="
 <p>and gone is any advantage <code>CDPATH</code> would have had over an
 alias. It tried using it like this for a while, but it got too annoying
 and I gave up, went back to my alias.</p>
-<h2 id="solution-2-cdpath-done-right">Solution 2: <code>CDPATH</code>
-done right</h2>
+<h1 id="solution-2-cdpath-done-right">Solution 2: <code>CDPATH</code>
+done right</h1>
 <p>Until one day, I really wanted to figure out if there isn’t a better
 way. I took a closer look at the Bash manual; from the description of
 the <a
@@ -370,7 +370,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href=
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd foo  <span class="co"># Uses non-null CDPATH path</span></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/benjamin/go/src/github.com/bewuethr/awesome-project/foo</span></span></code></pre></div>
 <p>Much better!</p>
-<h2 id="not-exactly-new">Not exactly new</h2>
+<h1 id="not-exactly-new">Not exactly new</h1>
 <p>As the POSIX spec tells us, <code>CDPATH</code> has been around since
 the System V shell. And indeed, the manual for System V Release 3.5 has
 this to say:</p>
@@ -378,7 +378,7 @@ this to say:</p>
 <img src="images/2020-05-30-sysv-manual.png" alt="1986!" />
 <figcaption aria-hidden="true">1986!</figcaption>
 </figure>
-<h2 id="bonus-tab-completion">Bonus: tab completion</h2>
+<h1 id="bonus-tab-completion">Bonus: tab completion</h1>
 <p>A nice side effect when using the (pretty standard) bash-completion
 package is that it is fully <code>CDPATH</code> aware (see the <a
 href="https://github.com/scop/bash-completion/blob/ba4c941faa1ff5eb63e7984a6a52a7b703e2887f/bash_completion#L1794-L1840">implementation

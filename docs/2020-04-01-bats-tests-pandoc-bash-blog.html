@@ -262,11 +262,11 @@ GitHub Actions <a
 href="https://github.com/bewuethr/pandoc-bash-blog/blob/0f0014605bf48ca20641b5095b88a6b43338a200/.github/workflows/shlinttest.yml#L22-L45">job</a>,
 which was a bit annoying to set up, but I’ve learned a few things along
 the way.</p>
-<h2 id="things-ive-learned">Things I’ve learned</h2>
+<h1 id="things-ive-learned">Things I’ve learned</h1>
 <p>Speaking of things I’ve learned: in writing more lines of test code
 than the script they are testing has, I have bumped into a few obstacles
 and learned a few new things while getting over them.</p>
-<h3 id="write-testable-code">Write testable code</h3>
+<h2 id="write-testable-code">Write testable code</h2>
 <p>This one I knew already. It’s nice to have a tool that becomes
 interactive when the user doesn’t supply all the required parameters,
 but it’s messy to test. I could have made pbb prompt the user for a
@@ -275,7 +275,7 @@ I didn’t; now it’s easy to test. I’ve always wanted to learn <a
 href="https://core.tcl-lang.org/expect/index">Expect</a>, which would
 allow me to test these things interactively, but until I do, I make them
 non-interactive.</p>
-<h3 id="output-for-debugging">Output for debugging</h3>
+<h2 id="output-for-debugging">Output for debugging</h2>
 <p>By default, Bats is silent and only prints output if a test fails,
 together with what exactly failed. For example, I’d check if a file
 contains a certain string with</p>
@@ -306,7 +306,7 @@ check fails? Just print them first:</p>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> artifacts</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">[[</span> <span class="ot">-f</span> artifacts/index.html <span class="kw">]]</span></span></code></pre></div>
-<h3 id="setup-and-teardown-functions">Setup and teardown functions</h3>
+<h2 id="setup-and-teardown-functions">Setup and teardown functions</h2>
 <p>Bats recognizes two special functions, <a
 href="https://github.com/bats-core/bats-core#setup-and-teardown-pre--and-post-test-hooks"><code>setup</code>
 and <code>teardown</code></a>, which are run before and after each test.
@@ -324,8 +324,8 @@ directive; all of my test files just start with</p>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">load</span> test_helper</span></code></pre></div>
 <p>and setup and teardown are taken care of.</p>
-<h3 id="testing-git-with-pushes-to-a-remote">Testing Git with pushes to
-a remote</h3>
+<h2 id="testing-git-with-pushes-to-a-remote">Testing Git with pushes to
+a remote</h2>
 <p>Some of the pbb subcommands push to a remote Git repository. I was
 surprised to find how easy it is to mock that: initialize a bare
 repository in another directory and tell Git that that’s the remote! I
@@ -343,7 +343,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Tell local repo about remote</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> <span class="st">&quot;</span><span class="va">$repo</span><span class="st">&quot;</span> remote add origin <span class="st">&quot;</span><span class="va">$remote</span><span class="st">&quot;</span></span></code></pre></div>
 <p>And now I can push as my heart desires!</p>
-<h3 id="bats-and-github-actions">Bats and GitHub Actions</h3>
+<h2 id="bats-and-github-actions">Bats and GitHub Actions</h2>
 <p>After diving into <a
 href="2020-03-16-github-actions-pbb.html">Actions</a> a while ago and
 writing a few of my own, I obviously wanted to run my shiny new Bats
@@ -394,7 +394,7 @@ colourized output I’m used to from interactive Bats usage; the runner
 doesn’t like the terminal escapes Bats uses and I didn’t feel like
 investigating. TAP-compliant output also says more clearly “CI”, so
 that’s fine.</p>
-<h3 id="summary">Summary</h3>
+<h2 id="summary">Summary</h2>
 <p>These are the things I would have told my one month younger self:</p>
 <ul>
 <li>Make it easy to test your code (and my younger self would have
