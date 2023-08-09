@@ -1,3 +1,8 @@
+---
+summary: >-
+  I'm about to participate in a "half batch" at the Recurse Center in Brooklyn.
+---
+
 # Attending the Recurse Center
 
 Starting tomorrow, I'll attend a "half batch" of six weeks at the [Recurse

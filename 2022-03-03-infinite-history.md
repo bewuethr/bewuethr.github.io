@@ -1,3 +1,9 @@
+---
+summary: >-
+  The first in a series of posts about the perfect Bash history setup, focusing
+  on never losing anything
+---
+
 # The perfect Bash history setup: infinite history
 
 This is the first in a series of posts about Bash history configuration.

@@ -1,3 +1,9 @@
+---
+summary: >-
+  Another exercise from "Eloquent JavaScript": an implementation of Conway's
+  Game of Life using form checkboxes
+---
+
 # JavaScript silliness, 2: checkbox Game of Life
 
 This was another task from [*Eloquent JavaScript*][ejs], to get familiar with

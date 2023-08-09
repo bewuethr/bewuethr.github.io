@@ -1,9 +1,15 @@
+---
+summary: >-
+  A (highly positive) review of "Code" by Charles Petzold
+---
+
 # An ode to "Code"
 
-[*Code*][code] by Charles Petzold was the third title we tackled in our "technical book
-club" at work. After [*Designing Data-Intensive Applications*][ddia], the idea
-was to pick something a little more easily digestible---plus, *Code* had been
-on my list for quite a while, so I was more than happy with the choice.
+[*Code*][code] by Charles Petzold was the third title we tackled in our
+"technical book club" at work. After [*Designing Data-Intensive
+Applications*][ddia], the idea was to pick something a little more easily
+digestible---plus, *Code* had been on my list for quite a while, so I was more
+than happy with the choice.
 
 [code]: <https://www.charlespetzold.com/code/>
 [ddia]: <2021-02-02-ddia-review.html>

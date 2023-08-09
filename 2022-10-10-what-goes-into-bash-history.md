@@ -1,3 +1,9 @@
+---
+summary: >-
+  The second article in the Bash history setup series: what goes into the
+  history?
+---
+
 # The perfect Bash history setup: not retaining garbage
 
 In the [first post], we looked at configuring an interactive shell session such

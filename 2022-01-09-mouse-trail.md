@@ -1,3 +1,9 @@
+---
+summary: >-
+  One of the exercises from "Eloquent JavaScript": a classic mouse-trailer
+  based on a simple spring model
+---
+
 # JavaScript silliness, 1: mouse trail
 
 I have *finally* finished reading the excellent [*Eloquent JavaScript*][ejs],

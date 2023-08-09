@@ -1,6 +1,8 @@
 ---
 toc: true
-...
+summary: >-
+  A review of "Designing Data-Intensive Applications" by Martin Kleppmann
+---
 
 # Book review: Designing Data-Intensive Applications
 
