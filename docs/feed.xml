@@ -1,0 +1,83 @@
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ArtifiShell Intelligence</title>
+  <id>https://benjaminwuethrich.dev/</id>
+  <updated>2023-08-09T00:20:38-04:00</updated>
+  <author>
+    <name>Benjamin Wuethrich</name>
+    <email>benjamin@benjaminwuethrich.dev</email>
+    <uri>https://benjaminwuethrich.dev/</uri>
+  </author>
+  <link href="https://benjaminwuethrich.dev/feed.xml" rel="self" type="application/atom+xml"></link>
+  <link href="https://benjaminwuethrich.dev/" rel="alternate" type="text/html"></link>
+  <generator uri="https://bewuethr/pandoc-bash-blog">pandoc-bash-blog</generator>
+  <entry>
+    <title type="html">Attending the Recurse Center</title>
+    <id>https://benjaminwuethrich.dev/2023-08-06-recurse-center.html</id>
+    <updated>2023-08-09T00:19:58-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2023-08-06-recurse-center.html" type="text/html"></content>
+    <summary type="html">null</summary>
+  </entry>
+  <entry>
+    <title type="html">2022 in books</title>
+    <id>https://benjaminwuethrich.dev/2023-01-21-2022-in-books.html</id>
+    <updated>2023-08-09T00:19:58-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2023-01-21-2022-in-books.html" type="text/html"></content>
+    <summary type="html">null</summary>
+  </entry>
+  <entry>
+    <title type="html">The perfect Bash history setup: not retaining garbage</title>
+    <id>https://benjaminwuethrich.dev/2022-10-10-what-goes-into-bash-history.html</id>
+    <updated>2023-08-09T00:19:58-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2022-10-10-what-goes-into-bash-history.html" type="text/html"></content>
+    <summary type="html">null</summary>
+  </entry>
+  <entry>
+    <title type="html">StaffPlus New York 2022</title>
+    <id>https://benjaminwuethrich.dev/2022-04-17-staffplus-nyc-2022.html</id>
+    <updated>2023-08-09T00:19:58-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2022-04-17-staffplus-nyc-2022.html" type="text/html"></content>
+    <summary type="html">null</summary>
+  </entry>
+  <entry>
+    <title type="html">The perfect Bash history setup: infinite history</title>
+    <id>https://benjaminwuethrich.dev/2022-03-03-infinite-history.html</id>
+    <updated>2023-08-09T00:19:58-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2022-03-03-infinite-history.html" type="text/html"></content>
+    <summary type="html">null</summary>
+  </entry>
+  <entry>
+    <title type="html">JavaScript silliness, 2: checkbox Game of Life</title>
+    <id>https://benjaminwuethrich.dev/2022-01-16-game-of-life.html</id>
+    <updated>2023-08-09T00:19:58-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2022-01-16-game-of-life.html" type="text/html"></content>
+    <summary type="html">null</summary>
+  </entry>
+  <entry>
+    <title type="html">JavaScript silliness, 1: mouse trail</title>
+    <id>https://benjaminwuethrich.dev/2022-01-09-mouse-trail.html</id>
+    <updated>2023-08-09T00:19:58-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2022-01-09-mouse-trail.html" type="text/html"></content>
+    <summary type="html">null</summary>
+  </entry>
+  <entry>
+    <title type="html">2021 in books</title>
+    <id>https://benjaminwuethrich.dev/2022-01-01-2021-in-books.html</id>
+    <updated>2023-08-09T00:19:58-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2022-01-01-2021-in-books.html" type="text/html"></content>
+    <summary type="html">null</summary>
+  </entry>
+  <entry>
+    <title type="html">An ode to &#34;Code&#34;</title>
+    <id>https://benjaminwuethrich.dev/2021-05-24-code-book-review.html</id>
+    <updated>2023-08-09T00:19:58-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2021-05-24-code-book-review.html" type="text/html"></content>
+    <summary type="html">null</summary>
+  </entry>
+  <entry>
+    <title type="html">Book review: Designing Data-Intensive Applications</title>
+    <id>https://benjaminwuethrich.dev/2021-02-02-ddia-review.html</id>
+    <updated>2023-08-09T00:19:58-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2021-02-02-ddia-review.html" type="text/html"></content>
+    <summary type="html">null</summary>
+  </entry>
+</feed>
