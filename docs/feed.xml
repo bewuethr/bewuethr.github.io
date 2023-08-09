@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>ArtifiShell Intelligence</title>
   <id>https://benjaminwuethrich.dev/</id>
-  <updated>2023-08-09T00:20:38-04:00</updated>
+  <updated>2023-08-09T00:38:26-04:00</updated>
   <author>
     <name>Benjamin Wuethrich</name>
     <email>benjamin@benjaminwuethrich.dev</email>
@@ -15,69 +15,69 @@
     <id>https://benjaminwuethrich.dev/2023-08-06-recurse-center.html</id>
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2023-08-06-recurse-center.html" type="text/html"></content>
-    <summary type="html">null</summary>
+    <summary type="html">I&#39;m about to participate in a &#34;half batch&#34; at the Recurse Center in Brooklyn.</summary>
   </entry>
   <entry>
     <title type="html">2022 in books</title>
     <id>https://benjaminwuethrich.dev/2023-01-21-2022-in-books.html</id>
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2023-01-21-2022-in-books.html" type="text/html"></content>
-    <summary type="html">null</summary>
+    <summary type="html">Mini-reviews of all the books I&#39;ve read in 2022</summary>
   </entry>
   <entry>
     <title type="html">The perfect Bash history setup: not retaining garbage</title>
     <id>https://benjaminwuethrich.dev/2022-10-10-what-goes-into-bash-history.html</id>
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-10-10-what-goes-into-bash-history.html" type="text/html"></content>
-    <summary type="html">null</summary>
+    <summary type="html">The second article in the Bash history setup series: what goes into the history?</summary>
   </entry>
   <entry>
     <title type="html">StaffPlus New York 2022</title>
     <id>https://benjaminwuethrich.dev/2022-04-17-staffplus-nyc-2022.html</id>
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-04-17-staffplus-nyc-2022.html" type="text/html"></content>
-    <summary type="html">null</summary>
+    <summary type="html">My impressions from the StaffPlus conference in New York</summary>
   </entry>
   <entry>
     <title type="html">The perfect Bash history setup: infinite history</title>
     <id>https://benjaminwuethrich.dev/2022-03-03-infinite-history.html</id>
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-03-03-infinite-history.html" type="text/html"></content>
-    <summary type="html">null</summary>
+    <summary type="html">The first in a series of posts about the perfect Bash history setup, focusing on never losing anything</summary>
   </entry>
   <entry>
     <title type="html">JavaScript silliness, 2: checkbox Game of Life</title>
     <id>https://benjaminwuethrich.dev/2022-01-16-game-of-life.html</id>
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-01-16-game-of-life.html" type="text/html"></content>
-    <summary type="html">null</summary>
+    <summary type="html">Another exercise from &#34;Eloquent JavaScript&#34;: an implementation of Conway&#39;s Game of Life using form checkboxes</summary>
   </entry>
   <entry>
     <title type="html">JavaScript silliness, 1: mouse trail</title>
     <id>https://benjaminwuethrich.dev/2022-01-09-mouse-trail.html</id>
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-01-09-mouse-trail.html" type="text/html"></content>
-    <summary type="html">null</summary>
+    <summary type="html">One of the exercises from &#34;Eloquent JavaScript&#34;: a classic mouse-trailer based on a simple spring model</summary>
   </entry>
   <entry>
     <title type="html">2021 in books</title>
     <id>https://benjaminwuethrich.dev/2022-01-01-2021-in-books.html</id>
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-01-01-2021-in-books.html" type="text/html"></content>
-    <summary type="html">null</summary>
+    <summary type="html">Mini-reviews of all the books I&#39;ve read in 2022</summary>
   </entry>
   <entry>
     <title type="html">An ode to &#34;Code&#34;</title>
     <id>https://benjaminwuethrich.dev/2021-05-24-code-book-review.html</id>
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2021-05-24-code-book-review.html" type="text/html"></content>
-    <summary type="html">null</summary>
+    <summary type="html">A (highly positive) review of &#34;Code&#34; by Charles Petzold</summary>
   </entry>
   <entry>
     <title type="html">Book review: Designing Data-Intensive Applications</title>
     <id>https://benjaminwuethrich.dev/2021-02-02-ddia-review.html</id>
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2021-02-02-ddia-review.html" type="text/html"></content>
-    <summary type="html">null</summary>
+    <summary type="html">A review of &#34;Designing Data-Intensive Applications&#34; by Martin Kleppmann</summary>
   </entry>
 </feed>
