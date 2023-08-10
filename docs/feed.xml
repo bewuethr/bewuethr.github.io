@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title>ArtifiShell Intelligence</title>
   <id>https://benjaminwuethrich.dev/</id>
-  <updated>2023-08-10T18:44:01-04:00</updated>
+  <updated>2023-08-10T18:52:02-04:00</updated>
   <author>
     <name>Benjamin Wuethrich</name>
     <email>benjamin@benjaminwuethrich.dev</email>
@@ -16,10 +16,10 @@
   <entry>
     <title type="html">Recurse Center, four days in</title>
     <id>https://benjaminwuethrich.dev/2023-08-10-recurse-week-1-day-4.html</id>
-    <updated></updated>
+    <updated>2023-08-10T18:46:13-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2023-08-10-recurse-week-1-day-4.html" type="text/html"></content>
-    <summary type="html">I&#39;m about to participate in a &#34;half batch&#34; at the Recurse Center in Brooklyn.</summary>
-    <published></published>
+    <summary type="html">Looking back at the first four days of RC, of which two were in the hub.</summary>
+    <published>2023-08-10T18:44:10-04:00</published>
   </entry>
   <entry>
     <title type="html">Attending the Recurse Center</title>
