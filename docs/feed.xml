@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>ArtifiShell Intelligence</title>
   <id>https://benjaminwuethrich.dev/</id>
-  <updated>2023-08-10T12:00:09-04:00</updated>
+  <updated>2023-08-10T12:31:58-04:00</updated>
   <author>
     <name>Benjamin Wuethrich</name>
     <email>benjamin@benjaminwuethrich.dev</email>
@@ -11,6 +11,7 @@
   <link href="https://benjaminwuethrich.dev/" rel="alternate" type="text/html"></link>
   <generator uri="https://bewuethr/pandoc-bash-blog">pandoc-bash-blog</generator>
   <icon>/favicon.png</icon>
+  <webfeeds:icon>/favicon.png</webfeeds:icon>
   <entry>
     <title type="html">Attending the Recurse Center</title>
     <id>https://benjaminwuethrich.dev/2023-08-06-recurse-center.html</id>
