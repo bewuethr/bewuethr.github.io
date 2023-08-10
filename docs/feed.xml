@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title>ArtifiShell Intelligence</title>
   <id>https://benjaminwuethrich.dev/</id>
-  <updated>2023-08-10T12:40:37-04:00</updated>
+  <updated>2023-08-10T13:08:55-04:00</updated>
   <author>
     <name>Benjamin Wuethrich</name>
     <email>benjamin@benjaminwuethrich.dev</email>
@@ -19,6 +19,7 @@
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2023-08-06-recurse-center.html" type="text/html"></content>
     <summary type="html">I&#39;m about to participate in a &#34;half batch&#34; at the Recurse Center in Brooklyn.</summary>
+    <published>2023-08-06T23:10:17-04:00</published>
   </entry>
   <entry>
     <title type="html">2022 in books</title>
@@ -26,6 +27,7 @@
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2023-01-21-2022-in-books.html" type="text/html"></content>
     <summary type="html">Mini-reviews of all the books I&#39;ve read in 2022</summary>
+    <published>2023-01-01T00:24:51-05:00</published>
   </entry>
   <entry>
     <title type="html">The perfect Bash history setup: not retaining garbage</title>
@@ -33,6 +35,7 @@
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-10-10-what-goes-into-bash-history.html" type="text/html"></content>
     <summary type="html">The second article in the Bash history setup series: what goes into the history?</summary>
+    <published>2022-10-10T16:02:38-04:00</published>
   </entry>
   <entry>
     <title type="html">StaffPlus New York 2022</title>
@@ -40,6 +43,7 @@
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-04-17-staffplus-nyc-2022.html" type="text/html"></content>
     <summary type="html">My impressions from the StaffPlus conference in New York</summary>
+    <published>2022-04-12T23:20:57-04:00</published>
   </entry>
   <entry>
     <title type="html">The perfect Bash history setup: infinite history</title>
@@ -47,6 +51,7 @@
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-03-03-infinite-history.html" type="text/html"></content>
     <summary type="html">The first in a series of posts about the perfect Bash history setup, focusing on never losing anything</summary>
+    <published>2020-10-21T00:26:53-04:00</published>
   </entry>
   <entry>
     <title type="html">JavaScript silliness, 2: checkbox Game of Life</title>
@@ -54,6 +59,7 @@
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-01-16-game-of-life.html" type="text/html"></content>
     <summary type="html">Another exercise from &#34;Eloquent JavaScript&#34;: an implementation of Conway&#39;s Game of Life using form checkboxes</summary>
+    <published>2022-01-16T16:03:18-05:00</published>
   </entry>
   <entry>
     <title type="html">JavaScript silliness, 1: mouse trail</title>
@@ -61,6 +67,7 @@
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-01-09-mouse-trail.html" type="text/html"></content>
     <summary type="html">One of the exercises from &#34;Eloquent JavaScript&#34;: a classic mouse-trailer based on a simple spring model</summary>
+    <published>2022-01-09T17:17:38-05:00</published>
   </entry>
   <entry>
     <title type="html">2021 in books</title>
@@ -68,6 +75,7 @@
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2022-01-01-2021-in-books.html" type="text/html"></content>
     <summary type="html">Mini-reviews of all the books I&#39;ve read in 2022</summary>
+    <published>2022-01-01T18:52:52-05:00</published>
   </entry>
   <entry>
     <title type="html">An ode to &#34;Code&#34;</title>
@@ -75,6 +83,7 @@
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2021-05-24-code-book-review.html" type="text/html"></content>
     <summary type="html">A (highly positive) review of &#34;Code&#34; by Charles Petzold</summary>
+    <published>2021-05-24T20:52:19-04:00</published>
   </entry>
   <entry>
     <title type="html">Book review: Designing Data-Intensive Applications</title>
@@ -82,5 +91,6 @@
     <updated>2023-08-09T00:19:58-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2021-02-02-ddia-review.html" type="text/html"></content>
     <summary type="html">A review of &#34;Designing Data-Intensive Applications&#34; by Martin Kleppmann</summary>
+    <published>2021-02-02T21:54:24-05:00</published>
   </entry>
 </feed>
