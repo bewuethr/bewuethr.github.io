@@ -1,6 +1,6 @@
 ---
 summary: >-
-  I'm about to participate in a "half batch" at the Recurse Center in Brooklyn.
+  Looking back at the first four days of RC, of which two were in the hub.
 ---
 
 # Recurse Center, four days in
