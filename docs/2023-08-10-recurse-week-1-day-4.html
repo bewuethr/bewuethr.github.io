@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2023-08-10" />
+  <title>Recurse Center, four days in</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height; auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #073642;
+        color: #839496;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #839496;  padding-left: 4px; }
+    div.sourceCode
+      { color: #839496; background-color: #002b36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #dc322f; } /* Annotation */
+    code span.at { color: #b58900; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #859900; } /* BuiltIn */
+    code span.cf { color: #859900; } /* ControlFlow */
+    code span.ch { color: #dc322f; } /* Char */
+    code span.cn { color: #2aa198; } /* Constant */
+    code span.co { color: #586e75; font-style: italic; } /* Comment */
+    code span.cv { color: #268bd2; } /* CommentVar */
+    code span.do { color: #2aa198; } /* Documentation */
+    code span.dt { color: #cb4b16; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #ffffff; background-color: #ff0000; } /* Error */
+    code span.ex { color: #839496; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #2aa198; } /* Information */
+    code span.kw { color: #859900; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #cb4b16; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #268bd2; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #cb4b16; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #dc322f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/pbb.css" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="ArtifiShell Intelligence Feed">
+  <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
+<header id="title-block-header">
+<h1 class="title">Recurse Center, four days in</h1>
+<p class="date">2023-08-10</p>
+</header>
+<p>Since arriving in New York last Saturday, I have settled into my
+AirBnB, did some prep work, and most importantly started my batch.</p>
+<p>“Prep” included essential things such as modifying my self-updating
+<a href="https://github.com/bewuethr">GitHub profile</a> to be more RC
+specific, with statuses reflecting the <a
+href="https://www.recurse.com/self-directives">self-directives</a> and
+the random activities in the README body being tailored to what I think
+I’ll be doing.</p>
+<p>I also really wanted to add an Atom feed to my static site generator,
+and it’s what I spent most of my actual programming time on in the last
+few days. The <a
+href="https://validator.w3.org/feed/docs/atom.html"><em>Introduction to
+Atom</em></a> is quite readable and has all I needed. I ended up
+generating a feed with just summaries instead of full post content, even
+though I quite dislike it when websites choose to do that; it would have
+been too much work for right now to add posts in their entirety. I did
+add <em>some</em> polish in the form of setting a feed icon that shows
+up in, e.g., Feedly, and hopefully other readers, too.</p>
+<p>Implementation-wise, I misappropriated <a
+href="https://github.com/mikefarah/yq">yq</a> to build the feed
+basically in YAML, but then print it in XML. XML-specific things are
+supported as special field names, as in</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> yq <span class="at">-n</span> <span class="at">-o</span><span class="op">=</span>xml <span class="st">&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">  {</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;title&quot;: {</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">      &quot;+@type&quot;:&quot;html&quot;,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">      &quot;+content&quot;: &quot;The title&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>title <span class="va">type</span><span class="op">=</span><span class="st">&quot;html&quot;</span><span class="op">&gt;</span>The <span class="ex">title</span><span class="op">&lt;</span>/title<span class="op">&gt;</span></span></code></pre></div>
+<p>On the plus side, <a href="/feed.xml">it works</a>!</p>
+<p>On the negative side, this is a bit of a cop-out where I spend time
+on something I’m already very familiar with, instead of pushing myself.
+My excuse was that I really want the feed to be there so I can learn in
+public and hook my blog up to the RC-internal blog feed, but now that
+that’s done, I want to stop fiddling with the blog and just use it to
+publish stuff.</p>
+<h1 id="things-other-than-programming">Things other than
+programming</h1>
+<p>Monday and Tuesday, the hub wasn’t open yet for people starting a
+batch, so I went to a co-working space near the hub. There wasn’t a
+<em>ton</em> going on yet, mostly two meetings per day with intros to
+RC, everybody introducing themselves, a pairing workshop, and a tour of
+the software used at RC. It was still pretty exhausting, and time went
+by incredibly fast. (That hasn’t changed at all since then! <span
+class="emoji" data-emoji="sweat_smile">😅</span>)</p>
+<p>Yesterday, we finally got access to the hub. I guess there were about
+50 people in yesterday, with a mix of Recursers starting the second half
+of their batch, and others who just started this week with me. The place
+was buzzing with energy, I had a lot of great conversations, and was
+very tired in the evening.</p>
+<p>Overall, it’s overwhelming, but in a good sense. I still have to
+figure out a few things:</p>
+<ul>
+<li>Doing things at a sustainable pace: I probably can’t work at the hub
+until 8.30 pm every day and then go to my AirBnB and continue working
+until midnight.</li>
+<li>Working on the right things. My “real” project has received very
+little love from me so far, because of important things like the feed
+for the blog! Also, first week things. I’m giving myself half of a pass
+for this.</li>
+<li>General fear of missing out: should I do more pairing? Should I be
+more social? Should I be working more on my project? Since you can only
+do one thing at a time, feeling like you should actually be doing one of
+the others is quite easy. (And not helpful!)</li>
+<li>Not totally fall off the fitness wagon: I want to do lots of shorts
+runs, combined with enough physio to keep my calves and IT band at bay.
+And eat not terribly.</li>
+</ul>
+<p>In this spirit, I want my next post to be about non-zero progress on
+the VR project.</p>
+<script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title>ArtifiShell Intelligence</title>
   <id>https://benjaminwuethrich.dev/</id>
-  <updated>2023-08-10T13:08:55-04:00</updated>
+  <updated>2023-08-10T18:44:01-04:00</updated>
   <author>
     <name>Benjamin Wuethrich</name>
     <email>benjamin@benjaminwuethrich.dev</email>
@@ -13,6 +13,14 @@
   <icon>/favicon.png</icon>
   <webfeeds:icon>/favicon.png</webfeeds:icon>
   <webfeeds:cover image="/favicon.png"></webfeeds:cover>
+  <entry>
+    <title type="html">Recurse Center, four days in</title>
+    <id>https://benjaminwuethrich.dev/2023-08-10-recurse-week-1-day-4.html</id>
+    <updated></updated>
+    <content src="https://benjaminwuethrich.dev/2023-08-10-recurse-week-1-day-4.html" type="text/html"></content>
+    <summary type="html">I&#39;m about to participate in a &#34;half batch&#34; at the Recurse Center in Brooklyn.</summary>
+    <published></published>
+  </entry>
   <entry>
     <title type="html">Attending the Recurse Center</title>
     <id>https://benjaminwuethrich.dev/2023-08-06-recurse-center.html</id>
@@ -84,13 +92,5 @@
     <content src="https://benjaminwuethrich.dev/2021-05-24-code-book-review.html" type="text/html"></content>
     <summary type="html">A (highly positive) review of &#34;Code&#34; by Charles Petzold</summary>
     <published>2021-05-24T20:52:19-04:00</published>
-  </entry>
-  <entry>
-    <title type="html">Book review: Designing Data-Intensive Applications</title>
-    <id>https://benjaminwuethrich.dev/2021-02-02-ddia-review.html</id>
-    <updated>2023-08-09T00:19:58-04:00</updated>
-    <content src="https://benjaminwuethrich.dev/2021-02-02-ddia-review.html" type="text/html"></content>
-    <summary type="html">A review of &#34;Designing Data-Intensive Applications&#34; by Martin Kleppmann</summary>
-    <published>2021-02-02T21:54:24-05:00</published>
   </entry>
 </feed>
