@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title>ArtifiShell Intelligence</title>
   <id>https://benjaminwuethrich.dev/</id>
-  <updated>2023-08-10T18:52:02-04:00</updated>
+  <updated>2023-08-14T00:06:37-04:00</updated>
   <author>
     <name>Benjamin Wuethrich</name>
     <email>benjamin@benjaminwuethrich.dev</email>
@@ -13,6 +13,14 @@
   <icon>/favicon.png</icon>
   <webfeeds:icon>/favicon.png</webfeeds:icon>
   <webfeeds:cover image="/favicon.png"></webfeeds:cover>
+  <entry>
+    <title type="html">First week in New York</title>
+    <id>https://benjaminwuethrich.dev/2023-08-13-first-week-nyc.html</id>
+    <updated>2023-08-14T00:06:17-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2023-08-13-first-week-nyc.html" type="text/html"></content>
+    <summary type="html">Assorted thoughts after one week in New York</summary>
+    <published>2023-08-14T00:06:17-04:00</published>
+  </entry>
   <entry>
     <title type="html">Recurse Center, four days in</title>
     <id>https://benjaminwuethrich.dev/2023-08-10-recurse-week-1-day-4.html</id>
@@ -84,13 +92,5 @@
     <content src="https://benjaminwuethrich.dev/2022-01-01-2021-in-books.html" type="text/html"></content>
     <summary type="html">Mini-reviews of all the books I&#39;ve read in 2022</summary>
     <published>2022-01-01T18:52:52-05:00</published>
-  </entry>
-  <entry>
-    <title type="html">An ode to &#34;Code&#34;</title>
-    <id>https://benjaminwuethrich.dev/2021-05-24-code-book-review.html</id>
-    <updated>2023-08-09T00:19:58-04:00</updated>
-    <content src="https://benjaminwuethrich.dev/2021-05-24-code-book-review.html" type="text/html"></content>
-    <summary type="html">A (highly positive) review of &#34;Code&#34; by Charles Petzold</summary>
-    <published>2021-05-24T20:52:19-04:00</published>
   </entry>
 </feed>
