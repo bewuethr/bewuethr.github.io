@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title>ArtifiShell Intelligence</title>
   <id>https://benjaminwuethrich.dev/</id>
-  <updated>2023-08-23T19:02:34-04:00</updated>
+  <updated>2023-08-23T19:15:44-04:00</updated>
   <author>
     <name>Benjamin Wuethrich</name>
     <email>benjamin@benjaminwuethrich.dev</email>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html">Recurse projects progress, and general update</title>
     <id>https://benjaminwuethrich.dev/2023-08-23-toybox-2d.html</id>
-    <updated>2023-08-23T19:02:14-04:00</updated>
+    <updated>2023-08-23T19:15:20-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2023-08-23-toybox-2d.html" type="text/html"></content>
     <link href="https://benjaminwuethrich.dev/2023-08-23-toybox-2d.html" rel="alternate" type="text/html" title="Recurse projects progress, and general update"></link>
     <summary type="html">Progress on the VR physical toybox after 2.5 weeks, and other Recurse happenings</summary>

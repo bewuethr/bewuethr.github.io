@@ -195,11 +195,12 @@ href="2023-08-13-first-week-nyc.html">last time</a> to what I’ll keep as
 the end state of the 2D version: a dot moving around on a canvas, using
 the phone position to determine forces on the dot.</p>
 <p>Let’s see if I can embed that entirely here…</p>
-<canvas height="500px">
+<canvas width="600" height="600">
 </canvas>
 <style>
   canvas {
     border: 2px solid;
+    padding: 0;
     width: 100%;
   }
 </style>
@@ -277,7 +278,7 @@ the phone position to determine forces on the dot.</p>
   function updateModel(dt) {
     const dampingFactor = 0.5;
     const gravity = 9.81;
-    const width = ctx.canvas.clientWidth, height = ctx.canvas.clientHeight;
+    const width = 600, height = 600;
 
     // Calculate and apply force vector
     let F = {
@@ -309,7 +310,7 @@ the phone position to determine forces on the dot.</p>
   }
 
   function paintScene(dt) {
-    const width = ctx.canvas.clientWidth, height = ctx.canvas.clientHeight;
+    const width = 600, height = 600;
 
     updateModel(dt);
     const fontSize = 25;
@@ -336,9 +337,8 @@ the phone position to determine forces on the dot.</p>
     requestAnimationFrame(frame);
   }
 
-  let config = { debug: false };
   let scene = new Scene();
-  let ctx = init(scene, config);
+  let ctx = init();
   let tPrev;
   const r = 10;
 
