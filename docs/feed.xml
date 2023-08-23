@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title>ArtifiShell Intelligence</title>
   <id>https://benjaminwuethrich.dev/</id>
-  <updated>2023-08-14T23:08:39-04:00</updated>
+  <updated>2023-08-23T18:45:30-04:00</updated>
   <author>
     <name>Benjamin Wuethrich</name>
     <email>benjamin@benjaminwuethrich.dev</email>
@@ -13,6 +13,15 @@
   <icon>/favicon.png</icon>
   <webfeeds:icon>/favicon.png</webfeeds:icon>
   <webfeeds:cover image="/favicon.png"></webfeeds:cover>
+  <entry>
+    <title type="html">Recurse projects progress, and general update</title>
+    <id>https://benjaminwuethrich.dev/2023-08-23-toybox-2d.html</id>
+    <updated>2023-08-23T18:44:19-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2023-08-23-toybox-2d.html" type="text/html"></content>
+    <link href="https://benjaminwuethrich.dev/2023-08-23-toybox-2d.html" rel="alternate" type="text/html" title="Recurse projects progress, and general update"></link>
+    <summary type="html">Progress on the VR physical toybox after 2.5 weeks, and other Recurse happenings</summary>
+    <published>2023-08-23T18:44:19-04:00</published>
+  </entry>
   <entry>
     <title type="html">First week in New York</title>
     <id>https://benjaminwuethrich.dev/2023-08-13-first-week-nyc.html</id>
@@ -93,14 +102,5 @@
     <link href="https://benjaminwuethrich.dev/2022-01-09-mouse-trail.html" rel="alternate" type="text/html" title="JavaScript silliness, 1: mouse trail"></link>
     <summary type="html">One of the exercises from &#34;Eloquent JavaScript&#34;: a classic mouse-trailer based on a simple spring model</summary>
     <published>2022-01-09T17:17:38-05:00</published>
-  </entry>
-  <entry>
-    <title type="html">2021 in books</title>
-    <id>https://benjaminwuethrich.dev/2022-01-01-2021-in-books.html</id>
-    <updated>2023-08-09T00:19:58-04:00</updated>
-    <content src="https://benjaminwuethrich.dev/2022-01-01-2021-in-books.html" type="text/html"></content>
-    <link href="https://benjaminwuethrich.dev/2022-01-01-2021-in-books.html" rel="alternate" type="text/html" title="2021 in books"></link>
-    <summary type="html">Mini-reviews of all the books I&#39;ve read in 2022</summary>
-    <published>2022-01-01T18:52:52-05:00</published>
   </entry>
 </feed>
