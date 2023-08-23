@@ -195,11 +195,12 @@ href="2023-08-13-first-week-nyc.html">last time</a> to what I’ll keep as
 the end state of the 2D version: a dot moving around on a canvas, using
 the phone position to determine forces on the dot.</p>
 <p>Let’s see if I can embed that entirely here…</p>
-<canvas height="500px" width="600px">
+<canvas height="500px">
 </canvas>
 <style>
   canvas {
     border: 2px solid;
+    width: 100%;
   }
 </style>
 <script>
@@ -245,7 +246,7 @@ the phone position to determine forces on the dot.</p>
     orientation;
 
     constructor() {
-      this.point = new Point(300, 250);
+      this.point = new Point(150, 250);
       this.orientation = {
         alpha: 0,
         beta: 0,
@@ -276,7 +277,7 @@ the phone position to determine forces on the dot.</p>
   function updateModel(dt) {
     const dampingFactor = 0.5;
     const gravity = 9.81;
-    const width = 600, height = 500;
+    const width = ctx.canvas.clientWidth, height = ctx.canvas.clientHeight;
 
     // Calculate and apply force vector
     let F = {
@@ -308,7 +309,7 @@ the phone position to determine forces on the dot.</p>
   }
 
   function paintScene(dt) {
-    const width = 600, height = 500;
+    const width = ctx.canvas.clientWidth, height = ctx.canvas.clientHeight;
 
     updateModel(dt);
     const fontSize = 25;
@@ -347,7 +348,7 @@ the phone position to determine forces on the dot.</p>
 plausible way; it looks like this currently doesn’t work on iPhones,
 though. Here’s some footage from testing it using the in-browser sensors
 tool:</p>
-<iframe width="600px" height="338px" src="https://www.youtube.com/embed/YryiuJG0yL0?si=twAb-n4v-HB7RiRp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+<iframe width="100%" style="aspect-ratio: 560/315" src="https://www.youtube.com/embed/YryiuJG0yL0?si=twAb-n4v-HB7RiRp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 </iframe>
 <p>I encountered lots of interesting challenges along the way!</p>
 <p>Initially, I tried using the <a
