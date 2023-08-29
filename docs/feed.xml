@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title>ArtifiShell Intelligence</title>
   <id>https://benjaminwuethrich.dev/</id>
-  <updated>2023-08-23T19:15:44-04:00</updated>
+  <updated>2023-08-29T15:57:46-04:00</updated>
   <author>
     <name>Benjamin Wuethrich</name>
     <email>benjamin@benjaminwuethrich.dev</email>
@@ -13,6 +13,15 @@
   <icon>/favicon.png</icon>
   <webfeeds:icon>/favicon.png</webfeeds:icon>
   <webfeeds:cover image="/favicon.png"></webfeeds:cover>
+  <entry>
+    <title type="html">Mounting an image as a filesystem</title>
+    <id>https://benjaminwuethrich.dev/2023-08-29-mounting-image-filesystem.html</id>
+    <updated>2023-08-28T23:00:17-04:00</updated>
+    <content src="https://benjaminwuethrich.dev/2023-08-29-mounting-image-filesystem.html" type="text/html"></content>
+    <link href="https://benjaminwuethrich.dev/2023-08-29-mounting-image-filesystem.html" rel="alternate" type="text/html" title="Mounting an image as a filesystem"></link>
+    <summary type="html">My &#34;Impossible Stuff Day&#34; project, mounting an image as a filesystem</summary>
+    <published>2023-08-28T23:00:17-04:00</published>
+  </entry>
   <entry>
     <title type="html">Recurse projects progress, and general update</title>
     <id>https://benjaminwuethrich.dev/2023-08-23-toybox-2d.html</id>
@@ -93,14 +102,5 @@
     <link href="https://benjaminwuethrich.dev/2022-01-16-game-of-life.html" rel="alternate" type="text/html" title="JavaScript silliness, 2: checkbox Game of Life"></link>
     <summary type="html">Another exercise from &#34;Eloquent JavaScript&#34;: an implementation of Conway&#39;s Game of Life using form checkboxes</summary>
     <published>2022-01-16T16:03:18-05:00</published>
-  </entry>
-  <entry>
-    <title type="html">JavaScript silliness, 1: mouse trail</title>
-    <id>https://benjaminwuethrich.dev/2022-01-09-mouse-trail.html</id>
-    <updated>2023-08-09T00:19:58-04:00</updated>
-    <content src="https://benjaminwuethrich.dev/2022-01-09-mouse-trail.html" type="text/html"></content>
-    <link href="https://benjaminwuethrich.dev/2022-01-09-mouse-trail.html" rel="alternate" type="text/html" title="JavaScript silliness, 1: mouse trail"></link>
-    <summary type="html">One of the exercises from &#34;Eloquent JavaScript&#34;: a classic mouse-trailer based on a simple spring model</summary>
-    <published>2022-01-09T17:17:38-05:00</published>
   </entry>
 </feed>
