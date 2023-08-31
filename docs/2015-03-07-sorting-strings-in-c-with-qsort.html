@@ -284,7 +284,7 @@ because that’s what the array is: an array of <code>char*</code>, and
 not an array of actual strings. I change my call to</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>qsort<span class="op">(</span>words<span class="op">,</span>ctr<span class="op">,</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">char</span><span class="op">*),</span>strcmp<span class="op">);</span></span></code></pre></div>
 <p>Still compiles without problems. Good. And doesn’t crash. Even
-better! However, the results are still not quite what I want. If start
+better! However, the results are still not quite what I want. If I start
 with</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span><span class="op">*</span> words<span class="op">[</span>ARR_LEN<span class="op">]</span> <span class="op">=</span> <span class="op">{</span> <span class="st">&quot;bb&quot;</span><span class="op">,</span> <span class="st">&quot;cc&quot;</span><span class="op">,</span> <span class="st">&quot;aa&quot;</span> <span class="op">};</span></span></code></pre></div>
 <p>and sort that, I get <code>cc aa bb</code> as the result.</p>
