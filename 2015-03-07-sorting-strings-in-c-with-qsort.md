@@ -46,7 +46,7 @@ qsort(words,ctr,sizeof(char*),strcmp);
 ```
 
 Still compiles without problems. Good. And doesn't crash. Even better! However,
-the results are still not quite what I want. If start with
+the results are still not quite what I want. If I start with
 
 ```c
 char* words[ARR_LEN] = { "bb", "cc", "aa" };
