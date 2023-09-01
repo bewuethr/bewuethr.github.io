@@ -14,7 +14,7 @@ afterwards.
 I set out to access an image as a filesystem. I'd seen similar projects:
 
 - [TabFS] (mount browser tabs as a filesystem)
-- [rssnix] (filesystem-based feed reader)
+- [rssfs] (RSS reader as a filesystem)
 - [ffs], the "file filesystem" (mount semi-structured data as a filesystem)
 
 So it was obviously possible. The impossible (to me) aspect was a combination
@@ -24,7 +24,7 @@ ten years ago.
 
 [edge]: <https://www.recurse.com/self-directives#work-at-the-edge>
 [tabfs]: <https://omar.website/tabfs/>
-[rssnix]: <https://github.com/jafarlihi/rssnix>
+[rssfs]: <https://github.com/dertuxmalwieder/rssfs>
 [ffs]: <https://mgree.github.io/ffs/>
 
 ## Research
