@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title>ArtifiShell Intelligence</title>
   <id>https://benjaminwuethrich.dev/</id>
-  <updated>2023-08-31T00:48:45-04:00</updated>
+  <updated>2023-09-01T00:24:07-04:00</updated>
   <author>
     <name>Benjamin Wuethrich</name>
     <email>benjamin@benjaminwuethrich.dev</email>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html">Mounting an image as a filesystem</title>
     <id>https://benjaminwuethrich.dev/2023-08-29-mounting-image-filesystem.html</id>
-    <updated>2023-08-29T15:57:57-04:00</updated>
+    <updated>2023-09-01T00:23:37-04:00</updated>
     <content src="https://benjaminwuethrich.dev/2023-08-29-mounting-image-filesystem.html" type="text/html"></content>
     <link href="https://benjaminwuethrich.dev/2023-08-29-mounting-image-filesystem.html" rel="alternate" type="text/html" title="Mounting an image as a filesystem"></link>
     <summary type="html">My &#34;Impossible Stuff Day&#34; project, mounting an image as a filesystem</summary>
