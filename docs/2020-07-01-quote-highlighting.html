@@ -168,7 +168,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -288,7 +288,7 @@ for myself so I wouldn’t forget, and let it sit for a month.</p>
 <p>Eventually, I had a closer look. The HTML for the highlighted code
 looked something like</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;co&quot;</span><span class="dt">&gt;</span><span class="dv">&amp;quot;</span><span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;ot&quot;</span><span class="dt">&gt;</span>prev<span class="dv">&amp;quot;</span><span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;co&quot;</span><span class="dt">&gt;</span><span class="dv">&amp;quot;</span><span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;ot&quot;</span><span class="dt">&gt;</span>prev<span class="dv">&amp;quot;</span><span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span></code></pre></div>
 <p>where <code>co</code> refers to a comment, and <code>ot</code> is for
 “other”. The opening double quote was weirdly designated a comment.</p>
 <p>Now, pbb uses pandoc to produce its output. I should probably
@@ -307,7 +307,7 @@ Skylighting uses KDE XML syntax highlighting descriptions:</p>
 <img src="diagrams/73d10b2.svg" />
 <p>The syntax file for PostgreSQL contained this line:</p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">DetectChar</span> <span class="er">attribute</span><span class="ot">=</span><span class="st">&quot;Comment&quot;</span> <span class="er">context</span><span class="ot">=</span><span class="st">&quot;Identifier&quot;</span> <span class="er">char</span><span class="ot">=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="dt">/&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">DetectChar</span><span class="ot"> attribute</span><span class="op">=</span><span class="st">&quot;Comment&quot;</span><span class="ot"> context</span><span class="op">=</span><span class="st">&quot;Identifier&quot;</span><span class="ot"> char</span><span class="op">=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="dt">/&gt;</span></span></code></pre></div>
 <p>And even without knowing much about how these syntax files work, this
 looked suspicious. John suggested I’d submit a bug report to the KDE
 project, as skylighting from time to time pulls the latest syntax files
@@ -334,7 +334,7 @@ this time to illustrate the migration of KDE syntax highlighting:</p>
 href="https://github.com/KDE/kate/commit/8eb69d93e3a0bee856f9d404bd8de395c6bfca76#diff-23999c6941df50d23a602798ad93d229">this
 commit</a>, and the line for double quotes looked like this:</p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">DetectChar</span> <span class="er">attribute</span><span class="ot">=</span><span class="st">&quot;9&quot;</span> <span class="er">context</span><span class="ot">=</span><span class="st">&quot;5&quot;</span> <span class="er">char</span><span class="ot">=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="dt">/&gt;</span></span></code></pre></div>
+class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">DetectChar</span><span class="ot"> attribute</span><span class="op">=</span><span class="st">&quot;9&quot;</span><span class="ot"> context</span><span class="op">=</span><span class="st">&quot;5&quot;</span><span class="ot"> char</span><span class="op">=</span><span class="st">&quot;</span><span class="dv">&amp;quot;</span><span class="st">&quot;</span><span class="dt">/&gt;</span></span></code></pre></div>
 <p>where <code>attribute</code> and <code>context</code> are indices
 into arrays: both attribute 9 and context 5 are for “identifiers”.</p>
 <p>Then, in 2003, somebody <a
