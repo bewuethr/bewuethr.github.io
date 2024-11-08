@@ -349,6 +349,7 @@ links</a></li>
 Spans</a></li>
 <li><a href="#footnotes" id="toc-footnotes">Footnotes</a></li>
 <li><a href="#citations" id="toc-citations">Citations</a></li>
+<li><a href="#bibliography" id="toc-bibliography">Bibliography</a></li>
 </ul>
 </nav>
 <p>Pandoc Markdown is <a
@@ -2145,9 +2146,7 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb99-1">
 <span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
 <hr />
 <p>If there isn’t one (like in this document), the bibliography goes at
-the end. I have set a section title for it in the metadata file using
-<code>reference-section-title</code>.<a href="#fn4" class="footnote-ref"
-id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+the end. The section heading is added manually.</p>
 <p>An item that wasn’t actually cited can be added to the bibliography
 by including a <code>nocite</code> metadata field:</p>
 <hr />
@@ -2159,7 +2158,7 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb100-1"><a href
 <hr />
 <p>A wildcard <code>@*</code> can be used to get all citations in the
 bibliography.</p>
-<p>Bibliography</p>
+<h1 class="unnumbered" id="bibliography">Bibliography</h1>
 <div id="refs" class="references csl-bib-body hanging-indent"
 data-entry-spacing="0" role="list">
 <div id="ref-Licklider1968" class="csl-entry" role="listitem">
@@ -2192,10 +2191,6 @@ role="doc-backlink">↩︎</a></p></li>
 <a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></li>
 <li id="fn3"><p>And this is the inline footnote.<a href="#fnref3"
 class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>The heading is currently rendered as just a paragraph
-because of <a href="https://github.com/jgm/pandoc/issues/10367">this
-bug</a>.<a href="#fnref4" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"

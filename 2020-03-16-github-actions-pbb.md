@@ -1,9 +1,9 @@
 # GitHub Actions for pbb
 
 I used working on [Pandoc Bash Blog][1] as an excuse to look into [GitHub
-Actions][2].  Eventually, I want pbb to be an action that converts your
-Markdown files to HTML and deploys them to GitHub Pages instead of you having
-to deploy manually.
+Actions][2]. Eventually, I want pbb to be an action that converts your Markdown
+files to HTML and deploys them to GitHub Pages instead of you having to deploy
+manually.
 
 I ended up creating three pretty simple actions.
 
