@@ -52,7 +52,7 @@ references:
     container-title: Science and Technology
     page: 21-31
     volume: '76'
-...
+---
 
 # Everything pandoc Markdown can do
 
@@ -2179,7 +2179,10 @@ To list the works cited, a div with ID `refs` can be used:
 
 If there isn't one (like in this document), the bibliography goes at the end. I
 have set a section title for it in the metadata file using
-`reference-section-title`.
+`reference-section-title`.^[The heading is currently rendered as just a
+paragraph because of [this bug].]
+
+[this bug]: <https://github.com/jgm/pandoc/issues/10367>
 
 An item that wasn't actually cited can be added to the bibliography by
 including a `nocite` metadata field:
