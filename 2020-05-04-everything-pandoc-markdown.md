@@ -2177,12 +2177,8 @@ To list the works cited, a div with ID `refs` can be used:
 
 ---
 
-If there isn't one (like in this document), the bibliography goes at the end. I
-have set a section title for it in the metadata file using
-`reference-section-title`.^[The heading is currently rendered as just a
-paragraph because of [this bug].]
-
-[this bug]: <https://github.com/jgm/pandoc/issues/10367>
+If there isn't one (like in this document), the bibliography goes at the end.
+The section heading is added manually.
 
 An item that wasn't actually cited can be added to the bibliography by
 including a `nocite` metadata field:
@@ -2204,3 +2200,5 @@ nocite: |
 ---
 
 A wildcard `@*` can be used to get all citations in the bibliography.
+
+## Bibliography

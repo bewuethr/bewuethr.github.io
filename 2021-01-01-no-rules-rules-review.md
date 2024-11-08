@@ -50,7 +50,7 @@ references:
     URL: https://doi.org/10.1145/362851.362858
     DOI: 10.1145/362851.362858
     ISSN: 0001-0782
-...
+---
 
 # Does "No Rules Rules" rule?
 
@@ -211,3 +211,5 @@ useful on their own.
 
 Overall, I wouldn't say that *No Rules Rules* rules indiscriminately, but there
 are certainly a few interesting ideas in there, and it's an entertaining read.
+
+## Bibliography
