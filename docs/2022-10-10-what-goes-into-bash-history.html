@@ -179,7 +179,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -238,9 +238,6 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
   <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="ArtifiShell Intelligence Feed">
   <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
@@ -399,7 +396,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="va">HISTCONTROL</span><span class="op">=</span><span class="st">&#39;ignoreboth&#39;</span></span></code></pre></div>
 <p>In the next post, we’ll examine how to get multi-line commands into
 history, and add timestamps to commands.</p>
-<aside id="footnotes" class="footnotes footnotes-end-of-document"
+<section id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
@@ -407,7 +404,7 @@ role="doc-endnotes">
 probably update my <code>HISTIGNORE</code>!<a href="#fnref1"
 class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</aside>
+</section>
 <script data-goatcounter="https://artifishellintelligence.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>

@@ -179,7 +179,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -238,9 +238,6 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,400i,700,700i|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
   <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="ArtifiShell Intelligence Feed">
   <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <div id="blogtitle"><a href="./">ArtifiShell Intelligence</a></div>
@@ -269,17 +266,17 @@ own.</p>
 numbers right; something like</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode numberSource css numberLines"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1"></a>pre <span class="op">&gt;</span> code<span class="fu">.sourceCode</span> <span class="op">&gt;</span> span <span class="op">&gt;</span> a<span class="in">:first-child::before</span> {</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">line-height</span>: <span class="dv">1.6</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">line-height</span><span class="ch">:</span> <span class="dv">1.6</span><span class="dt">em</span><span class="op">;</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a>}</span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
 <span id="cb1-5"><a href="#cb1-5"></a>pre <span class="op">&gt;</span> code<span class="fu">.sourceCode</span> <span class="op">&gt;</span> span<span class="in">:first-child</span> <span class="op">&gt;</span> a<span class="in">:first-child::before</span> {</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    <span class="kw">margin-top</span>: <span class="dv">-9</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>    <span class="kw">padding-top</span>: <span class="dv">9</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="kw">margin-top</span><span class="ch">:</span> <span class="dv">-9</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="kw">padding-top</span><span class="ch">:</span> <span class="dv">9</span><span class="dt">px</span><span class="op">;</span></span>
 <span id="cb1-8"><a href="#cb1-8"></a>}</span>
 <span id="cb1-9"><a href="#cb1-9"></a></span>
 <span id="cb1-10"><a href="#cb1-10"></a>pre <span class="op">&gt;</span> code<span class="fu">.sourceCode</span> <span class="op">&gt;</span> span<span class="in">:last-child</span> <span class="op">&gt;</span> a<span class="in">:first-child::before</span> {</span>
-<span id="cb1-11"><a href="#cb1-11"></a>    <span class="kw">margin-bottom</span>: <span class="dv">-9</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>    <span class="kw">padding-bottom</span>: <span class="dv">9</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">-9</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="kw">padding-bottom</span><span class="ch">:</span> <span class="dv">9</span><span class="dt">px</span><span class="op">;</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a>}</span></code></pre></div>
 <p>finally did the trick. Notice that when this scrolls horizontally,
 there is still an issue with extra padding at the end of each line. This
@@ -305,7 +302,7 @@ around a little.</p>
 <col style="width: 51%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td><figure>
 <img src="images/2020-07-13-focus.png" alt="Focus" />
 <figcaption aria-hidden="true">Focus</figcaption>
@@ -315,7 +312,7 @@ around a little.</p>
 <figcaption aria-hidden="true">Hover</figcaption>
 </figure></td>
 </tr>
-<tr class="even">
+<tr>
 <td><figure>
 <img src="images/2020-07-13-active.png" alt="Active" />
 <figcaption aria-hidden="true">Active</figcaption>
